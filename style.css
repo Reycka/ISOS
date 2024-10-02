@@ -1,0 +1,30 @@
+body
+{
+  margin: 100px;
+  background-color: #0D0D0D;
+  text-align: center;
+}
+h1{
+  font-family:'Times New Roman', Times, serif;
+  font-size:xx-large;
+  text-align: center; 
+  color: #8D6742
+}
+.Empresa{
+  font-family:'Times New Roman', Times, serif;
+  font-size: xx-large;
+  color:#59381C;
+}
+.Description
+{
+  font-family:'Times New Roman', Times, serif;
+  color: #BfBCBA;
+  font-size:large;
+}
+.Referencias{
+  text-align: center;
+}
+.Image{
+  width: 100px;
+  height: 100px;
+}

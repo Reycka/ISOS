@@ -2,6 +2,7 @@ body
 {
   margin: 100px;
   background-image: url(https://raw.githubusercontent.com/Reycka/ISOS/refs/heads/Web-Branch/Fondo%20web.png);
+  background-position: center;
   text-align: center;
 }
 h1{

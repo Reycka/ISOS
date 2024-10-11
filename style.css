@@ -25,6 +25,7 @@ h1 {
   font-size: 48px;
   color: #8D6742;
   margin: 0; /* Elimina el margen para alinear mejor */
+  text-align: center;
 }
 
 .empresa {
@@ -32,6 +33,7 @@ h1 {
   font-size: 36px;
   color: #59381C;
   margin: 0; /* Elimina el margen para alinear mejor */
+  text-align: center;
 }
 
 .description {
@@ -39,6 +41,12 @@ h1 {
   color: #BfBCBA;
   font-size: 24px;
   text-align: left; /* Alineado a la izquierda para el resto del texto */
+}
+.referencias {
+    font-family: 'Times New Roman', Times, serif;
+    color: #BfBCBA;
+    font-size: 24px;
+    text-align: center;
 }
 
 .texto {
@@ -58,6 +66,6 @@ h1 {
 }
 
 .character {
-  width: 300px;
-  height: auto;
+    width: 500px;
+    height: 700px;
 }

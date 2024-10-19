@@ -7,15 +7,18 @@ export default class Inventory{
         
     }
     AddGift(n) {
-        ofrendas = ofrendas + n;
+        this.numgift = this.numgift + n;
     }
     RemoveGift(n){ 
-        if(this.CheckGift(n))this.gift = this.numgift - n;
+        if(this.CheckGift(n))this.numgift = this.numgift - n;
     }
     CheckGift(n){
         return this.numgift>= n;
     }
     AddCard(){
         this.numcards++;
+    }
+    GetGitf(){
+        return this.numgift
     }
 }

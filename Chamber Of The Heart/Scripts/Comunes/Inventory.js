@@ -1,9 +1,12 @@
+import CardLogic from "./CardLogic.js";
 export default class Inventory{
     numgift;
     numcards;
+    listCardlogic = [];
     constructor(){
         this.numgift = 0;
         this.numcards = 0;
+     
         
     }
     AddGift(n) {
@@ -16,6 +19,8 @@ export default class Inventory{
         return this.numgift>= n;
     }
     AddCard(){
+        this.listCardlogic.push(new CardLogic(1,1,1,1,1))
+        console.log(this.listCardlogic);
         this.numcards++;
     }
     GetGitf(){

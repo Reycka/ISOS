@@ -7,8 +7,8 @@ let config = {
     parent: 'juego', //ID del elemento del DOM en el que se anidará el Canvas que genere Phaser, si no, por defecto, irá al final del body
     // type: Phaser.CANVAS,
     // canvas: document.getElementById("juego"), //Le dice a Phaser que use un canvas concreto ya creado en el DOM
-    width:  800,
-    height: 800,
+    width:  1600,
+    height: 1000,
     pixelArt: true,
 	scale: {
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY, //Le decimos que se centre en pantalla

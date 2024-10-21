@@ -25,54 +25,6 @@ export class Dialog extends Phaser.GameObjects.Sprite {
         });
     }
 
-    // Método para cargar los diálogos al inicio 
-    onload() {
-        this.cargarDialogos(this.numEventos, this.numPersonajes); 
-    }
-
-    // Método para cargar los archivos JSON de los diálogos
-    cargarDialogos(eventos, personajes) {
-        for (let i = 0; i < eventos; i++) {
-            this.dialogos[i] = []; // Cada fila del array es un evento
-        }
-
-        // Cargar los archivos JSON para cada combinación de evento y personaje
-        for (let i = 0; i < eventos; i++) {
-            for (let j = 0; j < personajes; j++) {
-                let ruta = `../Texto/${i}/${j}.json`; //Carpeta donde se encuentran los archivos JSON
-                this.cargarDialogo(i, j, ruta);
-            }
-        }
-    }
-
-    // Método para cargar un archivo JSON y almacenarlo en el array de diálogos
-    cargarDialogo(evento, personaje, ruta) {
-        fetch(ruta)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al cargar el archivo JSON');
-                }
-                return response.json(); // Parsear
-            })
-            .then(data => {
-                this.dialogos[evento][personaje] = data.dialogo;  
-                console.log(`Diálogos cargados para evento ${evento}, personaje ${personaje}`);
-            })
-            .catch(error => {
-                console.error(`Error al cargar los diálogos del evento ${evento}, personaje ${personaje}:`, error);
-            });
-    }
-
-    // Método para elegir el diálogo según el evento y el personaje
-    elegirDialogo(numEvent, idChar) {
-        if (this.dialogos[numEvent] && this.dialogos[numEvent][idChar]) {
-            this.currentDialog = this.dialogos[numEvent][idChar];  // Cargar el diálogo actual
-            this.currentLineIndex = 0;  
-            this.mostrarSiguienteLinea();  // Mostrar la primera línea del diálogo
-        } else {
-            console.warn('No se encontró diálogo para este evento o personaje');
-        }
-    }
 
     // Método para mostrar la siguiente línea del diálogo
     mostrarSiguienteLinea() {

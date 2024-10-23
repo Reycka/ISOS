@@ -19,7 +19,7 @@ export default class Title extends Phaser.Scene {
 		this.load.image('BotonPrueba', 'Assets/Temporales/PlaceHolderCat.png');
 		
 	}
-
+	
 	create() {
 		var back= this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2,'Background');
 		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
@@ -28,16 +28,15 @@ export default class Title extends Phaser.Scene {
 		sprite.setInteractive(); 
 		
 		var inventory = new Inventory();
-		var text = this.add.text(10,10,inventory.GetGitf());
+		text = this.add.text(10,10,inventory.GetGitf());
 		text.setScale(10,10);
 
 		sprite.on('pointerdown', pointer => {
 			inventory.AddGift(1);
 			inventory.AddCard();
 			console.log(inventory.GetGitf());
+			
 		})
 	}
-	Update(){
-		text.SetText(inventory.GetGitf());
-	}
+
 }

@@ -28,8 +28,7 @@ export default class Title extends Phaser.Scene {
 		sprite.setInteractive(); 
 		
 		var inventory = new Inventory();
-		text = this.add.text(10,10,inventory.GetGitf());
-		text.setScale(10,10);
+		
 
 		sprite.on('pointerdown', pointer => {
 			inventory.AddGift(1);

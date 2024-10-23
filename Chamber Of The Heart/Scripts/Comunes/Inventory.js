@@ -19,7 +19,8 @@ export default class Inventory{
         return this.numgift>= n;
     }
     AddCard(){
-        this.listCardlogic.push(new CardLogic(1,1,1,1,1))
+       
+        this.listCardlogic.push(new CardLogic())
         console.log(this.listCardlogic);
         this.numcards++;
     }

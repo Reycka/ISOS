@@ -1,4 +1,4 @@
-import SlotClass from SlotClass
+import SlotClass from "SlotClass.js"
 export default class BattleManager extends Phaser.GameObject.Sprite{
    
 };

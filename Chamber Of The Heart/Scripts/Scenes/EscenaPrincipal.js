@@ -29,8 +29,8 @@ export default class Title extends Phaser.Scene {
 		
 		//var inventory = new Inventory();
 		
-
-		sprite.on('pointerdown', pointer => {
+		//levantando el click izquierdo
+		sprite.on('pointerup', pointer => {
 			//inventory.AddGift(1);
 			//inventory.AddCard();
 			//console.log(inventory.GetGitf());

@@ -1,4 +1,4 @@
-import EscenaPrueba from './Scenes/EscenaPrueba.js';
+import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaTienda from './Scenes/EscenaTienda.js';
 import EscenaSocializar from './Scenes/EscenaSocializar.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';

@@ -1,5 +1,4 @@
-import Characters from './../Socializar/Dialogos/Characters.js'
-import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
+//IMPORT GATOTIENDA
 
 export default class Title extends Phaser.Scene {
 	/**
@@ -8,7 +7,7 @@ export default class Title extends Phaser.Scene {
 	*/
 
 	constructor() {
-		super({ key: 'EscenaSocializar' });
+		super({ key: 'EscenaTienda' });
 	}
 
 	preload() {
@@ -31,7 +30,7 @@ export default class Title extends Phaser.Scene {
 		//Aplicamos funciones de lo que importemos en una variable
 		var inventory = new Inventory();
 
-		//Si pulsamos en el boton, se añade algo a tu inventario
+		//Si pulsamos en el boton, se aÃ±ade algo a tu inventario
 		sprite.on('pointerdown', pointer => {
 			inventory.AddGift(1);
 			inventory.AddCard();

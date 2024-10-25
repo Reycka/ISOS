@@ -1,5 +1,6 @@
-import Characters from './../Socializar/Dialogos/Characters.js'
-import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
+import Inventory from './../Comunes/Inventory.js'
+import CardLogic from './../Comunes/CardLogic.js'
+import CardClass from './../Comunes/CardClass.js'
 
 export default class Title extends Phaser.Scene {
 	/**
@@ -8,7 +9,7 @@ export default class Title extends Phaser.Scene {
 	*/
 
 	constructor() {
-		super({ key: 'EscenaSocializar' });
+		super({ key: 'EscenaCombate' });
 	}
 
 	preload() {

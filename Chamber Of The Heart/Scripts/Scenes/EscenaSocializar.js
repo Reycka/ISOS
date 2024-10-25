@@ -1,7 +1,7 @@
 import Characters from './../Socializar/Dialogos/Characters.js'
 import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
 
-export default class Title extends Phaser.Scene {
+export default class EscenaSocializar extends Phaser.Scene {
 	/**
 	* Escena principal.
 	* @extends Phaser.Scene
@@ -11,32 +11,29 @@ export default class Title extends Phaser.Scene {
 		super({ key: 'EscenaSocializar' });
 	}
 
+	init(EscenaPrincipal){
+		EscenaPrincipal.inventory;
+	}
+
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('Background', 'Assets/Temporales/background.png')
+		this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg')
 		//BOTON IMAGEN
-		this.load.image('BotonPrueba', 'Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
 
 	}
 
 	create() {
 		//Creamos el background y le aplicamos la escala
-		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background');
-		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
-			this.cameras.main.height / this.textures.get('Background').getSourceImage().height);
+		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BackgroundSocializar');
+		back.setScale(this.cameras.main.width / this.textures.get('BackgroundSocializar').getSourceImage().width,
+			this.cameras.main.height / this.textures.get('BackgroundSocializar').getSourceImage().height);
 		//Creamos el boton y hacemos que sea interactivo
-		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba')
+		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
 		sprite.setInteractive();
 
-		//Aplicamos funciones de lo que importemos en una variable
-		var inventory = new Inventory();
-
-		//Si pulsamos en el boton, se añade algo a tu inventario
-		sprite.on('pointerdown', pointer => {
-			inventory.AddGift(1);
-			inventory.AddCard();
-			console.log(inventory.GetGitf());
-
+		sprite.on('pointerup', pointer => {
+			this.scene.start('EscenaPrincipal');
 		})
 	}
 

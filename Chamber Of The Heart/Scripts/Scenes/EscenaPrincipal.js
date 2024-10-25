@@ -4,7 +4,7 @@ import Inventory from './../Comunes/Inventory.js'
  * @extends Phaser.Scene
  */
 
-export default class Title extends Phaser.Scene {
+export default class EscenaPrincipal extends Phaser.Scene {
 	/**
 	* Escena principal.
 	* @extends Phaser.Scene
@@ -27,16 +27,9 @@ export default class Title extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba')
 		sprite.setInteractive(); 
 		
-		//var inventory = new Inventory();
-		
 		//levantando el click izquierdo
 		sprite.on('pointerup', pointer => {
-			//inventory.AddGift(1);
-			//inventory.AddCard();
-			//console.log(inventory.GetGitf());
-
-			this.scene.start('escenasocializar');
-			
+			this.scene.start('EscenaSocializar');
 		})
 	}
 

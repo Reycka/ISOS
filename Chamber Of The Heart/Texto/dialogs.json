@@ -1,0 +1,17 @@
+{
+    "Eventos": {
+        "evento1":{
+            "dialogs":[
+                "character": "Shai",
+                "text": "Hola",
+            },
+            {
+                "character": "Tarik",
+                "text": "Adios",
+
+            }
+
+            
+        }
+    }
+}

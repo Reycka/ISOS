@@ -23,7 +23,7 @@ export default class CardLogic {
 
     constructor() {
         var rnd = Math.floor(Math.random() * 6);
-        console.log(rnd)
+        //console.log(rnd)
         var l = Math.floor(Math.random() * 5);
 
         //arco Corto

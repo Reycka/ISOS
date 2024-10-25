@@ -1,4 +1,5 @@
 //IMPORT GATOTIENDA
+import Inventory from './../Comunes/Inventory.js'
 
 export default class Title extends Phaser.Scene {
 	/**

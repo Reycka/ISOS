@@ -1,5 +1,7 @@
 import EscenaPrueba from './Scenes/EscenaPrueba.js';
-
+import EscenaTienda from './Scenes/EscenaTienda.js';
+import EscenaSocializar from './Scenes/EscenaSocializar.js';
+import EscenaCombate from './Scenes/EscenaCombate.js';
 
 
 let config = {
@@ -25,7 +27,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaPrueba], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaPrueba,EscenaTienda,EscenaSocializar,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade
         arcade: { 

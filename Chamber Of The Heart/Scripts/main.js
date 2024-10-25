@@ -2,7 +2,7 @@ import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaTienda from './Scenes/EscenaTienda.js';
 import EscenaSocializar from './Scenes/EscenaSocializar.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';
-
+import Matriz from './Combate/Matriz.js';
 
 let config = {
     type: Phaser.AUTO,
@@ -49,3 +49,5 @@ let config = {
     Instanciamos Phaser con la configuración deseada, Phaser se encargará de lanzar la primera escena del array de escenas
 */
 new Phaser.Game(config); 
+
+console.log(new Matriz())

@@ -1,5 +1,5 @@
 //import Unit from UnitClass cuando tengamos la clase Unit hecha
-export default class SlotClass extends Phaser.GameObjects.Sprite {
+export default class SlotClass{
 ///PROPIEDADES
  unit;
  ocupada;
@@ -7,7 +7,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite {
     constructor(){
         console.log("Me construyo" + "\n");
         this.unit = null;
-        ocupada = false;
+        this.ocupada = false;
     }
     render(unit){
         console.log("Renderizo tropa" +"\n");

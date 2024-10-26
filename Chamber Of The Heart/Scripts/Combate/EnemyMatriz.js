@@ -19,7 +19,7 @@ export default class EnemyMatriz extends Phaser.GameObjects.Sprite {
   this.Enemymat = new Matriz(row,col);
   for(let i = 0; i < this.row; ++i){
     for(let j = 0; j < this.col; ++j){
-        this.Enemymat[i,j].SetUnit(line[i,j]);
+        this.Enemymat[i][j].SetUnit(line[i,j]);
     }
   }  
   this.Enemymat.render();

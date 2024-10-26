@@ -7,6 +7,7 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
     isaCard;
     texture;
     stads;
+    textureindex;
     
     constructor(scene, x, y,_texture, _cardLogic) {
         
@@ -15,12 +16,15 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         //this.load.image("cardTexture", 'Assets/Temporales/cardPh.jpg'); 
         
         this.stads = _cardLogic;
-        
+        this.textureindex = this.stads.textureindex;
         if (this.stads.unit_type == 3) this.isHealer = true;
         this.isaCard = this.stads.iscard;
        
-
+        console.log(this.textureindex);
       
+    }
+    GetTextureIndex(){
+        return this.textureindex;
     }
 
     GetTexture(){

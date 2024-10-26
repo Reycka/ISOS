@@ -1,0 +1,27 @@
+{
+    "Eventos": {
+        "evento1": {
+            "dialogs": [
+                {
+                    "character": "Tarik",
+                    "text": "Hola",
+                    "options": [
+                        {
+                            "response": "¿Cómo estás?",
+                            "reputationChange": 1
+                        },
+                        {
+                            "response": "Eres tonto.",
+                            "reputationChange": -1
+                        }
+                    ]
+                },
+                {
+                    "character": "Tarik",
+                    "text": "Adios",
+                   
+                }
+            ]
+        }
+    }
+}

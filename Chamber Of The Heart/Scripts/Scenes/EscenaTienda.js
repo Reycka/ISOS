@@ -19,6 +19,7 @@ export default class EscenaTienda extends Phaser.Scene {
 		//BOTON IMAGEN
 		this.load.image('BotonPrueba', 'Assets/Temporales/PlaceHolderCat.png');
 		this.load.spritesheet('cardTexture', 'Assets/Temporales/cardtexture.png',{frameWidth: 627, frameHeight: 882}); 
+		this.load.image('Papiro', 'Assets/Temporales/papiro.jpg')
 
 	}
 
@@ -31,6 +32,9 @@ export default class EscenaTienda extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width / 3, this.sys.game.canvas.height / 2, 'BotonPrueba')
 		sprite.setInteractive();
 
+		var papiro = this.add.image((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height*2.5 / 5, 'Papiro')
+		papiro.setScale(1.2,1.2)
+
 		var auxcard;
 		//Aplicamos funciones de lo que importemos en una variable
 		var inventory = new Inventory();
@@ -40,7 +44,7 @@ export default class EscenaTienda extends Phaser.Scene {
 			inventory.AddGift(1);
 			inventory.AddCard(this,'cardTexture');
 			console.log(inventory.GetGitf());
-			auxcard =this.add.sprite((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height / 3,
+			auxcard =this.add.sprite((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height*2.5 / 5,
 			 inventory.listCardClass[inventory.numcards-1].GetTexture(),inventory.listCardClass[inventory.numcards-1].textureindex);
 			auxcard.setScale(1/2,1/2);
 		})

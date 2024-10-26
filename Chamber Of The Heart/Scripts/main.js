@@ -2,8 +2,6 @@ import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaTienda from './Scenes/EscenaTienda.js';
 import EscenaSocializar from './Scenes/EscenaSocializar.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';
-import Matriz from './Combate/Matriz.js';
-
 let config = {
     type: Phaser.AUTO,
     parent: 'juego', //ID del elemento del DOM en el que se anidará el Canvas que genere Phaser, si no, por defecto, irá al final del body
@@ -27,7 +25,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaPrincipal,EscenaTienda,EscenaSocializar,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaCombate,EscenaPrincipal,EscenaTienda,EscenaSocializar], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade
         arcade: { 
@@ -49,4 +47,3 @@ let config = {
     Instanciamos Phaser con la configuración deseada, Phaser se encargará de lanzar la primera escena del array de escenas
 */
 new Phaser.Game(config); 
-console.log(new Matriz(2,2))

@@ -1,7 +1,9 @@
 import Inventory from './../Comunes/Inventory.js'
 import CardLogic from './../Comunes/CardLogic.js'
 import CardClass from './../Comunes/CardClass.js'
-
+import Matriz from './../Combate/Matriz.js'
+import EnemyMatriz from './../Combate/EnemyMatriz.js'
+import SlotClass from '../Combate/SlotClass.js'
 export default class EscenaCombate extends Phaser.Scene {
 	/**
 	* Escena principal.
@@ -14,10 +16,17 @@ export default class EscenaCombate extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('Background', 'Assets/Temporales/background.png')
-		//BOTON IMAGEN
-		this.load.image('BotonPrueba', 'Assets/Temporales/PlaceHolderCat.png');
-
+		this.load.image('Background', 'Assets/Temporales/FondoCombate.jpeg');
+		//FONDO MATRIZ
+		this.load.image('MatrixGround', 'Assets/Temporales/marco-papiro.jpg');
+		//GUERRERO PRUEBA
+		this.load.image('Soldier', 'Assets/Temporales/Tropa.jpg');
+		//ARQUERO PRUEBA
+		this.load.image('Archier', 'Assets/Temporales/Tropa.jpg');
+		//MAGO PRUEBA
+		this.load.image('Mage', 'Assets/Temporales/Tropa.jpg');
+		//HEALER PRUEBA
+		this.load.image('Healer', 'Assets/Temporales/Tropa.jpg');
 	}
 
 	create() {
@@ -25,20 +34,21 @@ export default class EscenaCombate extends Phaser.Scene {
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background');
 		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background').getSourceImage().height);
-		//Creamos el boton y hacemos que sea interactivo
-		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba')
-		sprite.setInteractive();
-
 		//Aplicamos funciones de lo que importemos en una variable
-		var inventory = new Inventory();
+		//var inventory = new Inventory();
 
-		//Si pulsamos en el boton, se añade algo a tu inventario
-		sprite.on('pointerdown', pointer => {
+		//Si pulsamos en el boton, se aï¿½ade algo a tu inventario
+		/*sprite.on('pointerdown', pointer => {
 			inventory.AddGift(1);
 			inventory.AddCard();
 			console.log(inventory.GetGitf());
 
-		})
+		})*/
+		let mat = new Matriz(2,2);
+		console.log(mat);	
+		var prueba = mat.GetSlot(0,0);
+		prueba.SetUnit('M');
+		
 	}
 
 }

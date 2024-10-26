@@ -1,8 +1,9 @@
 import SlotClass from "./SlotClass.js"
-export default class Matriz {
+export default class Matriz{
     mat; //Matriz de enteros que representa la posición donde se colocará la tropa
     row; //Filas de la matriz
     col; //Columnas de la matriz
+    scene;
     constructor(_fil, _col) {
         // Construye las dos matrices, la que almacena las tropas y la que indica si hay tropa o no
         // En este caso siempre las inicializa vacías, es decir, a False
@@ -20,13 +21,12 @@ export default class Matriz {
         for(let i = 0; i < this.row; i++){
             for(let j = 0; j < this.col; i++){
                 console.log("Me pinto" + "\n");
-                deph.number(0); //Colocamos al fondo todo
-                this.add.image('backgroundMat',"IP"); //Colocamos el fondo
-                if(mat[i][j].GetState()){ //Comprobamos si la matriz está ocupada
-                    console.log("Estoy ocupada" + "\n"); //Debug
-                    mat[i][j].render(); //Si lo está renderizamos la tropa
-                }
+               // deph.number(0); //Cambiar capa al fondo
+                this.add.image('MatrixGround', 'Assets/Temporales/marco-papiro.jpg'); //Colocamos el fondo
             }
         }
+    }
+    GetSlot(posX,posY){
+        return this.mat[posX][posY];
     }
 }

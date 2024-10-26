@@ -8,6 +8,7 @@ export default class CardLogic {
     //letra entre 0 y 5 
     letter;
     iscard;
+    textureindex;
 
     Set(_health, _attack, _speed, _defense, _unit_type, _letter, _iscard) {
         this.health = _health;
@@ -24,6 +25,7 @@ export default class CardLogic {
     constructor() {
         var rnd = Math.floor(Math.random() * 6);
         //console.log(rnd)
+        this.textureindex = rnd;
         var l = Math.floor(Math.random() * 5);
 
         //arco Corto
@@ -36,6 +38,7 @@ export default class CardLogic {
             this.unit_type = "A";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
         //arco largo
         else if (rnd == 1) {
@@ -47,6 +50,7 @@ export default class CardLogic {
             this.unit_type = "A";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
         //soldado Carro
         else if (rnd == 2) {
@@ -58,6 +62,7 @@ export default class CardLogic {
             this.unit_type = "G";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
         //infanteria
         else if (rnd == 3) {
@@ -69,6 +74,7 @@ export default class CardLogic {
             this.unit_type = "G";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
         //Magos de ataque
         else if (rnd == 4) {
@@ -80,6 +86,7 @@ export default class CardLogic {
             this.unit_type = "M";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
         //curandero
         else if (rnd == 5) {
@@ -91,7 +98,12 @@ export default class CardLogic {
             this.unit_type = "M";
             this.letter = l;
             this.iscard = true;
+            this.textureindex = rnd;
         }
 
+
+    }
+    GetTextureIndex(){
+        return this.textureindex;
     }
 }

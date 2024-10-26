@@ -2,6 +2,7 @@ import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaTienda from './Scenes/EscenaTienda.js';
 import EscenaSocializar from './Scenes/EscenaSocializar.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';
+import EscenaSocialTienda from './Scenes/EscenaSocialTienda.js';
 import Matriz from './Combate/Matriz.js';
 
 let config = {
@@ -27,7 +28,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaPrincipal,EscenaTienda,EscenaSocializar,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaSocialTienda,EscenaPrincipal,EscenaTienda,EscenaSocializar,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade
         arcade: { 

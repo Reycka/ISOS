@@ -37,7 +37,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			this.mat = new Matriz(2,2,this, null);
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(i * 520,j * 540,'MatrixGround'); //Colocamos el fondo
+					var algo = this.add.image(i * 110  + 500 , j * 125 + 400,'MatrixGround'); //Colocamos el fondo
 					algo.setScale(0.25,0.25);
 				}
 			}

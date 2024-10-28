@@ -28,7 +28,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		//HEALER PRUEBA
 		this.load.image('Healer', 'Assets/Temporales/Tropa.jpg');
 	}
-
+	 mat
 	create() {
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background');
@@ -44,11 +44,14 @@ export default class EscenaCombate extends Phaser.Scene {
 			console.log(inventory.GetGitf());
 
 		})*/
-		let mat = new Matriz(2,2);
-		console.log(mat);	
-		var prueba = mat.GetSlot(0,0);
-		prueba.SetUnit('M');
+		this.mat = new Matriz(2,2,this, 'MatrixGround');
+		console.log(this.mat);	
+	//	var prueba = mat.GetSlot(0,0);
 		
+		
+	}
+	update(){
+		var auximg =this.add.image(1,1,this.mat.mat[0][0].getTexture());
 	}
 
 }

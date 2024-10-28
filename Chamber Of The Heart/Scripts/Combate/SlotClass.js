@@ -6,7 +6,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
  texture;
 //CONSTRUCTOR
     constructor(scene, x, y,_texture){
-        this.texture = null;
+        super(scene,x,y,_texture)
+        this.texture = _texture;
         console.log("Me construyo" + "\n");
         this.unit = null;
         this.ocupada = false;
@@ -26,7 +27,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         else if(unit == 'A'){
             this.texture = "Assets/Temporales/Arquero.jpeg"; //Imagen Arquero
         }
-        this.add.image(unit, texture); //Seteamos la imagen del Guerrero
+        this.add.Sprite(unit, texture); //Seteamos la imagen del Guerrero
     }
     //coloca la unidad en la casilla y pone el booleano ocupada en true.
     SetUnit(unit){
@@ -61,5 +62,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         }
         else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }
-
+    getTexture(){
+        return this.texture;
+    }
 };

@@ -1,5 +1,5 @@
 import Characters from './../Socializar/Dialogos/Characters.js'
-import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
+import DialogSystem from '../Socializar/Dialogos/DialogSystem.js'
 
 export default class EscenaSocializar extends Phaser.Scene {
 	/**
@@ -31,6 +31,26 @@ export default class EscenaSocializar extends Phaser.Scene {
 		//Creamos el boton y hacemos que sea interactivo
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
 		sprite.setInteractive();
+
+		this.cameras.main.setBackgroundColor('#2d2d2d');
+
+        // Inicializar el sistema de diálogos
+        this.dialogueSystem = new DialogSystem(this);
+
+        
+		const dialogues = [
+			{ name: "Personaje 1", text: "¡Hola! " },
+			{ name: "Personaje 2", text: "Adiós" },
+			{ name: "Personaje 1", text: "Me quiero matar" },
+			{ name: "Personaje 2", text: "x2" },
+		];
+    
+
+        // Cargar diálogos en el sistema
+        this.dialogueSystem.loadDialogues(dialogues);
+
+        // Manejar el click para el siguiente diálogo
+        this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
 
 		sprite.on('pointerup', pointer => {
 			this.scene.start('EscenaPrincipal');

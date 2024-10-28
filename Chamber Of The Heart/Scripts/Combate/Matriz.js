@@ -16,15 +16,6 @@ export default class Matriz{
             }
         }
     }
-    render(){
-        for(let i = 0; i < this.row; i++){
-            for(let j = 0; j < this.col; i++){
-                console.log("Me pinto" + "\n");
-               // deph.number(0); //Cambiar capa al fondo
-                this.add.image('MatrixGround', 'Assets/Temporales/marco-papiro.jpg'); //Colocamos el fondo
-            }
-        }
-    }
     GetSlot(posX,posY){
         return this.mat[posX][posY];
     }

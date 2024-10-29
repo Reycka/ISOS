@@ -1,14 +1,16 @@
 import CardLogic from "./CardLogic.js";
 import CardClass from "./CardClass.js";
+import AffinityRegister from "./AffinityRegister.js";
 export default class Inventory{
     numgift;
     numcards;
     listCardlogic = [];
     listCardClass=[]
+    affreg;
     constructor(){
         this.numgift = 0;
         this.numcards = 0;
-     
+        this.affreg = new AffinityRegister();
         
     }
     AddGift(n) {

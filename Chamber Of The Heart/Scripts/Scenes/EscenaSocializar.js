@@ -1,6 +1,6 @@
 import Characters from './../Socializar/Dialogos/Characters.js'
 import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
-
+import Inventory from '../Comunes/Inventory.js';
 export default class EscenaSocializar extends Phaser.Scene {
 	/**
 	* Escena principal.
@@ -10,9 +10,10 @@ export default class EscenaSocializar extends Phaser.Scene {
 	constructor() {
 		super({ key: 'EscenaSocializar' });
 	}
-
-	init(EscenaPrincipal){
-		EscenaPrincipal.inventory;
+	 inventory;
+	init(data){
+		this.inventory = data;
+		console.log(this.inventory);
 	}
 
 	preload() {
@@ -33,7 +34,7 @@ export default class EscenaSocializar extends Phaser.Scene {
 		sprite.setInteractive();
 
 		sprite.on('pointerup', pointer => {
-			this.scene.start('EscenaPrincipal');
+			this.scene.start('EscenaTienda',this.inventory);
 		})
 	}
 

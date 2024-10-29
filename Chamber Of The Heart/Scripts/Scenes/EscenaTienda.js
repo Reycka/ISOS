@@ -12,6 +12,12 @@ export default class EscenaTienda extends Phaser.Scene {
 	constructor() {
 		super({ key: 'EscenaTienda' });
 	}
+	inventory;
+	init(data){
+		this.inventory = data;
+		console.log(this.inventory);
+	}
+
 
 	preload() {
 		//BACKGROUND IMAGEN
@@ -37,15 +43,15 @@ export default class EscenaTienda extends Phaser.Scene {
 
 		var auxcard;
 		//Aplicamos funciones de lo que importemos en una variable
-		var inventory = new Inventory();
+		
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
 		sprite.on('pointerdown', pointer => {
-			inventory.AddGift(1);
-			inventory.AddCard(this,'cardTexture');
-			console.log(inventory.GetGitf());
+			this.inventory.AddGift(1);
+			this.inventory.AddCard(this,'cardTexture');
+			console.log(this.inventory.GetGitf());
 			auxcard =this.add.sprite((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height*2.5 / 5,
-			 inventory.listCardClass[inventory.numcards-1].GetTexture(),inventory.listCardClass[inventory.numcards-1].textureindex);
+			 this.inventory.listCardClass[this.inventory.numcards-1].GetTexture(),this.inventory.listCardClass[this.inventory.numcards-1].textureindex);
 			auxcard.setScale(1/2,1/2);
 		})
 
@@ -53,7 +59,7 @@ export default class EscenaTienda extends Phaser.Scene {
 		var switchScene = this.add.image(0,this.sys.game.canvas.height / 2,'cambioescena');
 		switchScene.setInteractive();
 		switchScene.on('pointerup', pointer => {
-			this.scene.start('EscenaSocializar');
+			this.scene.start('EscenaSocializar',this.inventory);
 		})
 
 	}

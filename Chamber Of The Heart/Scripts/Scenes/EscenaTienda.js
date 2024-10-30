@@ -1,6 +1,6 @@
 //IMPORT GATOTIENDA
 import Inventory from './../Comunes/Inventory.js'
-import DialogueSystem from '../Socializar/Dialogos/DialogsSystem.js';
+import DialogueSystem from '../Socializar/Dialogos/DialogSystem.js';
 import CardClass from '../Comunes/CardClass.js';
 
 export default class EscenaTienda extends Phaser.Scene {

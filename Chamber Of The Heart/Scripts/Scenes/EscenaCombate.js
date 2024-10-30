@@ -32,6 +32,8 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Carriege', 'Assets/Temporales/Carro.png');
 		//ARCO CORTO PRUEBA
 		this.load.image('ShortArchier', 'Assets/Temporales/ArcoCorto.png');
+		//BOSS
+		this.load.image('ShortArchier', 'Assets/Temporales/Serpiente.png');
 	}
 	create() {
 		//Creamos el background y le aplicamos la escala
@@ -58,19 +60,23 @@ export default class EscenaCombate extends Phaser.Scene {
 		
 	}
 	update(){		
-		//var auximg =this.add.image(1,1,this.mat.mat[0][0].getTexture());
-		/*for(let i = 0; i < this.mat.row; i++){
+		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa con click derecho y entonces la libera
+		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				this.add.image(i * 52,j * 24,'MatrixGround'); //Colocamos el fondo
+				if(j > 0){
+					this.mat.mat[i][j].SetUnit('C'); //En función de lo que seleccione setea una cosa u otra
+				}
+				else{
+					this.mat.mat[i][j].SetUnit('LA'); //En función de lo que seleccione setea una cosa u otra
+				}
+				var a = this.mat.mat[i][j];
+				this.SetTexture(a);
 			}
-		}*/
-		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa y entonces la libera
-		this.mat.mat[0][0].SetUnit('LA');
-		this.SetTexture();
+		}
 	}
-	SetTexture(){
+	SetTexture(a){
 		var texture;
-		switch(this.mat.mat[0][0].getUnit()){
+		switch(a.GetUnit()){
 			//MAGO
             case 'M':
                 texture = 'Mage'
@@ -95,8 +101,12 @@ export default class EscenaCombate extends Phaser.Scene {
             case 'G':
                 texture = 'Infantery'
                 break;
+			//Boss
+			case 'B':
+				texture = 'Boss'
+				break;
         }
-		var algo = this.add.image(500,150,texture); //Colocamos el fondo
+		var algo = this.add.image(a.GetCol()* 110  + 500,a.GetRow() * 125 + 150,texture); //Colocamos el fondo
 		algo.setScale(0.3,0.3);
 		////this.mat.GetCol() * 110  +
 		//this.mat.GetRow()* 125 +

@@ -12,17 +12,11 @@ export default class Matriz{
         for (let i = 0; i < this.row; i++) {
             this.mat[i] = new Array(this.col);
             for (let j = 0; j < this.col; j++) {
-                this.mat[i][j] = new SlotClass(scene,i*10,j*5,_slottexture);
+                this.mat[i][j] = new SlotClass(scene,i,j,_slottexture);
             }
         }
     }
     GetSlot(posX,posY){
         return this.mat[posX][posY];
-    }
-    GetRow(){
-        return this.row;
-    }
-    GetCol(){
-        return this.col;
     }
 }

@@ -1,16 +1,26 @@
 //import Unit from UnitClass cuando tengamos la clase Unit hecha
 export default class SlotClass extends Phaser.GameObjects.Sprite{
 ///PROPIEDADES
+row;
+col;
  unit;
  ocupada;
  texture;
 //CONSTRUCTOR
     constructor(scene, x, y,_texture){
-        super(scene,x,y,_texture)
+        super(scene,x*10,y*5,_texture)
+        this.row = x;
+        this.col = y;
         this.texture = _texture;
-        console.log("Me construyo" + "\n");
+        //console.log("Me construyo" + "\n");
         this.unit = null;
         this.ocupada = false;
+    }
+    GetRow(){
+        return this.row;
+    }
+    GetCol(){
+        return this.col;
     }
     SetUnit(unit){
         if(!this.GetState()){
@@ -33,10 +43,13 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
             case 'C':
                 this.unit = 'C'
                 break;
+            case 'B':
+                this.unit = 'B'
+                break;
         }
         this.ocupada = true;
         }
-        else console.log("La casilla está ocupada colega" + "\n"); //DEBUG
+       // else console.log("La casilla está ocupada colega" + "\n"); //DEBUG
     }
    /* render(unit,texture){
         console.log("Renderizo tropa" +"\n");
@@ -57,7 +70,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
     }*/
     //Devuelve si hay una tropa o no en dicha posición
     GetState(){
-        console.log(this.ocupada + "\n"); //DEBUG
+        //console.log(this.ocupada + "\n"); //DEBUG
         return this.ocupada;
     }   
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
@@ -78,7 +91,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         }
         else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }
-    getUnit(){
+    GetUnit(){
         return this.unit;
     }
 };

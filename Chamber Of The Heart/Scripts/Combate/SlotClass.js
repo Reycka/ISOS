@@ -12,7 +12,33 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         this.unit = null;
         this.ocupada = false;
     }
-    render(unit,texture){
+    SetUnit(unit){
+        if(!this.GetState()){
+        switch(unit){
+            case 'M':
+                this.unit = 'M'
+                break;
+            case 'G':
+                this.unit = 'G'
+                break;
+            case 'SA':
+                this.unit = 'SA'
+                break;
+            case 'H':
+                this.unit = 'H'
+                break;
+            case 'LA':
+                this.unit = 'LA'
+                break;
+            case 'C':
+                this.unit = 'C'
+                break;
+        }
+        this.ocupada = true;
+        }
+        else console.log("La casilla está ocupada colega" + "\n"); //DEBUG
+    }
+   /* render(unit,texture){
         console.log("Renderizo tropa" +"\n");
         //deph.number(1); //Colocamos la imagen por encima
         if(unit == 'M'){
@@ -28,17 +54,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
             this.texture = "Assets/Temporales/Arquero.jpeg"; //Imagen Arquero
         }
         this.add.Sprite(unit, texture); //Seteamos la imagen del Guerrero
-    }
-    //coloca la unidad en la casilla y pone el booleano ocupada en true.
-    SetUnit(unit){
-        if(!this.GetState()){
-            console.log("Seteo" + unit + "\n"); //Debug
-            this.unit = unit;
-            this.render(this.unit);
-            this.ocupada = true;
-        }
-        else console.log("La casilla está ocupada colega" + "\n"); //DEBUG
-    }
+    }*/
     //Devuelve si hay una tropa o no en dicha posición
     GetState(){
         console.log(this.ocupada + "\n"); //DEBUG
@@ -62,7 +78,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         }
         else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }
-    getTexture(){
-        return this.texture;
+    getUnit(){
+        return this.unit;
     }
 };

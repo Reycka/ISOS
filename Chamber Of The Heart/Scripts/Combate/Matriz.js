@@ -19,4 +19,10 @@ export default class Matriz{
     GetSlot(posX,posY){
         return this.mat[posX][posY];
     }
+    GetRow(){
+        return this.row;
+    }
+    GetCol(){
+        return this.col;
+    }
 }

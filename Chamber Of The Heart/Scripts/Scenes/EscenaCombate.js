@@ -20,24 +20,28 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Background', 'Assets/Temporales/FondoCombate.jpeg');
 		//FONDO MATRIZ
 		this.load.image('MatrixGround', 'Assets/Temporales/marco-papiro.jpg');
-		//GUERRERO PRUEBA
-		this.load.image('Archier', 'Assets/Temporales/Arquero.jpeg');
-		//ARQUERO PRUEBA
-		this.load.image('Soldier', 'Assets/Temporales/Tropa.jpg');
+		//INFANTERÍA PRUEBA
+		this.load.image('LongArchier', 'Assets/Temporales/Arquero.jpeg');
+		//ARQUERO LARGO PRUEBA
+		this.load.image('Infantery', 'Assets/Temporales/Tropa.jpg');
 		//MAGO PRUEBA
 		this.load.image('Mage', 'Assets/Temporales/Mago.jpeg');
 		//HEALER PRUEBA
 		this.load.image('Healer', 'Assets/Temporales/Healer.jpeg');
+		//CARRO PRUEBA
+		this.load.image('Carriege', 'Assets/Temporales/Carro.png');
+		//ARCO CORTO PRUEBA
+		this.load.image('ShortArchier', 'Assets/Temporales/ArcoCorto.png');
 	}
 	create() {
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background');
 		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background').getSourceImage().height);
-			this.mat = new Matriz(2,2,this, null);
+			this.mat = new Matriz(6,2,this, null);
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(i * 110  + 500 , j * 125 + 400,'MatrixGround'); //Colocamos el fondo
+					var algo = this.add.image(j * 110  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
 					algo.setScale(0.25,0.25);
 				}
 			}
@@ -60,6 +64,42 @@ export default class EscenaCombate extends Phaser.Scene {
 				this.add.image(i * 52,j * 24,'MatrixGround'); //Colocamos el fondo
 			}
 		}*/
+		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa y entonces la libera
+		this.mat.mat[0][0].SetUnit('LA');
+		this.SetTexture();
+	}
+	SetTexture(){
+		var texture;
+		switch(this.mat.mat[0][0].getUnit()){
+			//MAGO
+            case 'M':
+                texture = 'Mage'
+                break;
+			//CARRO
+            case 'C':
+                texture = 'Carriege'
+                break;
+			//ARCO CORTO
+            case 'SA':
+                texture = 'ShortArchier'
+                break;
+			//HEALER
+            case 'H':
+                texture = 'Healer'
+                break;
+			//ARCO LARGO
+            case 'LA':
+                texture = 'LongArchier'
+                break;
+			//INFANTERÍA
+            case 'G':
+                texture = 'Infantery'
+                break;
+        }
+		var algo = this.add.image(500,150,texture); //Colocamos el fondo
+		algo.setScale(0.3,0.3);
+		////this.mat.GetCol() * 110  +
+		//this.mat.GetRow()* 125 +
 	}
 
 }

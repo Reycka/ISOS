@@ -1,6 +1,6 @@
 {
     "Eventos": {
-        "evento1": {
+        "evento1.1": {
             "dialogs": [
                 {
                     "character": "Tarik",
@@ -18,7 +18,7 @@
                 },
                 {
                     "character": "Tarik",
-                    "text": "Adios",
+                    "text": "Adios"
                    
                 }
             ]

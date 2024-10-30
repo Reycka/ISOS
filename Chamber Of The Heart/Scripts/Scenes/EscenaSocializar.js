@@ -1,11 +1,8 @@
 import Characters from './../Socializar/Dialogos/Characters.js'
-<<<<<<< HEAD
-import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
-import Inventory from '../Comunes/Inventory.js';
-=======
 import DialogSystem from '../Socializar/Dialogos/DialogSystem.js'
 
->>>>>>> Rama-de-Asher-Carrero
+import Inventory from '../Comunes/Inventory.js';
+
 export default class EscenaSocializar extends Phaser.Scene {
 	/**
 	* Escena principal.
@@ -15,7 +12,7 @@ export default class EscenaSocializar extends Phaser.Scene {
 	constructor() {
 		super({ key: 'EscenaSocializar' });
 	}
-	 inventory;
+	inventory;
 	init(data){
 		this.inventory = data;
 		console.log(this.inventory);

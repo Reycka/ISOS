@@ -1,8 +1,8 @@
 import CardLogic from "./CardLogic.js";
+import UnitClass from "../Combate/UnitClass.js";
 
 export default class CardClass extends Phaser.GameObjects.Sprite {
     
-    altered_state;
     isHealer = false; 
     isaCard;
     texture;
@@ -33,5 +33,11 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
 
     setScene(scene) {
         this.scene = scene;
+    }
+    SummonUnit(unitexture){
+        return new UnitClass(this,unitexture);
+    }
+    SetCard(){
+        return this;
     }
 }

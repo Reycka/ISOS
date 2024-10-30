@@ -10,7 +10,7 @@ export default class AffinityRegister{
         this.Ra = 0;
         this.Isis = 0;
         this.Horus = 0;
-        this.Anibis = 0;
+        this.Anubis = 0;
         this.Osiris = 0;
         this.Seth = 0;
     }
@@ -23,7 +23,7 @@ export default class AffinityRegister{
         this.Isis += valor;
     }
     AddAnubis(valor){
-        this.AddAnubis += valor;
+        this.Anubis += valor;
     }
     AddHorus(valor){
         this.Horus += valor;
@@ -44,7 +44,7 @@ export default class AffinityRegister{
         return this.Isis;
     }
     GetAnubis(){
-        return this.AddAnubis;
+        return this.Anubis;
     }
     GetHorus(){
         return this.Horus;

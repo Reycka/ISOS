@@ -35,7 +35,7 @@ export default class CardLogic {
             this.attack = 5;
             this.speed = 20;
             this.defense = 5;
-            this.unit_type = "A";
+            this.unit_type = "SA";
             this.letter = l;
             this.iscard = true;
             this.textureindex = rnd;
@@ -47,7 +47,7 @@ export default class CardLogic {
             this.attack = 15;
             this.speed = 10;
             this.defense = 5;
-            this.unit_type = "A";
+            this.unit_type = "LA";
             this.letter = l;
             this.iscard = true;
             this.textureindex = rnd;
@@ -59,7 +59,7 @@ export default class CardLogic {
             this.attack = 5;
             this.speed = 5;
             this.defense = 5;
-            this.unit_type = "G";
+            this.unit_type = "C";
             this.letter = l;
             this.iscard = true;
             this.textureindex = rnd;
@@ -95,7 +95,7 @@ export default class CardLogic {
             this.attack = 10;
             this.speed = 5;
             this.defense = 5;
-            this.unit_type = "M";
+            this.unit_type = "H";
             this.letter = l;
             this.iscard = true;
             this.textureindex = rnd;

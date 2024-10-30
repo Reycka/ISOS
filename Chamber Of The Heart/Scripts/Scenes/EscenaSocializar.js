@@ -20,6 +20,8 @@ export default class EscenaSocializar extends Phaser.Scene {
 		this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg')
 		//BOTON IMAGEN
 		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
+		//Dialogo IMAGEN
+		this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
 
 	}
 
@@ -31,6 +33,9 @@ export default class EscenaSocializar extends Phaser.Scene {
 		//Creamos el boton y hacemos que sea interactivo
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
 		sprite.setInteractive();
+		//botón para la conversación (lo que luego será el personaje )
+		var sprite2 = this.add.image(0,0, 'BotonPrueba3')
+		sprite2.setInteractive();
 
 		this.cameras.main.setBackgroundColor('#2d2d2d');
 
@@ -46,15 +51,17 @@ export default class EscenaSocializar extends Phaser.Scene {
 		];
     
 
-        // Cargar diálogos en el sistema
-        this.dialogueSystem.loadDialogues(dialogues);
-
-        // Manejar el click para el siguiente diálogo
-        this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
 
 		sprite.on('pointerup', pointer => {
 			this.scene.start('EscenaPrincipal');
 		})
+
+		sprite2.on('pointerup', pointer => {
+            // Cargar diálogos en el sistema
+        this.dialogueSystem.loadDialogues(dialogues);
+        })
+		  // Manejar el click para el siguiente diálogo
+		  this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
 	}
 
 }

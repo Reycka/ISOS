@@ -1,0 +1,8 @@
+6
+2
+M,H
+G,M
+G,A
+M,A
+H,A
+AL,G

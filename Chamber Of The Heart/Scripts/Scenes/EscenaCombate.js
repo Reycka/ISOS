@@ -10,7 +10,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	* @extends Phaser.Scene
 	*/
 	mat;
-	matimg;
+	Enemymat;
 	constructor() {
 		super({ key: 'EscenaCombate' });
 	}
@@ -41,9 +41,16 @@ export default class EscenaCombate extends Phaser.Scene {
 		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background').getSourceImage().height);
 			this.mat = new Matriz(6,2,this, null);
+			this.Enemymat = new EnemyMatriz('./../Combate/OleadaDePrueba.txt',this,null);
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
 					var algo = this.add.image(j * 110  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
+					algo.setScale(0.25,0.25);
+				}
+			}
+			for(let i = 0; i < this.mat.row; i++){
+				for(let j = 0; j < this.mat.col; j++){
+					var algo = this.add.image(j * 110  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
 					algo.setScale(0.25,0.25);
 				}
 			}
@@ -60,14 +67,15 @@ export default class EscenaCombate extends Phaser.Scene {
 		
 	}
 	update(){		
+		//AQUI DENTRO LLAMAMOS AL BATTLE MANAGER SI SOLO SI: Hay una carta seleccionada y se elige una SlotClass
 		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa con click derecho y entonces la libera
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
 				if(j > 0){
-					this.mat.mat[i][j].SetUnit('C'); //En función de lo que seleccione setea una cosa u otra
+					this.mat.mat[i][j].SetUnit('LA'); //En función de lo que seleccione setea una cosa u otra
 				}
 				else{
-					this.mat.mat[i][j].SetUnit('LA'); //En función de lo que seleccione setea una cosa u otra
+					this.mat.mat[i][j].SetUnit('C'); //En función de lo que seleccione setea una cosa u otra
 				}
 				var a = this.mat.mat[i][j];
 				this.SetTexture(a);

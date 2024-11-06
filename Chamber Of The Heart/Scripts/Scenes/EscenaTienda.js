@@ -1,6 +1,6 @@
 //IMPORT GATOTIENDA
 import Inventory from './../Comunes/Inventory.js'
-import DialogueSystem from '../Socializar/Dialogos/DialogsSystem.js';
+import DialogueSystem from '../Socializar/Dialogos/DialogSystem.js';
 import CardClass from '../Comunes/CardClass.js';
 
 export default class EscenaTienda extends Phaser.Scene {
@@ -12,6 +12,12 @@ export default class EscenaTienda extends Phaser.Scene {
 	constructor() {
 		super({ key: 'EscenaTienda' });
 	}
+	inventory;
+	init(data){
+		this.inventory = data;
+		console.log(this.inventory);
+	}
+
 
 	preload() {
 		//BACKGROUND IMAGEN
@@ -20,7 +26,7 @@ export default class EscenaTienda extends Phaser.Scene {
 		this.load.image('BotonPrueba', 'Assets/Temporales/PlaceHolderCat.png');
 		this.load.spritesheet('cardTexture', 'Assets/Temporales/cardtexture.png',{frameWidth: 627, frameHeight: 882}); 
 		this.load.image('Papiro', 'Assets/Temporales/papiro.jpg')
-
+		this.load.image('cambioescena','Assets/Temporales/wasap.jpeg')
 	}
 
 	create() {
@@ -31,23 +37,31 @@ export default class EscenaTienda extends Phaser.Scene {
 		//Creamos el boton y hacemos que sea interactivo
 		var sprite = this.add.image(this.sys.game.canvas.width / 3, this.sys.game.canvas.height / 2, 'BotonPrueba')
 		sprite.setInteractive();
-
+		//PApiro donde se muestran las cartas
 		var papiro = this.add.image((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height*2.5 / 5, 'Papiro')
 		papiro.setScale(1.2,1.2)
 
 		var auxcard;
 		//Aplicamos funciones de lo que importemos en una variable
-		var inventory = new Inventory();
+		
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
 		sprite.on('pointerdown', pointer => {
-			inventory.AddGift(1);
-			inventory.AddCard(this,'cardTexture');
-			console.log(inventory.GetGitf());
+			this.inventory.AddGift(1);
+			this.inventory.AddCard(this,'cardTexture');
+			console.log(this.inventory.GetGitf());
 			auxcard =this.add.sprite((this.sys.game.canvas.width*2) / 3, this.sys.game.canvas.height*2.5 / 5,
-			 inventory.listCardClass[inventory.numcards-1].GetTexture(),inventory.listCardClass[inventory.numcards-1].textureindex);
+			 this.inventory.listCardClass[this.inventory.numcards-1].GetTexture(),this.inventory.listCardClass[this.inventory.numcards-1].textureindex);
 			auxcard.setScale(1/2,1/2);
 		})
+
+		//Boton de cambio de escena
+		var switchScene = this.add.image(0,this.sys.game.canvas.height / 2,'cambioescena');
+		switchScene.setInteractive();
+		switchScene.on('pointerup', pointer => {
+			this.scene.start('EscenaSocializar',this.inventory);
+		})
+
 	}
 
 }

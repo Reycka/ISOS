@@ -1,5 +1,7 @@
 import Characters from './../Socializar/Dialogos/Characters.js'
-import Dialogs from './../Socializar/Dialogos/DialogsSystem.js'
+import DialogSystem from '../Socializar/Dialogos/DialogSystem.js'
+
+import Inventory from '../Comunes/Inventory.js';
 
 export default class EscenaSocializar extends Phaser.Scene {
 	/**
@@ -10,9 +12,10 @@ export default class EscenaSocializar extends Phaser.Scene {
 	constructor() {
 		super({ key: 'EscenaSocializar' });
 	}
-
-	init(EscenaPrincipal){
-		EscenaPrincipal.inventory;
+	inventory;
+	init(data){
+		this.inventory = data;
+		console.log(this.inventory);
 	}
 
 	preload() {
@@ -20,6 +23,8 @@ export default class EscenaSocializar extends Phaser.Scene {
 		this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg')
 		//BOTON IMAGEN
 		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
+		//Dialogo IMAGEN
+		this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
 
 	}
 
@@ -31,10 +36,35 @@ export default class EscenaSocializar extends Phaser.Scene {
 		//Creamos el boton y hacemos que sea interactivo
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
 		sprite.setInteractive();
+		//botón para la conversación (lo que luego será el personaje )
+		var sprite2 = this.add.image(0,0, 'BotonPrueba3')
+		sprite2.setInteractive();
+
+		this.cameras.main.setBackgroundColor('#2d2d2d');
+
+        // Inicializar el sistema de diálogos
+        this.dialogueSystem = new DialogSystem(this);
+
+        
+		const dialogues = [
+			{ name: "Personaje 1", text: "¡Hola! " },
+			{ name: "Personaje 2", text: "Adiós" },
+			{ name: "Personaje 1", text: "Me quiero matar" },
+			{ name: "Personaje 2", text: "x2" },
+		];
+    
+
 
 		sprite.on('pointerup', pointer => {
-			this.scene.start('EscenaPrincipal');
+			this.scene.start('EscenaTienda',this.inventory);
 		})
+
+		sprite2.on('pointerup', pointer => {
+            // Cargar diálogos en el sistema
+        this.dialogueSystem.loadDialogues(dialogues);
+        })
+		  // Manejar el click para el siguiente diálogo
+		  this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
 	}
 
 }

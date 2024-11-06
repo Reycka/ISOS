@@ -1,10 +1,13 @@
 class Character {
-    constructor(scene, x, y, name, spriteKey, expressions) {
+    constructor(scene, x, y, name, spriteKey, expressions, num) {
        
         this.scene = scene;
         this.x = x;
         this.y = y;
         this.name = name;
+
+        //Número del personaje
+        num = num;
 
         // Sprite del personaje
         this.sprite = scene.add.sprite(x, y, spriteKey);

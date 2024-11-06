@@ -25,7 +25,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaCombate,EscenaPrincipal,EscenaTienda,EscenaSocializar], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaPrincipal,EscenaSocializar,EscenaTienda,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade
         arcade: { 

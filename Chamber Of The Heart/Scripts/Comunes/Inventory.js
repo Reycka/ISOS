@@ -34,4 +34,7 @@ export default class Inventory{
     GetGitf(){
         return this.numgift
     }
+    GetNumCards(){
+        return this.numcards;
+    }
 }

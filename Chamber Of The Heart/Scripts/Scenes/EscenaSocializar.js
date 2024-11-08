@@ -25,6 +25,7 @@ export default class EscenaSocializar extends Phaser.Scene {
 		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
 		//Dialogo IMAGEN
 		this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('batalla','Assets/Temporales/batalla.jpg');
 
 	}
 
@@ -33,13 +34,20 @@ export default class EscenaSocializar extends Phaser.Scene {
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BackgroundSocializar');
 		back.setScale(this.cameras.main.width / this.textures.get('BackgroundSocializar').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('BackgroundSocializar').getSourceImage().height);
-		//Creamos el boton y hacemos que sea interactivo
+		//Creamos el boton para ir a latienda
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
+		//creamos el boton para ir a la escena de combate
+		var battlebtn = this.add.image(this.sys.game.canvas.width-48 , this.sys.game.canvas.height-48, 'batalla')
+		battlebtn.setInteractive();
+		battlebtn.on('pointerup', pointer => {
+			this.scene.start('EscenaCombate',this.inventory);
+		})
+
 		sprite.setInteractive();
 		//botón para la conversación (lo que luego será el personaje )
 		var sprite2 = this.add.image(0,0, 'BotonPrueba3')
 		sprite2.setInteractive();
-
+		
 		this.cameras.main.setBackgroundColor('#2d2d2d');
 
         // Inicializar el sistema de diálogos

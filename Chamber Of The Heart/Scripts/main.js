@@ -8,7 +8,7 @@ let config = {
     // type: Phaser.CANVAS,
     // canvas: document.getElementById("juego"), //Le dice a Phaser que use un canvas concreto ya creado en el DOM
     width:  1600,
-    height: 1000,
+    height: 900,
     pixelArt: true,
 	scale: {
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY, //Le decimos que se centre en pantalla

@@ -138,50 +138,20 @@ export default class EscenaCombate extends Phaser.Scene {
 		card3.on('pointerup', pointer =>{
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2],this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 		})
-		
-
-
+		for(let i = 0; i < this.mat.row; i++){
+			for(let j = 0; j < this.mat.col; j++){
+				this.mat.mat[i][j].setInteractive();
+				this.mat.mat[i][j].on('pointerup', pointer =>{
+					this.battleManager.Summon(i,j);
+				})
+			}
+		}
 	}
 	update(){		
-		//AQUI DENTRO LLAMAMOS AL BATTLE MANAGER SI SOLO SI: Hay una carta seleccionada y se elige una SlotClass
-		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa con click derecho y entonces la libera
+		for(let i = 0; i < this.mat.row; i++){
+			for(let j = 0; j < this.mat.col; j++){
+					this.mat.mat[i][j] = this.add.image(j * 110  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
+			}
+		}
 	}
-	SetTexture(a){
-		var texture;
-		switch(a.GetUnit()){
-			//MAGO
-            case 'M':
-                texture = 'Mage'
-                break;
-			//CARRO
-            case 'C':
-                texture = 'Carriege'
-                break;
-			//ARCO CORTO
-            case 'SA':
-                texture = 'ShortArchier'
-                break;
-			//HEALER
-            case 'H':
-                texture = 'Healer'
-                break;
-			//ARCO LARGO
-            case 'LA':
-                texture = 'LongArchier'
-                break;
-			//INFANTERÍA
-            case 'G':
-                texture = 'Infantery'
-                break;
-			//Boss
-			case 'B':
-				texture = 'Boss'
-				break;
-        }
-		var algo = this.add.image(a.GetCol()* 110  + 500,a.GetRow() * 125 + 150,texture); //Colocamos el fondo
-		algo.setScale(0.3,0.3);
-		////this.mat.GetCol() * 110  +
-		//this.mat.GetRow()* 125 +
-	}
-
 }

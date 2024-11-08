@@ -27,10 +27,14 @@ ocupada;
         //console.log(this.ocupada + "\n"); //DEBUG
         return this.ocupada;
     } 
+    GetTexture(){
+        return this.texture;
+    }
     //Setea la unidad 
     SetUnit(unit){
         this.unit = unit;
         this.ocupada = true;
+        this.texture = this.unit.GetTexture();
     } 
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){

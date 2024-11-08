@@ -46,7 +46,7 @@ export default class EscenaSocializar extends Phaser.Scene {
         // Cargar el archivo JSON con los diálogos
         this.reader.loadJSON('./../../Texto/dialogs.json').then(() => {
             
-			console.log(this.reader.dialogData);
+			//console.log(this.reader.dialogData);
             
 			
         });
@@ -62,8 +62,9 @@ export default class EscenaSocializar extends Phaser.Scene {
         // Mostrar dialogos
         sprite2.on('pointerup', pointer => {
             const eventoId = 'evento1.1';  
-            if (this.reader.dialogData[eventoId]) {
-                this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData);  
+			
+            if (this.reader.dialogData.Eventos[eventoId]) {
+                this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
             } else {
                 console.log('Evento no encontrado: ' + eventoId);
             }

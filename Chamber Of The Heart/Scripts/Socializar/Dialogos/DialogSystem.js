@@ -20,13 +20,14 @@ export default class DialogSystem {
     showEventDialogues(eventId, allDialogues) {
         // Obtener los diálogos para el evento pasado
         const eventDialogues = allDialogues[eventId];
+       
         if (!eventDialogues) {
             console.warn(`Evento con ID ${eventId} no encontrado.`);
             return;
         }
 
         // Reiniciar el índice de diálogos
-        this.dialogues = eventDialogues;
+        this.dialogues = eventDialogues.dialogs;
         this.dialogIndex = 0;
         
         this.showNextDialogue();

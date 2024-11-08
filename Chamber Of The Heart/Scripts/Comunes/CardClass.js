@@ -8,6 +8,7 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
     texture;
     stads;
     textureindex;
+    isused
     
     constructor(scene, x, y,_texture, _cardLogic) {
         
@@ -19,7 +20,7 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         this.textureindex = this.stads.textureindex;
         if (this.stads.unit_type == 3) this.isHealer = true;
         this.isaCard = this.stads.iscard;
-       
+       this.isused = false;
         console.log(this.textureindex);
       
     }
@@ -39,5 +40,10 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
     }
     SetCard(){
         return this;
+        this.isused = true;
+    }
+    back(){
+        this.isused = false;
+
     }
 }

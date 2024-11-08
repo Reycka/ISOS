@@ -11,8 +11,15 @@ export default class EscenaCombate extends Phaser.Scene {
 	*/
 	mat;
 	Enemymat;
+	matimg;
+	inventory;
+	inventoryindex = 0;
 	constructor() {
 		super({ key: 'EscenaCombate' });
+	}
+	init(data){
+		this.inventory = data;
+		console.log(this.inventory);
 	}
 
 	preload() {
@@ -34,6 +41,9 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('ShortArchier', 'Assets/Temporales/ArcoCorto.png');
 		//BOSS
 		this.load.image('ShortArchier', 'Assets/Temporales/Serpiente.png');
+		
+		//flecha inventario
+		this.load.image('flecha', 'Assets/Temporales/flecha.png');
 	}
 	create() {
 		//Creamos el background y le aplicamos la escala
@@ -63,8 +73,54 @@ export default class EscenaCombate extends Phaser.Scene {
 			console.log(inventory.GetGitf());
 
 		})*/
-		
-		
+		/*
+		instancia del inventario y las cartas
+		*/
+		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
+		upperBoton.setScale(0.5,0.5);
+		upperBoton.setInteractive();
+		upperBoton.on('pointerup', pointer => {
+			if(this.inventoryindex!=0){ 
+				this.inventoryindex--; 
+				card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
+				this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
+				card1.setScale(1/4,1/4);
+				card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
+				this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				card2.setScale(1/4,1/4);
+				card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
+				this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				card3.setScale(1/4,1/4);
+			}
+		})
+		var downBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height*13 / 14, 'flecha')
+		downBoton.setScale(0.5,0.5);
+		downBoton.setInteractive();
+		downBoton.on('pointerup', pointer => {
+			if(this.inventoryindex<this.inventory.GetNumCards()-2){ 
+				this.inventoryindex++; 
+				card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
+				this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
+				card1.setScale(1/4,1/4);
+				card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
+				this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				card2.setScale(1/4,1/4);
+				card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
+				this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				card3.setScale(1/4,1/4);
+			}
+
+		})
+		downBoton.setFlipY(true);
+		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
+		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
+		card1.setScale(1/4,1/4);
+		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
+		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+		card2.setScale(1/4,1/4);
+		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
+		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+		card3.setScale(1/4,1/4);
 	}
 	update(){		
 		//AQUI DENTRO LLAMAMOS AL BATTLE MANAGER SI SOLO SI: Hay una carta seleccionada y se elige una SlotClass

@@ -100,7 +100,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		downBoton.setScale(0.5,0.5);
 		downBoton.setInteractive();
 		downBoton.on('pointerup', pointer => {
-			if(this.inventoryindex<this.inventory.GetNumCards()-2){ 
+			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
 				this.inventoryindex++; 
 				card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 				this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
@@ -126,11 +126,21 @@ export default class EscenaCombate extends Phaser.Scene {
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		card2.setScale(1/4,1/4);
-
-
+		card2.setInteractive();
+		card2.on('pointerup', pointer =>{
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1],this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
+		})
+		
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 		card3.setScale(1/4,1/4);
+		card3.setInteractive();
+		card3.on('pointerup', pointer =>{
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2],this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
+		})
+		
+
+
 	}
 	update(){		
 		//AQUI DENTRO LLAMAMOS AL BATTLE MANAGER SI SOLO SI: Hay una carta seleccionada y se elige una SlotClass

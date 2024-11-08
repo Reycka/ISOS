@@ -1,70 +1,75 @@
-import Characters from './../Socializar/Dialogos/Characters.js'
-import DialogSystem from '../Socializar/Dialogos/DialogSystem.js'
-
+import ReadDialog from './../Socializar/Dialogos/ReadDialog.js';
+import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
 import Inventory from '../Comunes/Inventory.js';
 
 export default class EscenaSocializar extends Phaser.Scene {
-	/**
-	* Escena principal.
-	* @extends Phaser.Scene
-	*/
+    constructor() {
+        super({ key: 'EscenaSocializar' });
+    }
 
-	constructor() {
-		super({ key: 'EscenaSocializar' });
-	}
-	inventory;
-	init(data){
-		this.inventory = data;
-		console.log(this.inventory);
-	}
+    inventory;
 
-	preload() {
-		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg')
-		//BOTON IMAGEN
-		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
-		//Dialogo IMAGEN
-		this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
+    allDialogues = {};  
 
-	}
+    init(data) {
+        this.inventory = data;
+        console.log(this.inventory);
+    }
 
-	create() {
-		//Creamos el background y le aplicamos la escala
-		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BackgroundSocializar');
-		back.setScale(this.cameras.main.width / this.textures.get('BackgroundSocializar').getSourceImage().width,
-			this.cameras.main.height / this.textures.get('BackgroundSocializar').getSourceImage().height);
-		//Creamos el boton y hacemos que sea interactivo
-		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2')
-		sprite.setInteractive();
-		//botón para la conversación (lo que luego será el personaje )
-		var sprite2 = this.add.image(0,0, 'BotonPrueba3')
-		sprite2.setInteractive();
+    preload() {
+        // Cargar imágenes de fondo y botones
+        this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg');
+        this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
+        this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
+    }
 
-		this.cameras.main.setBackgroundColor('#2d2d2d');
+    create() {
+        // Crear el fondo y aplicarle la escala
+        var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BackgroundSocializar');
+        back.setScale(this.cameras.main.width / this.textures.get('BackgroundSocializar').getSourceImage().width,
+            this.cameras.main.height / this.textures.get('BackgroundSocializar').getSourceImage().height);
+
+        // Botón1
+        var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonPrueba2');
+        sprite.setInteractive();
+
+        // Botón2
+        var sprite2 = this.add.image(0, 0, 'BotonPrueba3');
+        sprite2.setInteractive();
+
+        this.cameras.main.setBackgroundColor('#2d2d2d');
 
         // Inicializar el sistema de diálogos
         this.dialogueSystem = new DialogSystem(this);
+        this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
-        
-		const dialogues = [
-			{ name: "Personaje 1", text: "¡Hola! " },
-			{ name: "Personaje 2", text: "Adiós" },
-			{ name: "Personaje 1", text: "Me quiero matar" },
-			{ name: "Personaje 2", text: "x2" },
-		];
-    
+        // Cargar el archivo JSON con los diálogos
+        this.reader.loadJSON('./../../Texto/dialogs.json').then(() => {
+            // TODO
+            for (let eventoId in this.reader.dialogData) {
+                if (this.reader.dialogData.hasOwnProperty(eventoId)) {
+                    const dialogues = this.reader.getDialogues(eventoId);  // Obtener diálogos para cada evento
+                    this.allDialogues[eventoId] = dialogues;  // Guardar diálogos por ID de evento
+                }
+            }
+        });
 
+        // Click
+        this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
 
-		sprite.on('pointerup', pointer => {
-			this.scene.start('EscenaTienda',this.inventory);
-		})
+        // Cambio de escena
+        sprite.on('pointerup', pointer => {
+            this.scene.start('EscenaTienda', this.inventory);
+        });
 
-		sprite2.on('pointerup', pointer => {
-            // Cargar diálogos en el sistema
-        this.dialogueSystem.loadDialogues(dialogues);
-        })
-		  // Manejar el click para el siguiente diálogo
-		  this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
-	}
-
+        // Mostrar dialogos
+        sprite2.on('pointerup', pointer => {
+            const eventoId = 'evento1.1';  
+            if (this.allDialogues[eventoId]) {
+                this.dialogueSystem.showEventDialogues(eventoId, this.allDialogues);  
+            } else {
+                console.log('Evento no encontrado: ' + eventoId);
+            }
+        });
+    }
 }

@@ -3,28 +3,34 @@
 //La carta al clickar llama la battleManager y se hace desde la propia escena
 import Matriz from "./Matriz.js"
 import EnemyMatriz from "./EnemyMatriz.js"
+import CardClass from "./../Comunes/CardClass.js";
 //import Inventory from "../Comunes/Inventory.js"
 export default class BattleManager{
    //PROPIEDADES
    mat; //matriz que le vamos a pasar
    card; //Representa la carta seleccionada del inventario
-   EnemyMatriz; //Matriz de enemigos que se crea aquí
+   texture;
+   enemymatriz; //Matriz de enemigos que se crea aquí
 
    //CONSTRUCTORA
    constructor(_mat,_oleada){
     this.mat = _mat;
     this.card = null;
-    _EnemyMatriz = new EnemyMatriz(_oleada);
+    this.texture = null;
+    this.enemymatriz = new EnemyMatriz(_oleada);
    }
    //MÉTODOS
    ///Método encargado asignar la carta seleccionada del inventario al battleManager
-   SetCard(_card){
+   SetCard(_card,id){
     this.card = _card;
+    this.texture = id;
+    console.log(this.card);
+    console.log(this.texture);
    }
    //Método encargado de summonear la tropa en la casilla
    Summon(posX,posY){
         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
-            this.mat.mat[posX][posY].SetUnit(this.card);
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
         }
    }
    

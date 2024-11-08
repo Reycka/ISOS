@@ -4,6 +4,7 @@ import CardClass from './../Comunes/CardClass.js'
 import Matriz from './../Combate/Matriz.js'
 import EnemyMatriz from './../Combate/EnemyMatriz.js'
 import SlotClass from '../Combate/SlotClass.js'
+import BattleManager from '../Combate/BattleManager.js'
 export default class EscenaCombate extends Phaser.Scene {
 	/**
 	* Escena principal.
@@ -14,6 +15,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	matimg;
 	inventory;
 	inventoryindex = 0;
+	battleManager;
 	constructor() {
 		super({ key: 'EscenaCombate' });
 	}
@@ -24,34 +26,34 @@ export default class EscenaCombate extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('Background', 'Assets/Temporales/FondoCombate.jpeg');
+		this.load.image('Background1', 'Assets/Temporales/FondoCombate.jpeg');
 		//FONDO MATRIZ
 		this.load.image('MatrixGround', 'Assets/Temporales/marco-papiro.jpg');
 		//INFANTERÍA PRUEBA
-		this.load.image('LongArchier', 'Assets/Temporales/Arquero.jpeg');
+		this.load.image('LA', 'Assets/Temporales/Arquero.jpeg');
 		//ARQUERO LARGO PRUEBA
-		this.load.image('Infantery', 'Assets/Temporales/Tropa.jpg');
+		this.load.image('G', 'Assets/Temporales/Tropa.jpg');
 		//MAGO PRUEBA
-		this.load.image('Mage', 'Assets/Temporales/Mago.jpeg');
+		this.load.image('M', 'Assets/Temporales/Mago.jpeg');
 		//HEALER PRUEBA
-		this.load.image('Healer', 'Assets/Temporales/Healer.jpeg');
+		this.load.image('H', 'Assets/Temporales/Healer.jpeg');
 		//CARRO PRUEBA
-		this.load.image('Carriege', 'Assets/Temporales/Carro.png');
+		this.load.image('C', 'Assets/Temporales/Carro.png');
 		//ARCO CORTO PRUEBA
-		this.load.image('ShortArchier', 'Assets/Temporales/ArcoCorto.png');
+		this.load.image('SA', 'Assets/Temporales/ArcoCorto.png');
 		//BOSS
-		this.load.image('ShortArchier', 'Assets/Temporales/Serpiente.png');
+		this.load.image('B', 'Assets/Temporales/Serpiente.png');
 		
 		//flecha inventario
 		this.load.image('flecha', 'Assets/Temporales/flecha.png');
 	}
 	create() {
 		//Creamos el background y le aplicamos la escala
-		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background');
-		back.setScale(this.cameras.main.width / this.textures.get('Background').getSourceImage().width,
-			this.cameras.main.height / this.textures.get('Background').getSourceImage().height);
+		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
+		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
+			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
+			//SETEAMOS AMBAS MATRICES
 			this.mat = new Matriz(6,2,this, null);
-			this.Enemymat = new EnemyMatriz('./../Combate/OleadaDePrueba.txt',this,null);
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
 					var algo = this.add.image(j * 110  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
@@ -64,6 +66,7 @@ export default class EscenaCombate extends Phaser.Scene {
 					algo.setScale(0.25,0.25);
 				}
 			}
+		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt');
 		//Aplicamos funciones de lo que importemos en una variable
 		//var inventory = new Inventory();
 		//Si pulsamos en el boton, se a�ade algo a tu inventario
@@ -115,9 +118,16 @@ export default class EscenaCombate extends Phaser.Scene {
 		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
 		card1.setScale(1/4,1/4);
+
+		card1.setInteractive();
+		card1.on('pointerup', pointer =>{
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex],this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
+		})
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		card2.setScale(1/4,1/4);
+
+
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 		card3.setScale(1/4,1/4);
@@ -125,18 +135,6 @@ export default class EscenaCombate extends Phaser.Scene {
 	update(){		
 		//AQUI DENTRO LLAMAMOS AL BATTLE MANAGER SI SOLO SI: Hay una carta seleccionada y se elige una SlotClass
 		//Método que si pulso en la casilla pilla la información de la SlotClass y setea una carta al pulsar y si ya hay una carta la pulsa con click derecho y entonces la libera
-		for(let i = 0; i < this.mat.row; i++){
-			for(let j = 0; j < this.mat.col; j++){
-				if(j > 0){
-					this.mat.mat[i][j].SetUnit('LA'); //En función de lo que seleccione setea una cosa u otra
-				}
-				else{
-					this.mat.mat[i][j].SetUnit('C'); //En función de lo que seleccione setea una cosa u otra
-				}
-				var a = this.mat.mat[i][j];
-				this.SetTexture(a);
-			}
-		}
 	}
 	SetTexture(a){
 		var texture;

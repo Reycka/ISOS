@@ -3,8 +3,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
 ///PROPIEDADES
 row;
 col;
- unit;
- ocupada;
+unit; //UnitClass
+ocupada;
  texture;
 //CONSTRUCTOR
     constructor(scene, x, y,_texture){
@@ -22,60 +22,19 @@ col;
     GetCol(){
         return this.col;
     }
-    SetUnit(unit){
-        if(!this.GetState()){
-        switch(unit){
-            case 'M':
-                this.unit = 'M'
-                break;
-            case 'G':
-                this.unit = 'G'
-                break;
-            case 'SA':
-                this.unit = 'SA'
-                break;
-            case 'H':
-                this.unit = 'H'
-                break;
-            case 'LA':
-                this.unit = 'LA'
-                break;
-            case 'C':
-                this.unit = 'C'
-                break;
-            case 'B':
-                this.unit = 'B'
-                break;
-        }
-        this.ocupada = true;
-        }
-       // else console.log("La casilla está ocupada colega" + "\n"); //DEBUG
-    }
-   /* render(unit,texture){
-        console.log("Renderizo tropa" +"\n");
-        //deph.number(1); //Colocamos la imagen por encima
-        if(unit == 'M'){
-            this.texture = "Assets/Temporales/Mago.jpg"; //Imagen Mago
-        }
-        else if(unit == 'H'){
-            this.texture = "Assets/Temporales/Healer.jpg"; //Imagen Healer
-        }
-        else if(unit == 'G'){
-            this.texture = "Assets/Temporales/Tropa.jpg"; //Imagen Guerrero
-        }
-        else if(unit == 'A'){
-            this.texture = "Assets/Temporales/Arquero.jpeg"; //Imagen Arquero
-        }
-        this.add.Sprite(unit, texture); //Seteamos la imagen del Guerrero
-    }*/
     //Devuelve si hay una tropa o no en dicha posición
     GetState(){
         //console.log(this.ocupada + "\n"); //DEBUG
         return this.ocupada;
-    }   
+    } 
+    //Setea la unidad 
+    SetUnit(unit){
+        this.unit = unit;
+        this.ocupada = true;
+    } 
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){
-        console.log("Libero" + "\n") //DEBUG
+        //console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
            this.texture = null;
     }

@@ -11,8 +11,7 @@ altered_state;
 unittexture;
 acthealth;
 unitType;
-matriz;
-constructor(cardclass, _unittexture,matriz){
+constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.CardClass.stads;
     this.isaplayer =this.card.CardLogic.iscard;

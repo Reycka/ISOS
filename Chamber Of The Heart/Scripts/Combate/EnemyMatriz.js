@@ -15,7 +15,7 @@ export default class EnemyMatriz{
     if(this.oleada == undefined || this.oleada == null) console.log("MONDONGO") //Comprobación de que lee bien el archivo
     //Lo abrimos hay que revisar como leer archivos de txt en js
     else{
-          const reader = new FileReader();
+          /*const reader = new FileReader();
           reader.readAsText(this.oleada);
           this.row = reader.result; //Asignamos el tamaño de la fila
           this.col = reader.result; //Asignamos el tamaño de la columna
@@ -27,7 +27,7 @@ export default class EnemyMatriz{
               for(let j = 0; j < this.col; ++j){
                   this.Enemymat.mat[i][j].SetUnit(file[i+2,j]);
                   }
-          }
+          }*/
       }
     }
   }

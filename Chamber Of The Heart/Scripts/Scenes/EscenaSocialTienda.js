@@ -32,30 +32,32 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width, this.sys.game.canvas.height / 2, 'BackgroundSocialTienda');
-		//back.setScale(this.cameras.main.width / this.textures.get('BackgroundSocialTienda').getSourceImage().width / 2,
-		//	this.cameras.main.height / this.textures.get('BackgroundSocialTienda').getSourceImage().height);
 		
+        //Esto es para que la camara se mantenga solamente en el eje Y y se pueda editar en el eje X
         this.cameras.main.setBounds(0,0,3840,1080);
 
         //Creamos el boton y hacemos que sea interactivo
 		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonGenerarCarta')
 		sprite.setInteractive();
 
+        //Hacemos un boton que se ajusta para ir a la izquierda usando el ancho de la pantalla
         var botonIzq = this.add.image(0, 0, 'BotonMoverseIzq');
         botonIzq.setScale(0.25);
         botonIzq.setInteractive();
+        //WIDTH + MEDIDA DEL BOTON PARA EL LADO DERECHO
         botonIzq.setPosition(width + botonIzq.width / 2, height - botonIzq.height / 2);
-        //botonIzq.setScrollFactor(0);
 
+        //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
         botonDch.setScale(0.25);
+        //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
         botonDch.setPosition(width - botonDch.width / 2, height - botonDch.height / 2);
         botonDch.rotation = Math.PI;
-        //botonDch.setScrollFactor(0);
 
 		var auxcard;
-        const desplazamiento = 2500;
+        //El desplazamiento es a 4/5 de la pantalla cuando nos posicionamos en el lado derecho
+        const desplazamiento = 3840 - 3840 / 5;
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
 		sprite.on('pointerdown', pointer => {
@@ -68,23 +70,20 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         botonIzq.on('pointerdown', pointer =>{
             console.log('Boton izquierdo presionado');
-            const nuevoScrollX = Math.max(this.cameras.main.scrollX - desplazamiento, 0); // No baja de 0
+            const nuevoScrollX = this.cameras.main.scrollY - desplazamiento;
             this.cameras.main.pan(
-                nuevoScrollX, this.cameras.main.scrollY, 500
+                nuevoScrollX, this.cameras.main.scrollY, 1000
             );
-            //botonIzq.setPosition = Math.min(botonIzq.position + this.desplazamiento, 1600);
-            //botonDch.setPosition = Math.min(botonIzq.position + this.desplazamiento, 1600);
-            
         });
 
         botonDch.on('pointerdown', pointer =>{
             console.log('Boton derecho presionado');
-            const nuevoScrollX = Math.min(this.cameras.main.scrollX + desplazamiento, 2500);
+            const nuevoScrollX = this.cameras.main.scrollY + desplazamiento; 
+            console.log(this.cameras.main.scrollY, desplazamiento);
             this.cameras.main.pan(
-                nuevoScrollX, this.cameras.main.scrollY, 500
+                nuevoScrollX, this.cameras.main.scrollY, 1000
             );
-            //botonIzq.setPosition = Math.max(botonIzq.position - this.desplazamiento, 0);
-            //botonDch.setPosition = Math.max(botonDch.position - this.desplazamiento, 0);
+            console.log(this.cameras.main.scrollX);
         });
 	}
 

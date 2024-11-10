@@ -15,7 +15,8 @@ constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
     this.isaplayer =this.card.iscard;
-    this.acthealth =  this.card.health;
+    this.isahealer = this.card.isHealer;
+    this.acthealth =  this.card.health;  
     this.cooldown = this.card.speed;
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
@@ -23,19 +24,35 @@ constructor(cardclass, _unittexture){
 GetTexture(){
     return this.unittexture;
 }
+GetIsaHealer(){
+    return this.isahealer;
+}
+Update(unit){
+    if(this.isahealer){
+        this.Heal(unit);
+    }
+    else this.Attack(unit);
+}
 Attack(enemy){
-if(this.actcooldown < 0){
+if(this.actcooldown <= 0){
     enemy.UnitClass.GetDamage(this.card.attack,this.unitType);
     this.actcooldown = this.cooldown;
 }
-else this.actcooldown--;
+}
+Cooldown(){
+    this.cooldown--;
 }
 Heal(ally){
-    ally.UnitClass.ReciveHeal(this.card.CardLogic.attack);
+    
+    if(this.actcooldown <= 0){
+        ally.UnitClass.ReciveHeal(this.card.CardLogic.attack);
+        this.actcooldown = this.cooldown;
+    }
 }
 ReciveHeal(n){
     this.acthealth +=n;
-    if(this.acthealth> this.card.CardLogic.health){
+    if(this.acthealth> this.card.CardLogic.health)
+        {
         this.acthealth = this.card.CardLogic.health;
     }
 }

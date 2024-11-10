@@ -57,34 +57,51 @@ export default class EscenaCombate extends Phaser.Scene {
 		upperBoton.setScale(0.5,0.5);
 		upperBoton.setInteractive();
 		upperBoton.on('pointerup', pointer => {
-			if(this.inventoryindex!=0){ 
+			if(this.inventoryindex!=0)
+				{ 
 				this.inventoryindex--; 
-				card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
-				this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
-				card1.setScale(1/4,1/4);
-				card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
-				this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
-				card2.setScale(1/4,1/4);
-				card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
-				this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-				card3.setScale(1/4,1/4);
+				card1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
+					{
+					card1.alpha = 0.5;
+					}
+				else {card1.alpha = 1;}
+				
+				card2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
+					{
+					card2.alpha = 0.5;
+				}else {card2.alpha = 1;}
+				
+				card3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
+					card3.alpha = 0.5;
+				}else{ card3.alpha = 1;}
 			}
-		})
+			})
 		var downBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height*13 / 14, 'flecha')
 		downBoton.setScale(0.5,0.5);
 		downBoton.setInteractive();
 		downBoton.on('pointerup', pointer => {
 			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
 				this.inventoryindex++; 
-				card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
-				this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
-				card1.setScale(1/4,1/4);
-				card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
-				this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
-				card2.setScale(1/4,1/4);
-				card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
-				this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-				card3.setScale(1/4,1/4);
+				card1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
+					{
+					card1.alpha = 0.5;
+					}
+				else {card1.alpha = 1;}
+				
+				card2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
+					{
+					card2.alpha = 0.5;
+				}else {card2.alpha = 1;}
+				
+				card3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
+					card3.alpha = 0.5;
+				}else{ card3.alpha = 1;}
 			}
 
 		})
@@ -95,14 +112,16 @@ export default class EscenaCombate extends Phaser.Scene {
 
 		card1.setInteractive();
 		card1.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex],this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
+			card1.alpha = 0.5;
 		})
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		card2.setScale(1/4,1/4);
 		card2.setInteractive();
 		card2.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1],this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
+			card2.alpha = 0.5;
 		})
 		
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
@@ -110,7 +129,8 @@ export default class EscenaCombate extends Phaser.Scene {
 		card3.setScale(1/4,1/4);
 		card3.setInteractive();
 		card3.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2],this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
+			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
+			card3.alpha = 0.5;
 		})
 		this.mat = new Matriz(6,2,this, null);
 		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt');

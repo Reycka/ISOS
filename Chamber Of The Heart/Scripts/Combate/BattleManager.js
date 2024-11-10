@@ -3,6 +3,7 @@
 //La carta al clickar llama la battleManager y se hace desde la propia escena
 import Matriz from "./Matriz.js"
 import EnemyMatriz from "./EnemyMatriz.js"
+import SlotClass from "./SlotClass.js";
 import CardClass from "./../Comunes/CardClass.js";
 //import Inventory from "../Comunes/Inventory.js"
 export default class BattleManager{
@@ -11,7 +12,8 @@ export default class BattleManager{
    card; //Representa la carta seleccionada del inventario
    texture;
    enemymatriz; //Matriz de enemigos que se crea aquí
-
+    victory = false;
+    defeat = false;
    //CONSTRUCTORA
    constructor(_mat,_oleada){
     this.mat = _mat;
@@ -32,6 +34,82 @@ export default class BattleManager{
         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
         }
+   }
+   StartBattle(){
+    while(!this.victory||!this.defeat){
+        //comprobamos las unidades que pueden atacar de la matriz aliada
+        //boooleanos para comprovar si quedan tropas
+        auxv = false;
+        auxd = false;
+        for(let i = 0; i < this.mat.mat.row; i++){
+			for(let j = 0; j < this.mat.mat.col; j++){
+
+                if(this.mat.mat[i][j].GetState())
+                {
+                    target = false;
+                    if(this.mat.mat[i][j].GetUnit().IsaHealer()){
+                        if((i-1)!=-1){
+                            if(this.mat.mat[i][j].GetState()){
+                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i-1][j].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if((i+1)<this.mat.mat.row){
+                            if(this.mat.mat[i+1][j].GetState()) {
+                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i+1][j].GetUnit())
+                                target = true;
+                            }
+                        }if((j-1)!=-1){
+                            if(this.mat.mat[i][j-1].GetState()){ 
+                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i][j-1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if((j+1)<this.mat.col){
+                            if(this.mat.mat[i][j+1].GetState()){
+                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i][j+1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if(!target){
+                            //movemos la unidad
+                        }
+                        
+                    }
+                    else
+                    {
+                        //unidades que no curan
+                        if((j-1)!=-1){
+                            if(this.enemymatriz.Enemymat[i][j-1].GetState()){ 
+                                this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j-1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        else if(this.enemymatriz.Enemymat[i][j].GetState()){
+                            this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j].GetUnit())
+                            target = true;
+                        }
+                        else if((j+1)<this.enemymatriz.Enemymat.col)
+                            {
+                            if(this.enemymatriz.Enemymat[i][j+1].GetState()){
+                                this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j+1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        else{
+                            //movemos a la tropa
+                        }
+                    }
+                    this.mat[i][j].GetUnit().Cooldown();
+
+
+                   
+                }
+                
+            }
+        }
+    }
+
    }
    
 };

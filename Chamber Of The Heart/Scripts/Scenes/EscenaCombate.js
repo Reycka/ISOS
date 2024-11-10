@@ -53,32 +53,6 @@ export default class EscenaCombate extends Phaser.Scene {
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
 			//SETEAMOS AMBAS MATRICES
-			this.mat = new Matriz(6,2,this, null);
-			for(let i = 0; i < this.mat.row; i++){
-				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 110  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
-					algo.setScale(0.25,0.25);
-				}
-			}
-			for(let i = 0; i < this.mat.row; i++){
-				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 110  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
-					algo.setScale(0.25,0.25);
-				}
-			}
-		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt');
-		//Aplicamos funciones de lo que importemos en una variable
-		//var inventory = new Inventory();
-		//Si pulsamos en el boton, se a�ade algo a tu inventario
-		/*sprite.on('pointerdown', pointer => {
-			inventory.AddGift(1);
-			inventory.AddCard();
-			console.log(inventory.GetGitf());
-
-		})*/
-		/*
-		instancia del inventario y las cartas
-		*/
 		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
 		upperBoton.setScale(0.5,0.5);
 		upperBoton.setInteractive();
@@ -138,20 +112,29 @@ export default class EscenaCombate extends Phaser.Scene {
 		card3.on('pointerup', pointer =>{
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2],this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 		})
+		this.mat = new Matriz(6,2,this, null);
+		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt');
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				this.mat.mat[i][j].setInteractive();
-				this.mat.mat[i][j].on('pointerup', pointer =>{
+				var algo = this.add.image(j * 120  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
+				algo.setScale(0.25,0.25);
+				algo.setInteractive();
+				algo.on('pointerup', pointer =>{
+					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
+					var set = this.add.image(j * 120  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
+					set.setScale(0.35,0.35);
 				})
+			}
+		}
+		for(let i = 0; i < this.mat.row; i++){
+			for(let j = 0; j < this.mat.col; j++){
+				var algo = this.add.image(j * 120  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
+				algo.setScale(0.25,0.25);
 			}
 		}
 	}
 	update(){		
-		for(let i = 0; i < this.mat.row; i++){
-			for(let j = 0; j < this.mat.col; j++){
-					this.mat.mat[i][j] = this.add.image(j * 110  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
-			}
-		}
+
 	}
 }

@@ -13,11 +13,11 @@ acthealth;
 unitType;
 constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
-    this.card = cardclass.CardClass.stads;
-    this.isaplayer =this.card.CardLogic.iscard;
-    this.acthealth =  this.card.CardLogic.health;
-    this.cooldown = this.card.CardLogic.speed;
-    this.unitType = this.card.CardLogic.unit_type;
+    this.card = cardclass.stads;
+    this.isaplayer =this.card.iscard;
+    this.acthealth =  this.card.health;
+    this.cooldown = this.card.speed;
+    this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
 }
 GetTexture(){

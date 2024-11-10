@@ -38,9 +38,9 @@ export default class BattleManager{
    StartBattle(){
     while(!this.victory||!this.defeat){
         //comprobamos las unidades que pueden atacar de la matriz aliada
-        //boooleanos para comprovar si quedan tropas
-        auxv = false;
-        auxd = false;
+        //boooleanos para comprobar si quedan tropas
+        auxv = true;
+        auxd = true;
         for(let i = 0; i < this.mat.mat.row; i++){
 			for(let j = 0; j < this.mat.mat.col; j++){
 
@@ -77,7 +77,7 @@ export default class BattleManager{
                         
                     }
                     else
-                    {
+                        {
                         //unidades que no curan
                         if((j-1)!=-1){
                             if(this.enemymatriz.Enemymat[i][j-1].GetState()){ 
@@ -99,15 +99,86 @@ export default class BattleManager{
                         else{
                             //movemos a la tropa
                         }
-                    }
-                    this.mat[i][j].GetUnit().Cooldown();
+                       
 
-
-                   
+                        }
+                
+                        this.mat.mat[i][j].GetUnit().Cooldown();
+                        auxd = false;
                 }
                 
             }
         }
+        //bucle matriz enemigos
+        for(let i = 0; i < this.enemymatriz.Enemymat.row; i++){
+			for(let j = 0; j < this.enemymatriz.Enemymat.col; j++){
+
+                if(this.enemymatriz.Enemymat[i][j].GetState())
+                {
+                    target = false;
+                    if(this.enemymatriz.Enemymat[i][j].GetUnit().IsaHealer()){
+                        if((i-1)!=-1){
+                            if(this.enemymatriz.Enemymat[i][j].GetState()){
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i-1][j].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if((i+1)<this.enemymatriz.Enemymat.row){
+                            if(this.enemymatriz.Enemymat[i+1][j].GetState()) {
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i+1][j].GetUnit())
+                                target = true;
+                            }
+                        }if((j-1)!=-1){
+                            if(this.enemymatriz.Enemymat[i][j-1].GetState()){ 
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j-1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if((j+1)<this.mat.col){
+                            if(this.enemymatriz.Enemymat[i][j+1].GetState()){
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j+1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        if(!target){
+                            //movemos la unidad
+                        }
+                        
+                    }
+                    else
+                        {
+                        //unidades que no curan
+                        if((j-1)!=-1){
+                            if(this.mat.mat[i][j-1].GetState()){ 
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j-1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        else if(this.mat.mat[i][j].GetState()){
+                            this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j].GetUnit())
+                            target = true;
+                        }
+                        else if((j+1)<this.mat.mat.col)
+                            {
+                            if(this.mat.mat[i][j+1].GetState()){
+                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j+1].GetUnit())
+                                target = true;
+                            }
+                        }
+                        else{
+                            //movemos a la tropa
+                        }
+                       
+
+                        }
+                
+                        this.enemymatriz.Enemymat[i][j].GetUnit().Cooldown();
+                        auxv = false;
+                }
+                
+            }
+        }
+
     }
 
    }

@@ -20,12 +20,13 @@ export default class EscenaSocializar extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocializar', 'Assets/finales/fondo_socializar.png')
+		this.load.image('BackgroundSocializar', 'ChamberOfTheHeart/Assets/Temporales/backgroundsocializar.jpg')
+
 		//BOTON IMAGEN
-		this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('BotonPrueba2', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
 		//Dialogo IMAGEN
-		this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
-		this.load.image('batalla','Assets/Temporales/batalla.jpg');
+		this.load.image('BotonPrueba3', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('batalla','ChamberOfTheHeart/Assets/Temporales/batalla.jpg');
 
 	}
 

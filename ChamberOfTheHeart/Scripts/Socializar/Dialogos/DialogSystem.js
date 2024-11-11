@@ -2,22 +2,20 @@ import Inventory from './../../Comunes/Inventory.js'
 
 export default class DialogSystem {
 
-
     constructor(scene, _inventory) {
         this.scene = scene;
-
         this.inventory = _inventory;
 
         if (!(this.inventory instanceof Inventory)) {
             console.error("Error: `inventory` no es una instancia de Inventory");
         }
-        
+
         this.centerX = this.scene.cameras.main.width / 2;
         this.centerY = this.scene.cameras.main.height / 1.1;
 
         // Elementos gráficos para el nombre y diálogo
-         this.characterNameBox = this.scene.add.graphics();
-         this.characterNameText = this.scene.add.text(0, 0, '', { 
+        this.characterNameBox = this.scene.add.graphics();
+        this.characterNameText = this.scene.add.text(0, 0, '', { 
             fontSize: '40px', 
             fill: '#fff', 
             fontFamily: 'Arial, sans-serif', 
@@ -42,7 +40,6 @@ export default class DialogSystem {
         this.end = false;
     }
 
-
     showEventDialogues(eventId, allDialogues) {
         const eventDialogues = allDialogues[eventId];
         if (!eventDialogues) return;
@@ -50,6 +47,10 @@ export default class DialogSystem {
         this.end = false;
         this.dialogues = eventDialogues.dialogs;
         this.dialogIndex = 0;
+
+        // Muestra la capa desde la escena principal
+        this.scene.events.emit('showDialogueBackground');
+
         this.showNextDialogue();
     }
 
@@ -81,7 +82,7 @@ export default class DialogSystem {
             this.dialogueBox.lineStyle(2, 0x000000, 1);
             this.dialogueBox.fillStyle(0x000000, 0.8);
             this.dialogueBox.fillRect(50, dialogueBoxYPosition, this.scene.cameras.main.width - 100, dialogueBoxHeight);
-            this.dialogueBox.strokeRect(50, dialogueBoxYPosition, this.scene.cameras.main.width -100, dialogueBoxHeight);
+            this.dialogueBox.strokeRect(50, dialogueBoxYPosition, this.scene.cameras.main.width - 100, dialogueBoxHeight);
 
             // Mostrar texto
             const textMarginTop = 30;
@@ -124,6 +125,7 @@ export default class DialogSystem {
             // Fin del diálogo
             this.end = true;
             this.scene.events.emit('endDialogue');
+            this.scene.events.emit('hideDialogueBackground'); // Oculta la capa desde la escena principal
             this.dialogueText.setText('');
             this.characterNameText.setText('');
             this.optionButtons.forEach(button => button.destroy());
@@ -132,6 +134,8 @@ export default class DialogSystem {
             this.dialogIndex = 0;
         }
     }
+
+
 
     handleOptionSelection(gain) {
         console.log(`Opción seleccionada: ${gain}`);

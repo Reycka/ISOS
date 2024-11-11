@@ -34,7 +34,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		//BOTON IMAGEN
 		this.load.image('BotonMoverseIzq', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
 		this.load.image('BotonMoverseDch', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
-        this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
+        this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Finales/Khayyat.png');
 		this.load.image('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardPh.jpg'); 
         this.load.image('Shai', 'ChamberOfTheHeart/Assets/Finales/Shai.png');
 
@@ -52,23 +52,29 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //Esto es para que la camara se mantenga solamente en el eje Y y se pueda editar en el eje X
         this.cameras.main.setBounds(0,0,3840,1080);
 
+        // Capa de fondo
+        this.dialogBackground = this.add.graphics();
+        this.dialogBackground.fillStyle(0xffffff, 0.4); // Blanco, 50% de transparencia
+        this.dialogBackground.fillRect(0, 0, width, height);
+        this.dialogBackground.setVisible(false); // Oculto al inicio
+
         //Creamos el boton y hacemos que sea interactivo
-		var sprite = this.add.image((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2, 'BotonGenerarCarta')
-		sprite.setInteractive();
+		var Khayyat = this.add.image((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2 - 70, 'BotonGenerarCarta')
+		Khayyat.setInteractive();
 
         //Hacemos un boton que se ajusta para ir a la izquierda usando el ancho de la pantalla
         var botonIzq = this.add.image(0, 0, 'BotonMoverseIzq');
         botonIzq.setScale(0.25);
         botonIzq.setInteractive();
         //WIDTH + MEDIDA DEL BOTON PARA EL LADO DERECHO
-        botonIzq.setPosition(width + botonIzq.width / 2, height - botonIzq.height / 2);
+        botonIzq.setPosition(width + botonIzq.width / 4, height - botonIzq.height / 0.75);
 
         //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
         botonDch.setScale(0.25);
         //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
-        botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.55 );
+        botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
         botonDch.rotation = Math.PI;
 
 		var auxcard;
@@ -76,7 +82,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         const desplazamiento = 3840 - 3840 / 5;
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
-		sprite.on('pointerdown', pointer => {
+		Khayyat.on('pointerdown', pointer => {
 			inventory.AddGift(1);
 			inventory.AddCard(this,'cardTexture');
 			console.log(inventory.GetGitf());
@@ -122,6 +128,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         // Click
         this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
+
+
+        // Eventos para mostrar/ocultar capa de fondo
+        this.events.on('showDialogueBackground', () => {
+            this.dialogBackground.setVisible(true);
+        });
+        this.events.on('hideDialogueBackground', () => {
+            this.dialogBackground.setVisible(false);
+        });
 
 
         // Mostrar dialogos

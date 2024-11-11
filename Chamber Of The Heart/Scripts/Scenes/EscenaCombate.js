@@ -133,7 +133,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			card3.alpha = 0.5;
 		})
 		this.mat = new Matriz(6,2,this, null);
-		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt');
+		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
 				var algo = this.add.image(j * 120  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
@@ -151,6 +151,8 @@ export default class EscenaCombate extends Phaser.Scene {
 			for(let j = 0; j < this.mat.col; j++){
 				var algo = this.add.image(j * 120  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
 				algo.setScale(0.25,0.25);
+				var set = this.add.image(j * 120  + 1000 , i * 125 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+				set.setScale(0.35,0.35);
 			}
 		}
 	}

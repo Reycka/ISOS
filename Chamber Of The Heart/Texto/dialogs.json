@@ -16,7 +16,6 @@
                 {
                     "character": "Tarik",
                     "text": "A estas alturas dudo que defienda su propio templo.",
-                    "numOptions": 2,
                     "options": [
                         { "response": "Ten más confianza en él, Tarik.", "gain": 0 },
                         { "response": "Deberíamos pensar en algo.", "gain": 1 }
@@ -43,7 +42,6 @@
                 {
                     "character": "Tarik",
                     "text": "Les entiendo hasta cierto punto, pero no estoy seguro de que sea la mejor motivación.",
-                    "numOptions": 3,
                     "options": [
                         { "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…", "gain": -1 },
                         { "response": "La volatilidad de nuestras tropas también me preocupa.", "gain": 0 },

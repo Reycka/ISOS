@@ -28,12 +28,14 @@ export default class DialogSystem {
         this.dialogIndex = 0;
         this.optionButtons = [];
         this.hasOptions = false;
+        this.end = false;
     }
 
     showEventDialogues(eventId, allDialogues) {
         const eventDialogues = allDialogues[eventId];
         if (!eventDialogues) return;
 
+        this.end = false;
         this.dialogues = eventDialogues.dialogs;
         this.dialogIndex = 0;
         this.showNextDialogue();
@@ -46,7 +48,7 @@ export default class DialogSystem {
             // Mostrar nombre del personaje y cuadro
             this.characterNameText.setText(character);
             const nameBoxWidth = 220;
-            const nameXPosition = this.centerX - 700;
+            const nameXPosition = this.centerX - 700; 
             this.characterNameText.setPosition(nameXPosition + nameBoxWidth / 2, this.centerY - 160);
 
             this.characterNameBox.clear();
@@ -108,7 +110,10 @@ export default class DialogSystem {
             this.dialogIndex++;
         } else {
             // Fin del diálogo
+            this.end = true;
+            this.scene.events.emit('endDialogue');
             this.dialogueText.setText('');
+            this.characterNameText.setText('');
             this.optionButtons.forEach(button => button.destroy());
             this.characterNameBox.clear();
             this.dialogueBox.clear();
@@ -122,7 +127,7 @@ export default class DialogSystem {
     }
 
     onPointerDown(optionIndex) {
-        if (!this.hasOptions) {
+        if (!this.hasOptions && !this.end) {
             this.showNextDialogue();
         }
     }

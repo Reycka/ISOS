@@ -42,10 +42,11 @@ export default class EscenaCombate extends Phaser.Scene {
 		//ARCO CORTO PRUEBA
 		this.load.image('SA', 'Assets/Temporales/ArcoCorto.png');
 		//BOSS
-		this.load.image('B', 'Assets/Temporales/Serpiente.png');
-		
+		this.load.image('B', 'Assets/Temporales/Serpiente.png');	
 		//flecha inventario
 		this.load.image('flecha', 'Assets/Temporales/flecha.png');
+		//Boton de iniciar pelea
+		this.load.image('Pelea', 'Assets/Temporales/BotonDeBatalla.jpeg')
 	}
 	create() {
 		//Creamos el background y le aplicamos la escala
@@ -127,14 +128,19 @@ export default class EscenaCombate extends Phaser.Scene {
 				})
 			}
 		}
-		for(let i = 0; i < this.mat.row; i++){
-			for(let j = 0; j < this.mat.col; j++){
-				var algo = this.add.image(j * 120  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
-				algo.setScale(0.25,0.25);
-				var set = this.add.image(j * 120  + 1000 , i * 125 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-				set.setScale(0.35,0.35);
+		var pelea = this.add.image((this.sys.game.canvas.width) / 1.12, this.sys.game.canvas.height / 1.15,'Pelea')
+		pelea.setScale(2,2);
+		pelea.setInteractive();
+		pelea.on('pointerup', pointer =>{
+			for(let i = 0; i < this.mat.row; i++){
+				for(let j = 0; j < this.mat.col; j++){
+					var algo = this.add.image(j * 120  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
+					algo.setScale(0.25,0.25);
+					var set = this.add.image(j * 120  + 1000 , i * 125 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					set.setScale(0.35,0.35);
+				}
 			}
-		}
+		})
 	}
 	update(){		
 

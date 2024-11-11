@@ -11,13 +11,15 @@ export default class BattleManager{
    card; //Representa la carta seleccionada del inventario
    texture;
    enemymatriz; //Matriz de enemigos que se crea aquí
+   scene;
 
    //CONSTRUCTORA
-   constructor(_mat,_oleada){
+   constructor(_mat,_oleada,_scene){
     this.mat = _mat;
     this.card = null;
     this.texture = null;
-    this.enemymatriz = new EnemyMatriz(_oleada);
+    this.scene = _scene;
+    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this.texture);
    }
    //MÉTODOS
    ///Método encargado asignar la carta seleccionada del inventario al battleManager

@@ -1,6 +1,6 @@
 //IMPORT GATOTIENDA
 import Inventory from './../Comunes/Inventory.js'
-import DialogueSystem from '../Socializar/Dialogos/DialogsSystem.js';
+import DialogueSystem from '../Socializar/Dialogos/DialogSystem.js';
 import CardClass from '../Comunes/CardClass.js';
 
 export default class EscenaSocialTienda extends Phaser.Scene {
@@ -15,12 +15,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocialTienda', 'Assets/Temporales/backgroundsocialtienda.png')
+		this.load.image('BackgroundSocialTienda', 'ChamberOfTheHeart/Assets/Temporales/backgroundsocialtienda.png')
 		//BOTON IMAGEN
-		this.load.image('BotonMoverseIzq', 'Assets/Temporales/flechaizquierda.png');
-		this.load.image('BotonMoverseDch', 'Assets/Temporales/flechaizquierda.png');
-        this.load.image('BotonGenerarCarta', 'Assets/Temporales/PlaceHolderCat.png');
-		this.load.image('cardTexture', 'Assets/Temporales/cardPh.jpg'); 
+		this.load.image('BotonMoverseIzq', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
+		this.load.image('BotonMoverseDch', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
+        this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardPh.jpg'); 
 
 	}
 
@@ -37,7 +37,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.cameras.main.setBounds(0,0,3840,1080);
 
         //Creamos el boton y hacemos que sea interactivo
-		var sprite = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BotonGenerarCarta')
+		var sprite = this.add.image((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2, 'BotonGenerarCarta')
 		sprite.setInteractive();
 
         //Hacemos un boton que se ajusta para ir a la izquierda usando el ancho de la pantalla

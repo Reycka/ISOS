@@ -2,13 +2,16 @@ import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaTienda from './Scenes/EscenaTienda.js';
 import EscenaSocializar from './Scenes/EscenaSocializar.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';
+
+import EscenaSocialTienda from './Scenes/EscenaSocialTienda.js';
+
 let config = {
     type: Phaser.AUTO,
     parent: 'juego', //ID del elemento del DOM en el que se anidará el Canvas que genere Phaser, si no, por defecto, irá al final del body
     // type: Phaser.CANVAS,
     // canvas: document.getElementById("juego"), //Le dice a Phaser que use un canvas concreto ya creado en el DOM
-    width:  1600,
-    height: 900,
+    width:  1920,
+    height: 1080,
     pixelArt: true,
 	scale: {
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY, //Le decimos que se centre en pantalla
@@ -25,7 +28,8 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaPrincipal,EscenaSocializar,EscenaTienda,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaSocialTienda,EscenaPrincipal,EscenaTienda,EscenaSocializar,EscenaCombate], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade
         arcade: { 

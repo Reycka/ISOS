@@ -15,7 +15,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocialTienda', 'Assets/Temporales/backgroundsocialtienda.jpg')
+		this.load.image('BackgroundSocialTienda', 'Assets/Temporales/backgroundsocialtienda.png')
 		//BOTON IMAGEN
 		this.load.image('BotonMoverseIzq', 'Assets/Temporales/flechaizquierda.png');
 		this.load.image('BotonMoverseDch', 'Assets/Temporales/flechaizquierda.png');

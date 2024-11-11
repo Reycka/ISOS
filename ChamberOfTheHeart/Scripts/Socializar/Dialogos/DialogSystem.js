@@ -1,6 +1,13 @@
+import Inventory from './../../Comunes/Inventory.js'
+
 export default class DialogSystem {
-    constructor(scene) {
+
+
+    constructor(scene, _inventory) {
         this.scene = scene;
+
+        this.inventory = _inventory;
+        
         this.centerX = this.scene.cameras.main.width / 2;
         this.centerY = this.scene.cameras.main.height / 1.1;
 
@@ -30,6 +37,7 @@ export default class DialogSystem {
         this.hasOptions = false;
         this.end = false;
     }
+
 
     showEventDialogues(eventId, allDialogues) {
         const eventDialogues = allDialogues[eventId];
@@ -123,6 +131,14 @@ export default class DialogSystem {
 
     handleOptionSelection(gain) {
         console.log(`Opción seleccionada: ${gain}`);
+
+        if(gain === 0){
+
+            //this.inventory.AddGift(1);
+
+        }
+
+    
         this.showNextDialogue();
     }
 

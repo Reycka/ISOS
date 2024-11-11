@@ -54,6 +54,7 @@ export default class EscenaSocializar extends Phaser.Scene {
 		sprite2.setInteractive();
 		
 		this.cameras.main.setBackgroundColor('#2d2d2d');
+    }
     create() {
         // Crear el fondo y aplicarle la escala
         var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'BackgroundSocializar');
@@ -101,4 +102,5 @@ export default class EscenaSocializar extends Phaser.Scene {
             }
         });
     }
-}
+
+    }

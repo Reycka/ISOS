@@ -1,7 +1,10 @@
 //IMPORT GATOTIENDA
+import ReadDialog from './../Socializar/Dialogos/ReadDialog.js';
+import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
 import Inventory from './../Comunes/Inventory.js'
-import DialogueSystem from '../Socializar/Dialogos/DialogSystem.js';
 import CardClass from '../Comunes/CardClass.js';
+
+
 
 export default class EscenaSocialTienda extends Phaser.Scene {
 	/**
@@ -11,7 +14,19 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 	constructor() {
 		super({ key: 'EscenaSocialTienda' });
+
 	}
+
+    inventory;
+
+    allDialogues = {};
+
+    init(data) {
+        this.inventory = data;
+        console.log(this.inventory);
+    }
+
+
 
 	preload() {
 		//BACKGROUND IMAGEN
@@ -21,6 +36,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseDch', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
         this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
 		this.load.image('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardPh.jpg'); 
+        this.load.image('Shai', 'ChamberOfTheHeart/Assets/Finales/ShaiSprite.png');
 
 	}
 
@@ -85,6 +101,44 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             );
             console.log(this.cameras.main.scrollX);
         });
-	}
+
+        //PARTE SOCIALIZAR
+
+        // Personaje
+        var PersonajeP = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height + 500, 'Shai');
+        PersonajeP.setInteractive({ pixelPerfect: true });
+       
+        // Inicializar el sistema de diálogos
+        this.dialogueSystem = new DialogSystem(this, this.inventory);
+        this.reader = new ReadDialog(this);  // Instanciar ReadDialog
+
+        // Cargar el archivo JSON con los diálogos
+        this.reader.loadJSON('ChamberOfTheHeart/Scripts/Texto/dialogs.json').then(() => {
+            
+			//console.log(this.reader.dialogData);
+            
+			
+        });
+
+        // Click
+        this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
+
+
+        // Mostrar dialogos
+        PersonajeP.on('pointerup', pointer => {
+            const eventoId = 'evento1.1';  
+			
+            if (this.reader.dialogData.Eventos[eventoId]) {
+                this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
+            } else {
+                console.log('Evento no encontrado: ' + eventoId);
+            }
+        });
+    }
+
+
+
+
+	
 
 }

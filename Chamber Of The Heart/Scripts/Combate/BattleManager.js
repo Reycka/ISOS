@@ -36,6 +36,8 @@ export default class BattleManager{
         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
         }
+        this.card = null;
+        this.texture = null;
    }
    StartBattle(){
     while(!this.victory||!this.defeat){

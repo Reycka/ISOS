@@ -143,8 +143,10 @@ export default class EscenaCombate extends Phaser.Scene {
 				algo.on('pointerup', pointer =>{
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
-					var set = this.add.image(j * 120  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
-					set.setScale(0.35,0.35);
+					if(this.mat.mat[i][j].GetTexture() != null){
+						var set = this.add.image(j * 120  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
+						set.setScale(0.35,0.35);
+					}
 				})
 			}
 		}

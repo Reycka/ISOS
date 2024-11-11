@@ -1,5 +1,5 @@
 class Character {
-    constructor(scene, x, y, name, spriteKey, expressions, num) {
+    constructor(scene, x, y, name, sprites, expressions, num) {
        
         this.scene = scene;
         this.x = x;
@@ -10,7 +10,7 @@ class Character {
         num = num;
 
         // Sprite del personaje
-        this.sprite = scene.add.sprite(x, y, spriteKey);
+        this.sprite = scene.add.sprite(x, y, sprites);
 
         // Lista de sprites (Lo he llamado expresiones pero también incluirá el sprite de fondo)
         this.expressions = expressions;
@@ -25,9 +25,9 @@ class Character {
     }
 
     // Cambiar Sprite (Expresiones y cambio entre Sprite_fondo y Sprite_diálogo)
-    changeExpression(expressionKey) {
-        this.sprite.setTexture(this.expressions[expressionKey]);
-        this.currentExpression = expressionKey;
+    changeExpression(expression) {
+        this.sprite.setTexture(this.expressions[expression]);
+        this.currentExpression = expression;
     }
 
     // Mover personaje

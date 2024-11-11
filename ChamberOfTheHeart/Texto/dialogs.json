@@ -2,328 +2,60 @@
     "Eventos": {
         "evento1.1": {
             "dialogs": [
-                {
-                    "character": "Tarik",
-                    "text": "¡Shai! ¡Estás aquí! Menos mal."
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿Qué sucede Tarik?"
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Es La Serpiente, cada vez se acerca más."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Ha atacado un asentamiento cercano esta noche."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Maldita Nepai."
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿Te refieres a Apofis?"
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿Cómo de cerca estamos hablando?"
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Demasiado cerca, no me sorprendería si estuviese en nuestra puerta esta noche."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "¿Qué hacemos Shai?"
-                },
-                {
-                    "character": "Tarik",
-                    "text": "La Serpiente sigue avanzando y Ra no hace nada para pararla."
-                },
+                { "character": "Tarik", "text": "¡Shai! ¡Estás aquí! Menos mal." },
+                { "character": "Shai", "text": "¿Qué sucede Tarik?" },
+                { "character": "Tarik", "text": "Es La Serpiente, cada vez se acerca más." },
+                { "character": "Tarik", "text": "Ha atacado un asentamiento cercano esta noche." },
+                { "character": "Tarik", "text": "Maldita Nepai." },
+                { "character": "Shai", "text": "¿Te refieres a Apofis?" },
+                { "character": "Shai", "text": "¿Cómo de cerca estamos hablando?" },
+                { "character": "Eshe", "text": "Demasiado cerca, no me sorprendería si estuviese en nuestra puerta esta noche." },
+                { "character": "Tarik", "text": "¿Qué hacemos Shai?" },
+                { "character": "Tarik", "text": "La Serpiente sigue avanzando y Ra no hace nada para pararla." },
+                { "character": "Tarik", "text": "A estas alturas dudo que defienda su propio templo." },
                 {
                     "character": "Tarik",
                     "text": "A estas alturas dudo que defienda su propio templo.",
                     "options": [
-                        {
-                            "response": "Ten más confianza en él, Tarik.",
-                            "gain": 0
-                        },
-                        {
-                            "response": "Deberíamos pensar en algo.",
-                            "gain": 1
-                        }
+                        { "response": "Ten más confianza en él, Tarik.", "gain": 0 },
+                        { "response": "Deberíamos pensar en algo.", "gain": 1 }
                     ]
                 },
-                {
-                    "character": "Eshe",
-                    "text": "Siempre es bueno estar preparado."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "He oído que se están formando varios grupos para intentar derrotar a Nepai."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Si encontramos personas dispuestas a luchar podríamos hacer algo similar."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Podríamos darles parte de las ofrendas a cambio."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Parece un buen plan."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Voy a ver a Khay."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Le pediré que busque a gente para unirse a nuestra causa."
-                }
+                { "character": "Eshe", "text": "Siempre es bueno estar preparado." },
+                { "character": "Eshe", "text": "He oído que se están formando varios grupos para intentar derrotar a Nepai." },
+                { "character": "Eshe", "text": "Si encontramos personas dispuestas a luchar podríamos hacer algo similar." },
+                { "character": "Shai", "text": "Podríamos darles parte de las ofrendas a cambio." },
+                { "character": "Tarik", "text": "Parece un buen plan." },
+                { "character": "Shai", "text": "Voy a ver a Khay." },
+                { "character": "Shai", "text": "Le pediré que busque a gente para unirse a nuestra causa." }
             ]
         },
         "evento1.2": {
             "dialogs": [
-                {
-                    "character": "Eshe",
-                    "text": "Parece que nuestra idea ha funcionado."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "No ha sido demasiado complicado encontrar a gente que quisiera luchar contra La Serpiente."
-                },
-                {
-                    "character": "Shai",
-                    "text": "No es de extrañar."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Muchos de ellos han perdido su hogar por culpa de los ataques."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Ojalá fuese su hogar lo único que han perdido."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "La mayoría solo quieren venganza para sus seres queridos."
-                },
+                { "character": "Eshe", "text": "Parece que nuestra idea ha funcionado." },
+                { "character": "Eshe", "text": "No ha sido demasiado complicado encontrar a gente que quisiera luchar contra La Serpiente." },
+                { "character": "Shai", "text": "No es de extrañar." },
+                { "character": "Shai", "text": "Muchos de ellos han perdido su hogar por culpa de los ataques." },
+                { "character": "Tarik", "text": "Ojalá fuese su hogar lo único que han perdido." },
+                { "character": "Tarik", "text": "La mayoría solo quieren venganza para sus seres queridos." },
+                { "character": "Tarik", "text": "Les entiendo hasta cierto punto, pero no estoy seguro de que sea la mejor motivación." },
                 {
                     "character": "Tarik",
                     "text": "Les entiendo hasta cierto punto, pero no estoy seguro de que sea la mejor motivación.",
                     "options": [
-                        {
-                            "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…",
-                            "gain": -1
-                        },
-                        {
-                            "response": "La volatilidad de nuestras tropas también me preocupa.",
-                            "gain": 0
-                        },
-                        {
-                            "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.",
-                            "gain": 1
-                        }
+                        { "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…", "gain": -1 },
+                        { "response": "La volatilidad de nuestras tropas también me preocupa.", "gain": 0 },
+                        { "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.", "gain": 1 }
                     ]
                 },
-                {
-                    "character": "Eshe",
-                    "text": "En cualquier caso, podrían suponer un peligro para el templo."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Seremos afortunados si no se descarrilan antes de que Nepai sea derrotada."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Me siento mal por hablar así de personas que nos están ayudando."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Es mejor ser precavido."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Tu hermana tiene razón, Tarik."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Supongo que sí…."
-                }
-            ]
-        },
-        "evento1.4": {
-            "dialogs": [
-                {
-                    "character": "Shai",
-                    "text": "Hoy estáis muy callados."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Deberíais estar más animados, hemos sobrevivido una noche más."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Sí, pero aún no estamos a salvo."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "No es momento de celebrar."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Esa es una forma de pensar muy propia de ti, Eshe."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Pero no tanto de Tarik."
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿A qué se debe tanta seriedad?"
-                },
-                {
-                    "character": "Tarik",
-                    "text": "… No es nada."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Deja de mentir."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "No estoy-"
-                },
-                {
-                    "character": "Eshe",
-                    "text": "No decir lo que te preocupa no va a ayudar a nadie."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Pero…"
-                },
-                {
-                    "character": "Shai",
-                    "text": "Si tienes alguna inquietud, es mejor expresarla."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "… Estoy teniendo dudas en cuanto a los dioses."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Se supone que ellos protegen el orden del mundo."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Pero no les veo haciendo nada."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Incluso nuestro propio dios ha dejado que esto suceda."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?",
-                    "options": [
-                        {
-                            "response": "No tiene sentido pensar demasiado en ello, no va a cambiar el hecho de que tenemos que encargarnos de Apofis.",
-                            "gain": 0
-                        },
-                        {
-                            "response": "La única manera en la que cambiaremos la situación es con nuestras propias acciones, lo que hagan los dioses no es algo que podamos controlar.",
-                            "gain": 1
-                        },
-                        {
-                            "response": "Tarik, dudar de nuestro dios en su propio templo no es el camino si lo que quieres es su asistencia.",
-                            "gain": -1
-                        }
-                    ]
-                },
-                {
-                    "character": "System",
-                    "next": {
-                        "true": "evento1.4.f1",
-                        "false": "evento1.4.f2"
-                    }
-                }
-            ]
-        },
-        "evento1.4.f1": {
-            "dialogs": [
-                {
-                    "character": "Tarik",
-                    "text": "Eso no es una respuesta a mi pregunta."
-                },
-                {
-                    "character": "Shai",
-                    "text": "No puedo darte una respuesta que yo tampoco conozco."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Voy a retirarme por ahora Shai."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Necesito aclarar mis ideas."      
-                }
-            ]
-        },
-        "evento1.4.f2": {
-            "dialogs": [
-                {
-                    "character": "Tarik",
-                    "text": "Ya ni siquiera quiero su ayuda."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Solo quiero entender qué está sucediendo."
-                },
-                {
-                    "character": "Shai",
-                    "text": "No puedo responderte a algo que yo tampoco sé."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "No sé si puedo seguir sirviendo en el templo."
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Los dioses ya no tienen mi confianza."
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿Es esa tu decisión?"
-                },
-                {
-                    "character": "Shai",
-                    "text": "¿Vas a dejar el templo?"
-                },
-                {
-                    "character": "Tarik",
-                    "text": "Sí."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Entonces te deseo la mejor de las suertes."
-                },
-                {
-                    "character": "Shai",
-                    "text": "Y a ti también Eshe."
-                },
-                {
-                    "character": "Eshe",
-                    "text": "Adiós Shai."
-                }
+                { "character": "Eshe", "text": "En cualquier caso, podrían suponer un peligro para el templo." },
+                { "character": "Eshe", "text": "Seremos afortunados si no se descarrilan antes de que Nepai sea derrotada." },
+                { "character": "Tarik", "text": "Me siento mal por hablar así de personas que nos están ayudando." },
+                { "character": "Eshe", "text": "Es mejor ser precavido." },
+                { "character": "Shai", "text": "Tu hermana tiene razón, Tarik." },
+                { "character": "Tarik", "text": "Supongo que sí…." }
             ]
         }
+       
     }
 }
-
-
-    
-

@@ -7,14 +7,18 @@ export default class DialogSystem {
         this.scene = scene;
 
         this.inventory = _inventory;
+
+        if (!(this.inventory instanceof Inventory)) {
+            console.error("Error: `inventory` no es una instancia de Inventory");
+        }
         
         this.centerX = this.scene.cameras.main.width / 2;
         this.centerY = this.scene.cameras.main.height / 1.1;
 
         // Elementos gráficos para el nombre y diálogo
-        this.characterNameBox = this.scene.add.graphics();
-        this.characterNameText = this.scene.add.text(0, 0, '', { 
-            fontSize: '28px', 
+         this.characterNameBox = this.scene.add.graphics();
+         this.characterNameText = this.scene.add.text(0, 0, '', { 
+            fontSize: '40px', 
             fill: '#fff', 
             fontFamily: 'Arial, sans-serif', 
             stroke: '#000', 
@@ -55,29 +59,29 @@ export default class DialogSystem {
 
             // Mostrar nombre del personaje y cuadro
             this.characterNameText.setText(character);
-            const nameBoxWidth = 220;
-            const nameXPosition = this.centerX - 700; 
-            this.characterNameText.setPosition(nameXPosition + nameBoxWidth / 2, this.centerY - 160);
+            const nameBoxWidth = 300;
+            const nameXPosition = this.centerX - 910; 
+            this.characterNameText.setPosition(nameXPosition + nameBoxWidth / 2, this.centerY - 170);
 
             this.characterNameBox.clear();
             this.characterNameBox.lineStyle(2, 0x000000, 1);
             this.characterNameBox.fillStyle(0x000000, 0.8);
-            this.characterNameBox.fillRect(nameXPosition, this.centerY - 180, nameBoxWidth, 40);
-            this.characterNameBox.strokeRect(nameXPosition, this.centerY - 180, nameBoxWidth, 40);
+            this.characterNameBox.fillRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60);
+            this.characterNameBox.strokeRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60);
 
             // Limpiar botones previos
             this.optionButtons.forEach(button => button.destroy());
             this.optionButtons = [];
 
             // Cuadro de diálogo
-            const dialogueBoxHeight = this.scene.cameras.main.height / 4;
-            const dialogueBoxYPosition = this.centerY - 120;
+            const dialogueBoxHeight = this.scene.cameras.main.height / 5;
+            const dialogueBoxYPosition = this.centerY - 130;
 
             this.dialogueBox.clear();
             this.dialogueBox.lineStyle(2, 0x000000, 1);
             this.dialogueBox.fillStyle(0x000000, 0.8);
-            this.dialogueBox.fillRect(0, dialogueBoxYPosition, this.scene.cameras.main.width, dialogueBoxHeight);
-            this.dialogueBox.strokeRect(0, dialogueBoxYPosition, this.scene.cameras.main.width, dialogueBoxHeight);
+            this.dialogueBox.fillRect(50, dialogueBoxYPosition, this.scene.cameras.main.width - 100, dialogueBoxHeight);
+            this.dialogueBox.strokeRect(50, dialogueBoxYPosition, this.scene.cameras.main.width -100, dialogueBoxHeight);
 
             // Mostrar texto
             const textMarginTop = 30;
@@ -89,16 +93,16 @@ export default class DialogSystem {
                 this.hasOptions = true;
                 options.forEach((option, index) => {
                     const buttonText = `→ ${option.response}`;
-                    const optionXPosition = this.centerX + 500;
-                    const optionYPosition = dialogueBoxYPosition - 100 + (index * 60);
+                    const optionXPosition = this.centerX + 600;
+                    const optionYPosition = dialogueBoxYPosition - 145 + (index * 95);
 
                     const button = this.scene.add.text(optionXPosition, optionYPosition, buttonText, {
-                        font: '24px Arial, sans-serif',
+                        font: '34px Arial, sans-serif',
                         fill: '#fff',
                         stroke: '#000',
                         strokeThickness: 4,
                         backgroundColor: '#000000',
-                        padding: { x: 15, y: 10 },
+                        padding: { x: 30, y: 20 },
                         fontStyle: 'bold'
                     }).setOrigin(0.5).setInteractive()
                     .on('pointerover', () => {

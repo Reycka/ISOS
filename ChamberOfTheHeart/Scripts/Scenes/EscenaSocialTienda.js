@@ -36,7 +36,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseDch', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
         this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
 		this.load.image('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardPh.jpg'); 
-        this.load.image('Shai', 'ChamberOfTheHeart/Assets/Finales/ShaiSprite.png');
+        this.load.image('Shai', 'ChamberOfTheHeart/Assets/Finales/Shai.png');
 
 	}
 
@@ -68,7 +68,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         botonDch.setInteractive();
         botonDch.setScale(0.25);
         //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
-        botonDch.setPosition(width - botonDch.width / 2, height - botonDch.height / 2);
+        botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.55 );
         botonDch.rotation = Math.PI;
 
 		var auxcard;
@@ -105,7 +105,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //PARTE SOCIALIZAR
 
         // Personaje
-        var PersonajeP = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height + 500, 'Shai');
+        var PersonajeP = this.add.image(this.sys.game.canvas.width/2-50, this.sys.game.canvas.height + 500, 'Shai');
         PersonajeP.setInteractive({ pixelPerfect: true });
        
         // Inicializar el sistema de diálogos
@@ -129,10 +129,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             const eventoId = 'evento1.1';  
 			
             if (this.reader.dialogData.Eventos[eventoId]) {
+                PersonajeP.disableInteractive();
                 this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
             } else {
                 console.log('Evento no encontrado: ' + eventoId);
             }
+        });
+
+        this.events.on('endDialogue', () => {
+            PersonajeP.setInteractive(); 
         });
     }
 

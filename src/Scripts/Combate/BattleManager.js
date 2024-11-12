@@ -46,7 +46,12 @@ export default class BattleManager{
         
    }
 
-       
+   GetVictory(){
+    if(this.victory == true){
+        return true;
+    }
+    else return false;
+}  
   
     Battle()
     {
@@ -237,6 +242,7 @@ export default class BattleManager{
     
        }
     }
+    
     
     
    

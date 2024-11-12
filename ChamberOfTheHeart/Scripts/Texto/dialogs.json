@@ -1,6 +1,26 @@
 {
     "Eventos": {
+        
+        "prueba": {
+            "dialogs": [
+                { "character": "Shai", "text": "Bienvenido a mi templo." },
+                { "character": "Shai", "text": "Mi nombre es Shai." },
+                {
+                    "character": "Shai",
+                    "text": "Estás invitado a quedarte hasta que los ataques de Apofis cesen.",
+                    "options": [
+                        { "response": "Sería bueno tener un sitio donde dormir", "gain":0 },
+                        { "response": "Prefiero seguir mi camino", "gain": -1 },
+                        { "response": "Me gustaría descansar un rato", "gain": 1 }
+                    ]
+                },
+                {},
+                { "character": "Shai", "text": "Lo que prefieras." },
+                { "character": "Shai", "text": "Que tengas un buen día." }
+            ]
+        },
         "evento1.1": {
+            
             "dialogs": [
                 { "character": "Tarik", "text": "¡Shai! ¡Estás aquí! Menos mal." },
                 { "character": "Shai", "text": "¿Qué sucede Tarik?" },
@@ -21,6 +41,7 @@
                         { "response": "Deberíamos pensar en algo.", "gain": 1 }
                     ]
                 },
+                {},
                 { "character": "Eshe", "text": "Siempre es bueno estar preparado." },
                 { "character": "Eshe", "text": "He oído que se están formando varios grupos para intentar derrotar a Nepai." },
                 { "character": "Eshe", "text": "Si encontramos personas dispuestas a luchar podríamos hacer algo similar." },
@@ -48,6 +69,7 @@
                         { "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.", "gain": 1 }
                     ]
                 },
+                {},
                 { "character": "Eshe", "text": "En cualquier caso, podrían suponer un peligro para el templo." },
                 { "character": "Eshe", "text": "Seremos afortunados si no se descarrilan antes de que Nepai sea derrotada." },
                 { "character": "Tarik", "text": "Me siento mal por hablar así de personas que nos están ayudando." },

@@ -24,14 +24,14 @@ export default class DialogSystem {
         }).setOrigin(0.5, 0.5);
 
         this.dialogueBox = this.scene.add.graphics();
-        this.dialogueText = this.scene.add.text(0, 100, '', { 
+        this.dialogueText = this.scene.add.text(0, 0, '', { 
             fontSize: '36px', 
             fill: '#fff', 
             fontFamily: 'Arial, sans-serif', 
-            wordWrap: { width: this.scene.cameras.main.width - 160, useAdvancedWrap: true },
+            wordWrap: { width: this.scene.cameras.main.width - 200, useAdvancedWrap: true },
             stroke: '#000', 
             strokeThickness: 4
-        }).setOrigin(0.5, 0).setShadow(2, 2, '#000000', 5, true, false);
+        }).setOrigin(0, 0).setShadow(2, 2, '#000000', 5, true, false);
 
         this.dialogues = [];
         this.dialogIndex = 0;
@@ -85,9 +85,9 @@ export default class DialogSystem {
             this.dialogueBox.strokeRect(50, dialogueBoxYPosition, this.scene.cameras.main.width - 100, dialogueBoxHeight);
 
             // Mostrar texto
-            const textMarginTop = 30;
+            const textMarginTop = 50;
             this.dialogueText.setText(text);
-            this.dialogueText.setPosition(this.centerX, dialogueBoxYPosition + textMarginTop);
+            this.dialogueText.setPosition(150, dialogueBoxYPosition + textMarginTop);
 
             // Crear opciones
             if (options.length > 0) {
@@ -95,10 +95,10 @@ export default class DialogSystem {
                 options.forEach((option, index) => {
                     const buttonText = `→ ${option.response}`;
                     const optionXPosition = this.centerX + 600;
-                    const optionYPosition = dialogueBoxYPosition - 145 + (index * 95);
+                    const optionYPosition = dialogueBoxYPosition - 250 + (index * 85);
 
                     const button = this.scene.add.text(optionXPosition, optionYPosition, buttonText, {
-                        font: '34px Arial, sans-serif',
+                        font: '30px Arial, sans-serif',
                         fill: '#fff',
                         stroke: '#000',
                         strokeThickness: 4,
@@ -121,11 +121,12 @@ export default class DialogSystem {
             }
 
             this.dialogIndex++;
+            
         } else {
             // Fin del diálogo
             this.end = true;
             this.scene.events.emit('endDialogue');
-            this.scene.events.emit('hideDialogueBackground'); // Oculta la capa desde la escena principal
+            this.scene.events.emit('hideDialogueBackground'); 
             this.dialogueText.setText('');
             this.characterNameText.setText('');
             this.optionButtons.forEach(button => button.destroy());

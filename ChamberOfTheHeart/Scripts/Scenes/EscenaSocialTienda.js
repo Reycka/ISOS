@@ -127,7 +127,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         });
 
         // Click
-        this.input.on('pointerdown', () => this.dialogueSystem.onPointerDown(), this);
+        this.input.on('pointerup', () => this.dialogueSystem.onPointerDown(), this);
 
 
         // Eventos para mostrar/ocultar capa de fondo
@@ -141,7 +141,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         // Mostrar dialogos
         PersonajeP.on('pointerup', pointer => {
-            const eventoId = 'evento1.1';  
+            const eventoId = 'prueba';  
 			
             if (this.reader.dialogData.Eventos[eventoId]) {
                 PersonajeP.disableInteractive();

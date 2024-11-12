@@ -147,6 +147,15 @@ export default class DialogSystem {
             console.log(this.inventory);
         }
 
+        if(gain === 1){
+
+            this.inventory.AddGift(2);
+            console.log(this.inventory);
+        }
+
+
+
+
     
         this.showNextDialogue();
     }

@@ -35,14 +35,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseIzq', 'src/Assets/Temporales/flechaizquierda.png');
 		this.load.image('BotonMoverseDch', 'src/Assets/Temporales/flechaizquierda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
-<<<<<<< HEAD:ChamberOfTheHeart/Scripts/Scenes/EscenaSocialTienda.js
+
 		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
         this.load.image('batalla','src/Assets/Finales/boton_batalla.png')
-=======
-		this.load.image('cardTexture', 'src/Assets/Temporales/cardPh.jpg'); 
-        this.load.image('Shai', 'src/Assets/Finales/Shai.png');
->>>>>>> parent of 458b55b (Revert "Merge branch 'main' of https://github.com/Reycka/ISOS"):src/Scripts/Scenes/EscenaSocialTienda.js
+
 
 	}
 

@@ -15,12 +15,9 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	}
 
 	preload() {
-<<<<<<< HEAD:ChamberOfTheHeart/Scripts/Scenes/EscenaPrincipal.js
+
 		this.load.image('Background','src/Assets/Finales/fondo_socializar.png')
 
-=======
-		this.load.image('Background','src/Assets/Temporales/background.png')
->>>>>>> parent of 458b55b (Revert "Merge branch 'main' of https://github.com/Reycka/ISOS"):src/Scripts/Scenes/EscenaPrincipal.js
 		this.load.image('BotonPrueba', 'src/Assets/Temporales/PlaceHolderCat.png');
 		
 	}

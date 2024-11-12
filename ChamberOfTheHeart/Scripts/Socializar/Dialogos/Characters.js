@@ -1,13 +1,13 @@
 class Character {
-    constructor(scene, x, y, name, sprites, expressions, num) {
+    constructor(scene, x, y, sprites, expressions, id) {
        
         this.scene = scene;
         this.x = x;
         this.y = y;
-        this.name = name;
+        
 
         //Número del personaje
-        num = num;
+        num = id;
 
         // Sprite del personaje
         this.sprite = scene.add.sprite(x, y, sprites);
@@ -21,7 +21,7 @@ class Character {
 
         //Variables para diálogos
         eventNum =0;
-        dialogNum = 0;
+        disponible = false;
     }
 
     // Cambiar Sprite (Expresiones y cambio entre Sprite_fondo y Sprite_diálogo)
@@ -30,16 +30,7 @@ class Character {
         this.currentExpression = expression;
     }
 
-    // Mover personaje
-    moveTo(x, y, duration = 1000) {
-        this.scene.tweens.add({
-            targets: this.sprite,
-            x: x,
-            y: y,
-            ease: 'Power2',
-            duration: duration,
-        });
-    }
+   
 
  
 }

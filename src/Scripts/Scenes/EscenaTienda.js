@@ -21,12 +21,12 @@ export default class EscenaTienda extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('Background', 'ChamberOfTheHeart/Assets/Temporales/background.png')
+		this.load.image('Background', 'src/Assets/Temporales/background.png')
 		//BOTON IMAGEN
-		this.load.image('BotonPrueba', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
-		this.load.spritesheet('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardtexture.png',{frameWidth: 627, frameHeight: 882}); 
-		this.load.image('Papiro', 'ChamberOfTheHeart/Assets/Temporales/papiro.jpg')
-		this.load.image('cambioescena','ChamberOfTheHeart/Assets/Temporales/wasap.jpeg')
+		this.load.image('BotonPrueba', 'src/Assets/Temporales/PlaceHolderCat.png');
+		this.load.spritesheet('cardTexture', 'src/Assets/Temporales/cardtexture.png',{frameWidth: 627, frameHeight: 882}); 
+		this.load.image('Papiro', 'src/Assets/Temporales/papiro.jpg')
+		this.load.image('cambioescena','src/Assets/Temporales/wasap.jpeg')
 	}
 
 	create() {

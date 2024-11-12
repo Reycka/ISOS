@@ -143,8 +143,8 @@ export default class DialogSystem {
 
         if(gain === 0){
 
-            //this.inventory.AddGift(1);
-
+            this.inventory.AddGift(1);
+            console.log(this.inventory);
         }
 
     

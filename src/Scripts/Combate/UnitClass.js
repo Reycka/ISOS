@@ -28,6 +28,7 @@ GetIsaHealer(){
     return this.isahealer;
 }
 Update(unit){
+        console.log("entroen mi update" + this.cooldown)
     if(this.isahealer){
         this.Heal(unit);
     }
@@ -35,17 +36,18 @@ Update(unit){
 }
 Attack(enemy){
 if(this.actcooldown <= 0){
-    enemy.UnitClass.GetDamage(this.card.attack,this.unitType);
+    enemy.GetDamage(this.card.attack,this.unitType);
     this.actcooldown = this.cooldown;
 }
 }
 Cooldown(){
+
     this.cooldown--;
 }
 Heal(ally){
     
     if(this.actcooldown <= 0){
-        ally.UnitClass.ReciveHeal(this.card.CardLogic.attack);
+        ally.ReciveHeal(this.card.CardLogic.attack);
         this.actcooldown = this.cooldown;
     }
 }
@@ -70,8 +72,9 @@ GetDamage(atq,type){
         multi = 2;
     }
     else multi = 1;
-daño= ((atq/this.card.defense)*multi)+1;
-
+    
+var daño= ((atq/this.card.defense)*multi)+1;
+   
 this.acthealth -= daño;
 
 if(this.acthealth <0){

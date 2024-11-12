@@ -15,6 +15,9 @@ export default class BattleManager{
     victory = false;
     defeat = false;
    scene;
+   auxd;
+   auxv;
+   target = false;
    //CONSTRUCTORA
    constructor(_mat,_oleada,_scene){
     this.mat = _mat;
@@ -22,6 +25,8 @@ export default class BattleManager{
     this.texture = null;
     this.scene = _scene;
     this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this.texture);
+    this.victory = false;
+    this.defeat = false
    }
    //MÉTODOS
    ///Método encargado asignar la carta seleccionada del inventario al battleManager
@@ -39,40 +44,47 @@ export default class BattleManager{
         this.card = null;
         this.texture = null;
    }
-   StartBattle(){
-    while(!this.victory||!this.defeat){
+
+       
+  
+    Battle()
+    {
+       
+        if(this.victory== false &&this.defeat== false)
+        {
         //comprobamos las unidades que pueden atacar de la matriz aliada
         //boooleanos para comprobar si quedan tropas
-        auxv = true;
-        auxd = true;
-        for(let i = 0; i < this.mat.mat.row; i++){
-			for(let j = 0; j < this.mat.mat.col; j++){
-
+        this.auxv = true;
+        this.auxd = true;
+        for(var i = 0; i < this.mat.row; i++){
+			for(var j = 0; j < this.mat.col; j++){
+               
                 if(this.mat.mat[i][j].GetState())
-                {
-                    target = false;
+                {  console.log( i+j+"hagocosas de pegar y eso soy alidado"+ this.mat.mat[i][j].GetUnit().acthealth);
+                    
+                    this.target = false;
                     if(this.mat.mat[i][j].GetUnit().IsaHealer()){
                         if((i-1)!=-1){
                             if(this.mat.mat[i][j].GetState()){
-                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i-1][j].GetUnit())
-                                target = true;
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i-1][j].GetUnit())
+                                this.target = true;
                             }
                         }
-                        if((i+1)<this.mat.mat.row){
+                        if((i+1)<this.mat.row){
                             if(this.mat.mat[i+1][j].GetState()) {
-                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i+1][j].GetUnit())
-                                target = true;
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i+1][j].GetUnit())
+                                this.target = true;
                             }
                         }if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
-                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i][j-1].GetUnit())
-                                target = true;
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
+                                this.target = true;
                             }
                         }
                         if((j+1)<this.mat.col){
                             if(this.mat.mat[i][j+1].GetState()){
-                                this.mat.mat[i][j].GetUnit().update(this.mat.mat[i][j+1].GetUnit())
-                                target = true;
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
+                                this.target = true;
                             }
                         }
                         if(!target){
@@ -82,22 +94,32 @@ export default class BattleManager{
                     }
                     else
                         {
+                      
                         //unidades que no curan
                         if((j-1)!=-1){
-                            if(this.enemymatriz.Enemymat[i][j-1].GetState()){ 
-                                this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j-1].GetUnit())
-                                target = true;
+                            if(this.enemymatriz.Enemymat.mat[i][j-1].GetState()){ 
+                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit())
+                                if(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit().isalife == false){
+                                    this.enemymatriz.Enemymat.mat[i][j-1].SetFree();
+                                }
+                                this.target = true;
                             }
                         }
-                        else if(this.enemymatriz.Enemymat[i][j].GetState()){
-                            this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j].GetUnit())
-                            target = true;
+                        else if(this.enemymatriz.Enemymat.mat[i][j].GetState()){
+                            this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j].GetUnit())
+                            if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false){
+                                this.enemymatriz.Enemymat.mat[i][j].SetFree();
+                            }
+                            this.target = true;
                         }
                         else if((j+1)<this.enemymatriz.Enemymat.col)
                             {
-                            if(this.enemymatriz.Enemymat[i][j+1].GetState()){
-                                this.mat.mat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j+1].GetUnit())
-                                target = true;
+                            if(this.enemymatriz.Enemymat.mat[i][j+1].GetState()){
+                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit())
+                                this.target = true;
+                                if(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit().isalife == false){
+                                    this.enemymatriz.Enemymat.mat[i][j+1].SetFree();
+                                }
                             }
                         }
                         else{
@@ -108,40 +130,40 @@ export default class BattleManager{
                         }
                 
                         this.mat.mat[i][j].GetUnit().Cooldown();
-                        auxd = false;
+                        this.auxd = false;
                 }
                 
             }
         }
         //bucle matriz enemigos
-        for(let i = 0; i < this.enemymatriz.Enemymat.row; i++){
-			for(let j = 0; j < this.enemymatriz.Enemymat.col; j++){
-
-                if(this.enemymatriz.Enemymat[i][j].GetState())
+        for(var i = 0; i < this.enemymatriz.Enemymat.row; i++){
+			for(var j = 0; j < this.enemymatriz.Enemymat.col; j++){
+                console.log("hago cosas soy un enemigo");
+                if(this.enemymatriz.Enemymat.mat[i][j].GetState())
                 {
-                    target = false;
-                    if(this.enemymatriz.Enemymat[i][j].GetUnit().IsaHealer()){
+                    this.target = false;
+                    if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().IsaHealer()){
                         if((i-1)!=-1){
-                            if(this.enemymatriz.Enemymat[i][j].GetState()){
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i-1][j].GetUnit())
-                                target = true;
+                            if(this.enemymatriz.Enemymat.mat[i][j].GetState()){
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i-1][j].GetUnit())
+                                this.target = true;
                             }
                         }
                         if((i+1)<this.enemymatriz.Enemymat.row){
-                            if(this.enemymatriz.Enemymat[i+1][j].GetState()) {
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i+1][j].GetUnit())
-                                target = true;
+                            if(this.enemymatriz.Enemymat.mat[i+1][j].GetState()) {
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i+1][j].GetUnit())
+                                this.target = true;
                             }
                         }if((j-1)!=-1){
-                            if(this.enemymatriz.Enemymat[i][j-1].GetState()){ 
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j-1].GetUnit())
-                                target = true;
+                            if(this.enemymatriz.Enemymat.mat[i][j-1].GetState()){ 
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit())
+                                this.target = true;
                             }
                         }
-                        if((j+1)<this.mat.col){
-                            if(this.enemymatriz.Enemymat[i][j+1].GetState()){
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.enemymatriz.Enemymat[i][j+1].GetUnit())
-                                target = true;
+                        if((j+1)<this.enemymatriz.Enemymat.col){
+                            if(this.enemymatriz.Enemymat.mat[i][j+1].GetState()){
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit())
+                                this.target = true;
                             }
                         }
                         if(!target){
@@ -152,39 +174,63 @@ export default class BattleManager{
                     else
                         {
                         //unidades que no curan
+                      
                         if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j-1].GetUnit())
-                                target = true;
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
+                                if(this.mat.mat[i][j-1].GetUnit().isalife==false){
+                                    this.mat.mat[i][j-1].GetUnit().SetFree();
+                                }
+                                this.target = true;
                             }
                         }
                         else if(this.mat.mat[i][j].GetState()){
-                            this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j].GetUnit())
-                            target = true;
+                            this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
+                            if(this.mat.mat[i][j].GetUnit().isalife==false){
+                                this.mat.mat[i][j].GetUnit().SetFree();
+                            }
+                            this.target = true;
                         }
-                        else if((j+1)<this.mat.mat.col)
+                        else if((j+1)<this.mat.col)
                             {
                             if(this.mat.mat[i][j+1].GetState()){
-                                this.enemymatriz.Enemymat[i][j].GetUnit().update(this.mat.mat[i][j+1].GetUnit())
-                                target = true;
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
+                                if(this.mat.mat[i][j+1].GetUnit().isalife==false){
+                                    this.mat.mat[i][j+1].GetUnit().SetFree();
+                                }
+                                this.target = true;
                             }
                         }
                         else{
                             //movemos a la tropa
                         }
-                       
+                        this.enemymatriz.Enemymat.mat[i][j].GetUnit().Cooldown();
 
                         }
                 
-                        this.enemymatriz.Enemymat[i][j].GetUnit().Cooldown();
-                        auxv = false;
+                       
+                        this.auxv = false;
                 }
                 
             }
         }
-
+        if(this.auxv==true &&this.auxd ==false){
+            console.log("has Ganado");
+            this.victory = true;
+            return false;
+        } 
+        else if(this.auxv==false &&this.auxd==true) 
+        {   console.log("has perdido");
+            this.defeat = true;
+            return false;
+        }
+        else {
+            console.log("salimos de la matris");
+            return true;}
+    
+       }
     }
-
-   }
+    
+    
    
 };

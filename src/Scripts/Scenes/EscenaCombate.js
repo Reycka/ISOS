@@ -52,7 +52,20 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Pelea', 'src/Assets/Temporales/BotonDeBatalla.jpeg')
 
 	}
+	cronometro;
 	create() {
+		this.cronometro = this.time.addEvent({
+            delay: 1000, // 1 segundos
+			loop: true,
+			paused: true,
+            callback: () => {
+				console.log("hagocosastimer");
+				this.battleManager.Battle();
+               //if(this.battleManager.){
+				//console.log("acabe");
+				//this.cronometro.remove();
+			   //}; 
+            },})
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
@@ -154,6 +167,7 @@ export default class EscenaCombate extends Phaser.Scene {
 				})
 			}
 		}
+		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width) / 1.12, this.sys.game.canvas.height / 1.15,'Pelea')
 		pelea.setScale(2,2);
 		pelea.setInteractive();
@@ -166,8 +180,18 @@ export default class EscenaCombate extends Phaser.Scene {
 					set.setScale(0.35,0.35);
 				}
 			}
+			pelea.setVisible(false);
+			card1.setVisible(false);
+			card2.setVisible(false);
+			card3.setVisible(false);
+			downBoton.setVisible(false);
+			upperBoton.setVisible(false);
+			this.cronometro.paused=false;
 		})
+
+		
 	}
+
 	update(){		
 
 	}

@@ -33,7 +33,7 @@ export default class CardLogic {
             
             this.health = 10;
             this.attack = 5;
-            this.speed = 20;
+            this.speed = 5;
             this.defense = 5;
             this.unit_type = "SA";
             this.letter = l;
@@ -70,7 +70,7 @@ export default class CardLogic {
             this.health = 8;
             this.attack = 12;
             this.speed = 15;
-            this.defense = 5;
+            this.defense = 2;
             this.unit_type = "G";
             this.letter = l;
             this.iscard = true;
@@ -82,7 +82,7 @@ export default class CardLogic {
             this.health = 9;
             this.attack = 15;
             this.speed = 11;
-            this.defense = 5;
+            this.defense = 3;
             this.unit_type = "M";
             this.letter = l;
             this.iscard = true;

@@ -179,16 +179,20 @@ export default class BattleManager{
                         if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
+                                console.log("esta la unidad viva"+this.mat.mat[i][j-1].GetUnit().isalife)
                                 if(this.mat.mat[i][j-1].GetUnit().isalife==false){
                                     this.mat.mat[i][j-1].SetFree();
+                                    console.log("casilla liberada"+i+j-1);
                                 }
                                 this.target = true;
                             }
                         }
                         else if(this.mat.mat[i][j].GetState()){
                             this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
+                            console.log("esta la unidad viva"+this.mat.mat[i][j].GetUnit().isalife)
                             if(this.mat.mat[i][j].GetUnit().isalife==false){
                                 this.mat.mat[i][j].SetFree();
+                                console.log("casilla liberada"+i+j);
                             }
                             this.target = true;
                         }
@@ -196,8 +200,10 @@ export default class BattleManager{
                             {
                             if(this.mat.mat[i][j+1].GetState()){
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
+                                console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
                                 if(this.mat.mat[i][j+1].GetUnit().isalife==false){
                                     this.mat.mat[i][j+1].SetFree();
+                                    console.log("casilla liberada"+i+j+1);
                                 }
                                 this.target = true;
                             }

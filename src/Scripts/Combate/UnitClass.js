@@ -20,6 +20,7 @@ constructor(cardclass, _unittexture){
     this.cooldown = this.card.speed;
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
+    this.isalife = true;
 }
 GetTexture(){
     return this.unittexture;
@@ -78,14 +79,11 @@ var daño= (Math.round(atq/this.card.defense)*multi)+1;
 this.acthealth -= daño;
 console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){
-    //morite puto
-    this.Death();
-}
-}
-Death(){
     this.isalife = false;
-    // mdificamos el valor en la matriz para informar de que la casilla esta libre ahora
+    console.log("me muero ");
 }
+}
+
 IsaHealer(){
     return this.isahealer;
 }

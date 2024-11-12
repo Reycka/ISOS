@@ -75,7 +75,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
 			//SETEAMOS AMBAS MATRICES
 		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
-		upperBoton.setScale(0.5,0.5);
+		upperBoton.setScale(0.2,0.2);
 		upperBoton.setInteractive();
 		upperBoton.on('pointerup', pointer => {
 			if(this.inventoryindex!=0)
@@ -101,7 +101,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			}
 			})
 		var downBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height*13 / 14, 'flecha')
-		downBoton.setScale(0.5,0.5);
+		downBoton.setScale(0.2,0.2);
 		downBoton.setInteractive();
 		downBoton.on('pointerup', pointer => {
 			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
@@ -129,7 +129,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		downBoton.setFlipY(true);
 		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
-		card1.setScale(1/4,1/4);
+		card1.setScale(0.3,0.3);
 
 		card1.setInteractive();
 		card1.on('pointerup', pointer =>{
@@ -138,7 +138,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		})
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
-		card2.setScale(1/4,1/4);
+		card2.setScale(0.3,0.3);
 		card2.setInteractive();
 		card2.on('pointerup', pointer =>{
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
@@ -147,7 +147,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-		card3.setScale(1/4,1/4);
+		card3.setScale(0.3,0.3);
 		card3.setInteractive();
 		card3.on('pointerup', pointer =>{
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
@@ -157,29 +157,29 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				var algo = this.add.image(j * 125  + 500 , i * 125 + 500,'MatrixGround'); //Colocamos el fondo
-				
+				var algo = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				algo.setScale(0.85,0.85)
 				algo.setInteractive();
 				algo.on('pointerup', pointer =>{
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].GetTexture() != null){
-						var set = this.add.image(j * 120  + 500 , i * 125 + 150,this.mat.mat[i][j].GetTexture());
+						var set = this.add.image(j * 180  + 550 , i * 160 + 150,this.mat.mat[i][j].GetTexture());
 						set.setScale(0.35,0.35);
 					}
 				})
 			}
 		}
 		//Boton de pegarse
-		var pelea = this.add.image((this.sys.game.canvas.width) / 1.12, this.sys.game.canvas.height / 1.15,'Pelea')
-		pelea.setScale(2,2);
+		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
+		pelea.setScale(0.3,0.3);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 120  + 1000 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
-					algo.setScale(0.25,0.25);
-					var set = this.add.image(j * 120  + 1000 , i * 125 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
+					algo.setScale(0.85,0.85);
+					var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					set.setScale(0.35,0.35);
 				}
 			}

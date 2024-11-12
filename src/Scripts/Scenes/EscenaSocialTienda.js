@@ -35,11 +35,16 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseIzq', 'src/Assets/Temporales/flechaizquierda.png');
 		this.load.image('BotonMoverseDch', 'src/Assets/Temporales/flechaizquierda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
-		this.load.image('cardTexture', 'src/Assets/Temporales/cardPh.jpg'); 
+		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
+        this.load.image('batalla','src/Assets/Finales/boton_batalla.png')
 
 	}
 
+    UpdateOfrendasText(){
+        this.ofrendastx.text =
+        ('Ofrendas: '+this.inventory.numgift)
+    }
 	create() {
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
@@ -69,6 +74,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //WIDTH + MEDIDA DEL BOTON PARA EL LADO DERECHO
         botonIzq.setPosition(width + botonIzq.width / 4, height - botonIzq.height / 0.75);
 
+        
         //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
@@ -83,11 +89,19 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
 		Khayyat.on('pointerdown', pointer => {
-			inventory.AddGift(1);
-			inventory.AddCard(this,'cardTexture');
-			console.log(inventory.GetGitf());
-			auxcard =this.add.image(inventory.numcards*10, this.sys.game.canvas.height / 2, inventory.listCardClass[0].GetTexture());
-
+			
+            console.log(this.inventory.numgift+"mi numero de gift");
+            if(this.inventory.numgift>0){
+			this.inventory.AddCard(this,'cardTexture');
+            this.inventory.numgift--;
+            this.UpdateOfrendasText();
+			console.log(this.inventory);
+            auxcard =this.add.sprite((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2 +300,
+            this.inventory.listCardClass[this.inventory.numcards-1].GetTexture(),this.inventory.listCardClass[this.inventory.numcards-1].textureindex);
+           auxcard.setScale(1/2,1/2);     
+        }
+       
+            
 		});
 
         botonIzq.on('pointerdown', pointer =>{
@@ -153,7 +167,25 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         this.events.on('endDialogue', () => {
             PersonajeP.setInteractive(); 
+            this.UpdateOfrendasText();
         });
+        //texto para mostrar el número de ofrendas
+        this.ofrendastx = this.add.text(20, 20, 'Ofrendas: '+this.inventory.numgift, { font: '30px Arial, sans-serif',
+            fill: '#fff',
+            stroke: '#000',
+            strokeThickness: 4,
+            backgroundColor: '#000000',
+            padding: { x: 30, y: 20 },
+            fontStyle: 'bold' });
+        this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
+        //boton cambio de escena a la de combate
+        var battlebtn = this.add.image(this.sys.game.canvas.width-50 ,50, 'batalla')
+        battlebtn.setScale(0.2,0.2);
+		battlebtn.setInteractive();
+		battlebtn.on('pointerup', pointer => {
+			this.scene.start('EscenaCombate',this.inventory);
+		})
+
     }
 
 

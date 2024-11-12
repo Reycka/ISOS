@@ -59,7 +59,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			loop: true,
 			paused: true,
             callback: () => {
-				console.log("hagocosastimer");
+				
 				this.battleManager.Battle();
                //if(this.battleManager.){
 				//console.log("acabe");

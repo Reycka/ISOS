@@ -40,9 +40,10 @@ export default class BattleManager{
    Summon(posX,posY){
         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
+            this.card = null;
+            this.texture = null;
         }
-        this.card = null;
-        this.texture = null;
+        
    }
 
        
@@ -60,7 +61,7 @@ export default class BattleManager{
 			for(var j = 0; j < this.mat.col; j++){
                
                 if(this.mat.mat[i][j].GetState())
-                {  console.log( i+j+"hagocosas de pegar y eso soy alidado"+ this.mat.mat[i][j].GetUnit().acthealth);
+                {  
                     
                     this.target = false;
                     if(this.mat.mat[i][j].GetUnit().IsaHealer()){
@@ -138,7 +139,7 @@ export default class BattleManager{
         //bucle matriz enemigos
         for(var i = 0; i < this.enemymatriz.Enemymat.row; i++){
 			for(var j = 0; j < this.enemymatriz.Enemymat.col; j++){
-                console.log("hago cosas soy un enemigo");
+               
                 if(this.enemymatriz.Enemymat.mat[i][j].GetState())
                 {
                     this.target = false;
@@ -179,7 +180,7 @@ export default class BattleManager{
                             if(this.mat.mat[i][j-1].GetState()){ 
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
                                 if(this.mat.mat[i][j-1].GetUnit().isalife==false){
-                                    this.mat.mat[i][j-1].GetUnit().SetFree();
+                                    this.mat.mat[i][j-1].SetFree();
                                 }
                                 this.target = true;
                             }
@@ -187,7 +188,7 @@ export default class BattleManager{
                         else if(this.mat.mat[i][j].GetState()){
                             this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
                             if(this.mat.mat[i][j].GetUnit().isalife==false){
-                                this.mat.mat[i][j].GetUnit().SetFree();
+                                this.mat.mat[i][j].SetFree();
                             }
                             this.target = true;
                         }
@@ -196,7 +197,7 @@ export default class BattleManager{
                             if(this.mat.mat[i][j+1].GetState()){
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
                                 if(this.mat.mat[i][j+1].GetUnit().isalife==false){
-                                    this.mat.mat[i][j+1].GetUnit().SetFree();
+                                    this.mat.mat[i][j+1].SetFree();
                                 }
                                 this.target = true;
                             }

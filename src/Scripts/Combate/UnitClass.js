@@ -28,7 +28,6 @@ GetIsaHealer(){
     return this.isahealer;
 }
 Update(unit){
-        console.log("entroen mi update" + this.cooldown)
     if(this.isahealer){
         this.Heal(unit);
     }
@@ -42,7 +41,7 @@ if(this.actcooldown <= 0){
 }
 Cooldown(){
 
-    this.cooldown--;
+    this.actcooldown-=1;
 }
 Heal(ally){
     
@@ -61,6 +60,7 @@ ReciveHeal(n){
 
 GetDamage(atq,type){
     var multi
+    
     //seteamos el multi de daño
     if((type == "LA"||type=="SA") &&(this.unitType=="G"||this.unitType=="C" )){
         multi = 2;
@@ -73,11 +73,11 @@ GetDamage(atq,type){
     }
     else multi = 1;
     
-var daño= ((atq/this.card.defense)*multi)+1;
-   
-this.acthealth -= daño;
+var daño= (Math.round(atq/this.card.defense)*multi)+1;
 
-if(this.acthealth <0){
+this.acthealth -= daño;
+console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
+if(this.acthealth <=0){
     //morite puto
     this.Death();
 }

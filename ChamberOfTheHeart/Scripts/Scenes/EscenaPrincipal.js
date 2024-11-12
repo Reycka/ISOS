@@ -15,8 +15,8 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('Background','src/Assets/Temporales/background.png')
-		this.load.image('BotonPrueba', 'src/Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('Background','ChamberOfTheHeart/Assets/Temporales/background.png')
+		this.load.image('BotonPrueba', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
 		
 	}
 	

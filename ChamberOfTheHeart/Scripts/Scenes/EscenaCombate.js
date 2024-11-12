@@ -27,29 +27,29 @@ export default class EscenaCombate extends Phaser.Scene {
 	preload() {
 		//BACKGROUND IMAGEN
 
-		this.load.image('Background1', 'src/Assets/Temporales/FondoCombate.jpeg');
+		this.load.image('Background1', 'ChamberOfTheHeart/Assets/Temporales/FondoCombate.jpeg');
 
 		//FONDO MATRIZ
-		this.load.image('MatrixGround', 'src/Assets/Temporales/marco-papiro.jpg');
+		this.load.image('MatrixGround', 'ChamberOfTheHeart/Assets/Temporales/marco-papiro.jpg');
 		//INFANTERÍA PRUEBA
 
-		this.load.image('LA', 'src/Assets/Temporales/Arquero.jpeg');
+		this.load.image('LA', 'ChamberOfTheHeart/Assets/Temporales/Arquero.jpeg');
 		//ARQUERO LARGO PRUEBA
-		this.load.image('G', 'src/Assets/Temporales/Tropa.jpg');
+		this.load.image('G', 'ChamberOfTheHeart/Assets/Temporales/Tropa.jpg');
 		//MAGO PRUEBA
-		this.load.image('M', 'src/Assets/Temporales/Mago.jpeg');
+		this.load.image('M', 'ChamberOfTheHeart/Assets/Temporales/Mago.jpeg');
 		//HEALER PRUEBA
-		this.load.image('H', 'src/Assets/Temporales/Healer.jpeg');
+		this.load.image('H', 'ChamberOfTheHeart/Assets/Temporales/Healer.jpeg');
 		//CARRO PRUEBA
-		this.load.image('C', 'src/Assets/Temporales/Carro.png');
+		this.load.image('C', 'ChamberOfTheHeart/Assets/Temporales/Carro.png');
 		//ARCO CORTO PRUEBA
-		this.load.image('SA', 'src/Assets/Temporales/ArcoCorto.png');
+		this.load.image('SA', 'ChamberOfTheHeart/Assets/Temporales/ArcoCorto.png');
 		//BOSS
-		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
+		this.load.image('B', 'ChamberOfTheHeart/Assets/Temporales/Serpiente.png');
 		
 		//flecha inventario
-		this.load.image('flecha', 'src/Assets/Temporales/flecha.png');
-		this.load.image('Pelea', 'src/Assets/Temporales/BotonDeBatalla.jpeg')
+		this.load.image('flecha', 'ChamberOfTheHeart/Assets/Temporales/flecha.png');
+		this.load.image('Pelea', 'ChamberOfTheHeart/Assets/Temporales/BotonDeBatalla.jpeg')
 
 	}
 	create() {

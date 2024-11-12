@@ -18,20 +18,20 @@ export default class EscenaSocializar extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocializar', 'src/Assets/Temporales/backgroundsocializar.jpg')
+		this.load.image('BackgroundSocializar', 'ChamberOfTheHeart/Assets/Temporales/backgroundsocializar.jpg')
 
 		//BOTON IMAGEN
-		this.load.image('BotonPrueba2', 'src/Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('BotonPrueba2', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
 		//Dialogo IMAGEN
-		this.load.image('BotonPrueba3', 'src/Assets/Temporales/PlaceHolderCat.png');
-		this.load.image('batalla','src/Assets/Temporales/batalla.jpg');
+		this.load.image('BotonPrueba3', 'ChamberOfTheHeart/Assets/Temporales/PlaceHolderCat.png');
+		this.load.image('batalla','ChamberOfTheHeart/Assets/Temporales/batalla.jpg');
 
 	}
     preload() {
         // Cargar imágenes de fondo y botones
-        this.load.image('BackgroundSocializar', 'src/Assets/Temporales/backgroundsocializar.jpg');
-        this.load.image('BotonPrueba2', 'src/Assets/Temporales/PlaceHolderCat.png');
-        this.load.image('BotonPrueba3', 'src/Assets/Temporales/PlaceHolderCat.png');
+        this.load.image('BackgroundSocializar', 'Assets/Temporales/backgroundsocializar.jpg');
+        this.load.image('BotonPrueba2', 'Assets/Temporales/PlaceHolderCat.png');
+        this.load.image('BotonPrueba3', 'Assets/Temporales/PlaceHolderCat.png');
     }
 
 	create() {

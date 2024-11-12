@@ -30,13 +30,13 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocialTienda', 'src/Assets/Temporales/backgroundsocialtienda.png')
+		this.load.image('BackgroundSocialTienda', 'ChamberOfTheHeart/Assets/Temporales/backgroundsocialtienda.png')
 		//BOTON IMAGEN
-		this.load.image('BotonMoverseIzq', 'src/Assets/Temporales/flechaizquierda.png');
-		this.load.image('BotonMoverseDch', 'src/Assets/Temporales/flechaizquierda.png');
-        this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
-		this.load.image('cardTexture', 'src/Assets/Temporales/cardPh.jpg'); 
-        this.load.image('Shai', 'src/Assets/Finales/Shai.png');
+		this.load.image('BotonMoverseIzq', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
+		this.load.image('BotonMoverseDch', 'ChamberOfTheHeart/Assets/Temporales/flechaizquierda.png');
+        this.load.image('BotonGenerarCarta', 'ChamberOfTheHeart/Assets/Finales/Khayyat.png');
+		this.load.image('cardTexture', 'ChamberOfTheHeart/Assets/Temporales/cardPh.jpg'); 
+        this.load.image('Shai', 'ChamberOfTheHeart/Assets/Finales/Shai.png');
 
 	}
 
@@ -119,7 +119,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
         // Cargar el archivo JSON con los diálogos
-        this.reader.loadJSON('src/Scripts/Texto/dialogs.json').then(() => {
+        this.reader.loadJSON('ChamberOfTheHeart/Scripts/Texto/dialogs.json').then(() => {
             
 			//console.log(this.reader.dialogData);
             

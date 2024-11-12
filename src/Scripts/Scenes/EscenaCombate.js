@@ -27,10 +27,13 @@ export default class EscenaCombate extends Phaser.Scene {
 	preload() {
 		//BACKGROUND IMAGEN
 
-		this.load.image('Background1', 'src/Assets/Temporales/FondoCombate.jpeg');
+		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
 
 		//FONDO MATRIZ
-		this.load.image('MatrixGround', 'src/Assets/Temporales/marco-papiro.jpg');
+		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
+
+		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
+
 		//INFANTERÍA PRUEBA
 
 		this.load.image('LA', 'src/Assets/Temporales/Arquero.jpeg');
@@ -48,8 +51,8 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
 		
 		//flecha inventario
-		this.load.image('flecha', 'src/Assets/Temporales/flecha.png');
-		this.load.image('Pelea', 'src/Assets/Temporales/BotonDeBatalla.jpeg')
+		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
+		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png')
 
 	}
 	cronometro;
@@ -154,8 +157,8 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				var algo = this.add.image(j * 120  + 500 , i * 125 + 150,'MatrixGround'); //Colocamos el fondo
-				algo.setScale(0.25,0.25);
+				var algo = this.add.image(j * 125  + 500 , i * 125 + 500,'MatrixGround'); //Colocamos el fondo
+				
 				algo.setInteractive();
 				algo.on('pointerup', pointer =>{
 					console.log("Soy clickable");

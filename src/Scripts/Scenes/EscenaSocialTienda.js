@@ -30,10 +30,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 	preload() {
 		//BACKGROUND IMAGEN
-		this.load.image('BackgroundSocialTienda', 'src/Assets/Temporales/backgroundsocialtienda.png')
+		this.load.image('BackgroundSocialTienda', 'src/Assets/Finales/fondo_socializartienda2.png')
 		//BOTON IMAGEN
-		this.load.image('BotonMoverseIzq', 'src/Assets/Temporales/flechaizquierda.png');
-		this.load.image('BotonMoverseDch', 'src/Assets/Temporales/flechaizquierda.png');
+		this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
+		this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
 
 		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
@@ -55,9 +55,14 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width, this.sys.game.canvas.height / 2, 'BackgroundSocialTienda');
+        back.setOrigin(0.333,0.5);
+        this.cameras.main.ScrollY = this.cameras.main.ScrollY - 540;
+        this.cameras.main.ScrollX = this.cameras.main.ScrollX - 2880;
 		
         //Esto es para que la camara se mantenga solamente en el eje Y y se pueda editar en el eje X
-        this.cameras.main.setBounds(0,0,3840,1080);
+        
+        //this.cameras.main.setBounds(0,0,3840,1080);
+        this.cameras.main.setBounds(0,0,5760,1080);
 
         // Capa de fondo
         this.dialogBackground = this.add.graphics();
@@ -66,7 +71,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.dialogBackground.setVisible(false); // Oculto al inicio
 
         //Creamos el boton y hacemos que sea interactivo
-		var Khayyat = this.add.image((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2 - 70, 'BotonGenerarCarta')
+		var Khayyat = this.add.image((this.sys.game.canvas.width / 2)*5, this.sys.game.canvas.height / 2 - 70, 'BotonGenerarCarta')
 		Khayyat.setInteractive();
 
         //Hacemos un boton que se ajusta para ir a la izquierda usando el ancho de la pantalla
@@ -74,20 +79,23 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         botonIzq.setScale(0.25);
         botonIzq.setInteractive();
         //WIDTH + MEDIDA DEL BOTON PARA EL LADO DERECHO
-        botonIzq.setPosition(width + botonIzq.width / 4, height - botonIzq.height / 0.75);
-
+        //botonIzq.setPosition(width + botonIzq.width / 4, height - botonIzq.height / 0.75);
+        botonIzq.setPosition(2*width + botonIzq.width / 4, height / 2);
         
         //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
         botonDch.setScale(0.25);
         //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
-        botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
-        botonDch.rotation = Math.PI;
+        //botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
+        botonDch.setPosition(width - botonDch.width / 4, height / 2);
 
 		var auxcard;
         //El desplazamiento es a 4/5 de la pantalla cuando nos posicionamos en el lado derecho
-        const desplazamiento = 3840 - 3840 / 5;
+        //const desplazamiento = 5760 - 5760 / 5;
+        const desplazamiento = 3840 + 1920 / 2;
+        //const velocitypan = 1000;
+        const velocitypan = 400;
 		
 		//Si pulsamos en el boton, se añade algo a tu inventario
 		Khayyat.on('pointerdown', pointer => {
@@ -98,7 +106,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.inventory.numgift--;
             this.UpdateOfrendasText();
 			console.log(this.inventory);
-            auxcard =this.add.sprite((this.sys.game.canvas.width / 2)*3, this.sys.game.canvas.height / 2 +300,
+            auxcard =this.add.sprite((this.sys.game.canvas.width / 2)*5, this.sys.game.canvas.height / 2 +300,
             this.inventory.listCardClass[this.inventory.numcards-1].GetTexture(),this.inventory.listCardClass[this.inventory.numcards-1].textureindex);
            auxcard.setScale(1/2,1/2);     
         }
@@ -110,7 +118,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             console.log('Boton izquierdo presionado');
             const nuevoScrollX = this.cameras.main.scrollY - desplazamiento;
             this.cameras.main.pan(
-                nuevoScrollX, this.cameras.main.scrollY, 1000
+                nuevoScrollX, this.cameras.main.scrollY, velocitypan
             );
         });
 
@@ -119,7 +127,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             const nuevoScrollX = this.cameras.main.scrollY + desplazamiento; 
             console.log(this.cameras.main.scrollY, desplazamiento);
             this.cameras.main.pan(
-                nuevoScrollX, this.cameras.main.scrollY, 1000
+                nuevoScrollX, this.cameras.main.scrollY, velocitypan
             );
             console.log(this.cameras.main.scrollX);
         });

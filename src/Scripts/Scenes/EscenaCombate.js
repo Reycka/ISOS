@@ -66,15 +66,23 @@ export default class EscenaCombate extends Phaser.Scene {
 			this.finaltext.setDepth(3); 
 			this.finaltext.setOrigin(0.5,0.5)
 			if(this.battleManager.GetVictory()== true){
-				this.finaltext.setVisible(true);
-				this.finaltext.setText("HAS GANADO");
+				this.Win();	
 			}
 			else{
-				this.finaltext.setVisible(true);
-				this.finaltext.setText("HAS PERDIDO");
+				this.defeat();
 			}
 			this.cronometro.remove();
 	}
+}
+Win(){
+	this.finaltext.setVisible(true);
+	this.Returnwin.setVisible(true);
+	this.finaltext.setText("HAS GANADO");
+}
+defeat(){
+	this.finaltext.setVisible(true);
+	this. Returndefeat.setVisible(true);
+	this.finaltext.setText("HAS PERDIDO");
 }
 	create() {
 		this.cronometro = this.time.addEvent({
@@ -207,6 +215,7 @@ export default class EscenaCombate extends Phaser.Scene {
 			this.cronometro.paused=false;
 		})
 
+		 
 	
 		this.finaltext = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2, " has algo", { font: '60px Arial, sans-serif',
             fill: '#fff',
@@ -216,6 +225,32 @@ export default class EscenaCombate extends Phaser.Scene {
             padding: { x: 30, y: 20 },
             fontStyle: 'bold' });
 			this.finaltext.setVisible(false);
+
+			this.Returnwin = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " Continuar", { font: '60px Arial, sans-serif',
+				fill: '#fff',
+				stroke: '#000',
+				strokeThickness: 4,
+				backgroundColor: '#000000',
+				padding: { x: 30, y: 20 },
+				fontStyle: 'bold' });
+				
+				this.Returnwin.setInteractive();
+				this.Returnwin.setVisible(false);
+				this.Returnwin.on('pointerup', pointer =>{
+					this.scene.start('EscenaSocialTienda',inventory);
+				})
+				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
+					fill: '#fff',
+					stroke: '#000',
+					strokeThickness: 4,
+					backgroundColor: '#000000',
+					padding: { x: 30, y: 20 },
+					fontStyle: 'bold' });
+					this.Returndefeat.setInteractive();
+					this.Returndefeat.setVisible(false);
+					this.Returndefeat.on('pointerup', pointer =>{
+						this.scene.start('EscenaPrincipal');
+					})
 	}
 
 	update(){		

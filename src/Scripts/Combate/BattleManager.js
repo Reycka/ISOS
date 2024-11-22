@@ -253,7 +253,7 @@ export default class BattleManager{
       }
     HavSinergy(dios){ //El dios representa al número del array de jeroglificos
         for(let i = 0; i < 5; ++i){
-            if( this.Jeroglificos.getIsActive(dios,j) == false) return false;
+            if( this.Jeroglificos.getIsActive(dios,i) == false) return false;
         }
         return true;
     }

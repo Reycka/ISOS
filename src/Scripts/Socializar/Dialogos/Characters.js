@@ -20,7 +20,7 @@ class Character {
         this.changeExpression(this.currentExpression);
 
         //Variables para diálogos
-        eventNum =0;
+        eventNum = 0;
         disponible = false;
     }
 

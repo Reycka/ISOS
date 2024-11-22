@@ -1,24 +1,6 @@
 {
     "Eventos": {
         
-        "prueba": {
-            "dialogs": [
-                { "character": "Shai", "text": "Bienvenido a mi templo." },
-                { "character": "Shai", "text": "Mi nombre es Shai." },
-                {
-                    "character": "Shai",
-                    "text": "Estás invitado a quedarte hasta que los ataques de Apofis cesen.",
-                    "options": [
-                        { "response": "Sería bueno tener un sitio donde dormir", "gain":0 },
-                        { "response": "Prefiero seguir mi camino", "gain": -1 },
-                        { "response": "Me gustaría descansar un rato", "gain": 1 }
-                    ]
-                },
-                {},
-                { "character": "Shai", "text": "Lo que prefieras." },
-                { "character": "Shai", "text": "Que tengas un buen día." }
-            ]
-        },
         "evento1.1": {
             
             "dialogs": [

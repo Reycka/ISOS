@@ -1,8 +1,10 @@
 //IMPORT GATOTIENDA
 import ReadDialog from './../Socializar/Dialogos/ReadDialog.js';
 import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
+import DialogSystem from '../Socializar/Dialogos/Characters.js';
 import Inventory from './../Comunes/Inventory.js'
 import CardClass from '../Comunes/CardClass.js';
+import Character from '../Socializar/Dialogos/Characters.js';
 
 
 
@@ -36,8 +38,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
 
-		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
+        //Imagenes personajes
+
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
+        this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
+
+		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
         this.load.image('batalla','src/Assets/Finales/boton_batalla.png')
 
 
@@ -48,6 +54,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         ('Ofrendas: '+this.inventory.numgift)
     }
 	create() {
+
+        //Etapa del día (de 0 a 2)
+        var stage = 0;
+        
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
         //Aplicamos funciones de lo que importemos en una variable
@@ -133,6 +143,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         });
 
         //PARTE SOCIALIZAR
+        var Personaje1 = new Character()
+
 
         // Personaje
         var PersonajeP = this.add.image(this.sys.game.canvas.width/2-50, this.sys.game.canvas.height + 500, 'Shai');
@@ -179,6 +191,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             PersonajeP.setInteractive(); 
             this.UpdateOfrendasText();
         });
+
+        //OFRENDAS
+    
         //texto para mostrar el número de ofrendas
         this.ofrendastx = this.add.text(20, 20, 'Ofrendas: '+this.inventory.numgift, { font: '30px Arial, sans-serif',
             fill: '#fff',

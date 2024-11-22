@@ -278,7 +278,7 @@ Solo se muestran las estadísticas más destacables de las subclases:
 		\-Más daño  
 	\-Mago curandero  
 		\-En vez de hacer daño cura a los aliados
-  [!imagen](assets_git/assets_GDD/Counters.png)
+  ![imagen](assets_git/assets_GDD/Counters.png)
 
 **\-Sinergias de las cartas**
 

@@ -199,6 +199,10 @@ defeat(){
 		pelea.setScale(0.3,0.3);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
+			for(let i = 0; i < 6; ++i){
+				console.log(this.battleManager.HavSinergy(i))
+				//si es true activa sinergia si no no hace nada
+			}
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
 					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo

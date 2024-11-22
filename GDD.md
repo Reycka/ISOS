@@ -278,6 +278,7 @@ Solo se muestran las estadísticas más destacables de las subclases:
 		\-Más daño  
 	\-Mago curandero  
 		\-En vez de hacer daño cura a los aliados
+  [!imagen](assets_git/assets_GDD/Counters.png)
 
 **\-Sinergias de las cartas**
 
@@ -314,26 +315,27 @@ Las cartas de las tropas del jugador contarán con una letra que permite crear s
 **Comunes:**	
 
 	
-
+![imagen](assets_git/assets_GDD/Jeroglificos.png)
 # 
 
 # | 4\. DISEÑO DE NIVEL {#|-4.-diseño-de-nivel}
 
 Durante las oleadas pueden salir cualquiera de los 3 tipos de tropa enemigas (los enemigos están predefinidos, no salen de manera aleatoria).  
 \-Ejemplo de una oleada:  
-![][image3]  
+![imagen](assets_git/assets_GDD/HUD combate.png)
 En la primera fase del combate el jugador coloca sus unidades en la cuadrícula de la izquierda(con límite máximo de 12 unidades uno por cada casilla de la matriz), Tras colocar las unidades en la esquina superior derecha hay un menu desplegable con la chuleta de los nombres de los dioses para las sinergias, en caso de haber cumplido una de estas el nombre de ese dios aparece iluminado. En esta fase podemos ver los tipos de enemigos que nos vendrán en esta oleada pero no su número. Para empezar la fase de combate el jugador debe pulsar el botón de luchar(esquina inferior derecha) lo que activa las sinergias de los dioses correspondientes, donde las unidades aliadas y enemigas lucharán de manera automática entre sí hasta que solo quede un bando cada vez que una unidad ataca necesita esperar un tiempo antes de volver a atacar(cooldown definido por la estadística de velocidad de ataque).
 
 \-Oleada 1:  
 En la primera oleada la cuadrícula sólo será de 2x2, ya que el jugador no tendrá muchas cartas para ese momento.
-
+![imagen](assets_git/assets_GDD/oleada 1.png)
 \-Oleada 2:  
 En la segunda oleada la cuadrícula se ampliará hasta una 4x2 ya que el jugador al haber pasado ya dos días enteros tendrá a su disposición más tropas y los desafíos comenzarán a parecerse más a los del ciclo del juego.
-
+![imagen](assets_git/assets_GDD/oleada 2.png)
 \-Oleadas 3 y 4: A partir de ahora la cuadrícula será 6x2 y comenzará el ciclo de juego normal
-
+![imagen](assets_git/assets_GDD/oleadas 3 y 4.png)
 \-Oleada final(jefe):  
 En esta oleada final el jugador enfrentará al jefe que ocupará 4x1 casillas(el resto de las dimensiones de la cuadrícula serán las mismas 6x2). Este combate consta de tres oleadas donde el jefe invoca minions a su alrededor. Al final de cada oleada el jefe devolverá al jugador las cartas utilizadas en la ronda anterior.
+![imagen](assets_git/assets_GDD/oleada 5.png)
 
 # 
 
@@ -349,11 +351,11 @@ Elementos de la UI:
 - Cajas de diálogo
 
 
-![][image4]
+![imagen](assets_git/assets_GDD/HUD socializar.png)
 
 (Tienda)
 
-![][image5]
+![imagen](assets_git/assets_GDD/HUD tienda.png)
 
  (Durante Combate → Preparación)
 
@@ -361,7 +363,7 @@ Elementos de la UI:
 - Reloj que indica el turno del día (Noche)  
 - Indicador de tipos de enemigos en esa oleada.
 
-![][image6]
+![imagen](assets_git/assets_GDD/HUD combate.png)
 
 # | 6\. REFERENCIAS {#|-6.-referencias}
 
@@ -369,7 +371,7 @@ Elementos de la UI:
 
 - Referencias de Pinterest: [https://es.pinterest.com/ikermartinez180403/isos-pvli/](https://es.pinterest.com/ikermartinez180403/isos-pvli/)
 
-![][image7]
+![imagen](assets_git/assets_GDD/Referencias.png)
 
 ## 6.2 REFERENCIAS DE JUGABILIDAD {#6.2-referencias-de-jugabilidad}
 
@@ -380,7 +382,7 @@ Elementos de la UI:
 
 # | 7 ANEXO \- ARQUITECTURA DE CLASES {#|-7-anexo---arquitectura-de-clases}
 
-![][image8]
+![imagen](assets_git/assets_GDD/Arquitectura de Clases.png)
 
 ## 7.1 INFORMACIÓN GENERAL {#7.1-información-general}
 

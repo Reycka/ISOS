@@ -5,7 +5,7 @@ export default class CardLogic {
     defense;
     //G guerrero, A arquero, M magos, H healer
     unit_type;
-    //letra entre 0 y 5 
+    //letra entre 0 y 18 
     letter;
     iscard;
     textureindex;
@@ -26,7 +26,7 @@ export default class CardLogic {
         var rnd = Math.floor(Math.random() * 6);
         //console.log(rnd)
         this.textureindex = rnd;
-        var l = Math.floor(Math.random() * 5);
+        var l = Math.floor(Math.random() * 18);
 
         //arco Corto
         if (rnd == 0) {

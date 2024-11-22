@@ -180,15 +180,16 @@ defeat(){
 		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				var algo = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
-				algo.setScale(0.85,0.85)
-				algo.setInteractive();
-				algo.on('pointerup', pointer =>{
+				this.mat.mat[i][j] = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				this.mat.mat[i][j].setScale(0.85,0.85)
+				this.mat.mat[i][j].setInteractive();
+				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
-					if(this.mat.mat[i][j].GetTexture() != null){
-						var set = this.add.image(j * 180  + 550 , i * 160 + 150,this.mat.mat[i][j].GetTexture());
-						set.setScale(0.2,0.2);
+					if(this.mat.mat[i][j].texture != null){
+						console.log(this.mat.mat[i][j].texture);
+						this.mat.mat[i][j].setTexture("H");
+						this.mat.mat[i][j].setScale(0.2,0.2);
 					}
 				})
 			}
@@ -255,5 +256,41 @@ defeat(){
 
 	update(){		
 
-	}
+	}/*for(let i = 0; i < this.mat.row; i++){
+			for(let j = 0; j < this.mat.col; j++){
+				var algo = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				algo.setScale(0.85,0.85)
+				algo.setInteractive();
+				algo.on('pointerup', pointer =>{
+				this.mat.mat[i][j] = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				this.mat.mat[i][j].setScale(0.85,0.85)
+				this.mat.mat[i][j].setInteractive();
+				this.mat.mat[i][j].on('pointerup', pointer =>{
+					console.log("Soy clickable");
+					this.battleManager.Summon(i,j);
+					if(this.mat.mat[i][j].GetTexture() != null){
+						var set = this.add.image(j * 180  + 550 , i * 160 + 150,this.mat.mat[i][j].GetTexture());
+						set.setScale(0.2,0.2);
+						this.mat.mat[i][j].image.setTexture(this.mat.mat[i][j].GetTexture());
+						this.mat.mat[i][j].image.set.setScale(0.2,0.2);
+					}
+					
+				})
+			}
+		}
+
+@@ -200,10 +202,10 @@ defeat(){
+		pelea.on('pointerup', pointer =>{
+			for(let i = 0; i < this.mat.row; i++){
+				for(let j = 0; j < this.mat.col; j++){
+					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
+					algo.setScale(0.85,0.85);
+					var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					set.setScale(0.20,0.20);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j] = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.85,0.85);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].image.setTexture(this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
+				}
+			}*/ 
 }

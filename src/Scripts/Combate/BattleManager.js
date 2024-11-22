@@ -10,7 +10,7 @@ export default class BattleManager{
    //PROPIEDADES
    mat; //matriz que le vamos a pasar
    card; //Representa la carta seleccionada del inventario
-   texture;
+   _texture;
    enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
@@ -22,9 +22,9 @@ export default class BattleManager{
    constructor(_mat,_oleada,_scene){
     this.mat = _mat;
     this.card = null;
-    this.texture = null;
+    this._texture = null;
     this.scene = _scene;
-    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this.texture);
+    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this._texture);
     this.victory = false;
     this.defeat = false
    }
@@ -32,16 +32,19 @@ export default class BattleManager{
    ///Método encargado asignar la carta seleccionada del inventario al battleManager
    SetCard(_card,id){
     this.card = _card;
-    this.texture = id;
+    this._texture = id;
     console.log(this.card);
-    console.log(this.texture);
+    console.log(this._texture);
    }
    //Método encargado de summonear la tropa en la casilla
    Summon(posX,posY){
-        if(this.card != null && !this.mat.mat[posX][posY].GetState()){
-            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
+    
+        if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
+            
+            this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
+            
             this.card = null;
-            this.texture = null;
+            this._texture = null;
         }
         
    }

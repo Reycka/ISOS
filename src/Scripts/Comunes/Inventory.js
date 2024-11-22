@@ -11,6 +11,7 @@ export default class Inventory{
     constructor(){
         this.numgift = 0;
         this.numcards = 0;
+        this.day = 0;
         this.affreg = new AffinityRegister();
         
     }
@@ -31,6 +32,9 @@ export default class Inventory{
             this.listCardClass.push(new CardClass(scene, 1, 1,cardTexture, cardLogic));
             console.log(this.listCardClass); 
             this.numcards++;
+    }
+    increaseDay(){
+        this.day++;
     }
     GetGitf(){
         return this.numgift

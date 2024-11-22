@@ -5,16 +5,18 @@ row;
 col;
 unit; //UnitClass
 ocupada;
- texture;
+ _texture;
+ imagen;
 //CONSTRUCTOR
     constructor(scene, x, y,_texture){
         super(scene,x*10,y*5,_texture)
         this.row = x;
         this.col = y;
-        this.texture = _texture;
+        this._texture = _texture;
         //console.log("Me construyo" + "\n");
         this.unit = null;
         this.ocupada = false;
+       
     }
     GetRow(){
         return this.row;
@@ -28,19 +30,20 @@ ocupada;
         return this.ocupada;
     } 
     GetTexture(){
-        return this.texture;
+        return this._texture;
     }
     //Setea la unidad 
-    SetUnit(unit){
+    SetUnit(unit,t){
         this.unit = unit;
         this.ocupada = true;
-        this.texture = this.unit.GetTexture();
-    } 
+        this._texture =t;
+        console.log(this._texture);
+    }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){
         //console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
-           this.texture = null;
+           this._texture = null;
     }
     //Asigna la tropa pasada a la nueva posición y setea a true en la matriz de booleanos
     SetFull(mat){ //mat representa la posición nueva a seteear, es un slotClass que hay que pasarle
@@ -50,7 +53,7 @@ ocupada;
            this.ocupada = false;
            mat.SetUnit(this.unit);
            this.unit = null;
-           this.texture = null;
+           this._texture = null;
         }
         else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }

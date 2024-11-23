@@ -326,14 +326,34 @@ En la primera fase del combate el jugador coloca sus unidades en la cuadrícula 
 
 \-Oleada 1:  
 En la primera oleada la cuadrícula sólo será de 2x2, ya que el jugador no tendrá muchas cartas para ese momento.
+
+
 ![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%201.png)
+
+
+
 \-Oleada 2:  
 En la segunda oleada la cuadrícula se ampliará hasta una 4x2 ya que el jugador al haber pasado ya dos días enteros tendrá a su disposición más tropas y los desafíos comenzarán a parecerse más a los del ciclo del juego.
+
+
 ![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%202.png)
+
+
+
 \-Oleadas 3 y 4: A partir de ahora la cuadrícula será 6x2 y comenzará el ciclo de juego normal
+
+
 ![imagen](assets_git/assets_GDD/oleadas 3 y 4.png](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleadas%203%20y%204.png)
+
+
+
 \-Oleada final(jefe):  
+
+
 En esta oleada final el jugador enfrentará al jefe que ocupará 4x1 casillas(el resto de las dimensiones de la cuadrícula serán las mismas 6x2). Este combate consta de tres oleadas donde el jefe invoca minions a su alrededor. Al final de cada oleada el jefe devolverá al jugador las cartas utilizadas en la ronda anterior.
+
+
+
 ![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%205.png)
 
 # 

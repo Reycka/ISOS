@@ -343,7 +343,7 @@ En la segunda oleada la cuadrícula se ampliará hasta una 4x2 ya que el jugador
 \-Oleadas 3 y 4: A partir de ahora la cuadrícula será 6x2 y comenzará el ciclo de juego normal
 
 
-![imagen](assets_git/assets_GDD/oleadas 3 y 4.png](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleadas%203%20y%204.png)
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleadas%203%20y%204.png)
 
 
 

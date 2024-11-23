@@ -36,4 +36,4 @@ Organizando al ejército para defender el templo de las fuerzas de Apofis
 
 Al tratarse  de un juego ambientado en Egipto se ha buscado una estética que se encuentre acorde al mismo, con un templo basado en los de los dioses y con personajes que toman mucho de atuendos egipcios clásicos con joyería y maquillaje  de la misma tal y como lleva nuestro protagonista.
 
-Todas las imágenes han sido creadas a mano por nuestros artistas Asher Carrero e Iker Martínez y su uso queda restringido bajo derechos de autor a excepción de las de combate que se tratan de imágenes sacadas de google para realizar las pruebas, esto se cambiará a futuro por imágenes de nuestra propia creación
+Todas las imágenes han sido creadas a mano por nuestros artistas Asher Carrero e Iker Martínez y su uso queda restringido bajo derechos de autor 

@@ -1,10 +1,10 @@
 //IMPORT GATOTIENDA
 import ReadDialog from './../Socializar/Dialogos/ReadDialog.js';
 import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
-import DialogSystem from '../Socializar/Dialogos/Characters.js';
+import Character from '../Socializar/Dialogos/Characters.js';
 import Inventory from './../Comunes/Inventory.js'
 import CardClass from '../Comunes/CardClass.js';
-import Character from '../Socializar/Dialogos/Characters.js';
+
 
 
 
@@ -143,12 +143,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         });
 
         //PARTE SOCIALIZAR
-        var Personaje1 = new Character()
 
+        var ListaPersonajes = [];
 
         // Personaje
-        var PersonajeP = this.add.image(this.sys.game.canvas.width/2-50, this.sys.game.canvas.height + 500, 'Shai');
-        PersonajeP.setInteractive({ pixelPerfect: true });
+        ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width/2 +400, this.sys.game.canvas.height + 500,'Shai',1);
+        ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width/2 -400, this.sys.game.canvas.height + 500, 'Shai2',2);
+
+        //Personaje1.setInteractive({ pixelPerfect: true });
+        //Personaje2.setInteractive({ pixelPerfect: true });
        
         // Inicializar el sistema de diálogos
         this.dialogueSystem = new DialogSystem(this, this.inventory);
@@ -176,21 +179,25 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
         // Mostrar dialogos
-        PersonajeP.on('pointerup', pointer => {
-            const eventoId = 'prueba';  
+        ListaPersonajes.forEach(personaje => {
+            personaje.sprite.on('pointerup', () => {
+
+                const eventoId = `evento${personaje.num}.${personaje.eventNum}`;  
 			
             if (this.reader.dialogData.Eventos[eventoId]) {
-                PersonajeP.disableInteractive();
+                personaje.noInteractive();
                 this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
             } else {
                 console.log('Evento no encontrado: ' + eventoId);
             }
+                
+            });
         });
 
-        this.events.on('endDialogue', () => {
-            PersonajeP.setInteractive(); 
-            this.UpdateOfrendasText();
-        });
+
+
+        
+
 
         //OFRENDAS
     

@@ -278,8 +278,9 @@ Solo se muestran las estadísticas más destacables de las subclases:
 		\-Más daño  
 	\-Mago curandero  
 		\-En vez de hacer daño cura a los aliados
-  ![imagen](assets_git/assets_GDD/Counters.png)
 
+
+  ![imagen](assets_git/assets_GDD/Counters.png)
 **\-Sinergias de las cartas**
 
 ### 
@@ -322,7 +323,7 @@ Las cartas de las tropas del jugador contarán con una letra que permite crear s
 
 Durante las oleadas pueden salir cualquiera de los 3 tipos de tropa enemigas (los enemigos están predefinidos, no salen de manera aleatoria).  
 \-Ejemplo de una oleada:  
-![imagen](assets_git/assets_GDD/HUD combate.png)
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/HUD%20combate.png)
 En la primera fase del combate el jugador coloca sus unidades en la cuadrícula de la izquierda(con límite máximo de 12 unidades uno por cada casilla de la matriz), Tras colocar las unidades en la esquina superior derecha hay un menu desplegable con la chuleta de los nombres de los dioses para las sinergias, en caso de haber cumplido una de estas el nombre de ese dios aparece iluminado. En esta fase podemos ver los tipos de enemigos que nos vendrán en esta oleada pero no su número. Para empezar la fase de combate el jugador debe pulsar el botón de luchar(esquina inferior derecha) lo que activa las sinergias de los dioses correspondientes, donde las unidades aliadas y enemigas lucharán de manera automática entre sí hasta que solo quede un bando cada vez que una unidad ataca necesita esperar un tiempo antes de volver a atacar(cooldown definido por la estadística de velocidad de ataque).
 
 \-Oleada 1:  

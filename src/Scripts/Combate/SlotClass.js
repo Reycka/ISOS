@@ -48,6 +48,7 @@ ocupada = false;
         //console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
            this._unittexture = null;
+           this.setTexture('MatrixGround');
     }
     //Asigna la tropa pasada a la nueva posición y setea a true en la matriz de booleanos
     SetFull(mat){ //mat representa la posición nueva a seteear, es un slotClass que hay que pasarle

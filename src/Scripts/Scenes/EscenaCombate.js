@@ -213,8 +213,11 @@ defeat(){
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
+						
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
+					}else{
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2');
 					}
 				}
 			}

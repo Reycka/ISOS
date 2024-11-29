@@ -110,21 +110,26 @@ export default class BattleManager{
                         if(!target){
                             encontrado = false;
                             indiceaux = 0;
-                            while(indiceauxi<this.mat.col&&!encontrado){
-                                if(this.mat.mat[i][indiceaux].GetState()){
-                                    if(this.enemymatriz.Enemymat.mat[i-1][indiceaux].GetUnit()&&i>=0)
+                            while(indiceauxi<this.mat.row&&!encontrado){
+                                if(this.mat.mat[indiceaux][j].GetState()){
+                                    if(this.mat.mat[indiceaux][j-1].GetUnit()&&j>=0)
                                         {
-                                            var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
-                                            this.enemymatriz.Enemymat.mat[i][j].SetFree();
-                                            this.enemymatriz.Enemymat.mat[i][indiceaux].SetUnit(a);
+                                            var a = this.mat.mat[i][j].GetUnit();
+                                            this.mat.mat[i][j].SetFree();
+                                            this.mat.mat[i][indiceaux].SetUnit(a);
+
 
                                     }
-                                    else if(this.enemymatriz.Enemymat.mat[i][indiceaux].GetUnit())
+                                    else if(this.mat.mat[i][j].GetUnit())
                                     {
-                                        
+                                         var a = this.mat.mat[i][j].GetUnit();
+                                         this.mat.mat[i][j].SetFree();
+                                         this.mat.mat[i][indiceaux].SetUnit(a);
                                     }
-                                    else if(this.enemymatriz.Enemymat.mat[i+1][indiceaux].GetUnit()&&i<this.mat.row){
-
+                                    else if(this.mat.mat[i][j].GetUnit()&&i<this.mat.row){
+                                        var a = this.mat.mat[i][j].GetUnit();
+                                        this.mat.mat[i][j].SetFree();
+                                        this.mat.mat[i][indiceaux].SetUnit(a);
                                     }
                                     else indiceaux++;
                                 }
@@ -164,7 +169,32 @@ export default class BattleManager{
                             }
                         }
                         else{
-                            //movemos a la tropa
+                            encontrado = false;
+                            indiceaux = 0;
+                            while(indiceauxi<this.mat.col&&!encontrado){
+                                if(this.mat.mat[i][indiceaux].GetState()){
+                                    if(this.enemymatriz.Enemymat.mat[i-1][indiceaux].GetUnit()&&i>=0)
+                                        {
+                                            var a = this.mat.mat[i][j].GetUnit();
+                                            this.mat.mat[i][j].SetFree();
+                                            this.mat.mat[i][indiceaux].SetUnit(a);
+
+
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i][indiceaux].GetUnit())
+                                    {
+                                         var a = this.mat.mat[i][j].GetUnit();
+                                         this.mat.mat[i][j].SetFree();
+                                         this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i+1][indiceaux].GetUnit()&&i<this.mat.row){
+                                        var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
+                                        this.mat.mat[i][j].SetFree();
+                                        this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else indiceaux++;
+                                }
+                            }
                         }
                        
 

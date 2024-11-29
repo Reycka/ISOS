@@ -41,7 +41,7 @@ export default class EnemyMatriz{
                   //console.log(this.texture);
                   this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
                   //console.log(this.card);
-                  console.log(this.Enemymat);
+                 // console.log(this.Enemymat);
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
                   }
           }

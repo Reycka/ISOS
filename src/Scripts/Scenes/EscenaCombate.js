@@ -49,6 +49,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('SA', 'src/Assets/Finales/p6.png');
 		//enemigo
 		this.load.image('E', 'src/Assets/Finales/e.png');
+
 		//BOSS
 		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
 		
@@ -176,20 +177,20 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		this.mat = new Matriz(6,2,this, null);
+		this.mat = new Matriz(6,2,this, 'MatrixGround',false);
 		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				this.mat.mat[i][j] = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				 //Colocamos el fondo
 				this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
-					//this.battleManager.Summon(i,j);this
+					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].texture != null){
 						//console.log(this.mat.mat[i][j]._texture);
-						this.mat.mat[i][j].setTexture(this.battleManager._texture);
-						this.mat.mat[i][j].setScale(0.2,0.2);
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
+						this.mat.mat[i][j].setScale(0.20,0.20);
 					}
 				})
 			}
@@ -200,15 +201,20 @@ defeat(){
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			for(let i = 0; i < 6; ++i){
-				console.log(this.battleManager.HavSinergy(i))
+				//console.log(this.battleManager.HavSinergy(i))
 				//si es true activa sinergia si no no hace nada
 			}
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					algo.setScale(0.85,0.85);
-					var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					set.setScale(0.20,0.20);
+					
+					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
+					//algo.setScale(0.85,0.85);
+					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
+					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
+					}
 				}
 			}
 			pelea.setVisible(false);

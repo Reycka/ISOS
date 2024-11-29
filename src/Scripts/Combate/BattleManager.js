@@ -265,30 +265,18 @@ export default class BattleManager{
         }
       }
     ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+        let Sinergias = [];
+        Sinergias[0] = new Array(jeros.size());
+
         for(let i = 0; i < jeros[dios].size(); ++i){
-            if( this.Jeroglificos.getIsActive(dios,i) == false) return false;
+            if(this.Jeroglificos.getIsActive(dios,i) == false) //return false;
+            {
+                Sinergias[dios] = false;
+            }
+            else Sinergias[dios] = true;
         }
-        switch (dios){
-            case 0: //Sinergia de Osiris Activada
-                
-                break;
-            case 1: //Sinergia de Ra Activada
-
-                break;
-            case 2: //Sinergia de Anubis Activada
-
-                break;
-            case 3: //Sinergia de Isis Activada
-
-                break;
-            case 4: //Sinergia de Horus Activada
-
-                break;
-            case 5: //Sinergia de Seth Activada
-
-                break;
-        }
-        return true;
+        //return true;
+        return Sinergias;
     }
 };
 class Jeroglifico {

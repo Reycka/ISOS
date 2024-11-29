@@ -32,6 +32,12 @@ Update(unit){
     if(this.isahealer){
         this.Heal(unit);
     }
+    //ApplySinergy(); DESDE BATTLE MANAGER
+    //mat[i,j].unit.setAlteredState(); //Logica del efecto de los dioses.
+    //Clase para los estados alterados AlteredStateClass:
+    //Recibimos la matriz de booleanos en esa nueva clase
+    //Metodo para recibir booleanos
+    //Metodo para aplicar los estados alterados
     else this.Attack(unit);
 }
 Attack(enemy){

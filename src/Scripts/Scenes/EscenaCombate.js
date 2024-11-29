@@ -33,7 +33,6 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
 
 		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
-
 		//INFANTERÍA PRUEBA
 
 		this.load.image('LA', 'src/Assets/Finales/p1.png');
@@ -218,6 +217,8 @@ defeat(){
 			downBoton.setVisible(false);
 			upperBoton.setVisible(false);
 			this.cronometro.paused=false;
+
+			
 		})
 
 		 

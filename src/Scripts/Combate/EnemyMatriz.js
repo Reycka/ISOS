@@ -26,7 +26,11 @@ export default class EnemyMatriz{
           console.log(this.row);
           console.log(this.col);*/
           //Asignamos las tropas en función de lo leído en archivo
-          this.row = 6;
+          
+      }
+    }
+    SummonEnemy(){
+      this.row = 6;
           this.col = 2;
           this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true); //Creamos la matriz
           for(let i = 0; i < this.row; ++i){
@@ -41,6 +45,5 @@ export default class EnemyMatriz{
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
                   }
           }
-      }
     }
   }

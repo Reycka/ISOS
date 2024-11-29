@@ -209,6 +209,7 @@ defeat(){
 					
 					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
 					//algo.setScale(0.85,0.85);
+					this.battleManager.enemymatriz.SummonEnemy();
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;

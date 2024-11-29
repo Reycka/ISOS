@@ -41,7 +41,7 @@ export default class BattleManager{
    // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
        if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
     
-           this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)),this.card.stads.unit_type);
+           this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
            console.log(this.mat.mat[posX][posY])
             this.card = null;
             this._texture = null;
@@ -108,7 +108,28 @@ export default class BattleManager{
                             }
                         }
                         if(!target){
-                            //movemos la unidad
+                            encontrado = false;
+                            indiceaux = 0;
+                            while(indiceauxi<this.mat.col&&!encontrado){
+                                if(this.mat.mat[i][indiceaux].GetState()){
+                                    if(this.enemymatriz.Enemymat.mat[i-1][indiceaux].GetUnit()&&i>=0)
+                                        {
+                                            var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
+                                            this.enemymatriz.Enemymat.mat[i][j].SetFree();
+                                            this.enemymatriz.Enemymat.mat[i][indiceaux].SetUnit(a);
+
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i][indiceaux].GetUnit())
+                                    {
+                                        
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i+1][indiceaux].GetUnit()&&i<this.mat.row){
+
+                                    }
+                                    else indiceaux++;
+                                }
+
+                            }
                         }
                         
                     }

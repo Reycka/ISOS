@@ -19,6 +19,7 @@ ocupada = false;
         this.ocupada = false;
         this.scene.add.existing(this);
     }
+    
     GetRow(){
         return this.row;
     }
@@ -35,11 +36,11 @@ ocupada = false;
         return this._unittexture;
     }
     //Setea la unidad 
-    SetUnit(unit,t){
+    SetUnit(unit){
         this.unit = unit;
         this.ocupada = true;
-        this._unittexture = t;
-        console.log(t+" " +this._unittexture);
+        this._unittexture = unit.unittexture;
+        //console.log(t+" " +this._unittexture);
         this.setTexture(this._unittexture);
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada

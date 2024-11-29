@@ -264,9 +264,29 @@ export default class BattleManager{
             }
         }
       }
-    HavSinergy(dios){ //El dios representa al número del array de jeroglificos
-        for(let i = 0; i < 5; ++i){
+    ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+        for(let i = 0; i < jeros[dios].size(); ++i){
             if( this.Jeroglificos.getIsActive(dios,i) == false) return false;
+        }
+        switch (dios){
+            case 0: //Sinergia de Osiris Activada
+                
+                break;
+            case 1: //Sinergia de Ra Activada
+
+                break;
+            case 2: //Sinergia de Anubis Activada
+
+                break;
+            case 3: //Sinergia de Isis Activada
+
+                break;
+            case 4: //Sinergia de Horus Activada
+
+                break;
+            case 5: //Sinergia de Seth Activada
+
+                break;
         }
         return true;
     }

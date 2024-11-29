@@ -38,14 +38,12 @@ export default class BattleManager{
    }
    //Método encargado de summonear la tropa en la casilla
    Summon(posX,posY){
-    
-        if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
-            
-            this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
-            
-            this.card = null;
-            this._texture = null;
-        }
+   // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
+      // if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)),this._texture);
+            //this.card = null;
+            //this._texture = null;
+    // }
         
    }
 

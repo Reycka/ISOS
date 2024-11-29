@@ -185,10 +185,10 @@ defeat(){
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
-					this.battleManager.Summon(i,j);
+					//this.battleManager.Summon(i,j);this
 					if(this.mat.mat[i][j].texture != null){
-						console.log(this.mat.mat[i][j].texture);
-						this.mat.mat[i][j].setTexture("H");
+						//console.log(this.mat.mat[i][j]._texture);
+						this.mat.mat[i][j].setTexture(this.battleManager._texture);
 						this.mat.mat[i][j].setScale(0.2,0.2);
 					}
 				})

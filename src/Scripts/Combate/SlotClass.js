@@ -4,7 +4,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
 row;
 col;
 unit; //UnitClass
-ocupada;
+ocupada = false;
  _texture;
  imagen;
 //CONSTRUCTOR
@@ -37,7 +37,7 @@ ocupada;
         this.unit = unit;
         this.ocupada = true;
         this._texture =t;
-        console.log(this._texture);
+        console.log(t+" " +this._texture);
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){

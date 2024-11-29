@@ -26,9 +26,13 @@ export default class EnemyMatriz{
           console.log(this.row);
           console.log(this.col);*/
           //Asignamos las tropas en función de lo leído en archivo
-          this.row = 6;
+          
+      }
+    }
+    SummonEnemy(){
+      this.row = 6;
           this.col = 2;
-          this.Enemymat = new Matriz(this.row,this.col,this.scene,this.texture); //Creamos la matriz
+          this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true); //Creamos la matriz
           for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){
                   this.stads = new EnemyStads("SA");
@@ -37,10 +41,9 @@ export default class EnemyMatriz{
                   //console.log(this.texture);
                   this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
                   //console.log(this.card);
-                  console.log(this.Enemymat);
+                 // console.log(this.Enemymat);
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
                   }
           }
-      }
     }
   }

@@ -21,7 +21,7 @@ export default class BattleManager{
     this.card = null;
     this._texture = null;
     this.scene = _scene;
-    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this._texture);
+    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this.card_texture);
     this.victory = false;
     this.defeat = false
    }
@@ -39,13 +39,15 @@ export default class BattleManager{
    Summon(posX,posY){
 
    // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
-      // if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
-    //        this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)),this._texture);
-            //this.card = null;
-            //this._texture = null;
-    // }
+       if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
+    
+           this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
+           console.log(this.mat.mat[posX][posY])
+            this.card = null;
+            this._texture = null;
+     }
         
-        if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
+       /* if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
             
             this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
@@ -56,7 +58,7 @@ export default class BattleManager{
             this._texture = null;
         }       
 
-   }
+   }*/
 }
 
    GetVictory(){
@@ -106,7 +108,33 @@ export default class BattleManager{
                             }
                         }
                         if(!target){
-                            //movemos la unidad
+                            encontrado = false;
+                            indiceaux = 0;
+                            while(indiceauxi<this.mat.row&&!encontrado){
+                                if(this.mat.mat[indiceaux][j].GetState()){
+                                    if(this.mat.mat[indiceaux][j-1].GetUnit()&&j>=0)
+                                        {
+                                            var a = this.mat.mat[i][j].GetUnit();
+                                            this.mat.mat[i][j].SetFree();
+                                            this.mat.mat[i][indiceaux].SetUnit(a);
+
+
+                                    }
+                                    else if(this.mat.mat[i][j].GetUnit())
+                                    {
+                                         var a = this.mat.mat[i][j].GetUnit();
+                                         this.mat.mat[i][j].SetFree();
+                                         this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else if(this.mat.mat[i][j].GetUnit()&&i<this.mat.row){
+                                        var a = this.mat.mat[i][j].GetUnit();
+                                        this.mat.mat[i][j].SetFree();
+                                        this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else indiceaux++;
+                                }
+
+                            }
                         }
                         
                     }
@@ -141,7 +169,32 @@ export default class BattleManager{
                             }
                         }
                         else{
-                            //movemos a la tropa
+                            encontrado = false;
+                            indiceaux = 0;
+                            while(indiceauxi<this.mat.col&&!encontrado){
+                                if(this.mat.mat[i][indiceaux].GetState()){
+                                    if(this.enemymatriz.Enemymat.mat[i-1][indiceaux].GetUnit()&&i>=0)
+                                        {
+                                            var a = this.mat.mat[i][j].GetUnit();
+                                            this.mat.mat[i][j].SetFree();
+                                            this.mat.mat[i][indiceaux].SetUnit(a);
+
+
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i][indiceaux].GetUnit())
+                                    {
+                                         var a = this.mat.mat[i][j].GetUnit();
+                                         this.mat.mat[i][j].SetFree();
+                                         this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else if(this.enemymatriz.Enemymat.mat[i+1][indiceaux].GetUnit()&&i<this.mat.row){
+                                        var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
+                                        this.mat.mat[i][j].SetFree();
+                                        this.mat.mat[i][indiceaux].SetUnit(a);
+                                    }
+                                    else indiceaux++;
+                                }
+                            }
                         }
                        
 
@@ -196,20 +249,20 @@ export default class BattleManager{
                         if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
-                                console.log("esta la unidad viva"+this.mat.mat[i][j-1].GetUnit().isalife)
+                                //console.log("esta la unidad viva"+this.mat.mat[i][j-1].GetUnit().isalife)
                                 if(this.mat.mat[i][j-1].GetUnit().isalife==false){
                                     this.mat.mat[i][j-1].SetFree();
-                                    console.log("casilla liberada"+i+j-1);
+                                   // console.log("casilla liberada"+i+j-1);
                                 }
                                 this.target = true;
                             }
                         }
                         else if(this.mat.mat[i][j].GetState()){
                             this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
-                            console.log("esta la unidad viva"+this.mat.mat[i][j].GetUnit().isalife)
+                           // console.log("esta la unidad viva"+this.mat.mat[i][j].GetUnit().isalife)
                             if(this.mat.mat[i][j].GetUnit().isalife==false){
                                 this.mat.mat[i][j].SetFree();
-                                console.log("casilla liberada"+i+j);
+                               // console.log("casilla liberada"+i+j);
                             }
                             this.target = true;
                         }
@@ -217,10 +270,10 @@ export default class BattleManager{
                             {
                             if(this.mat.mat[i][j+1].GetState()){
                                 this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
-                                console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
+                              //  console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
                                 if(this.mat.mat[i][j+1].GetUnit().isalife==false){
                                     this.mat.mat[i][j+1].SetFree();
-                                    console.log("casilla liberada"+i+j+1);
+                                 //   console.log("casilla liberada"+i+j+1);
                                 }
                                 this.target = true;
                             }
@@ -258,7 +311,7 @@ export default class BattleManager{
         for(let i = 0; i < 6; ++i){
             for(let j = 0; j < 5;++j){
                if(this.card.stads.letter == this.Jeroglificos.getValue(i,j) && this.Jeroglificos.getValue(i,j) != undefined &&this.Jeroglificos.getIsActive(i,j) == false){
-                    console.log(this.card.stads.letter);
+                    //console.log(this.card.stads.letter);
                     this.Jeroglificos.setIsActive(i,j,true);
                }
             }

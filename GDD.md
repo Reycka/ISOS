@@ -279,6 +279,13 @@ Solo se muestran las estadísticas más destacables de las subclases:
 	\-Mago curandero  
 		\-En vez de hacer daño cura a los aliados
 
+
+  ![imagen](assets_git/assets_GDD/Counters.png)
+
+
+
+
+  
 **\-Sinergias de las cartas**
 
 ### 
@@ -303,37 +310,51 @@ Cada carta o tropa tendrá asignada un jeroglífico específico, si al colocar l
 
 Las cartas de las tropas del jugador contarán con una letra que permite crear sinergias que afectarán a la oleada actual.
 
- **\-Jeroglíficos:**
-
-**Osiris:				Ra:					Anubis:**  
-**![][image1]**
-
-**Isis:				Horus:					Seth:**  
-**![][image2]**
-
-**Comunes:**	
-
-	
-
+ **\-Jeroglíficos:**	
+![imagen](assets_git/assets_GDD/Jeroglificos.png)
 # 
 
 # | 4\. DISEÑO DE NIVEL {#|-4.-diseño-de-nivel}
 
 Durante las oleadas pueden salir cualquiera de los 3 tipos de tropa enemigas (los enemigos están predefinidos, no salen de manera aleatoria).  
 \-Ejemplo de una oleada:  
-![][image3]  
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/HUD%20combate.png)
+
+
+
 En la primera fase del combate el jugador coloca sus unidades en la cuadrícula de la izquierda(con límite máximo de 12 unidades uno por cada casilla de la matriz), Tras colocar las unidades en la esquina superior derecha hay un menu desplegable con la chuleta de los nombres de los dioses para las sinergias, en caso de haber cumplido una de estas el nombre de ese dios aparece iluminado. En esta fase podemos ver los tipos de enemigos que nos vendrán en esta oleada pero no su número. Para empezar la fase de combate el jugador debe pulsar el botón de luchar(esquina inferior derecha) lo que activa las sinergias de los dioses correspondientes, donde las unidades aliadas y enemigas lucharán de manera automática entre sí hasta que solo quede un bando cada vez que una unidad ataca necesita esperar un tiempo antes de volver a atacar(cooldown definido por la estadística de velocidad de ataque).
 
 \-Oleada 1:  
 En la primera oleada la cuadrícula sólo será de 2x2, ya que el jugador no tendrá muchas cartas para ese momento.
 
+
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%201.png)
+
+
+
 \-Oleada 2:  
 En la segunda oleada la cuadrícula se ampliará hasta una 4x2 ya que el jugador al haber pasado ya dos días enteros tendrá a su disposición más tropas y los desafíos comenzarán a parecerse más a los del ciclo del juego.
 
+
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%202.png)
+
+
+
 \-Oleadas 3 y 4: A partir de ahora la cuadrícula será 6x2 y comenzará el ciclo de juego normal
 
+
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleadas%203%20y%204.png)
+
+
+
 \-Oleada final(jefe):  
+
+
 En esta oleada final el jugador enfrentará al jefe que ocupará 4x1 casillas(el resto de las dimensiones de la cuadrícula serán las mismas 6x2). Este combate consta de tres oleadas donde el jefe invoca minions a su alrededor. Al final de cada oleada el jefe devolverá al jugador las cartas utilizadas en la ronda anterior.
+
+
+
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/oleada%205.png)
 
 # 
 
@@ -349,11 +370,11 @@ Elementos de la UI:
 - Cajas de diálogo
 
 
-![][image4]
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/HUD%20socializar.png)
 
 (Tienda)
 
-![][image5]
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/HUD%20tienda.png)
 
  (Durante Combate → Preparación)
 
@@ -361,7 +382,7 @@ Elementos de la UI:
 - Reloj que indica el turno del día (Noche)  
 - Indicador de tipos de enemigos en esa oleada.
 
-![][image6]
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/HUD%20combate.png)
 
 # | 6\. REFERENCIAS {#|-6.-referencias}
 
@@ -369,7 +390,7 @@ Elementos de la UI:
 
 - Referencias de Pinterest: [https://es.pinterest.com/ikermartinez180403/isos-pvli/](https://es.pinterest.com/ikermartinez180403/isos-pvli/)
 
-![][image7]
+![imagen](assets_git/assets_GDD/Referencias.png)
 
 ## 6.2 REFERENCIAS DE JUGABILIDAD {#6.2-referencias-de-jugabilidad}
 
@@ -380,7 +401,7 @@ Elementos de la UI:
 
 # | 7 ANEXO \- ARQUITECTURA DE CLASES {#|-7-anexo---arquitectura-de-clases}
 
-![][image8]
+![imagen](https://github.com/Reycka/ISOS/blob/main/assets_git/assets_GDD/Arquitectura%20de%20Clases.png)
 
 ## 7.1 INFORMACIÓN GENERAL {#7.1-información-general}
 

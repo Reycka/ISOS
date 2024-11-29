@@ -6,3 +6,25 @@
 6 = Seth
 
 Mantened coherencia a la hora de usar el mismo número siempre para cada cosa relacionada con cada dios :)
+
+JEROGLIFICOS
+
+0 --> OJO
+1 --> ESCALERA
+2 --> HOMBRE SENTADO
+3 --> DIAMANTE
+4 --> NOTA MUSICAL TUMBADA
+5 --> CIRCULO CON PUNTO
+6 --> CUADRADO
+7 --> TRIANGULO TUMBADO
+8 --> LINEA CURVA
+9 --> PÁJARO
+10 --> TOTEM PERRO
+11 --> ÓVALO
+12 --> MUJER SENTADA
+13 --> CADENA DE ADN
+14 --> BOMBILLA
+15 --> SemiCírculo
+16 --> Rectángulo
+17 --> Perro
+18 --> Linea Con Circulo en el medio

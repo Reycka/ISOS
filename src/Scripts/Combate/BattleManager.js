@@ -1,11 +1,7 @@
 //Tiene que al pillar una carta del inventario se quede como carta seleccionada y que si se clica en una SlotClass instancie la unidad hay
 //Si hay una unidad en la casilla NO HACE NADA (por el momento)
 //La carta al clickar llama la battleManager y se hace desde la propia escena
-import Matriz from "./Matriz.js"
 import EnemyMatriz from "./EnemyMatriz.js"
-import SlotClass from "./SlotClass.js";
-import CardClass from "./../Comunes/CardClass.js";
-//import Inventory from "../Comunes/Inventory.js"
 export default class BattleManager{
    //PROPIEDADES
    mat; //matriz que le vamos a pasar
@@ -18,6 +14,7 @@ export default class BattleManager{
    auxd;
    auxv;
    target = false;
+   Jeroglificos = new Jeroglifico();
    //CONSTRUCTORA
    constructor(_mat,_oleada,_scene){
     this.mat = _mat;
@@ -33,19 +30,34 @@ export default class BattleManager{
    SetCard(_card,id){
     this.card = _card;
     this._texture = id;
+    this.texture = id;
+    console.log("its me");
     console.log(this.card);
     console.log(this._texture);
    }
    //Método encargado de summonear la tropa en la casilla
    Summon(posX,posY){
+
    // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
       // if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
-            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)),this._texture);
+    //        this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)),this._texture);
             //this.card = null;
             //this._texture = null;
     // }
         
+        if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
+            
+            this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
+        if(this.card != null && !this.mat.mat[posX][posY].GetState()){
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
+            this.SetJeroglifico();
+
+            this.card = null;
+            this._texture = null;
+        }       
+
    }
+}
 
    GetVictory(){
     if(this.victory == true){
@@ -53,7 +65,6 @@ export default class BattleManager{
     }
     else return false;
 }  
-  
     Battle()
     {
        
@@ -242,9 +253,67 @@ export default class BattleManager{
             return true;}
     
        }
+    }   
+    SetJeroglifico(){
+        for(let i = 0; i < 6; ++i){
+            for(let j = 0; j < 5;++j){
+               if(this.card.stads.letter == this.Jeroglificos.getValue(i,j) && this.Jeroglificos.getValue(i,j) != undefined &&this.Jeroglificos.getIsActive(i,j) == false){
+                    console.log(this.card.stads.letter);
+                    this.Jeroglificos.setIsActive(i,j,true);
+               }
+            }
+        }
+      }
+    HavSinergy(dios){ //El dios representa al número del array de jeroglificos
+        for(let i = 0; i < 5; ++i){
+            if( this.Jeroglificos.getIsActive(dios,i) == false) return false;
+        }
+        return true;
     }
-    
-    
-    
-   
 };
+class Jeroglifico {
+    jeros = [];
+    /*  jeros[0] --> Osiris (3)
+      jeros[1] --> Ra (5)
+      jeros[2] --> Anubis (5)
+      jeros[3] --> Isis (4)
+      jeros[4] --> Horus (3)
+      jeros[5] --> Seth (5)
+    */ 
+    constructor() {
+        // Inicializar los arrays con objetos que tienen propiedades value e isActive
+        this.jeros[0] = [{ value: 0, isActive: false }, { value: 1, isActive: false }, { value: 2, isActive: false }];
+        this.jeros[1] = [{ value: 3, isActive: false }, { value: 4, isActive: false }, { value: 5, isActive: false }, { value: 6, isActive: false }, { value: 2, isActive: false }];
+        this.jeros[2] = [{ value: 7, isActive: false }, { value: 8, isActive: false }, { value: 6, isActive: false }, { value: 9, isActive: false }, { value: 10, isActive: false }];
+        this.jeros[3] = [{ value: 1, isActive: false }, { value: 15, isActive: false }, { value: 11, isActive: false }, { value: 12, isActive: false }];
+        this.jeros[4] = [{ value: 13, isActive: false }, { value: 14, isActive: false }, { value: 3, isActive: false }];
+        this.jeros[5] = [{ value: 15, isActive: false }, { value: 16, isActive: false }, { value: 17, isActive: false }, { value: 18, isActive: false }];
+    }
+
+    // Métodos para acceder y modificar las propiedades value e isActive
+    getValue(i, j) {
+        if (this.jeros[i] && this.jeros[i][j]) {
+            return this.jeros[i][j].value;
+        }
+        return undefined;
+    }
+
+    setValue(i, j, value) {
+        if (this.jeros[i] && this.jeros[i][j]) {
+            this.jeros[i][j].value = value;
+        }
+    }
+
+    getIsActive(i, j) {
+        if (this.jeros[i] && this.jeros[i][j]) {
+            return this.jeros[i][j].isActive;
+        }
+        return undefined;
+    }
+
+    setIsActive(i, j, isActive) {
+        if (this.jeros[i] && this.jeros[i][j]) {
+            this.jeros[i][j].isActive = isActive;
+        }
+    }
+}

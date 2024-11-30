@@ -11,6 +11,7 @@ altered_state;
 unittexture;
 acthealth;
 unitType;
+isready;
 constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
@@ -21,6 +22,8 @@ constructor(cardclass, _unittexture){
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
     this.isalife = true;
+    this.isready = true;
+
 }
 GetTexture(){
     return this.unittexture;
@@ -35,23 +38,27 @@ Update(unit){
     else this.Attack(unit);
 }
 Attack(enemy){
-if(this.actcooldown <= 0){
+if( this.isready == true){
     enemy.GetDamage(this.card.attack,this.unitType);
     this.actcooldown = this.cooldown;
+    this.isready = false;
 }
 }
 Cooldown(){
 
     this.actcooldown-=1;
+    if(this.actcooldown <= 0) this.isready = true;
 }
 Heal(ally){
     
     if(this.actcooldown <= 0){
         ally.ReciveHeal(this.card.CardLogic.attack);
         this.actcooldown = this.cooldown;
+        this.isready = false;
     }
 }
 ReciveHeal(n){
+    console.log("mecurfo"+n);
     this.acthealth +=n;
     if(this.acthealth> this.card.CardLogic.health)
         {
@@ -77,7 +84,7 @@ GetDamage(atq,type){
 var daño= (Math.round(atq/this.card.defense)*multi)+1;
 
 this.acthealth -= daño;
-console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
+//console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){
     this.isalife = false;
     console.log("me muero ");

@@ -65,6 +65,7 @@ export default class BattleManager {
     if(this.victory == true){
         return true;
     }
+}
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager
     SetCard(_card, id) {
@@ -100,7 +101,6 @@ export default class BattleManager {
  
     }*/
     }
-
     GetVictory() {
         if (this.victory == true) {
             return true;

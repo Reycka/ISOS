@@ -10,20 +10,60 @@ export default class BattleManager {
     enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
-    scene;
-    auxd;
-    auxv;
-    target = false;
-    Jeroglificos = new Jeroglifico();
-    //CONSTRUCTORA
-    constructor(_mat, _oleada, _scene) {
-        this.mat = _mat;
-        this.card = null;
-        this._texture = null;
-        this.scene = _scene;
-        this.enemymatriz = new EnemyMatriz(_oleada, this.scene, this.card_texture);
-        this.victory = false;
-        this.defeat = false
+   scene;
+   auxd;
+   auxv;
+   target = false;
+   Jeroglificos = new Jeroglifico();
+   //CONSTRUCTORA
+   constructor(_mat,_enemymatriz,_scene,){
+    this.mat = _mat;
+    this.card = null;
+    this._texture = null;
+    this.scene = _scene;
+    this.enemymatriz = _enemymatriz;
+    this.victory = false;
+    this.defeat = false
+   }
+   //MÉTODOS
+   ///Método encargado asignar la carta seleccionada del inventario al battleManager
+   SetCard(_card,id){
+    this.card = _card;
+    this._texture = id;
+    this.texture = id;
+    console.log("its me");
+    console.log(this.card);
+    console.log(this._texture);
+   }
+   //Método encargado de summonear la tropa en la casilla
+   Summon(posX,posY){
+
+   // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
+       if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
+    
+           this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
+           console.log(this.mat.mat[posX][posY])
+            this.card = null;
+            this._texture = null;
+     }
+        
+       /* if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
+            
+            this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
+        if(this.card != null && !this.mat.mat[posX][posY].GetState()){
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
+            this.SetJeroglifico();
+
+            this.card = null;
+            this._texture = null;
+        }       
+
+   }*/
+}
+
+   GetVictory(){
+    if(this.victory == true){
+        return true;
     }
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager

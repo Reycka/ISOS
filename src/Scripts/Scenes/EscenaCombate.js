@@ -11,7 +11,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	* @extends Phaser.Scene
 	*/
 	mat;
-	Enemymat;
+	enemymatriz;
 	matimg;
 	inventory;
 	inventoryindex = 0;
@@ -55,8 +55,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		
 		//flecha inventario
 		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
-		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png')
-
+		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
 	}
 	cronometro;
 	GameLoop()
@@ -177,8 +176,20 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		this.mat = new Matriz(6,2,this, 'MatrixGround',false);
-		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
+		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null);
+		let fil;
+		let col = 2;
+		if(this.enemymatriz.whicholeada == 1){
+			fil = 2;
+		}
+		else if(this.enemymatriz.whicholeada == 2){
+			fil = 4;
+		}
+		else{
+			fil = 6;
+		}
+		this.mat = new Matriz(fil,col,this, 'MatrixGround',false);
+		this.battleManager = new BattleManager(this.mat,this.enemymatriz,this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
 				 //Colocamos el fondo
@@ -188,7 +199,6 @@ defeat(){
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].texture != null){
-						//console.log(this.mat.mat[i][j]._texture);
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
 						this.mat.mat[i][j].setScale(0.20,0.20);
 					}

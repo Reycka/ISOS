@@ -16,12 +16,12 @@ export default class BattleManager{
    target = false;
    Jeroglificos = new Jeroglifico();
    //CONSTRUCTORA
-   constructor(_mat,_oleada,_scene){
+   constructor(_mat,_enemymatriz,_scene,){
     this.mat = _mat;
     this.card = null;
     this._texture = null;
     this.scene = _scene;
-    this.enemymatriz = new EnemyMatriz(_oleada,this.scene,this.card_texture);
+    this.enemymatriz = _enemymatriz;
     this.victory = false;
     this.defeat = false
    }

@@ -9,6 +9,9 @@ export default class EnemyMatriz{
   texture;
   Enemymat;
   oleada;
+  whicholeada = 0;
+  oleadaData;
+  enemies = [];
   card;
   stads;
   //Constructor
@@ -17,32 +20,32 @@ export default class EnemyMatriz{
     this.scene = _scene;
     this.texture = _textura;
     if(this.oleada == undefined || this.oleada == null) console.log("MONDONGO") //Comprobación de que lee bien el archivo
-    //Lo abrimos hay que revisar como leer archivos de txt en js
+    //Lo abrimos y seteamos las características de la oleada
     else{
-          /*const reader = new FileReader();
-          reader.readAsText(this.oleada);
-          this.row = reader.result; //Asignamos el tamaño de la fila
-          this.col = reader.result; //Asignamos el tamaño de la columna
-          console.log(this.row);
-          console.log(this.col);*/
-          //Asignamos las tropas en función de lo leído en archivo
-          
+      this.whicholeada++;
+        this.scene.load.json('oleada',this.oleada);
+        this.scene.load.once('complete', () => {
+            this.oleadaData = this.scene.cache.json.get('oleada'); // Obtener datos cargados
+            this.row = this.oleadaData.Oleadas[this.whicholeada].Filas;
+            this.col = this.oleadaData.Oleadas[this.whicholeada].Columnas;
+            let enemies = this.row * this.col;
+            for(let i = 0; i < enemies; i++){
+              this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i]
+            }
+        });
+        this.scene.load.start(); 
       }
     }
     SummonEnemy(){
-      this.row = 6;
-          this.col = 2;
           this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true); //Creamos la matriz
+          var totalenem = 0;
           for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){
-                  this.stads = new EnemyStads("SA");
-                  //console.log(this.stads);
+                  this.stads = new EnemyStads(this.enemies[totalenem]);
                   this.texture = this.stads.unit_type; 
-                  //console.log(this.texture);
                   this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
-                  //console.log(this.card);
-                 // console.log(this.Enemymat);
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
+                  totalenem++;
                   }
           }
     }

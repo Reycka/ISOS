@@ -19,7 +19,19 @@ ocupada = false;
         this.ocupada = false;
         this.scene.add.existing(this);
     }
-    
+    Getdamage(){
+        this.setTint(0xffff0000) //color ARGB
+        this.scene.time.addEvent({
+            delay: 700,
+            callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
+        })
+    }Getheal(){
+        this.setTint(0xff08000) //color ARGB
+        this.scene.time.addEvent({
+            delay: 700,
+            callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
+        })
+    }
     GetRow(){
         return this.row;
     }

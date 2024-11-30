@@ -204,12 +204,13 @@ defeat(){
 				//console.log(this.battleManager.HavSinergy(i))
 				//si es true activa sinergia si no no hace nada
 			}
+			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
 					
 					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
 					//algo.setScale(0.85,0.85);
-					this.battleManager.enemymatriz.SummonEnemy();
+					
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;

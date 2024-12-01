@@ -15,17 +15,17 @@ export default class EnemyMatriz {
   card;
   stads;
   //Constructor
-  constructor(_oleada, _scene, _textura) { //Pasamos la path del archivo a leer
+  constructor(_oleada, _scene, _textura,_whichOleada) { //Pasamos la path del archivo a leer
     this.oleada = _oleada;  //Asignamos el valor
     this.scene = _scene;
     this.texture = _textura;
-    this.whicholeada = 0;
+    this.whicholeada = _whichOleada;
+    console.log(_whichOleada);
   }
     SetOleada(){
       if(this.oleada == undefined || this.oleada == null) console.log("MONDONGO") //Comprobación de que lee bien el archivo
       //Lo abrimos y seteamos las características de la oleada
       else{
-        this.whicholeada++;
           this.scene.load.json('oleada',this.oleada);
           this.scene.load.once('complete', () => {
               this.oleadaData = this.scene.cache.json.get('oleada'); // Obtener datos cargados

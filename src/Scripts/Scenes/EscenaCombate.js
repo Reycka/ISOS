@@ -17,6 +17,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	inventory;
 	inventoryindex = 0;
 	battleManager;
+	oleada
 	//SOUNDS
 	preCombatSound;
 	combatSound;
@@ -25,7 +26,9 @@ export default class EscenaCombate extends Phaser.Scene {
 		super({ key: 'EscenaCombate' });
 	}
 	init(data){
-		this.inventory = data;
+		this.oleada = data.oleada;
+		this.inventory = data.inventario;
+		console.log(this.oleada);
 		console.log(this.inventory);
 	}
 
@@ -196,18 +199,26 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null);
+		console.log("jaajaja " + this.oleada)
+		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);
 		let fil;
 		let col = 2;
 		this.enemymatriz.SetOleada();
-		if(this.enemymatriz.whicholeada == 1){
+		if(this.oleada == 1){
 			fil = 2;
+			this.combatSound = this.sound.add('Combate');
 		}
-		else if(this.enemymatriz.whicholeada == 2){
+		else if(this.oleada == 2){
 			fil = 4;
+			this.combatSound = this.sound.add('Combate');
+		}
+		else if(this.oleada == 5){
+			fil = 6;
+			this.combatSound = this.sound.add('CombateBoss');
 		}
 		else{
 			fil = 6;
+			this.combatSound = this.sound.add('Combate');
 		}
 		this.mat = new Matriz(fil,col,this, 'MatrixGround',false);
 		this.battleManager = new BattleManager(this.mat,this.enemymatriz,this);
@@ -232,7 +243,6 @@ defeat(){
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			this.preCombatSound.stop();
-			this.combatSound = this.sound.add('Combate');
 			this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; ++i){
 				//console.log(this.battleManager.HavSinergy(i))
@@ -288,7 +298,10 @@ defeat(){
 				this.Returnwin.setVisible(false);
 				this.Returnwin.on('pointerup', pointer =>{
 					this.endCombatSound.stop();
-					this.scene.start('EscenaSocialTienda',inventory);
+					var numero = this.oleada;
+					numero += 1;
+					console.log(numero)
+					this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
 				})
 				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
 					fill: '#fff',

@@ -18,12 +18,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 	}
 
     inventory;
+    oleada;
     socialbacksound;
     shopbacksound;
     allDialogues = {};
 
     init(data) {
-        this.inventory = data;
+        this.inventory = data.inventario;
+        this.oleada = data.oleada;
+        console.log(this.oleada);
         console.log(this.inventory);
     }
 
@@ -203,7 +206,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		battlebtn.setInteractive();
 		battlebtn.on('pointerup', pointer => {
             this.socialbacksound.stop();
-			this.scene.start('EscenaCombate',this.inventory);
+            console.log("OLEADA" + this.oleada);
+            console.log(this.inventory);
+			this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
 		})
 
     }

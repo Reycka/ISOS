@@ -9,7 +9,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	* Escena principal.
 	* @extends Phaser.Scene
 	*/
-
+	oleada1;
 	constructor() {
 		super({ key: 'EscenaPrincipal' });
 	}
@@ -18,6 +18,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 
 		this.load.image('Background','src/Assets/Finales/fondo_socializar.png')
 		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal Heartbeat Main.WAV')
+		this.oleada1 = 1;
 	}
 	
 	create() {
@@ -34,7 +35,8 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		exit.setInteractive();
 		start.on('pointerup', pointer => {
 			audio.stop();
-			this.scene.start('EscenaSocialTienda',inventory);
+			console.log(this.oleada1);
+			this.scene.start('EscenaSocialTienda',{oleada: this.oleada1, inventario: inventory});
 		})
 		exit.on('pointerup', pointer => {
 			location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";

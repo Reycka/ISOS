@@ -121,12 +121,14 @@ export default class BattleManager {
                         if (this.mat.mat[i][j].GetUnit().isready) {
                             this.target = false;
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
+                                console.log("entro a curar y eso");
                                 if ((i - 1) != -1) {
                                     if (this.mat.mat[i-1][j].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i - 1][j].GetUnit())
                                         this.target = true;
                                         this.mat.mat[i - 1][j].Getheal();
-                                    }
+                                       
+ 1                                   }
                                 }
                                 if ((i + 1) < this.mat.row) {
                                     if (this.mat.mat[i + 1][j].GetState()) {
@@ -148,7 +150,7 @@ export default class BattleManager {
                                         this.mat.mat[i][j+1].Getheal();
                                     }
                                 }
-                                if (!target) {
+                                if (!this.target) {
                                     this.encontrado = false;
                                     this.indiceaux = 0;
                                     while (this.indiceauxi < this.mat.row && !this.encontrado) {

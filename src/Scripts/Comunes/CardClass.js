@@ -3,7 +3,7 @@ import UnitClass from "../Combate/UnitClass.js";
 
 export default class CardClass extends Phaser.GameObjects.Sprite {
     
-    isHealer = false; 
+    isHealer; 
     isaCard;
     texture;
     stads;
@@ -18,7 +18,7 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         
         this.stads = _cardLogic;
         this.textureindex = this.stads.textureindex;
-        if (this.stads.unit_type == 3) this.isHealer = true;
+        this.isHealer  =this.stads.isahealer;
         this.isaCard = this.stads.iscard;
        this.isused = false;
         console.log(this.textureindex);

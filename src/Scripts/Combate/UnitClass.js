@@ -2,7 +2,7 @@ import CardClass from "../Comunes/CardClass.js";
 import CardLogic from "../Comunes/CardLogic.js";
 export default class UnitClass{
 card;
-isahealer;
+//isahealer = false;
 isalife;
 cooldown;
 actcooldown;
@@ -16,13 +16,15 @@ constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
     this.isaplayer =this.card.iscard;
-    this.isahealer = this.card.isHealer;
+    
     this.acthealth =  this.card.health;  
     this.cooldown = this.card.speed;
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
     this.isalife = true;
     this.isready = true;
+    if(this.unitType == "H")this.isahealer = true;
+    else this.isahealer =false;
 
 }
 GetTexture(){
@@ -52,7 +54,7 @@ Cooldown(){
 Heal(ally){
     
     if(this.actcooldown <= 0){
-        ally.ReciveHeal(this.card.CardLogic.attack);
+        ally.ReciveHeal(this.card.attack);
         this.actcooldown = this.cooldown;
         this.isready = false;
     }
@@ -60,10 +62,11 @@ Heal(ally){
 ReciveHeal(n){
     console.log("mecurfo"+n);
     this.acthealth +=n;
-    if(this.acthealth> this.card.CardLogic.health)
+    if(this.acthealth> this.card.health)
         {
-        this.acthealth = this.card.CardLogic.health;
+        this.acthealth = this.card.health;
     }
+    console.log("cura vida actual = "+ this.acthealth+"/"+ this.card.health)
 }
 
 GetDamage(atq,type){
@@ -82,7 +85,7 @@ GetDamage(atq,type){
     else multi = 1;
     
 var daño= (Math.round(atq/this.card.defense)*multi)+1;
-
+console.log("daño vida actual = "+ this.acthealth+"/"+ this.card.health)
 this.acthealth -= daño;
 //console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){

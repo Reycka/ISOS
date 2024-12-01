@@ -179,6 +179,7 @@ defeat(){
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null);
 		let fil;
 		let col = 2;
+		this.enemymatriz.SetOleada();
 		if(this.enemymatriz.whicholeada == 1){
 			fil = 2;
 		}

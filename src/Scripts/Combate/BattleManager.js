@@ -2,6 +2,7 @@
 //Si hay una unidad en la casilla NO HACE NADA (por el momento)
 //La carta al clickar llama la battleManager y se hace desde la propia escena
 import EnemyMatriz from "./EnemyMatriz.js"
+import AlteredStateClass from "./AlteredStateClass.js";
 export default class BattleManager{
    //PROPIEDADES
    mat; //matriz que le vamos a pasar
@@ -275,8 +276,12 @@ export default class BattleManager{
             }
             else Sinergias[dios] = true;
         }
-        //return true;
-        return Sinergias;
+        
+        // Instancia de AlteredStateClass para enviar los estados.
+        const alteredStateInstance = new AlteredStateClass();
+        alteredStateInstance.getAlteredState(Sinergias);
+
+        return alteredStateInstance; // Devuelve la instancia.
     }
 };
 class Jeroglifico {

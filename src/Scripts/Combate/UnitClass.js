@@ -1,5 +1,6 @@
 import CardClass from "../Comunes/CardClass.js";
 import CardLogic from "../Comunes/CardLogic.js";
+import AlteredStateClass from "./AlteredStateClass.js";
 export default class UnitClass{
 card;
 isahealer;
@@ -28,17 +29,15 @@ GetTexture(){
 GetIsaHealer(){
     return this.isahealer;
 }
-Update(unit){
+Update(unit,alteredStateInstance){
     if(this.isahealer){
         this.Heal(unit);
     }
-    //ApplySinergy(); DESDE BATTLE MANAGER
-    //mat[i,j].unit.setAlteredState(); //Logica del efecto de los dioses.
-    //Clase para los estados alterados AlteredStateClass:
-    //Recibimos la matriz de booleanos en esa nueva clase
-    //Metodo para recibir booleanos
-    //Metodo para aplicar los estados alterados
     else this.Attack(unit);
+
+    if (alteredStateInstance){
+        alteredStateInstance.applyAlteredStates(this);
+    }
 }
 Attack(enemy){
 if(this.actcooldown <= 0){

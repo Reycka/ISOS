@@ -31,32 +31,72 @@ GetTexture(){
 GetIsaHealer(){
     return this.isahealer;
 }
+
+//UPDATE DE UNA TROPA GENERICA QUE TIENE TODOS LOS ESTADOS (EJEMPLO NO NECESARIO)
+//Update(unit,alteredStateInstance){
+//    if(this.isahealer){
+//        this.Heal(unit);
+//    }
+//    //else this.Attack(unit);
+//    else{
+//        if (!this.isAttackedMissed()){
+//            this.Attack(unit);
+//        }
+//    }
+//
+//    this.handleBurn(); //Aplicamos la función de quemar si existe una probabilidad de ello
+//    this.handlePeriodicHeal(); //Aplicamos la funcion de curar periodicamente si hay un porcentaje incluido en ello
+//    this.tryRevive(); //Aplicamos la funcion de revivir si existe una probabilidad de ello
+//
+//    if (alteredStateInstance){
+//        alteredStateInstance.applyAlteredStates(this); //Aplicamos los estados alterados a esta unidad si existen
+//    }
+//}
+
+//UPDATE DE TODAS LAS TROPAS
 Update(unit,alteredStateInstance){
-    if(this.isahealer){
-        this.Heal(unit);
+    if (this.card.iscard){
+        this.applyAllyEffects(unit,alteredStateInstance);
+    } else {
+        this.applyEnemyEffects(unit,alteredStateInstance);
     }
-    //else this.Attack(unit);
-    else{
-        if (!this.isAttackedMissed()){
-            this.Attack(unit);
+}
+//ACCIONES DE TROPAS ALIADAS
+applyAllyEffects(unit,alteredStateInstance){
+    if (this.isahealer){
+        this.Heal(unit);
+    } else {
+        this.Attack(unit);
+    }
+
+    this.handlePeriodicHeal();
+    this.tryRevive();
+}
+applyEnemyEffects(unit,alteredStateInstance){
+    if (!this.isAttackedMissed()){
+        this.Attack(unit);
+    } else {
+        console.log("Fallo de ataque enemigo");
+    }
+
+    this.handleBurn();
+}
+
+Attack(enemy){
+    if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
+        if(this.actcooldown <= 0){
+            if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
+            else this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
+            this.actcooldown = this.cooldown;
         }
     }
-
-    this.handleBurn(); //Aplicamos la función de quemar si existe una probabilidad de ello
-    this.handlePeriodicHeal(); //Aplicamos la funcion de curar periodicamente si hay un porcentaje incluido en ello
-    this.tryRevive(); //Aplicamos la funcion de revivir si existe una probabilidad de ello
-
-    if (alteredStateInstance){
-        alteredStateInstance.applyAlteredStates(this); //Aplicamos los estados alterados a esta unidad si existen
+    else { //ATAQUE DE ENEMIGO
+        if (this.actcooldown <= 0){
+            enemy.GetDamage(this.card.attack,this.unitType);
+        }
     }
 }
-Attack(enemy){
-if(this.actcooldown <= 0){
-    if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado
-    else enemy.GetDamage(999999,this.unitType); //Si tenemos el instakill activado haremos un daño absurdo al atacar al enemigo.
-    this.actcooldown = this.cooldown;
-}
-}
+
 Cooldown(){
 
     this.actcooldown-=1;
@@ -172,5 +212,10 @@ addInstakillChance(chance) { //ENTRE 0.0 y 1.0
 }
 isInstakillTriggered() { //Retornamos true si Math.random es menor que la probabilidad pasada, predeterminado instaKillChance = 0.
     return Math.random() < this.instakillChance;
+}
+Instakill(enemy){
+    //console.log("Instakill activado!"); 
+    const damage = enemy.acthealth; //Constante que tiene el valor de la vida maxima del enemigo al que apuntamos
+    enemy.GetDamage(damage,this.unitType); //Aplicamos el daño igual a la vida maxima de la tropa enemiga
 }
 }

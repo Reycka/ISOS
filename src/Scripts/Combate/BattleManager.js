@@ -85,24 +85,24 @@ export default class BattleManager{
                     if(this.mat.mat[i][j].GetUnit().IsaHealer()){
                         if((i-1)!=-1){
                             if(this.mat.mat[i][j].GetState()){
-                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i-1][j].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i-1][j].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }
                         if((i+1)<this.mat.row){
                             if(this.mat.mat[i+1][j].GetState()) {
-                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i+1][j].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i+1][j].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
-                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }
                         if((j+1)<this.mat.col){
                             if(this.mat.mat[i][j+1].GetState()){
-                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit().alteredStateInstance)
                                 this.target = true;
                             }
                         }
@@ -117,7 +117,7 @@ export default class BattleManager{
                         //unidades que no curan
                         if((j-1)!=-1){
                             if(this.enemymatriz.Enemymat.mat[i][j-1].GetState()){ 
-                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit(),alteredStateInstance)
                                 if(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit().isalife == false){
                                     this.enemymatriz.Enemymat.mat[i][j-1].SetFree();
                                 }
@@ -125,7 +125,7 @@ export default class BattleManager{
                             }
                         }
                         else if(this.enemymatriz.Enemymat.mat[i][j].GetState()){
-                            this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j].GetUnit())
+                            this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j].GetUnit(),alteredStateInstance)
                             if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false){
                                 this.enemymatriz.Enemymat.mat[i][j].SetFree();
                             }
@@ -134,7 +134,7 @@ export default class BattleManager{
                         else if((j+1)<this.enemymatriz.Enemymat.col)
                             {
                             if(this.enemymatriz.Enemymat.mat[i][j+1].GetState()){
-                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit())
+                                this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit(),alteredStateInstance)
                                 this.target = true;
                                 if(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit().isalife == false){
                                     this.enemymatriz.Enemymat.mat[i][j+1].SetFree();
@@ -164,24 +164,24 @@ export default class BattleManager{
                     if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().IsaHealer()){
                         if((i-1)!=-1){
                             if(this.enemymatriz.Enemymat.mat[i][j].GetState()){
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i-1][j].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i-1][j].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }
                         if((i+1)<this.enemymatriz.Enemymat.row){
                             if(this.enemymatriz.Enemymat.mat[i+1][j].GetState()) {
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i+1][j].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i+1][j].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }if((j-1)!=-1){
                             if(this.enemymatriz.Enemymat.mat[i][j-1].GetState()){ 
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j-1].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }
                         if((j+1)<this.enemymatriz.Enemymat.col){
                             if(this.enemymatriz.Enemymat.mat[i][j+1].GetState()){
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j+1].GetUnit(),alteredStateInstance)
                                 this.target = true;
                             }
                         }
@@ -196,7 +196,7 @@ export default class BattleManager{
                       
                         if((j-1)!=-1){
                             if(this.mat.mat[i][j-1].GetState()){ 
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j-1].GetUnit(),alteredStateInstance)
                                 console.log("esta la unidad viva"+this.mat.mat[i][j-1].GetUnit().isalife)
                                 if(this.mat.mat[i][j-1].GetUnit().isalife==false){
                                     this.mat.mat[i][j-1].SetFree();
@@ -206,7 +206,7 @@ export default class BattleManager{
                             }
                         }
                         else if(this.mat.mat[i][j].GetState()){
-                            this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
+                            this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit(),alteredStateInstance)
                             console.log("esta la unidad viva"+this.mat.mat[i][j].GetUnit().isalife)
                             if(this.mat.mat[i][j].GetUnit().isalife==false){
                                 this.mat.mat[i][j].SetFree();
@@ -217,7 +217,7 @@ export default class BattleManager{
                         else if((j+1)<this.mat.col)
                             {
                             if(this.mat.mat[i][j+1].GetState()){
-                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit())
+                                this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j+1].GetUnit(),alteredStateInstance)
                                 console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
                                 if(this.mat.mat[i][j+1].GetUnit().isalife==false){
                                     this.mat.mat[i][j+1].SetFree();
@@ -277,7 +277,7 @@ export default class BattleManager{
             }
         }
         
-        // Instancia de AlteredStateClass para enviar las sinergiass activadas
+        // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
         const alteredStateInstance = new AlteredStateClass();
         alteredStateInstance.getAlteredState(Sinergias);
 

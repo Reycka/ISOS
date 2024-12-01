@@ -12,6 +12,8 @@ altered_state;
 unittexture;
 acthealth;
 unitType;
+instakillChance = 0;
+
 constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
@@ -33,15 +35,25 @@ Update(unit,alteredStateInstance){
     if(this.isahealer){
         this.Heal(unit);
     }
-    else this.Attack(unit);
+    //else this.Attack(unit);
+    else{
+        if (!this.isAttackedMissed()){
+            this.Attack(unit);
+        }
+    }
+
+    this.handleBurn(); //Aplicamos la función de quemar si existe una probabilidad de ello
+    this.handlePeriodicHeal(); //Aplicamos la funcion de curar periodicamente si hay un porcentaje incluido en ello
+    this.tryRevive(); //Aplicamos la funcion de revivir si existe una probabilidad de ello
 
     if (alteredStateInstance){
-        alteredStateInstance.applyAlteredStates(this);
+        alteredStateInstance.applyAlteredStates(this); //Aplicamos los estados alterados a esta unidad si existen
     }
 }
 Attack(enemy){
 if(this.actcooldown <= 0){
-    enemy.GetDamage(this.card.attack,this.unitType);
+    if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado
+    else enemy.GetDamage(999999,this.unitType); //Si tenemos el instakill activado haremos un daño absurdo al atacar al enemigo.
     this.actcooldown = this.cooldown;
 }
 }
@@ -77,7 +89,7 @@ GetDamage(atq,type){
     else if((type == "C"||type=="G") &&(this.unitType=="M"||this.unitType=="H" )){   
         multi = 2;
     }
-    else multi = 1;
+    else multi = 1; //QUEMADURA
     
 var daño= (Math.round(atq/this.card.defense)*multi)+1;
 
@@ -91,5 +103,74 @@ if(this.acthealth <=0){
 
 IsaHealer(){
     return this.isahealer;
+}
+
+
+//ESTADOS ALTERADOS
+
+
+//RA
+//QUEMADURA
+applyBurn(damage,turns){ //Añadimos quemadura si es que la hay a partir de AlteredStateClass
+    this.burn = {damage: damage, turns:turns};
+}
+handleBurn(){ //Hacemos el handleBurn si la hemos añadido en AlteredStateClass
+    if (this.burn && this.burns.turns > 0){
+        this.GetDamage(this.burn.damage, "Burn"); //Aplicamos el daño extra de 1
+        this.burn.turns--; //Gastamos un turno de daño extra
+    } else{
+        this.burn = null;
+    }
+}
+
+//HORUS
+//CEGUERA
+addBlindChance(chance){ // ENTRE 0.0 y 1.0
+    this.blindChance = chance || 0; //Si el parametro pasado es distinto de null, undefined, NaN, false o 0: aplica el valor chance pasado, sino se deja en 0
+}
+isAttackedMissed(){
+    return Math.random() < (this.blindChance || 0);
+    //Math.random devuelve un int entre 0 y 1, lo comparamos con la probabilidad de fallar que tambien es entre 0 y 1
+}
+
+//OSIRIS
+//PROBABILIDAD DE REVIVIR
+addReviveChance(chance){ // ENTRE 0.0 y 1.0
+    this.reviveChance = chance || 0;
+}
+tryRevive(){
+    if (!this.isalife && Math.random() < (this.reviveChance || 0)){ //Si la unidad esta muerta y la probabilidad de revivir coincide revivimos
+        this.isalife = true; //Revivimos la unidad
+        this.acthealth = this.card.health * 0.5; //Revive con un 50% de salud
+    }
+}
+
+//ISIS
+//CURACION PERIODICA
+applyPeriodicHeal(percent){ // ENTRE 0.0 y 1.0
+    this.periodicHeal = percent || 0;
+}
+handlePeriodicHeal(){
+    if (this.periodicHeal > 0){ //Si hay curacion periodica aplicamos el porcentaje de curación a la vida maxima de la carta
+        this.ReciveHeal(this.card.health * this.periodicHeal);
+    }
+}
+
+//SETH
+//AUMENTO DE DAÑO
+boostAttack(percent){ //ENTRE 0.0 y 1.0
+    this.attackBoost = percent || 0;
+}
+getAttackPower(){
+    return this.card.attack * (1 + (this.attackBoost || 0)); //Siempre devolvemos un valor, si no hay aumento de ataque no lo sumamos al daño inicial, en caso contrario sí.
+}
+
+//ANUBIS
+//PROBABILIDAD DE INSTAKILL
+addInstakillChance(chance) { //ENTRE 0.0 y 1.0
+    this.instakillChance = chance || 0;
+}
+isInstakillTriggered() { //Retornamos true si Math.random es menor que la probabilidad pasada, predeterminado instaKillChance = 0.
+    return Math.random() < this.instakillChance;
 }
 }

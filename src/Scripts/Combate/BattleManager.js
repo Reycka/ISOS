@@ -267,21 +267,21 @@ export default class BattleManager{
       }
     ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
         let Sinergias = [];
-        Sinergias[0] = new Array(jeros.size());
+        Sinergias[dios] = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        for(let i = 0; i < jeros[dios].size(); ++i){
-            if(this.Jeroglificos.getIsActive(dios,i) == false) //return false;
+        for(let i = 0; i < this.jeros[dios].length(); ++i){
+            if(this.Jeroglificos.getIsActive(dios,i) == false)
             {
-                Sinergias[dios] = false;
+                Sinergias[dios] = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
+                break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
-            else Sinergias[dios] = true;
         }
         
-        // Instancia de AlteredStateClass para enviar los estados.
+        // Instancia de AlteredStateClass para enviar las sinergiass activadas
         const alteredStateInstance = new AlteredStateClass();
         alteredStateInstance.getAlteredState(Sinergias);
 
-        return alteredStateInstance; // Devuelve la instancia.
+        return alteredStateInstance; //Devolvemos la instancia
     }
 };
 class Jeroglifico {

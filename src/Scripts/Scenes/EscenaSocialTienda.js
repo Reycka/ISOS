@@ -18,7 +18,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 	}
 
     inventory;
-
+    socialbacksound;
+    shopbacksound;
     allDialogues = {};
 
     init(data) {
@@ -39,7 +40,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
         this.load.image('batalla','src/Assets/Finales/boton_batalla.png')
-
+        this.load.audio('SocialSound','src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
+        this.load.audio('TiendaSound','src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
 
 	}
 
@@ -48,6 +50,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         ('Ofrendas: '+this.inventory.numgift)
     }
 	create() {
+        this.socialbacksound = this.sound.add('SocialSound');
+        this.shopbacksound = this.sound.add('TiendaSound');
+        this.socialbacksound.play({loop:true});
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
         //Aplicamos funciones de lo que importemos en una variable
@@ -120,6 +125,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.cameras.main.pan(
                 nuevoScrollX, this.cameras.main.scrollY, velocitypan
             );
+            this.shopbacksound.stop();
+            this.socialbacksound.play({loop:true});
         });
 
         botonDch.on('pointerdown', pointer =>{
@@ -130,6 +137,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 nuevoScrollX, this.cameras.main.scrollY, velocitypan
             );
             console.log(this.cameras.main.scrollX);
+            this.socialbacksound.stop();
+            this.shopbacksound.play({loop:true});
         });
 
         //PARTE SOCIALIZAR
@@ -193,6 +202,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         battlebtn.setScale(0.2,0.2);
 		battlebtn.setInteractive();
 		battlebtn.on('pointerup', pointer => {
+            this.socialbacksound.stop();
 			this.scene.start('EscenaCombate',this.inventory);
 		})
 

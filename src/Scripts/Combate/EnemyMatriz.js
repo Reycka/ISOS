@@ -22,6 +22,40 @@ export default class EnemyMatriz {
     this.whicholeada = _whichOleada;
     console.log(_whichOleada);
   }
+  EsribeEnemigo(enemigo,totalenemigos){
+    let rep;
+    let index = 0;
+    while(!rep && index < totalenemigos - 1){
+      if(this.enemies[index] == enemigo) rep = true;
+      index++;
+    }
+    if(!rep) {
+      switch (enemigo){
+        case 'G':
+          enemigo = "GUERRERO"
+          break;
+        case 'SA':
+          enemigo = "ARCO CORTO"
+          break;
+        case 'LA':
+            enemigo = "ARCO LARGO"
+          break;
+        case 'M':
+            enemigo = "MAGO"
+          break;
+        case 'C':
+            enemigo = "CARRO"
+          break;
+        case 'H':
+            enemigo = "CURANDERO"
+          break;
+        case 'B':
+            enemigo = "APOFIS"
+          break;
+      }
+      this.scene.add.text(1500,(500 + index * 100),enemigo).setScale(4,4);
+    }
+  }
     SetOleada(){
       if(this.oleada == undefined || this.oleada == null) console.log("MONDONGO") //Comprobación de que lee bien el archivo
       //Lo abrimos y seteamos las características de la oleada
@@ -32,11 +66,15 @@ export default class EnemyMatriz {
               this.row = this.oleadaData.Oleadas[this.whicholeada].Filas;
               this.col = this.oleadaData.Oleadas[this.whicholeada].Columnas;
               let enemies = this.row * this.col;
+              let indexactual = 0;
               for(let i = 0; i < enemies; i++){
-                this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i]
+                this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i];
+                indexactual++;
+                this.EsribeEnemigo(this.enemies[i],indexactual);
               }
           });
           this.scene.load.start(); 
+
         }
     }
     SummonEnemy(){

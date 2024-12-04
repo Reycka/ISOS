@@ -200,11 +200,12 @@ defeat(){
 			card3.alpha = 0.5;
 		})
 		console.log("jaajaja " + this.oleada)
-		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);
+		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;
 		let colpos;
 		this.enemymatriz.SetOleada();
+		this.enemylist = new Array();
 		if(this.oleada == 1){
 			fil = 2;
 			colpos = 480;
@@ -242,6 +243,9 @@ defeat(){
 				})
 			}
 		}
+		//Lista posibles enemigos
+		this.add.image(1700,500,'MatrixGround2').setScale(3,5);
+		this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
 		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
 		pelea.setScale(0.3,0.3);

@@ -15,7 +15,7 @@ export default class BattleManager{
    auxd;
    auxv;
    target = false;
-   Jeroglificos = new Jeroglifico();
+   jeros = new Jeroglifico();
    //CONSTRUCTORA
    constructor(_mat,_oleada,_scene){
     this.mat = _mat;
@@ -269,8 +269,8 @@ export default class BattleManager{
         let Sinergias = [];
         Sinergias[dios] = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        for(let i = 0; i < this.jeros[dios].length(); ++i){
-            if(this.Jeroglificos.getIsActive(dios,i) == false)
+        for(let i = 0; i < this.jeros[dios]; ++i){
+            if(this.jeros.getIsActive(dios,i) == false)
             {
                 Sinergias[dios] = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo

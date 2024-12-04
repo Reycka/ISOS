@@ -198,8 +198,8 @@ defeat(){
 		pelea.setScale(0.3,0.3);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
-			for(let i = 0; i < 6; ++i){
-				console.log(this.battleManager.ApplySinergy(i));
+			for(let i = 0; i < 6; i++){
+				this.battleManager.ApplySinergy(i);
 			}
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){

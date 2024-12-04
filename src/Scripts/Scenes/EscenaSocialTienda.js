@@ -212,6 +212,16 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         this.events.on('endDialogue',() => { //volver a mostrar personajes
             this.showAllCharacters();
+
+            if(stage ===3){
+                 //boton cambio de escena a la de combate
+                var battlebtn = this.add.image(this.sys.game.canvas.width-50 ,50, 'batalla')
+                battlebtn.setScale(0.2,0.2);
+		        battlebtn.setInteractive();
+		        battlebtn.on('pointerup', pointer => {
+			    this.scene.start('EscenaCombate',this.inventory);
+		})
+            }
             
             
         });
@@ -241,6 +251,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 else{
 
                     personaje.sprite.setVisible(false);
+                    
 
                 }
 
@@ -267,13 +278,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             padding: { x: 30, y: 20 },
             fontStyle: 'bold' });
         this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
-        //boton cambio de escena a la de combate
-        var battlebtn = this.add.image(this.sys.game.canvas.width-50 ,50, 'batalla')
-        battlebtn.setScale(0.2,0.2);
-		battlebtn.setInteractive();
-		battlebtn.on('pointerup', pointer => {
-			this.scene.start('EscenaCombate',this.inventory);
-		})
+       
 
     }
 

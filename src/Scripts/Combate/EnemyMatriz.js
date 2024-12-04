@@ -40,7 +40,11 @@ export default class EnemyMatriz {
         }
     }
     SummonEnemy(){
-          this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true); //Creamos la matriz
+      let filpos;
+      if(this.whicholeada == 1) filpos = 480;
+      else if(this.whicholeada == 2) filpos = 320;
+      else filpos = 160;
+          this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true,filpos); //Creamos la matriz
           var totalenem = 0;
           for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){

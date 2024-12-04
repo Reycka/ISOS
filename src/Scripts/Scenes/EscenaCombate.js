@@ -203,24 +203,29 @@ defeat(){
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);
 		let fil;
 		let col = 2;
+		let colpos;
 		this.enemymatriz.SetOleada();
 		if(this.oleada == 1){
 			fil = 2;
+			colpos = 480;
 			this.combatSound = this.sound.add('Combate');
 		}
 		else if(this.oleada == 2){
 			fil = 4;
+			colpos = 320;
 			this.combatSound = this.sound.add('Combate');
 		}
 		else if(this.oleada == 5){
 			fil = 6;
+			colpos = 160;
 			this.combatSound = this.sound.add('CombateBoss');
 		}
 		else{
 			fil = 6;
+			colpos = 160;
 			this.combatSound = this.sound.add('Combate');
 		}
-		this.mat = new Matriz(fil,col,this, 'MatrixGround',false);
+		this.mat = new Matriz(fil,col,this, 'MatrixGround',false,colpos);
 		this.battleManager = new BattleManager(this.mat,this.enemymatriz,this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){

@@ -10,17 +10,25 @@ export default class EscenaCombate extends Phaser.Scene {
 	* Escena principal.
 	* @extends Phaser.Scene
 	*/
+	//PROPIETIES
 	mat;
-	Enemymat;
+	enemymatriz;
 	matimg;
 	inventory;
 	inventoryindex = 0;
 	battleManager;
+	oleada
+	//SOUNDS
+	preCombatSound;
+	combatSound;
+	endCombatSound;
 	constructor() {
 		super({ key: 'EscenaCombate' });
 	}
 	init(data){
-		this.inventory = data;
+		this.oleada = data.oleada;
+		this.inventory = data.inventario;
+		console.log(this.oleada);
 		console.log(this.inventory);
 	}
 
@@ -48,13 +56,20 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('SA', 'src/Assets/Finales/p6.png');
 		//enemigo
 		this.load.image('E', 'src/Assets/Finales/e.png');
+
 		//BOSS
 		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
 		
 		//flecha inventario
 		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
-		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png')
+		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
 
+		//Música
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
 	}
 	cronometro;
 	GameLoop()
@@ -74,11 +89,17 @@ export default class EscenaCombate extends Phaser.Scene {
 	}
 }
 Win(){
+	this.combatSound.stop();
+	this.endCombatSound = this.sound.add('Win');
+	this.endCombatSound.play({loop:true});
 	this.finaltext.setVisible(true);
 	this.Returnwin.setVisible(true);
 	this.finaltext.setText("HAS GANADO");
 }
 defeat(){
+	this.combatSound.stop();
+	this.endCombatSound = this.sound.add('Lose');
+	this.endCombatSound.play({loop:true});
 	this.finaltext.setVisible(true);
 	this. Returndefeat.setVisible(true);
 	this.finaltext.setText("HAS PERDIDO");
@@ -91,6 +112,8 @@ defeat(){
             callback: () => {
 				this.GameLoop()
             },})
+		this.preCombatSound = this.sound.add('PreCombate');
+		this.preCombatSound.play({loop: true});
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
@@ -175,20 +198,45 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		this.mat = new Matriz(6,2,this, null);
-		this.battleManager = new BattleManager(this.mat,'./../Combate/OleadaDePrueba.txt',this);
+		console.log("jaajaja " + this.oleada)
+		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);
+		let fil;
+		let col = 2;
+		let colpos;
+		this.enemymatriz.SetOleada();
+		if(this.oleada == 1){
+			fil = 2;
+			colpos = 480;
+			this.combatSound = this.sound.add('Combate');
+		}
+		else if(this.oleada == 2){
+			fil = 4;
+			colpos = 320;
+			this.combatSound = this.sound.add('Combate');
+		}
+		else if(this.oleada == 5){
+			fil = 6;
+			colpos = 160;
+			this.combatSound = this.sound.add('CombateBoss');
+		}
+		else{
+			fil = 6;
+			colpos = 160;
+			this.combatSound = this.sound.add('Combate');
+		}
+		this.mat = new Matriz(fil,col,this, 'MatrixGround',false,colpos);
+		this.battleManager = new BattleManager(this.mat,this.enemymatriz,this);
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
-				this.mat.mat[i][j] = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
+				 //Colocamos el fondo
 				this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
-					//this.battleManager.Summon(i,j);this
+					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].texture != null){
-						//console.log(this.mat.mat[i][j]._texture);
-						this.mat.mat[i][j].setTexture(this.battleManager._texture);
-						this.mat.mat[i][j].setScale(0.2,0.2);
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
+						
 					}
 				})
 			}
@@ -198,15 +246,27 @@ defeat(){
 		pelea.setScale(0.3,0.3);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
+			this.preCombatSound.stop();
+			this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);
 			}
+			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					algo.setScale(0.85,0.85);
-					var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					set.setScale(0.20,0.20);
+					
+					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
+					//algo.setScale(0.85,0.85);
+					
+					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
+						
+					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
+					}else{
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2');
+					}
 				}
 			}
 			pelea.setVisible(false);
@@ -243,7 +303,11 @@ defeat(){
 				this.Returnwin.setInteractive();
 				this.Returnwin.setVisible(false);
 				this.Returnwin.on('pointerup', pointer =>{
-					this.scene.start('EscenaSocialTienda',inventory);
+					this.endCombatSound.stop();
+					var numero = this.oleada;
+					numero += 1;
+					console.log(numero)
+					this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
 				})
 				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
 					fill: '#fff',
@@ -255,47 +319,12 @@ defeat(){
 					this.Returndefeat.setInteractive();
 					this.Returndefeat.setVisible(false);
 					this.Returndefeat.on('pointerup', pointer =>{
+						this.endCombatSound.stop();
 						this.scene.start('EscenaPrincipal');
 					})
 	}
 
 	update(){		
 
-	}/*for(let i = 0; i < this.mat.row; i++){
-			for(let j = 0; j < this.mat.col; j++){
-				var algo = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
-				algo.setScale(0.85,0.85)
-				algo.setInteractive();
-				algo.on('pointerup', pointer =>{
-				this.mat.mat[i][j] = this.add.image(j * 180  + 550 , i * 160 + 150,'MatrixGround'); //Colocamos el fondo
-				this.mat.mat[i][j].setScale(0.85,0.85)
-				this.mat.mat[i][j].setInteractive();
-				this.mat.mat[i][j].on('pointerup', pointer =>{
-					console.log("Soy clickable");
-					this.battleManager.Summon(i,j);
-					if(this.mat.mat[i][j].GetTexture() != null){
-						var set = this.add.image(j * 180  + 550 , i * 160 + 150,this.mat.mat[i][j].GetTexture());
-						set.setScale(0.2,0.2);
-						this.mat.mat[i][j].image.setTexture(this.mat.mat[i][j].GetTexture());
-						this.mat.mat[i][j].image.set.setScale(0.2,0.2);
-					}
-					
-				})
-			}
-		}
-
-@@ -200,10 +202,10 @@ defeat(){
-		pelea.on('pointerup', pointer =>{
-			for(let i = 0; i < this.mat.row; i++){
-				for(let j = 0; j < this.mat.col; j++){
-					var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					algo.setScale(0.85,0.85);
-					var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					set.setScale(0.20,0.20);
-					this.battleManager.enemymatriz.Enemymat.mat[i][j] = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.85,0.85);
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].image.setTexture(this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
-				}
-			}*/ 
+	}
 }

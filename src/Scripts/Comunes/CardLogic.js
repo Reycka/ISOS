@@ -9,6 +9,7 @@ export default class CardLogic {
     letter;
     iscard;
     textureindex;
+    isahealer;
 
     Set(_health, _attack, _speed, _defense, _unit_type, _letter, _iscard) {
         this.health = _health;
@@ -38,6 +39,7 @@ export default class CardLogic {
             this.unit_type = "SA";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = false;
             this.textureindex = rnd;
         }
         //arco largo
@@ -50,6 +52,7 @@ export default class CardLogic {
             this.unit_type = "LA";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = false;
             this.textureindex = rnd;
         }
         //soldado Carro
@@ -62,6 +65,7 @@ export default class CardLogic {
             this.unit_type = "C";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = false;
             this.textureindex = rnd;
         }
         //infanteria
@@ -74,6 +78,7 @@ export default class CardLogic {
             this.unit_type = "G";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = false;
             this.textureindex = rnd;
         }
         //Magos de ataque
@@ -86,18 +91,20 @@ export default class CardLogic {
             this.unit_type = "M";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = false;
             this.textureindex = rnd;
         }
         //curandero
         else if (rnd == 5) {
            
             this.health = 10;
-            this.attack = 10;
+            this.attack = 7;
             this.speed = 5;
             this.defense = 5;
             this.unit_type = "H";
             this.letter = l;
             this.iscard = true;
+            this.isahealer = true;
             this.textureindex = rnd;
         }
 

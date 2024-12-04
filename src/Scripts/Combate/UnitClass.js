@@ -3,7 +3,7 @@ import CardLogic from "../Comunes/CardLogic.js";
 import AlteredStateClass from "./AlteredStateClass.js";
 export default class UnitClass{
 card;
-isahealer;
+//isahealer = false;
 isalife;
 cooldown;
 actcooldown;
@@ -12,18 +12,23 @@ altered_state;
 unittexture;
 acthealth;
 unitType;
+isready;
 instakillChance = 0;
 
 constructor(cardclass, _unittexture){
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
     this.isaplayer =this.card.iscard;
-    this.isahealer = this.card.isHealer;
+    
     this.acthealth =  this.card.health;  
     this.cooldown = this.card.speed;
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
     this.isalife = true;
+    this.isready = true;
+    if(this.unitType == "H")this.isahealer = true;
+    else this.isahealer =false;
+
 }
 GetTexture(){
     return this.unittexture;
@@ -83,37 +88,40 @@ applyEnemyEffects(unit,alteredStateInstance){
 }
 
 Attack(enemy){
-    if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
-        if(this.actcooldown <= 0){
-            if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
-            else this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
-            this.actcooldown = this.cooldown;
-        }
-    }
-    else { //ATAQUE DE ENEMIGO
-        if (this.actcooldown <= 0){
-            enemy.GetDamage(this.card.attack,this.unitType);
-        }
+    if( this.isready == true){
+        enemy.GetDamage(this.card.attack,this.unitType);
+        this.actcooldown = this.cooldown;
+        this.isready = false;
+        
+            if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
+                if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
+                else this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
+            }
+                
     }
 }
 
 Cooldown(){
 
     this.actcooldown-=1;
+    if(this.actcooldown <= 0) this.isready = true;
 }
 Heal(ally){
     
     if(this.actcooldown <= 0){
-        ally.ReciveHeal(this.card.CardLogic.attack);
+        ally.ReciveHeal(this.card.attack);
         this.actcooldown = this.cooldown;
+        this.isready = false;
     }
 }
 ReciveHeal(n){
+    console.log("mecurfo"+n);
     this.acthealth +=n;
-    if(this.acthealth> this.card.CardLogic.health)
+    if(this.acthealth> this.card.health)
         {
-        this.acthealth = this.card.CardLogic.health;
+        this.acthealth = this.card.health;
     }
+    console.log("cura vida actual = "+ this.acthealth+"/"+ this.card.health)
 }
 
 GetDamage(atq,type){
@@ -132,9 +140,9 @@ GetDamage(atq,type){
     else multi = 1; //QUEMADURA
     
 var daño= (Math.round(atq/this.card.defense)*multi)+1;
-
+console.log("daño vida actual = "+ this.acthealth+"/"+ this.card.health)
 this.acthealth -= daño;
-console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
+//console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){
     this.isalife = false;
     console.log("me muero ");

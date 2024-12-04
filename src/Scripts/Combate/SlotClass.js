@@ -5,18 +5,33 @@ row;
 col;
 unit; //UnitClass
 ocupada = false;
- _texture;
+ _unittexture;
+ _slottexture
  imagen;
 //CONSTRUCTOR
     constructor(scene, x, y,_texture){
         super(scene,x*10,y*5,_texture)
         this.row = x;
         this.col = y;
-        this._texture = _texture;
+        this._unittexture = _texture;
         //console.log("Me construyo" + "\n");
         this.unit = null;
         this.ocupada = false;
-       
+        this.scene.add.existing(this);
+    }
+    Getdamage(){
+        this.setTint(0xffff0000) //color ARGB
+        this.scene.time.addEvent({
+            delay: 700,
+            callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
+        })
+    }Getheal(){
+        console.log("me curabn cambio color")
+        this.setTint(0x0000000) //color ARGB
+        this.scene.time.addEvent({
+            delay: 700,
+            callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
+        })
     }
     GetRow(){
         return this.row;
@@ -30,20 +45,24 @@ ocupada = false;
         return this.ocupada;
     } 
     GetTexture(){
-        return this._texture;
+        console.log(this._unittexture)
+        return this._unittexture;
     }
     //Setea la unidad 
-    SetUnit(unit,t){
+    SetUnit(unit){
         this.unit = unit;
         this.ocupada = true;
-        this._texture =t;
-        console.log(t+" " +this._texture);
+        this._unittexture = unit.unittexture;
+        //console.log(t+" " +this._unittexture);
+        this.setTexture(this._unittexture);
+        this.setScale(0.33,0.33);
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){
         //console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
-           this._texture = null;
+           this._unittexture = null;
+           this.setTexture('MatrixGround');
     }
     //Asigna la tropa pasada a la nueva posición y setea a true en la matriz de booleanos
     SetFull(mat){ //mat representa la posición nueva a seteear, es un slotClass que hay que pasarle
@@ -53,7 +72,7 @@ ocupada = false;
            this.ocupada = false;
            mat.SetUnit(this.unit);
            this.unit = null;
-           this._texture = null;
+           this._unittexture = null;
         }
         else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }

@@ -199,8 +199,7 @@ defeat(){
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			for(let i = 0; i < 6; ++i){
-				console.log(this.battleManager.HavSinergy(i))
-				//si es true activa sinergia si no no hace nada
+				console.log(this.battleManager.ApplySinergy(i));
 			}
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
@@ -218,6 +217,7 @@ defeat(){
 			upperBoton.setVisible(false);
 			this.cronometro.paused=false;
 
+			
 			
 		})
 

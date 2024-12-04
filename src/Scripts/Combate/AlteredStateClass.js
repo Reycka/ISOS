@@ -1,5 +1,5 @@
-import BattleManager from "./BattleManager";
-import UnitClass from "./UnitClass";
+import BattleManager from "./BattleManager.js";
+import UnitClass from "./UnitClass.js";
 
 export default class AlteredStateClass{
 

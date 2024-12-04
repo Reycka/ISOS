@@ -18,7 +18,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 
 		this.load.image('Background','src/Assets/Finales/fondo_socializar.png')
 		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal Heartbeat Main.WAV')
-		this.oleada1 = 1;
+		this.oleada1 = 3;
 	}
 	
 	create() {

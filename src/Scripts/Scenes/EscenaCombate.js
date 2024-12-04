@@ -237,7 +237,7 @@ defeat(){
 					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].texture != null){
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
-						this.mat.mat[i][j].setScale(0.20,0.20);
+						
 					}
 				})
 			}
@@ -265,7 +265,7 @@ defeat(){
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
 						
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
 					}else{
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2');
 					}

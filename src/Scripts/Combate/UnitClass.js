@@ -89,13 +89,15 @@ applyEnemyEffects(unit,alteredStateInstance){
 
 Attack(enemy){
     if( this.isready == true){
-        enemy.GetDamage(this.card.attack,this.unitType);
+        
         this.actcooldown = this.cooldown;
         this.isready = false;
         
             if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
                 if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
                 else this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
+            } else { //ATAQUE DE ENEMIGO
+                enemy.GetDamage(this.card.attack,this.unitType);
             }
                 
     }
@@ -163,7 +165,7 @@ applyBurn(damage,turns){ //Añadimos quemadura si es que la hay a partir de Alte
     this.burn = {damage: damage, turns:turns};
 }
 handleBurn(){ //Hacemos el handleBurn si la hemos añadido en AlteredStateClass
-    if (this.burn && this.burns.turns > 0){
+    if (this.burn && this.burn.turns > 0){
         this.GetDamage(this.burn.damage, "Burn"); //Aplicamos el daño extra de 1
         this.burn.turns--; //Gastamos un turno de daño extra
     } else{

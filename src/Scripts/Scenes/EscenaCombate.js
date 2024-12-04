@@ -41,7 +41,6 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
 
 		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
-
 		//INFANTERÍA PRUEBA
 
 		this.load.image('LA', 'src/Assets/Finales/p1.png');
@@ -238,7 +237,7 @@ defeat(){
 					this.battleManager.Summon(i,j);
 					if(this.mat.mat[i][j].texture != null){
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
-						this.mat.mat[i][j].setScale(0.20,0.20);
+						
 					}
 				})
 			}
@@ -253,9 +252,8 @@ defeat(){
 		pelea.on('pointerup', pointer =>{
 			this.preCombatSound.stop();
 			this.combatSound.play({loop: true})
-			for(let i = 0; i < 6; ++i){
-				//console.log(this.battleManager.HavSinergy(i))
-				//si es true activa sinergia si no no hace nada
+			for(let i = 0; i < 6; i++){
+				this.battleManager.ApplySinergy(i);
 			}
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
@@ -269,7 +267,7 @@ defeat(){
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
 						
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.20,0.20);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
 					}else{
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2');
 					}
@@ -285,6 +283,9 @@ defeat(){
 			posiblesenemigos.setVisible(false);
 			this.enemymatriz.EliminaLista();
 			this.cronometro.paused=false;
+
+			
+			
 		})
 
 		 

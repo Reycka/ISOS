@@ -2,19 +2,20 @@
 //Si hay una unidad en la casilla NO HACE NADA (por el momento)
 //La carta al clickar llama la battleManager y se hace desde la propia escena
 import EnemyMatriz from "./EnemyMatriz.js"
-export default class BattleManager {
-    //PROPIEDADES
-    mat; //matriz que le vamos a pasar
-    card; //Representa la carta seleccionada del inventario
-    _texture;
-    enemymatriz; //Matriz de enemigos que se crea aquí
+import AlteredStateClass from "./AlteredStateClass.js";
+export default class BattleManager{
+   //PROPIEDADES
+   mat; //matriz que le vamos a pasar
+   card; //Representa la carta seleccionada del inventario
+   _texture;
+   enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
    scene;
    auxd;
    auxv;
    target = false;
-   Jeroglificos = new Jeroglifico();
+   jeros = new Jeroglifico();
    //CONSTRUCTORA
    constructor(_mat,_enemymatriz,_scene,){
     this.mat = _mat;
@@ -365,32 +366,24 @@ export default class BattleManager {
                 }
             }
         }
-    }
-    ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
-        for (let i = 0; i < jeros[dios].size(); ++i) {
-            if (this.Jeroglificos.getIsActive(dios, i) == false) return false;
+      }
+    ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+        let Sinergias = [];
+        Sinergias[dios] = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
+
+        for(let i = 0; i < this.jeros[dios]; ++i){
+            if(this.jeros.getIsActive(dios,i) == false)
+            {
+                Sinergias[dios] = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
+                break; //Salimos del bucle porque no hace falta seguir comprobandolo
+            }
         }
-        switch (dios) {
-            case 0: //Sinergia de Osiris Activada
+        
+        // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
+        const alteredStateInstance = new AlteredStateClass();
+        alteredStateInstance.getAlteredState(Sinergias);
 
-                break;
-            case 1: //Sinergia de Ra Activada
-
-                break;
-            case 2: //Sinergia de Anubis Activada
-
-                break;
-            case 3: //Sinergia de Isis Activada
-
-                break;
-            case 4: //Sinergia de Horus Activada
-
-                break;
-            case 5: //Sinergia de Seth Activada
-
-                break;
-        }
-        return true;
+        return alteredStateInstance; //Devolvemos la instancia
     }
 };
 class Jeroglifico {

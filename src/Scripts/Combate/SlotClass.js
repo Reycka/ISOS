@@ -55,6 +55,7 @@ ocupada = false;
         this._unittexture = unit.unittexture;
         //console.log(t+" " +this._unittexture);
         this.setTexture(this._unittexture);
+        this.setScale(0.33,0.33);
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){

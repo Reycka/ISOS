@@ -14,13 +14,15 @@ export default class EnemyMatriz {
   enemies = [];
   card;
   stads;
+  enemycount;
+  texts
   //Constructor
   constructor(_oleada, _scene, _textura,_whichOleada) { //Pasamos la path del archivo a leer
     this.oleada = _oleada;  //Asignamos el valor
     this.scene = _scene;
     this.texture = _textura;
     this.whicholeada = _whichOleada;
-    console.log(_whichOleada);
+    this.enemycount = 0;
   }
   EsribeEnemigo(enemigo,totalenemigos){
     let rep;
@@ -53,7 +55,8 @@ export default class EnemyMatriz {
             enemigo = "APOFIS"
           break;
       }
-      this.scene.add.text(1500,(500 + index * 100),enemigo).setScale(4,4);
+      this.texts[this.enemycount] = this.scene.add.text(1600,(300 + this.enemycount * 100),enemigo).setScale(2,2);
+      this.enemycount++;
     }
   }
     SetOleada(){
@@ -67,6 +70,7 @@ export default class EnemyMatriz {
               this.col = this.oleadaData.Oleadas[this.whicholeada].Columnas;
               let enemies = this.row * this.col;
               let indexactual = 0;
+              this.texts  = [];
               for(let i = 0; i < enemies; i++){
                 this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i];
                 indexactual++;
@@ -76,6 +80,11 @@ export default class EnemyMatriz {
           this.scene.load.start(); 
 
         }
+    }
+    EliminaLista(){
+      for(let i = 0; i < this.enemycount;i++){
+        this.texts[i].setVisible(false);
+      }
     }
     SummonEnemy(){
       let filpos;

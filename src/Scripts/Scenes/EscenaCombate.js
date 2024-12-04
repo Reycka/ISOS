@@ -244,8 +244,8 @@ defeat(){
 			}
 		}
 		//Lista posibles enemigos
-		this.add.image(1700,500,'MatrixGround2').setScale(3,5);
-		this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
+		let listaenemigos = this.add.image(1700,500,'MatrixGround2').setScale(3,5);
+		let posiblesenemigos  = this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
 		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
 		pelea.setScale(0.3,0.3);
@@ -281,6 +281,9 @@ defeat(){
 			card3.setVisible(false);
 			downBoton.setVisible(false);
 			upperBoton.setVisible(false);
+			listaenemigos.setVisible(false);
+			posiblesenemigos.setVisible(false);
+			this.enemymatriz.EliminaLista();
 			this.cronometro.paused=false;
 		})
 

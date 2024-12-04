@@ -14,9 +14,18 @@ class Character {
         this.num = id;
         this.eventNum = 1;
 
+        //Variables para diálogos
+        
+        this.disponible = false;
+        this.cooldown = 0; //solo va de 0 a 1 por ahora
+
+        this.sprite = this.scene.add.sprite(x, y, sprites);
+        this.sprite.visible = false;
+
+
         // Sprite del personaje
-        this.sprite = scene.add.sprite(x, y, sprites);
-        this.sprite.setInteractive({ pixelPerfect: true });
+        
+
 
 
         // Lista de sprites (Lo he llamado expresiones pero también incluirá el sprite de fondo)
@@ -26,9 +35,7 @@ class Character {
         //this.currentExpression = expressions.default; 
         //this.changeExpression(this.currentExpression);
 
-        //Variables para diálogos
         
-        this.disponible = false;
 
         
     }
@@ -40,6 +47,42 @@ class Character {
         this.currentExpression = expression;
     }*/
 
+    switchDisponible() {
+
+        this.disponible = !this.disponible
+        console.log("DisponibleCambio")
+
+        if(this.disponible){
+
+            
+            this.sprite.visible = true;
+            this.sprite.setInteractive({ pixelPerfect: true });
+    
+        }
+
+    }
+
+    volverDisponible() {
+
+        if(this.disponible == false && this.cooldown > 0) {
+
+            this.switchDisponible();
+            this.cooldown = 0;
+            
+            
+
+        }
+        else if(this.disponible == false) {
+            this.cooldown++;
+        }
+
+        console.log("disponible:", this.disponible, "turno:", this.cooldown)
+
+    }
+
+
+    
+
     noInteractive()
     {
         this.sprite.disableInteractive();
@@ -47,8 +90,18 @@ class Character {
 
     centerPosition()
     {
-        this.x = this.sys.game.canvas.width/2-50;
-        this.y = this.sys.game.canvas.height;
+        this.sprite.x = this.scene.sys.game.canvas.width/2-50;
+        this.sprite.y = this.scene.sys.game.canvas.height+500;
+
+        
+
+        console.log(this.x,this.y);
+    }
+
+    originalPosition()
+    {
+        this.sprite.x = this.originalx;
+        this.sprite.y = this.originalY;
     }
 
    

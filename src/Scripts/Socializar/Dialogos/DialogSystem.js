@@ -21,7 +21,7 @@ export default class DialogSystem {
             fontFamily: 'Arial, sans-serif', 
             stroke: '#000', 
             strokeThickness: 4 
-        }).setOrigin(0.5, 0.5);
+        }).setOrigin(0, 0);
 
         this.dialogueBox = this.scene.add.graphics();
         this.dialogueText = this.scene.add.text(0, 0, '', { 
@@ -48,7 +48,7 @@ export default class DialogSystem {
         this.dialogues = eventDialogues.dialogs;
         this.dialogIndex = 0;
 
-        // Muestra la capa desde la escena principal
+        // Muestra la capa oscura desde la escena principal
         this.scene.events.emit('showDialogueBackground');
 
         this.showNextDialogue();

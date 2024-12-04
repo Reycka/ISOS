@@ -148,7 +148,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         // Personaje
         ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width/2 +400, this.sys.game.canvas.height + 500,'Shai',1);
+        ListaPersonajes[0].switchDisponible();
         ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width/2 -400, this.sys.game.canvas.height + 500, 'Shai2',2);
+        ListaPersonajes[1].switchDisponible();
 
         //Personaje1.setInteractive({ pixelPerfect: true });
         //Personaje2.setInteractive({ pixelPerfect: true });
@@ -177,6 +179,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.dialogBackground.setVisible(false);
         });
 
+        
+       
+        
+
 
         // Mostrar dialogos
         ListaPersonajes.forEach(personaje => {
@@ -185,14 +191,65 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 const eventoId = `evento${personaje.num}.${personaje.eventNum}`;  
 			
             if (this.reader.dialogData.Eventos[eventoId]) {
+                
+                
+                stage++;
+                personaje.centerPosition();
+                personaje.switchDisponible();
                 personaje.noInteractive();
+                this.hideAllCharactersExcept(personaje);
                 this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
+
+                console.log(stage," ", personaje.disponible)
+
+
             } else {
                 console.log('Evento no encontrado: ' + eventoId);
             }
                 
             });
         });
+
+        this.events.on('endDialogue',() => { //volver a mostrar personajes
+            this.showAllCharacters();
+            
+            
+        });
+
+        this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla
+            ListaPersonajes.forEach((personaje) => {
+                if (personaje !== activeCharacter) {
+                    personaje.sprite.setVisible(false);
+                }
+            });
+        };
+
+        this.showAllCharacters = () => {
+            ListaPersonajes.forEach((personaje) => {
+
+                personaje.volverDisponible(); //cooldown de personaje
+
+                if(personaje.disponible == true && stage <3){
+
+                    console.log("Personaje Disponible");
+
+                    
+                    personaje.originalPosition();
+                    personaje.sprite.setVisible(true);
+
+                }
+                else{
+
+                    personaje.sprite.setVisible(false);
+
+                }
+
+                console.log(stage);
+
+
+                
+            });
+        };
 
 
 
@@ -219,6 +276,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		})
 
     }
+
+   
 
 
 

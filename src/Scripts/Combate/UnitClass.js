@@ -59,15 +59,15 @@ GetIsaHealer(){
 //}
 
 //UPDATE DE TODAS LAS TROPAS
-Update(unit,alteredStateInstance){
+Update(unit){
     if (this.card.iscard){
-        this.applyAllyEffects(unit,alteredStateInstance);
+        this.applyAllyEffects(unit);
     } else {
-        this.applyEnemyEffects(unit,alteredStateInstance);
+        this.applyEnemyEffects(unit);
     }
 }
 //ACCIONES DE TROPAS ALIADAS
-applyAllyEffects(unit,alteredStateInstance){
+applyAllyEffects(unit){
     if (this.isahealer){
         this.Heal(unit);
     } else {
@@ -77,12 +77,19 @@ applyAllyEffects(unit,alteredStateInstance){
     this.handlePeriodicHeal();
     this.tryRevive();
 }
-applyEnemyEffects(unit,alteredStateInstance){
-    if (!this.isAttackedMissed()){
-        this.Attack(unit);
+applyEnemyEffects(unit){
+    if (this.isahealer){
+        if (!this.isAttackedMissed()){
+            this.Heal(unit);
+        }
+        else console.log("Fallo de curación enemigo");
     } else {
-        console.log("Fallo de ataque enemigo");
+        if (!this.isAttackedMissed()){
+            this.Attack(unit);
+        } 
+        else console.log("Fallo de ataque enemigo");
     }
+
 
     this.handleBurn();
 }

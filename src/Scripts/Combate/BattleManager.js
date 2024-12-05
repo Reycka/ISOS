@@ -117,10 +117,10 @@ export default class BattleManager{
             this.auxd = true;
             for (var i = 0; i < this.mat.row; i++) {
                 for (var j = 0; j < this.mat.col; j++) {
-
+                    this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
                         if (this.mat.mat[i][j].GetUnit().isready) {
-                            this.target = false;
+                           
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
                                 console.log("entro a curar y eso");
                                 if ((i - 1) != -1) {
@@ -151,10 +151,11 @@ export default class BattleManager{
                                         this.mat.mat[i][j+1].Getheal();
                                     }
                                 }
+                              
                                 if (!this.target) {
                                     this.encontrado = false;
                                     this.indiceaux = 0;
-                                    while (this.indiceauxi < this.mat.row && !this.encontrado) {
+                                    while (this.indiceaux < this.mat.row && !this.encontrado) {
                                         if (this.mat.mat[indiceaux][j].GetState()) {
                                             if (this.mat.mat[indiceaux][j - 1].GetUnit() && j >= 0) {
                                                 var a = this.mat.mat[i][j].GetUnit();
@@ -216,11 +217,12 @@ export default class BattleManager{
                                         }
                                     }
                                 }
-                                else {
+
+                                if(this.target == false) {
                                     this.encontrado = false;
                                     this.indiceaux = 0;
-                                    console.log("hola"+this.encontrado)
-                                    while (this.indiceauxi < this.mat.col && !this.encontrado) {
+                                  
+                                    while (this.indiceaux < 2&& !this.encontrado) {
 
                                         if (this.mat.mat[i][this.indiceaux].GetState()) {
                                             if (this.enemymatriz.Enemymat.mat[i - 1][this.indiceaux].GetUnit() && i >= 0) {
@@ -228,6 +230,7 @@ export default class BattleManager{
                                                 this.mat.mat[i][j].SetFree();
                                                 this.mat.mat[i][this.indiceaux].SetUnit(a);
                                                     console.log("me recoloco de "+j+" a "+ this.indiceaux)
+                                                    this.encontrado = true;
 
                                             }
                                             else if (this.enemymatriz.Enemymat.mat[i][this.indiceaux].GetUnit()) {
@@ -235,18 +238,20 @@ export default class BattleManager{
                                                 this.mat.mat[i][j].SetFree();
                                                 this.mat.mat[i][this.indiceaux].SetUnit(a);
                                                 console.log("me recoloco de "+j+" a "+ this.indiceaux)
+                                                this.encontrado = true;
                                             }
                                             else if (this.enemymatriz.Enemymat.mat[i + 1][this.indiceaux].GetUnit() && i < this.mat.row) {
                                                 var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
                                                 this.mat.mat[i][j].SetFree();
                                                 this.mat.mat[i][this.indiceaux].SetUnit(a);
                                                 console.log("me recoloco de "+j+" a "+ this.indiceaux)
+                                                this.encontrado = true;
                                             }
                                             else indiceaux++;
                                         }
                                     }
                                 }
-
+                                
 
                             }
                         }

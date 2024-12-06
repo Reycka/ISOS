@@ -37,31 +37,6 @@ export default class BattleManager{
     console.log(this._texture);
    }
    //Método encargado de summonear la tropa en la casilla
-   Summon(posX,posY){
-
-   // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
-       if(this.card != null && this.mat.mat[posX][posY].ocupada==false){
-    
-           this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-           console.log(this.mat.mat[posX][posY])
-            this.card = null;
-            this._texture = null;
-     }
-        
-       /* if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
-            
-            this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
-        if(this.card != null && !this.mat.mat[posX][posY].GetState()){
-            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
-            this.SetJeroglifico();
-
-            this.card = null;
-            this._texture = null;
-        }       
-
-   }*/
-}
-
    GetVictory(){
     if(this.victory == true){
         return true;
@@ -79,7 +54,6 @@ export default class BattleManager{
     }
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {
-
         // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
 
@@ -88,19 +62,6 @@ export default class BattleManager{
             this.card = null;
             this._texture = null;
         }
-
-        /* if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
-             
-             this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
-         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
-             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
-             this.SetJeroglifico();
- 
-             this.card = null;
-             this._texture = null;
-         }       
- 
-    }*/
     }
     GetVictory() {
         if (this.victory == true) {

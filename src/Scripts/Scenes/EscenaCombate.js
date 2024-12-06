@@ -111,6 +111,7 @@ defeat(){
 	this.finaltext.setText("HAS PERDIDO");
 }
 	create() {
+		
 		this.cronometro = this.time.addEvent({
             delay: 1000, // 1 segundos
 			loop: true,
@@ -204,6 +205,8 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
+		let listaenemigos = this.add.image(1700,500,'MatrixGround2').setScale(3,5);
+		let posiblesenemigos  = this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;
@@ -247,9 +250,6 @@ defeat(){
 				})
 			}
 		}
-		//Lista posibles enemigos
-		let listaenemigos = this.add.image(1700,500,'MatrixGround2').setScale(3,5);
-		let posiblesenemigos  = this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
 		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
 		pelea.setScale(0.3,0.3);
@@ -279,7 +279,7 @@ defeat(){
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
 					}else{
-						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2');
+						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2').setScale(0.85,0.85);
 					}
 				}
 			}

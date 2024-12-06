@@ -71,8 +71,8 @@ export default class CardLogic {
         //infanteria
         else if (rnd == 3) {
             
-            this.health = 8;
-            this.attack = 12;
+            this.health = 1;
+            this.attack = 1;
             this.speed = 15;
             this.defense = 2;
             this.unit_type = "G";
@@ -84,8 +84,8 @@ export default class CardLogic {
         //Magos de ataque
         else if (rnd == 4) {
             
-            this.health = 9;
-            this.attack = 15;
+            this.health = 1;
+            this.attack = 1;
             this.speed = 11;
             this.defense = 3;
             this.unit_type = "M";

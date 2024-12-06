@@ -368,11 +368,10 @@ export default class BattleManager{
     SetJeroglifico() {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                this.jeros.setIsActive(i, j, true);
-                //if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
-                    //console.log("VALOR CARTA" + this.card.stads.letter);
-                    //this.jeros.setIsActive(i, j, true);
-                //}
+                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
+                    console.log("ACTIVAMOS JEROGLIFICO");
+                    this.jeros.setIsActive(i, j, true);
+                }
             }
         }
       }

@@ -94,7 +94,7 @@ export default class EnemyStads {
         //Boss
         else if (unittype == "B") {
            
-            this.health = 1000;
+            this.health = 1;
             this.attack = 15;
             this.speed = 7;
             this.defense = 25;

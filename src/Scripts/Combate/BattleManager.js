@@ -1,7 +1,6 @@
 //Tiene que al pillar una carta del inventario se quede como carta seleccionada y que si se clica en una SlotClass instancie la unidad hay
 //Si hay una unidad en la casilla NO HACE NADA (por el momento)
 //La carta al clickar llama la battleManager y se hace desde la propia escena
-import EnemyMatriz from "./EnemyMatriz.js"
 import AlteredStateClass from "./AlteredStateClass.js";
 export default class BattleManager {
     //PROPIEDADES
@@ -11,12 +10,13 @@ export default class BattleManager {
     enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
-    scene;
-    auxd;
+   scene;
+   auxd;
+   auxv;
+   target = false;
+   jeros = new Jeroglifico();
     uxunitchange;
-    auxv;
-    target = false;
-    jeros = new Jeroglifico();
+
     //CONSTRUCTORA
     constructor(_mat, _enemymatriz, _scene,) {
         this.mat = _mat;
@@ -26,6 +26,8 @@ export default class BattleManager {
         this.enemymatriz = _enemymatriz;
         this.victory = false;
         this.defeat = false
+    this.AlteredStates = new AlteredStateClass();
+    this.numCards = 0;
     }
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager
@@ -42,58 +44,19 @@ export default class BattleManager {
 
         // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
-
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            console.log(this.mat.mat[posX][posY])
-            this.card = null;
-            this._texture = null;
-        }
-
-        /* if(this.card != null && this.mat.mat[posX][posY].ocupada== false){
-             
-             this.mat.mat[posX][posY].SetUnit((this.card.SummonUnit(this._texture)),this._texture);
-         if(this.card != null && !this.mat.mat[posX][posY].GetState()){
-             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit(this.texture));
-             this.SetJeroglifico();
- 
-             this.card = null;
-             this._texture = null;
-         }       
- 
-    }*/
-    }
-
-    GetVictory() {
-        if (this.victory == true) {
-            return true;
-        }
-    }
-    //MÉTODOS
-    ///Método encargado asignar la carta seleccionada del inventario al battleManager
-    SetCard(_card, id) {
-        this.card = _card;
-        this._texture = id;
-        this.texture = id;
-        console.log("its me");
-        console.log(this.card);
-        console.log(this._texture);
-    }
-    //Método encargado de summonear la tropa en la casilla
-    Summon(posX, posY) {
-        // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
-        if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
-
-            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            console.log(this.mat.mat[posX][posY])
+            this.SetJeroglifico();
+            //console.log(this.sinergys);
+            console.log(this.mat.mat[posX][posY]);
             this.card = null;
             this._texture = null;
         }
     }
     GetVictory() {
-        if (this.victory == true) {
-            return true;
-        }
-        else return false;
+            if (this.victory == true) {
+                return true;
+            }
+            else return false;
     }
     Battle() {
 
@@ -274,7 +237,9 @@ export default class BattleManager {
             //bucle matriz enemigos
             for (var i = 0; i < this.enemymatriz.Enemymat.row; i++) {
                 for (var j = 0; j < this.enemymatriz.Enemymat.col; j++) {
-
+                    if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().card.unit_type == "B" && this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false){
+                        this.victory = true;
+                    }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
                         if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isready) {
                             this.target = false;
@@ -350,6 +315,7 @@ export default class BattleManager {
 
                         } this.enemymatriz.Enemymat.mat[i][j].GetUnit().Cooldown();
                         this.auxv = false;
+                        if(this.victory == true) this.auxv = true;
                     }
 
                 }
@@ -373,40 +339,48 @@ export default class BattleManager {
     }
     SetJeroglifico() {
         for (let i = 0; i < 6; ++i) {
-            for (let j = 0; j < 5; ++j) {
-                if (this.card.stads.letter == this.Jeroglificos.getValue(i, j) && this.Jeroglificos.getValue(i, j) != undefined && this.Jeroglificos.getIsActive(i, j) == false) {
-                    //console.log(this.card.stads.letter);
-                    this.Jeroglificos.setIsActive(i, j, true);
+            for (let j = 0; j < this.jeros.getSize(i); ++j) {
+                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
+                    console.log("ACTIVAMOS JEROGLIFICO");
+                    this.jeros.setIsActive(i, j, true);
                 }
             }
         }
-    }
-    ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
-        let Sinergias = [];
-        Sinergias[dios] = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
+      }
+    ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+        let Sinergias = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        for (let i = 0; i < this.jeros[dios]; ++i) {
-            if (this.jeros.getIsActive(dios, i) == false) {
-                Sinergias[dios] = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
+        //console.log(this.jeros[dios]);
+
+        for(let i = 0; i < this.jeros.getSize(dios); ++i){
+            if(this.jeros.getIsActive(dios,i) == false)
+            {
+                Sinergias = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
         }
 
+        //if (!Sinergias) this.AlteredStates.applyAlteredStates(dios);
+        
         // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
-        const alteredStateInstance = new AlteredStateClass();
-        alteredStateInstance.getAlteredState(Sinergias);
+        //const alteredStateInstance = new AlteredStateClass();
+        //alteredStateInstance.getAlteredState(this.Sinergias);
 
-        return alteredStateInstance; //Devolvemos la instancia
+        return Sinergias; //Devolvemos si es verdadero o falso
+    }
+    getJeros(){
+        return this.jeros;
     }
 };
 class Jeroglifico {
     jeros = [];
+    tamaño = [3,5,5,4,3,4];
     /*  jeros[0] --> Osiris (3)
       jeros[1] --> Ra (5)
       jeros[2] --> Anubis (5)
       jeros[3] --> Isis (4)
       jeros[4] --> Horus (3)
-      jeros[5] --> Seth (5)
+      jeros[5] --> Seth (4)
     */
     constructor() {
         // Inicializar los arrays con objetos que tienen propiedades value e isActive
@@ -439,9 +413,15 @@ class Jeroglifico {
         return undefined;
     }
 
-    setIsActive(i, j, isActive) {
-        if (this.jeros[i] && this.jeros[i][j]) {
-            this.jeros[i][j].isActive = isActive;
-        }
+    setIsActive(i, j, _isActive) {
+        //if (this.jeros[i] && this.jeros[i][j]) {
+        console.log(  "ANTES" + this.jeros[i][j].isActive);
+            this.jeros[i][j].isActive = _isActive;
+            console.log("Después" +  this.jeros[i][j].isActive);
+        //}
+    }
+
+    getSize(i){
+        return this.tamaño[i];
     }
 }

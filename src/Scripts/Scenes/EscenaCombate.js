@@ -5,6 +5,8 @@ import Matriz from './../Combate/Matriz.js'
 import EnemyMatriz from './../Combate/EnemyMatriz.js'
 import SlotClass from '../Combate/SlotClass.js'
 import BattleManager from '../Combate/BattleManager.js'
+import AlteredState from '../Combate/AlteredStateClass.js'
+import UnitClass from '../Combate/UnitClass.js'
 export default class EscenaCombate extends Phaser.Scene {
 	/**
 	* Escena principal.
@@ -235,6 +237,7 @@ defeat(){
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
+
 					if(this.mat.mat[i][j].texture != null){
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
 						
@@ -252,9 +255,8 @@ defeat(){
 		pelea.on('pointerup', pointer =>{
 			this.preCombatSound.stop();
 			this.combatSound.play({loop: true})
-			for(let i = 0; i < 6; i++){
-				this.battleManager.ApplySinergy(i);
-			}
+			this.AlteredState = new AlteredState();
+
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
@@ -273,6 +275,18 @@ defeat(){
 					}
 				}
 			}
+
+			for(let i = 0; i < 6; i++){
+				if (this.battleManager.ApplySinergy(i)) {
+					for (let j = 0; j < this.mat.row; j++){
+						for (let k = 0; k < this.mat.col; k++){
+						this.AlteredState.applyAlteredStates(i,this.mat.mat[j][k].GetUnit()); //APLICAMOS ESTADOS ALIADOS
+						this.AlteredState.applyAlteredStates(i,this.battleManager.enemymatriz.Enemymat.mat[j][k].GetUnit()); //APLICAMOS ESTADOS ENEMIGOS
+						}
+					}
+				}
+			}
+
 			pelea.setVisible(false);
 			card1.setVisible(false);
 			card2.setVisible(false);

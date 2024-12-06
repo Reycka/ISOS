@@ -70,7 +70,10 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
 		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
 		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+		//SFX
 		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
 	}
 	cronometro;
 	GameLoop()
@@ -90,8 +93,8 @@ export default class EscenaCombate extends Phaser.Scene {
 	}
 }
 Win(){
-	this.combatSound.stop();
 	if(this.oleada < 5 || this.oleada == 7){
+		this.combatSound.stop();
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
 		this.finaltext.setVisible(true);
@@ -123,7 +126,6 @@ defeat(){
 				this.GameLoop()
             },})
 		this.preCombatSound = this.sound.add('PreCombate');
-		this.preCombatSound.play({loop: true});
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
@@ -219,21 +221,30 @@ defeat(){
 		if(this.oleada == 1){
 			fil = 2;
 			colpos = 480;
+			this.preCombatSound.play({loop: true});
 			this.combatSound = this.sound.add('Combate');
 		}
 		else if(this.oleada == 2){
 			fil = 4;
 			colpos = 320;
+			this.preCombatSound.play({loop: true});
 			this.combatSound = this.sound.add('Combate');
 		}
-		else if(this.oleada >= 5){
+		else if(this.oleada == 5){
 			fil = 6;
 			colpos = 160;
+			this.preCombatSound.play({loop: true});
 			this.combatSound = this.sound.add('CombateBoss');
+		}
+		else if(this.oleada > 5){
+			fil = 6;
+			colpos = 160;
+			//this.combatSound = this.sound.add('CombateBoss');
 		}
 		else{
 			fil = 6;
 			colpos = 160;
+			this.preCombatSound.play({loop: true});
 			this.combatSound = this.sound.add('Combate');
 		}
 		this.mat = new Matriz(fil,col,this, 'MatrixGround',false,colpos);
@@ -259,7 +270,7 @@ defeat(){
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			this.preCombatSound.stop();
-			this.combatSound.play({loop: true})
+			if(this.oleada <= 5)this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);
 			}

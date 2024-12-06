@@ -5,6 +5,7 @@ export default class AffinityRegister{
     Horus;
     Osiris;
     Seth;
+    rnd2;
 
     constructor(){
         this.Ra = 1;
@@ -14,6 +15,7 @@ export default class AffinityRegister{
         this.Osiris = 1;
         this.Seth = 1;
         this.numtotalpnt = 6;
+        this.rnd2 = 0;
     }
 
     //aumentos o disminuciones de los valores de afinidad
@@ -63,44 +65,55 @@ export default class AffinityRegister{
         return this.Seth;
     }
     GetRandomLetter(){
-        letra = "";
-        aux;
+        
+        var aux = 0;
         //primer random el dios
         var rnd = Math.floor(Math.random() * this.numtotalpnt);
+        console.log("elrandom"+rnd);
         if(rnd<this.Ra){
-            var rnd2 = Math.floor(Math.random() * 3);
-            return rnd2;
+             this.rnd2 = Math.floor(Math.random() * 3);
+             console.log("elrandomaaa "+this.rnd2);
+            return this.rnd2;
         } 
         aux +=this.Ra;
-        if(rnd>aux && n<this.Isis){
-            var rnd2 = Math.floor(Math.random() * 5);
-            return (2+rnd2)
+        if(rnd>aux-1 && rnd<this.Isis+aux){
+            this.rnd2 = Math.floor(Math.random() * 5);
+            this.rnd2 += 2
+            console.log("elrandomaaa "+this.rnd2);
+            return this.rnd2;
             
         }
         aux += this.Isis;
-        if(rnd>aux && n<this.Horus){
-            var rnd2 = Math.floor(Math.random() * 4);
-            rnd2 += 13;
-            if (rnd2 == 15) rnd2 = 3;
-            return rnd2;
+        if(rnd>aux-1 && rnd<this.Horus+aux){
+            this.rnd2 = Math.floor(Math.random() * 4);
+            this.rnd2 += 13;
+            if (this.rnd2 == 15) this.rnd2 = 3;
+            console.log("elrandomaaa "+this.rnd2);
+            return this.rnd2;
 
         }  aux += this.Horus;
-        if(rnd>aux && n<this.Anubis){
-            var rnd2 = Math.floor(Math.random() * 5);
-            return (6+rnd2)
+        if(rnd>aux-1 && rnd<this.Anubis+aux){
+            this.rnd2 = Math.floor(Math.random() * 5);
+            this.rnd2 += 6;
+            console.log("elrandomaaa "+this.rnd2);
+            return this.rnd2;
         }
         aux += this.Anubis
       
-        if(rnd>aux && n<this.Osiris){
-            var rnd2 = Math.floor(Math.random() * 4);
-                if(rnd2 == 13) rnd2 =1;
-                if (rnd2 == 14) rnd2 =15;
-                return rnd2;
+        if(rnd>aux-1 && rnd<this.Osiris+aux){
+            this.rnd2 = Math.floor(Math.random() * 4);
+                if(this.rnd2 == 13) this.rnd2 =1;
+                if (this.rnd2 == 14) this.rnd2 =15;
+                console.log("elrandomaaa "+this.rnd2);
+                return this.rnd2;
 
         }  aux += this.Osiris
-        if(rnd>aux && n<this.Seth){
-            var rnd2 = Math.floor(Math.random() * 4);
-            return (rnd2+15)
+        if(rnd>aux-1 && rnd<this.Seth+aux){
+            this.rnd2 = Math.floor(Math.random() * 4);
+            this.rnd2 += 15;
+            console.log("elrandomaaa "+this.rnd2);
+            return this.rnd2;
         }  aux += this.Seth
+        
     }
 }

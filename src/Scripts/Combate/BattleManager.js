@@ -193,8 +193,15 @@ export default class BattleManager {
                                                 this.encontrado = true;
                                                 this.auxunitchange = this.mat.mat[i][j];
                                                 
-                                                this.mat.mat[i][j].SetFree();
+                                                
                                                 this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+
+                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
+                                                this.mat.mat[i][this.indiceaux].ocupada = true;
+                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
+                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
+                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
+                                        
                                                 this.mat.mat[i][j].SetFree();
                                               
                                                 
@@ -202,9 +209,15 @@ export default class BattleManager {
                                             }
                                             else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j].GetUnit()) {
                                                 this.encontrado = true;
-                                                this.auxunitchange = this.mat.mat[i][j];
-                                                
+                                                this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
                                                 this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+
+                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
+                                                this.mat.mat[i][this.indiceaux].ocupada = true;
+                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
+                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
+                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
+                                        
                                                 this.mat.mat[i][j].SetFree();
                                               
                                                
@@ -214,7 +227,13 @@ export default class BattleManager {
                                                 this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
                                                 
                                                 this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
-                                                
+
+                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
+                                                this.mat.mat[i][this.indiceaux].ocupada = true;
+                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
+                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
+                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
+                                        
                                                 this.mat.mat[i][j].SetFree();
                                                
                                             }

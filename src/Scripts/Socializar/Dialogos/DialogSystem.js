@@ -102,7 +102,7 @@ export default class DialogSystem {
                 options.forEach((option, index) => {
                     const buttonText = `→ ${option.response}`;
                     const optionXPosition = this.centerX + 600;
-                    const optionYPosition = dialogueBoxYPosition - 250 + (index * 85);
+                    const optionYPosition = dialogueBoxYPosition - 250 + (index * 100);
 
                     const button = this.scene.add.text(optionXPosition, optionYPosition, buttonText, {
                         font: '30px Arial, sans-serif',
@@ -123,6 +123,9 @@ export default class DialogSystem {
 
                     this.optionButtons.push(button);
                 });
+
+                
+                
             } else {
                 this.hasOptions = false;
             }

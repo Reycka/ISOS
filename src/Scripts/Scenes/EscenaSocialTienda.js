@@ -109,6 +109,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
         botonDch.setPosition(width - botonDch.width / 4, height / 2);
 
+        if(this.inventory.day == 1)
+        {
+                botonDch.setVisible(false);
+        }
+
         var auxcard;
         //El desplazamiento es a 4/5 de la pantalla cuando nos posicionamos en el lado derecho
         //const desplazamiento = 5760 - 5760 / 5;
@@ -137,9 +142,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn = this.add.image(this.sys.game.canvas.width - 50, 50, 'batalla')
         this.battlebtn.setScale(0.2, 0.2);
         this.battlebtn.setInteractive();
+        this.battlebtn.setVisible(false);
         this.battlebtn.on('pointerup', pointer => {
             this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
-            this.battlebtn.setVisible(false);
+            
         })
 
             botonIzq.on('pointerdown', pointer => {
@@ -233,10 +239,26 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             });
 
             this.events.on('endDialogue', () => { //volver a mostrar personajes
+                this.UpdateOfrendasText();
+                if(this.inventory.day == 1 && stage==1)
+
+                    {
+                        botonDch.setVisible(true); //para el tutorial
+                        const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
+                        console.log(this.cameras.main.scrollY, desplazamiento);
+                        this.cameras.main.pan(
+                            nuevoScrollX, this.cameras.main.scrollY, velocitypan
+                        );
+                        console.log(this.cameras.main.scrollX);
+                        this.socialbacksound.stop();
+                        this.shopbacksound.play({ loop: true });
+                    }
+                    
                 this.showAllCharacters();
                 if (stage === 3) {
                     this.battlebtn.setVisible(true);
                 }
+                
             });
 
             this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla

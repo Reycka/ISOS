@@ -2,7 +2,7 @@ import CardLogic from "./CardLogic.js";
 import CardClass from "./CardClass.js";
 import AffinityRegister from "./AffinityRegister.js";
 export default class Inventory{
-    day = 0;
+    day = 1;
     numgift;
     numcards;
     listCardlogic = [];
@@ -11,7 +11,7 @@ export default class Inventory{
     constructor(){
         this.numgift = 0;
         this.numcards = 0;
-        this.day = 0;
+        this.day = 1;
         this.affreg = new AffinityRegister();
         
     }

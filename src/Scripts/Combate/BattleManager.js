@@ -27,21 +27,6 @@ export default class BattleManager{
     this.defeat = false
    }
    //MÉTODOS
-   ///Método encargado asignar la carta seleccionada del inventario al battleManager
-   SetCard(_card,id){
-    this.card = _card;
-    this._texture = id;
-    this.texture = id;
-    console.log("its me");
-    console.log(this.card);
-    console.log(this._texture);
-   }
-   //Método encargado de summonear la tropa en la casilla
-   GetVictory(){
-    if(this.victory == true){
-        return true;
-    }
-}
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager
     SetCard(_card, id) {
@@ -64,10 +49,10 @@ export default class BattleManager{
         }
     }
     GetVictory() {
-        if (this.victory == true) {
-            return true;
-        }
-        else return false;
+            if (this.victory == true) {
+                return true;
+            }
+            else return false;
     }
     Battle() {
 
@@ -226,7 +211,9 @@ export default class BattleManager{
             //bucle matriz enemigos
             for (var i = 0; i < this.enemymatriz.Enemymat.row; i++) {
                 for (var j = 0; j < this.enemymatriz.Enemymat.col; j++) {
-
+                    if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().card.unit_type == "B" && this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false){
+                        this.victory = true;
+                    }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
                         if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isready) {
                             this.target = false;
@@ -302,6 +289,7 @@ export default class BattleManager{
                             
                         } this.enemymatriz.Enemymat.mat[i][j].GetUnit().Cooldown();
                         this.auxv = false;
+                        if(this.victory == true) this.auxv = true;
                     }
 
                 }

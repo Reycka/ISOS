@@ -98,7 +98,7 @@ Win(){
 		this.finaltext.setText("HAS GANADO");
 	}
 	else{
-		this.oleada++;
+		this.oleada = this.oleada + 1;
 		this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
 	}
 }

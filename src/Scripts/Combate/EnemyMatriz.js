@@ -16,6 +16,7 @@ export default class EnemyMatriz {
   stads;
   enemycount;
   texts
+  isABoss;
   //Constructor
   constructor(_oleada, _scene, _textura,_whichOleada) { //Pasamos la path del archivo a leer
     this.oleada = _oleada;  //Asignamos el valor
@@ -23,9 +24,10 @@ export default class EnemyMatriz {
     this.texture = _textura;
     this.whicholeada = _whichOleada;
     this.enemycount = 0;
+    this.isABoss = false;
   }
   EsribeEnemigo(enemigo,totalenemigos){
-    let rep;
+    let rep = false;
     let index = 0;
     while(!rep && index < totalenemigos - 1){
       if(this.enemies[index] == enemigo) rep = true;
@@ -51,9 +53,6 @@ export default class EnemyMatriz {
         case 'H':
             enemigo = "CURANDERO"
           break;
-        case 'B':
-            enemigo = ""
-          break;
       }
       this.texts[this.enemycount] = this.scene.add.text(1600,(300 + this.enemycount * 100),enemigo).setScale(2,2);
       this.enemycount++;
@@ -74,7 +73,13 @@ export default class EnemyMatriz {
               for(let i = 0; i < enemies; i++){
                 this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i];
                 indexactual++;
-                this.EsribeEnemigo(this.enemies[i],indexactual);
+                if(this.enemies[i] != "B"){
+                  console.log("ESCRIBE ENEMIGO");
+                  this.EsribeEnemigo(this.enemies[i],indexactual);
+                }
+                else{
+                  this.isABoss = true;
+                }
               }
           });
           this.scene.load.start(); 
@@ -93,7 +98,34 @@ export default class EnemyMatriz {
       else filpos = 160;
           this.Enemymat = new Matriz(this.row,this.col,this.scene,'MatrixGround2',true,filpos); //Creamos la matriz
           var totalenem = 0;
-          for(let i = 0; i < this.row; ++i){
+          if(this.isABoss){
+            let boss = null;
+            for(let i = 0; i < this.row; ++i){
+              for(let j = 0; j < this.col; ++j){
+                  if(this.enemies[totalenem] == "B" && boss == null){
+                    this.stads = new EnemyStads(this.enemies[totalenem]);
+                    this.texture = this.stads.unit_type; 
+                    this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
+                    this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
+                    totalenem++;
+                    boss = this.Enemymat.mat[i][j].GetUnit();
+                  }
+                  else if(this.enemies[totalenem] == "B"){
+                    this.Enemymat.mat[i][j].SetUnit(boss);
+                    totalenem++;
+                  }
+                  else{
+                    this.stads = new EnemyStads(this.enemies[totalenem]);
+                    this.texture = this.stads.unit_type; 
+                    this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
+                    this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
+                    totalenem++;
+                  }
+              }
+          }
+          }
+          else{
+            for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){
                   this.stads = new EnemyStads(this.enemies[totalenem]);
                   this.texture = this.stads.unit_type; 
@@ -101,6 +133,7 @@ export default class EnemyMatriz {
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
                   totalenem++;
                   }
+            }
           }
     }
   }

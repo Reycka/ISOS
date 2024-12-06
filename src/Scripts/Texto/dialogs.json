@@ -37,8 +37,10 @@
         "evento1.2": {
             "dialogs": [
                 {},
-                { "character": "Eshe", "text": "Parece que nuestra idea ha funcionado." },
-                { "character": "Eshe", "text": "No ha sido demasiado complicado encontrar a gente que quisiera luchar contra La Serpiente." },
+                { "character": "Shai", "text": "Parece que tu idea ha funcionado, Eshe." },
+                { "character": "Shai", "text": "Sé que no eres realmente parte de este templo, pero aprecio tu ayuda." },
+                { "character": "Eshe", "text": "Lo hago por mi hermano." },
+                { "character": "Eshe", "text": "Además, no ha sido demasiado complicado encontrar a gente que quisiera luchar contra La Serpiente. " },
                 { "character": "Shai", "text": "No es de extrañar." },
                 { "character": "Shai", "text": "Muchos de ellos han perdido su hogar por culpa de los ataques." },
                 { "character": "Tarik", "text": "Ojalá fuese su hogar lo único que han perdido." },

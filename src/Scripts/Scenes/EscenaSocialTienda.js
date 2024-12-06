@@ -222,7 +222,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             // Mostrar dialogos
             ListaPersonajes.forEach(personaje => {
                 personaje.sprite.on('pointerup', () => {
-                    
+
                     this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
 
                     const eventoId = `evento${personaje.num}.${personaje.eventNum}`;
@@ -240,6 +240,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);
 
                         //console.log(stage, " ", personaje.disponible)
+                        personaje.eventNum++;
+
+                        console.log(personaje.eventNum)
 
 
                     } else {

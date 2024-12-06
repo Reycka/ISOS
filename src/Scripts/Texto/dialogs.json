@@ -1,24 +1,6 @@
 {
     "Eventos": {
         
-        "prueba": {
-            "dialogs": [
-                { "character": "Shai", "text": "Bienvenido a mi templo." },
-                { "character": "Shai", "text": "Mi nombre es Shai." },
-                {
-                    "character": "Shai",
-                    "text": "Estás invitado a quedarte hasta que los ataques de Apofis cesen.",
-                    "options": [
-                        { "response": "Sería bueno tener un sitio donde dormir", "gain":0 },
-                        { "response": "Prefiero seguir mi camino", "gain": -1 },
-                        { "response": "Me gustaría descansar un rato", "gain": 1 }
-                    ]
-                },
-                {},
-                { "character": "Shai", "text": "Lo que prefieras." },
-                { "character": "Shai", "text": "Que tengas un buen día." }
-            ]
-        },
         "evento1.1": {
             
             "dialogs": [
@@ -76,6 +58,19 @@
                 { "character": "Eshe", "text": "Es mejor ser precavido." },
                 { "character": "Shai", "text": "Tu hermana tiene razón, Tarik." },
                 { "character": "Tarik", "text": "Supongo que sí…." }
+            ]
+        },
+        "evento2.1": {
+            
+            "dialogs": [
+                { "character": "Tarik", "text": "¡Shai! ¡Estás aquí! Menos mal." },
+                { "character": "Shai", "text": "¿Qué sucede Tarik?" },
+                { "character": "Tarik", "text": "Es La Serpiente, cada vez se acerca más." },
+                { "character": "Tarik", "text": "Ha atacado un asentamiento cercano esta noche." },
+                { "character": "Tarik", "text": "Maldita Nepai." },
+                { "character": "Shai", "text": "¿Te refieres a Apofis?" },
+                { "character": "Shai", "text": "¿Cómo de cerca estamos hablando?" }
+               
             ]
         }
        

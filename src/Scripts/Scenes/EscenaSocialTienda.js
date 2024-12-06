@@ -1,8 +1,10 @@
 //IMPORT GATOTIENDA
 import ReadDialog from './../Socializar/Dialogos/ReadDialog.js';
 import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
+import Character from '../Socializar/Dialogos/Characters.js';
 import Inventory from './../Comunes/Inventory.js'
 import CardClass from '../Comunes/CardClass.js';
+
 
 
 
@@ -40,8 +42,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 		this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
 
-		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
+        //Imagenes personajes
+
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
+        this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
+
+		this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png',{frameWidth: 3763/6, frameHeight: 882}); 
         this.load.image('batalla','src/Assets/Finales/boton_batalla.png')
         this.load.audio('SocialSound','src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
         this.load.audio('TiendaSound','src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
@@ -53,9 +59,14 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         ('Ofrendas: '+this.inventory.numgift)
     }
 	create() {
+
         this.socialbacksound = this.sound.add('SocialSound');
         this.shopbacksound = this.sound.add('TiendaSound');
         this.socialbacksound.play({loop:true});
+
+        //Etapa del día 
+        var stage = 0;
+
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
         //Aplicamos funciones de lo que importemos en una variable
@@ -146,9 +157,16 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         //PARTE SOCIALIZAR
 
+        var ListaPersonajes = [];
+
         // Personaje
-        var PersonajeP = this.add.image(this.sys.game.canvas.width/2-50, this.sys.game.canvas.height + 500, 'Shai');
-        PersonajeP.setInteractive({ pixelPerfect: true });
+        ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width/2 +400, this.sys.game.canvas.height + 500,'Shai',1);
+        ListaPersonajes[0].switchDisponible();
+        ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width/2 -400, this.sys.game.canvas.height + 500, 'Shai2',2);
+        ListaPersonajes[1].switchDisponible();
+
+        //Personaje1.setInteractive({ pixelPerfect: true });
+        //Personaje2.setInteractive({ pixelPerfect: true });
        
         // Inicializar el sistema de diálogos
         this.dialogueSystem = new DialogSystem(this, this.inventory);
@@ -174,23 +192,96 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.dialogBackground.setVisible(false);
         });
 
+        
+       
+        
+
 
         // Mostrar dialogos
-        PersonajeP.on('pointerup', pointer => {
-            const eventoId = 'prueba';  
+        ListaPersonajes.forEach(personaje => {
+            personaje.sprite.on('pointerup', () => {
+
+                const eventoId = `evento${personaje.num}.${personaje.eventNum}`;  
 			
             if (this.reader.dialogData.Eventos[eventoId]) {
-                PersonajeP.disableInteractive();
+                
+                
+                stage++;
+                personaje.centerPosition();
+                personaje.switchDisponible();
+                personaje.noInteractive();
+                this.hideAllCharactersExcept(personaje);
                 this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);  
+
+                console.log(stage," ", personaje.disponible)
+
+
             } else {
                 console.log('Evento no encontrado: ' + eventoId);
             }
+                
+            });
         });
 
-        this.events.on('endDialogue', () => {
-            PersonajeP.setInteractive(); 
-            this.UpdateOfrendasText();
+        this.events.on('endDialogue',() => { //volver a mostrar personajes
+            this.showAllCharacters();
+
+            if(stage ===3){
+                 //boton cambio de escena a la de combate
+                var battlebtn = this.add.image(this.sys.game.canvas.width-50 ,50, 'batalla')
+                battlebtn.setScale(0.2,0.2);
+		        battlebtn.setInteractive();
+		        battlebtn.on('pointerup', pointer => {
+			    this.scene.start('EscenaCombate',this.inventory);
+		})
+            }
+            
+            
         });
+
+        this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla
+            ListaPersonajes.forEach((personaje) => {
+                if (personaje !== activeCharacter) {
+                    personaje.sprite.setVisible(false);
+                }
+            });
+        };
+
+        this.showAllCharacters = () => {
+            ListaPersonajes.forEach((personaje) => {
+
+                personaje.volverDisponible(); //cooldown de personaje
+
+                if(personaje.disponible == true && stage <3){
+
+                    console.log("Personaje Disponible");
+
+                    
+                    personaje.originalPosition();
+                    personaje.sprite.setVisible(true);
+
+                }
+                else{
+
+                    personaje.sprite.setVisible(false);
+                    
+
+                }
+
+                console.log(stage);
+
+
+                
+            });
+        };
+
+
+
+        
+
+
+        //OFRENDAS
+    
         //texto para mostrar el número de ofrendas
         this.ofrendastx = this.add.text(20, 20, 'Ofrendas: '+this.inventory.numgift, { font: '30px Arial, sans-serif',
             fill: '#fff',
@@ -200,18 +291,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             padding: { x: 30, y: 20 },
             fontStyle: 'bold' });
         this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
-        //boton cambio de escena a la de combate
-        var battlebtn = this.add.image(this.sys.game.canvas.width-50 ,50, 'batalla')
-        battlebtn.setScale(0.2,0.2);
-		battlebtn.setInteractive();
-		battlebtn.on('pointerup', pointer => {
-            this.socialbacksound.stop();
-            console.log("OLEADA" + this.oleada);
-            console.log(this.inventory);
-			this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
-		})
+       
 
     }
+
+   
 
 
 

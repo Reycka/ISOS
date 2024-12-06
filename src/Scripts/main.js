@@ -1,7 +1,5 @@
 import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
-
 import EscenaCombate from './Scenes/EscenaCombate.js';
-
 import EscenaSocialTienda from './Scenes/EscenaSocialTienda.js';
 
 let config = {

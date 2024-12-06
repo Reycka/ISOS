@@ -3,12 +3,12 @@
 //La carta al clickar llama la battleManager y se hace desde la propia escena
 import EnemyMatriz from "./EnemyMatriz.js"
 import AlteredStateClass from "./AlteredStateClass.js";
-export default class BattleManager{
-   //PROPIEDADES
-   mat; //matriz que le vamos a pasar
-   card; //Representa la carta seleccionada del inventario
-   _texture;
-   enemymatriz; //Matriz de enemigos que se crea aquí
+export default class BattleManager {
+    //PROPIEDADES
+    mat; //matriz que le vamos a pasar
+    card; //Representa la carta seleccionada del inventario
+    _texture;
+    enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
    scene;
@@ -27,6 +27,22 @@ export default class BattleManager{
     this.defeat = false
    }
    //MÉTODOS
+    scene;
+    auxd;
+    uxunitchange;
+    auxv;
+    target = false;
+    jeros = new Jeroglifico();
+    //CONSTRUCTORA
+    constructor(_mat, _enemymatriz, _scene,) {
+        this.mat = _mat;
+        this.card = null;
+        this._texture = null;
+        this.scene = _scene;
+        this.enemymatriz = _enemymatriz;
+        this.victory = false;
+        this.defeat = false
+    }
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager
     SetCard(_card, id) {
@@ -39,6 +55,7 @@ export default class BattleManager{
     }
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {
+
         // console.log(" dhibsfvisb"+this.mat.mat[posX][posY].ocupada);
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
 
@@ -66,16 +83,16 @@ export default class BattleManager{
                     this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
                         if (this.mat.mat[i][j].GetUnit().isready) {
-                           
+
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
                                 console.log("entro a curar y eso");
                                 if ((i - 1) != -1) {
-                                    if (this.mat.mat[i-1][j].GetState()) {
+                                    if (this.mat.mat[i - 1][j].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i - 1][j].GetUnit())
                                         this.target = true;
                                         this.mat.mat[i - 1][j].Getheal();
-                                       
- 1                                   }
+
+                                    }
                                 }
                                 if ((i + 1) < this.mat.row) {
                                     if (this.mat.mat[i + 1][j].GetState()) {
@@ -87,121 +104,143 @@ export default class BattleManager{
                                     if (this.mat.mat[i][j - 1].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j - 1].GetUnit())
                                         this.target = true;
-                                        this.mat.mat[i ][j-1].Getheal();
+                                        this.mat.mat[i][j - 1].Getheal();
                                     }
                                 }
                                 if ((j + 1) < this.mat.col) {
                                     if (this.mat.mat[i][j + 1].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i][j + 1].GetUnit())
                                         this.target = true;
-                                        this.mat.mat[i][j+1].Getheal();
+                                        this.mat.mat[i][j + 1].Getheal();
                                     }
                                 }
-                              
-                                if (!this.target) {
-                                    this.encontrado = false;
-                                    this.indiceaux = 0;
-                                    while (this.indiceaux < this.mat.row && !this.encontrado) {
-                                        if (this.mat.mat[indiceaux][j].GetState()) {
-                                            if (this.mat.mat[indiceaux][j - 1].GetUnit() && j >= 0) {
-                                                var a = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][indiceaux].SetUnit(a);
-                                                this.encontrado = true;
 
-                                            }
-                                            else if (this.mat.mat[i][j].GetUnit()) {
-                                                var a = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][indiceaux].SetUnit(a);
-                                                this.encontrado = true;
-                                            }
-                                            else if (this.mat.mat[i][j].GetUnit() && i < this.mat.row) {
-                                                var a = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][indiceaux].SetUnit(a);
-                                                this.encontrado = true;
-                                            }
-                                            else indiceaux++;
-                                        }
+                                // if (!this.target) {
+                                //     this.encontrado = false;
+                                //     this.indiceaux = 0;
+                                //     while (this.indiceaux < this.mat.row && !this.encontrado) {
+                                //         if (this.mat.mat[indiceaux][j].GetState()) {
+                                //             if (this.mat.mat[indiceaux][j - 1].GetUnit() && j >= 0) {
+                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
+                                //                 this.mat.mat[i][j].SetFree();
+                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
+                                //                 this.encontrado = true;
 
-                                    }
-                                }
+                                //             }
+                                //             else if (this.mat.mat[i][j].GetUnit()) {
+                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
+                                //                 this.mat.mat[i][j].SetFree();
+                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
+                                //                 this.encontrado = true;
+                                //             }
+                                //             else if (this.mat.mat[i][j].GetUnit() && i < this.mat.row) {
+                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
+                                //                 this.mat.mat[i][j].SetFree();
+                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
+                                //                 this.encontrado = true;
+                                //             }
+                                //             else indiceaux++;
+                                //         }
+
+                                //     }
+                                // }
 
                             }
                             else {
 
                                 //unidades que no curan
                                 if ((j - 1) != -1) {
-                                    if (this.enemymatriz.Enemymat.mat[i][j - 1].GetState()) {
+
+                                    if (this.enemymatriz.Enemymat.mat[i][j - 1].GetState()) 
+                                        {
+                                        if(this.target == false){
                                         this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit())
                                         if (this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit().isalife == false) {
                                             this.enemymatriz.Enemymat.mat[i][j - 1].SetFree();
-                                        } else{
+                                        } else {
                                             this.enemymatriz.Enemymat.mat[i][j - 1].Getdamage();
                                         }
                                         this.target = true;
                                     }
+                                      
+                                    }
+
                                 }
-                                else if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
-                                    this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j].GetUnit())
-                                    if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false) {
-                                        this.enemymatriz.Enemymat.mat[i][j].SetFree();
-                                    }else{
-                                        this.enemymatriz.Enemymat.mat[i][j].Getdamage();
+                                if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
+                                    if (this.target == false) {
+                                        this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j].GetUnit())
+                                        if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false) {
+                                            this.enemymatriz.Enemymat.mat[i][j].SetFree();
+                                        } else {
+                                            this.enemymatriz.Enemymat.mat[i][j].Getdamage();
+                                        }
                                     }
                                     this.target = true;
                                 }
-                                else if ((j + 1) < this.enemymatriz.Enemymat.col) {
+                                if ((j + 1) < this.enemymatriz.Enemymat.col) {
+
                                     if (this.enemymatriz.Enemymat.mat[i][j + 1].GetState()) {
-                                        this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j + 1].GetUnit())
-                                        this.target = true;
-                                        if (this.enemymatriz.Enemymat.mat[i][j + 1].GetUnit().isalife == false) {
-                                            this.enemymatriz.Enemymat.mat[i][j + 1].SetFree();
-                                        }else{
-                                            this.enemymatriz.Enemymat.mat[i][j + 1].Getdamage();
-                                        }
+                                        if (this.target == false) {
+                                            this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j + 1].GetUnit())
+                                            this.target = true;
+                                            if (this.enemymatriz.Enemymat.mat[i][j + 1].GetUnit().isalife == false) {
+                                                this.enemymatriz.Enemymat.mat[i][j + 1].SetFree();
+                                            } else {
+                                                this.enemymatriz.Enemymat.mat[i][j + 1].Getdamage();
+                                            }
+                                        } this.target = true;
                                     }
+
+
                                 }
 
-                                if(this.target == false) {
+                                if (this.target == false) {
+                                    
                                     this.encontrado = false;
                                     this.indiceaux = 0;
-                                  
-                                    while (this.indiceaux < 2&& !this.encontrado) {
 
+                                    while (this.indiceaux < 2 && (this.encontrado==false)) {
+                                        console.log("entro"+this.encontrado)
                                         if (this.mat.mat[i][this.indiceaux].GetState()) {
-                                            if (this.enemymatriz.Enemymat.mat[i - 1][this.indiceaux].GetUnit() && i >= 0) {
-                                                var a = this.mat.mat[i][j].GetUnit();
+                                            if (this.enemymatriz.Enemymat.mat[this.indiceaux][j-1].GetUnit() && j > 0) {
+                                                this.encontrado = true;
+                                                this.auxunitchange = this.mat.mat[i][j];
+                                                
                                                 this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][this.indiceaux].SetUnit(a);
-                                                    console.log("me recoloco de "+j+" a "+ this.indiceaux)
-                                                    this.encontrado = true;
+                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                this.mat.mat[i][j].SetFree();
+                                              
+                                                
 
                                             }
-                                            else if (this.enemymatriz.Enemymat.mat[i][this.indiceaux].GetUnit()) {
-                                                var a = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][this.indiceaux].SetUnit(a);
-                                                console.log("me recoloco de "+j+" a "+ this.indiceaux)
+                                            else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j].GetUnit()) {
                                                 this.encontrado = true;
-                                            }
-                                            else if (this.enemymatriz.Enemymat.mat[i + 1][this.indiceaux].GetUnit() && i < this.mat.row) {
-                                                var a = this.enemymatriz.Enemymat.mat[i][j].GetUnit();
+                                                this.auxunitchange = this.mat.mat[i][j];
+                                                
+                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
                                                 this.mat.mat[i][j].SetFree();
-                                                this.mat.mat[i][this.indiceaux].SetUnit(a);
-                                                console.log("me recoloco de "+j+" a "+ this.indiceaux)
-                                                this.encontrado = true;
+                                              
+                                               
                                             }
-                                            else indiceaux++;
+                                            else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j+1].GetUnit() && j < this.mat.row) {
+                                                this.encontrado = true;
+                                                this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
+                                                
+                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                
+                                                this.mat.mat[i][j].SetFree();
+                                               
+                                            }
+                                            
                                         }
-                                    }
+                                        this.indiceaux++;
+                                    }console.log("aaasaaaaaz")
                                 }
-                                
+
 
                             }
                         }
-                         this.mat.mat[i][j].GetUnit().Cooldown();
+                        this.mat.mat[i][j].GetUnit().Cooldown();
                         this.auxd = false;
                     }
 
@@ -241,7 +280,7 @@ export default class BattleManager{
                                         this.target = true;
                                     }
                                 }
-                             
+
 
                             }
                             else {
@@ -257,7 +296,7 @@ export default class BattleManager{
                                         this.target = true;
                                     }
                                 }
-                                
+
                                 else if (this.mat.mat[i][j].GetState()) {
                                     this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j].GetUnit())
                                     // console.log("esta la unidad viva"+this.mat.mat[i][j].GetUnit().isalife)
@@ -286,7 +325,7 @@ export default class BattleManager{
                             }
 
 
-                            
+
                         } this.enemymatriz.Enemymat.mat[i][j].GetUnit().Cooldown();
                         this.auxv = false;
                         if(this.victory == true) this.auxv = true;
@@ -305,7 +344,7 @@ export default class BattleManager{
                 return false;
             }
             else {
-             
+
                 return true;
             }
 
@@ -320,19 +359,18 @@ export default class BattleManager{
                 }
             }
         }
-      }
-    ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+    }
+    ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
         let Sinergias = [];
         Sinergias[dios] = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        for(let i = 0; i < this.jeros[dios]; ++i){
-            if(this.jeros.getIsActive(dios,i) == false)
-            {
+        for (let i = 0; i < this.jeros[dios]; ++i) {
+            if (this.jeros.getIsActive(dios, i) == false) {
                 Sinergias[dios] = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
         }
-        
+
         // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
         const alteredStateInstance = new AlteredStateClass();
         alteredStateInstance.getAlteredState(Sinergias);

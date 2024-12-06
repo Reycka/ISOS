@@ -138,7 +138,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn.setScale(0.2, 0.2);
         this.battlebtn.setInteractive();
         this.battlebtn.on('pointerup', pointer => {
-            this.scene.start('EscenaCombate',{oleada: this.oleada1, inventario: this.inventory});
+            this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
             this.battlebtn.setVisible(false);
         })
 

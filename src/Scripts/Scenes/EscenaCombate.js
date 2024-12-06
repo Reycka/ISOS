@@ -90,11 +90,17 @@ export default class EscenaCombate extends Phaser.Scene {
 }
 Win(){
 	this.combatSound.stop();
-	this.endCombatSound = this.sound.add('Win');
-	this.endCombatSound.play({loop:true});
-	this.finaltext.setVisible(true);
-	this.Returnwin.setVisible(true);
-	this.finaltext.setText("HAS GANADO");
+	if(this.oleada != 5 && this.oleada != 6){
+		this.endCombatSound = this.sound.add('Win');
+		this.endCombatSound.play({loop:true});
+		this.finaltext.setVisible(true);
+		this.Returnwin.setVisible(true);
+		this.finaltext.setText("HAS GANADO");
+	}
+	else{
+		this.oleada++;
+		this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
+	}
 }
 defeat(){
 	this.combatSound.stop();
@@ -198,7 +204,6 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		console.log("jaajaja " + this.oleada)
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;
@@ -215,7 +220,7 @@ defeat(){
 			colpos = 320;
 			this.combatSound = this.sound.add('Combate');
 		}
-		else if(this.oleada == 5){
+		else if(this.oleada >= 5){
 			fil = 6;
 			colpos = 160;
 			this.combatSound = this.sound.add('CombateBoss');
@@ -263,7 +268,12 @@ defeat(){
 					//algo.setScale(0.85,0.85);
 					
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
-						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						if(this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture() == 'B'){
+							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("B");
+						}
+						else{
+							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
 						
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
@@ -298,24 +308,23 @@ defeat(){
             padding: { x: 30, y: 20 },
             fontStyle: 'bold' });
 			this.finaltext.setVisible(false);
-
-			this.Returnwin = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " Continuar", { font: '60px Arial, sans-serif',
-				fill: '#fff',
-				stroke: '#000',
-				strokeThickness: 4,
-				backgroundColor: '#000000',
-				padding: { x: 30, y: 20 },
-				fontStyle: 'bold' });
-				
-				this.Returnwin.setInteractive();
-				this.Returnwin.setVisible(false);
-				this.Returnwin.on('pointerup', pointer =>{
-					this.endCombatSound.stop();
-					var numero = this.oleada;
-					numero += 1;
-					console.log(numero)
-					this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-				})
+				this.Returnwin = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " Continuar", { font: '60px Arial, sans-serif',
+					fill: '#fff',
+					stroke: '#000',
+					strokeThickness: 4,
+					backgroundColor: '#000000',
+					padding: { x: 30, y: 20 },
+					fontStyle: 'bold' });
+					
+					this.Returnwin.setInteractive();
+					this.Returnwin.setVisible(false);
+					this.Returnwin.on('pointerup', pointer =>{
+						this.endCombatSound.stop();
+						var numero = this.oleada;
+						numero += 1;
+						console.log(numero)
+						this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+					})	
 				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
 					fill: '#fff',
 					stroke: '#000',

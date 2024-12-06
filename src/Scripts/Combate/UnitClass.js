@@ -1,6 +1,8 @@
 import CardClass from "../Comunes/CardClass.js";
 import CardLogic from "../Comunes/CardLogic.js";
+import DialogSystem from "../Socializar/Dialogos/DialogSystem.js";
 import AlteredStateClass from "./AlteredStateClass.js";
+import BattleManager from "./BattleManager.js";
 export default class UnitClass{
 card;
 //isahealer = false;
@@ -28,6 +30,7 @@ constructor(cardclass, _unittexture){
     this.isready = true;
     if(this.unitType == "H")this.isahealer = true;
     else this.isahealer =false;
+
 
 }
 GetTexture(){
@@ -73,11 +76,9 @@ applyAllyEffects(unit){
     } else {
         this.Attack(unit);
     }
-
-    this.handlePeriodicHeal();
-    this.tryRevive();
 }
 applyEnemyEffects(unit){
+    console.log(this.isAttackedMissed());
     if (this.isahealer){
         if (!this.isAttackedMissed()){
             this.Heal(unit);
@@ -91,7 +92,6 @@ applyEnemyEffects(unit){
     }
 
 
-    this.handleBurn();
 }
 
 Attack(enemy){
@@ -101,17 +101,26 @@ Attack(enemy){
         this.isready = false;
         
             if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
-                if (!this.isInstakillTriggered()) enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
-                else this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
+                if (!this.isInstakillTriggered()) {
+                    console.log("DAÑO DEL ALIADO POTENCIADO: " + this.getAttackPower());
+                    console.log("TOMA BONK");
+                    enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
+                }
+                else {
+                    this.Instakill(enemy); //Si tenemos el instakill activado haremos instakill
+                }
+
             } else { //ATAQUE DE ENEMIGO
                 enemy.GetDamage(this.card.attack,this.unitType);
+                console.log("TOMA BONK SUAVE");
             }
                 
     }
 }
 
 Cooldown(){
-
+    if (!this.card.iscard) this.handleBurn();
+    else this.handlePeriodicHeal();
     this.actcooldown-=1;
     if(this.actcooldown <= 0) this.isready = true;
 }
@@ -146,15 +155,26 @@ GetDamage(atq,type){
     else if((type == "C"||type=="G") &&(this.unitType=="M"||this.unitType=="H" )){   
         multi = 2;
     }
-    else multi = 1; //QUEMADURA
+    else multi = 1;
     
-var daño= (Math.round(atq/this.card.defense)*multi)+1;
+    var daño;
+
+    if (type == "QUEMADURA" || type == "INSTAKILL") daño = (Math.round(atq)*multi)+1;
+    else daño = (Math.round(atq/this.card.defense)*multi)+1;
+
 console.log("daño vida actual = "+ this.acthealth+"/"+ this.card.health)
 this.acthealth -= daño;
 //console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){
-    this.isalife = false;
-    console.log("me muero ");
+    if (this.tryRevive()) 
+    {
+        this.acthealth = this.card.health;
+        console.log("TROPA ALIADA REVIVIDA");
+    }
+    else{
+        this.isalife = false;
+        //console.log("PROCEDO A LA MORISION POR MAL RNG");
+    } 
 }
 }
 
@@ -172,8 +192,8 @@ applyBurn(damage,turns){ //Añadimos quemadura si es que la hay a partir de Alte
     this.burn = {damage: damage, turns:turns};
 }
 handleBurn(){ //Hacemos el handleBurn si la hemos añadido en AlteredStateClass
-    if (this.burn && this.burn.turns > 0){
-        this.GetDamage(this.burn.damage, "Burn"); //Aplicamos el daño extra de 1
+    if (this.burn && this.burn.turns > 0 && !this.card.iscard){
+        this.GetDamage(this.burn.damage, "QUEMADURA"); //Aplicamos el daño extra de 1
         this.burn.turns--; //Gastamos un turno de daño extra
     } else{
         this.burn = null;
@@ -196,9 +216,10 @@ addReviveChance(chance){ // ENTRE 0.0 y 1.0
     this.reviveChance = chance || 0;
 }
 tryRevive(){
-    if (!this.isalife && Math.random() < (this.reviveChance || 0)){ //Si la unidad esta muerta y la probabilidad de revivir coincide revivimos
-        this.isalife = true; //Revivimos la unidad
-        this.acthealth = this.card.health * 0.5; //Revive con un 50% de salud
+    if (Math.random() < (this.reviveChance || 0)){ //Si la unidad esta muerta y la probabilidad de revivir coincide revivimos
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -209,6 +230,7 @@ applyPeriodicHeal(percent){ // ENTRE 0.0 y 1.0
 }
 handlePeriodicHeal(){
     if (this.periodicHeal > 0){ //Si hay curacion periodica aplicamos el porcentaje de curación a la vida maxima de la carta
+        console.log("ME CURO PROGRESIVAMENTE");
         this.ReciveHeal(this.card.health * this.periodicHeal);
     }
 }
@@ -219,7 +241,9 @@ boostAttack(percent){ //ENTRE 0.0 y 1.0
     this.attackBoost = percent || 0;
 }
 getAttackPower(){
-    return this.card.attack * (1 + (this.attackBoost || 0)); //Siempre devolvemos un valor, si no hay aumento de ataque no lo sumamos al daño inicial, en caso contrario sí.
+    console.log("ATAQUE NORMAL: " + this.card.attack);
+    console.log("ATAQUE POTENCIADO: " + this.card.attack * (1 + (this.attackBoost || 0)));
+    return Math.floor(this.card.attack * (1 + (this.attackBoost || 0))); //Siempre devolvemos un valor, si no hay aumento de ataque no lo sumamos al daño inicial, en caso contrario sí.
 }
 
 //ANUBIS
@@ -231,8 +255,10 @@ isInstakillTriggered() { //Retornamos true si Math.random es menor que la probab
     return Math.random() < this.instakillChance;
 }
 Instakill(enemy){
-    //console.log("Instakill activado!"); 
-    const damage = enemy.acthealth; //Constante que tiene el valor de la vida maxima del enemigo al que apuntamos
-    enemy.GetDamage(damage,this.unitType); //Aplicamos el daño igual a la vida maxima de la tropa enemiga
+    enemy.GetDamage(999,"INSTAKILL"); //Aplicamos el daño igual a la vida maxima de la tropa enemiga
+}
+
+GetUnit(){
+    return this;
 }
 }

@@ -16,21 +16,7 @@ export default class BattleManager {
    auxv;
    target = false;
    jeros = new Jeroglifico();
-   //CONSTRUCTORA
-   constructor(_mat,_enemymatriz,_scene,){
-    this.mat = _mat;
-    this.card = null;
-    this._texture = null;
-    this.scene = _scene;
-    this.enemymatriz = _enemymatriz;
-    this.victory = false;
-    this.defeat = false
-   }
-   //MÉTODOS
-    scene;
-    auxd;
     uxunitchange;
-    auxv;
     target = false;
     jeros = new Jeroglifico();
     //CONSTRUCTORA

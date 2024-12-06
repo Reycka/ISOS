@@ -26,7 +26,8 @@ export default class Inventory{
     }
     
     AddCard(scene, cardTexture) { 
-            var cardLogic = new CardLogic(); 
+
+            var cardLogic = new CardLogic(this.affreg.GetRandomLetter()); 
             this.listCardlogic.push(cardLogic);
           
             this.listCardClass.push(new CardClass(scene, 1, 1,cardTexture, cardLogic));

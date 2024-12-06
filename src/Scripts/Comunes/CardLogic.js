@@ -1,3 +1,4 @@
+import AffinityRegister from "./AffinityRegister.js";
 export default class CardLogic {
     health;
     attack;
@@ -23,11 +24,12 @@ export default class CardLogic {
 
 
 
-    constructor() {
+    constructor(l) {
         var rnd = Math.floor(Math.random() * 6);
         //console.log(rnd)
         this.textureindex = rnd;
-        var l = Math.floor(Math.random() * 18);
+        //generador de cartas
+
 
         //arco Corto
         if (rnd == 0) {

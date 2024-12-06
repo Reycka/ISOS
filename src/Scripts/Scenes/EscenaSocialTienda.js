@@ -183,8 +183,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //Personaje1.setInteractive({ pixelPerfect: true });
             //Personaje2.setInteractive({ pixelPerfect: true });
 
-            // Inicializar el sistema de diálogos
-            this.dialogueSystem = new DialogSystem(this, this.inventory);
+            
+            
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
             // Cargar el archivo JSON con los diálogos
@@ -194,6 +194,13 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
             });
+
+            // Inicializar el sistema de diálogos
+
+            this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
+
+            
+            
 
             // Click
             this.input.on('pointerup', () => this.dialogueSystem.onPointerDown(), this);
@@ -215,10 +222,14 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             // Mostrar dialogos
             ListaPersonajes.forEach(personaje => {
                 personaje.sprite.on('pointerup', () => {
+                    
+                    this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
 
                     const eventoId = `evento${personaje.num}.${personaje.eventNum}`;
 
                     if (this.reader.dialogData.Eventos[eventoId]) {
+
+                        
 
 
                         stage++;
@@ -228,7 +239,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         this.hideAllCharactersExcept(personaje);
                         this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);
 
-                        console.log(stage, " ", personaje.disponible)
+                        //console.log(stage, " ", personaje.disponible)
 
 
                     } else {
@@ -276,14 +287,14 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
                     if (personaje.disponible == true && stage < 3) {
 
-                        console.log("Personaje Disponible");
+                        //console.log("Personaje Disponible");
                         personaje.originalPosition();
                         personaje.sprite.setVisible(true);
                     }
                     else {
                         personaje.sprite.setVisible(false);
                     }
-                    console.log(stage);
+                    console.log("Stage: ", stage);
                 });
             };
 

@@ -2,9 +2,13 @@ import Inventory from './../../Comunes/Inventory.js'
 
 export default class DialogSystem {
 
-    constructor(scene, _inventory) {
+    constructor(scene, _inventory, allDialogues) {
         this.scene = scene;
         this.inventory = _inventory;
+        this.Dialogues = allDialogues;
+
+        console.log(allDialogues)
+
 
         if (!(this.inventory instanceof Inventory)) {
             console.error("Error: `inventory` no es una instancia de Inventory");
@@ -21,7 +25,7 @@ export default class DialogSystem {
             fontFamily: 'Arial, sans-serif', 
             stroke: '#000', 
             strokeThickness: 4 
-        }).setOrigin(0, 0);
+        }).setOrigin(0.5, 0.5);
 
         this.dialogueBox = this.scene.add.graphics();
         this.dialogueText = this.scene.add.text(0, 0, '', { 
@@ -41,8 +45,11 @@ export default class DialogSystem {
     }
 
     showEventDialogues(eventId, allDialogues) {
+
+        console.log('allDialogues');
         const eventDialogues = allDialogues[eventId];
         if (!eventDialogues) return;
+
 
         this.end = false;
         this.dialogues = eventDialogues.dialogs;
@@ -112,7 +119,7 @@ export default class DialogSystem {
                     .on('pointerout', () => {
                         button.setStyle({ fill: '#fff', backgroundColor: '#000000' });
                     })
-                    .on('pointerdown', () => this.handleOptionSelection(option.gain));
+                    .on('pointerdown', () => this.handleOptionSelection(option.gain,option));
 
                     this.optionButtons.push(button);
                 });
@@ -138,8 +145,8 @@ export default class DialogSystem {
 
 
 
-    handleOptionSelection(gain) {
-        console.log(`Opción seleccionada: ${gain}`);
+    handleOptionSelection(gain, option) {
+        //console.log(`Opción seleccionada: ${gain}`);
 
         if(gain === 0){
 
@@ -153,14 +160,20 @@ export default class DialogSystem {
             console.log(this.inventory);
         }
 
+        if (option.next) {
+            console.log(`Opción con 'next' encontrada: ${option.response} -> next: ${option.next}`);
+            this.showEventDialogues(option.next, this.Dialogues);
+        }
+        else{
 
+            this.showNextDialogue();
 
+        }
 
-    
-        this.showNextDialogue();
     }
 
     onPointerDown(optionIndex) {
+       
         if (!this.hasOptions && !this.end) {
             this.showNextDialogue();
         }

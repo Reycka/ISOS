@@ -4,6 +4,7 @@
         "evento1.1": {
             
             "dialogs": [
+                {},
                 { "character": "Tarik", "text": "¡Shai! ¡Estás aquí! Menos mal." },
                 { "character": "Shai", "text": "¿Qué sucede Tarik?" },
                 { "character": "Tarik", "text": "Es La Serpiente, cada vez se acerca más." },
@@ -35,6 +36,7 @@
         },
         "evento1.2": {
             "dialogs": [
+                {},
                 { "character": "Eshe", "text": "Parece que nuestra idea ha funcionado." },
                 { "character": "Eshe", "text": "No ha sido demasiado complicado encontrar a gente que quisiera luchar contra La Serpiente." },
                 { "character": "Shai", "text": "No es de extrañar." },
@@ -60,6 +62,65 @@
                 { "character": "Tarik", "text": "Supongo que sí…." }
             ]
         },
+
+        "evento1.4": {
+            "dialogs": [
+                {},
+                { "character": "Shai", "text": "Hoy estáis muy callados." },
+                { "character": "Shai", "text": "Deberíais estar más animados, hemos sobrevivido una noche más." },
+                { "character": "Eshe", "text": "Sí, pero aún no estamos a salvo." },
+                { "character": "Eshe", "text": "No es momento de celebrar." },
+                { "character": "Shai", "text": "Esa es una forma de pensar muy propia de ti, Eshe." },
+                { "character": "Shai", "text": "Pero no tanto de Tarik. ¿A qué se debe tanta seriedad?" },
+                { "character": "Tarik", "text": "… No es nada." },
+                { "character": "Eshe", "text": "Deja de mentir." },
+                { "character": "Tarik", "text": "No estoy-" },
+                { "character": "Eshe", "text": "No decir lo que te preocupa no va a ayudar a nadie." },
+                { "character": "Tarik", "text": "Pero…" },
+                { "character": "Shai", "text": "Si tienes alguna inquietud, es mejor expresarla." },
+                { "character": "Tarik", "text": "… Estoy teniendo dudas en cuanto a los dioses." },
+                { "character": "Tarik", "text": "Se supone que ellos protegen el orden del mundo, pero no les veo haciendo nada." },
+                { "character": "Tarik", "text": "Incluso nuestro propio dios ha dejado que esto suceda." },
+                { "character": "Tarik", "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?" },
+                {
+                    "character": "Shai",
+                    "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?",
+                    "options": [
+                        { "response": "No tiene sentido pensar demasiado en ello, \ntenemos que encargarnos de Apofis.", "gain": 0, "next": "fragmento_1.4.1" },
+                        { "response": "La única manera en la que cambiaremos la \nsituación es con nuestras propias acciones.", "gain": 1, "next": "fragmento_1.4.2" },
+                        { "response": "Dudar de nuestro dios en su propio templo \nno es el camino si quieres su asistencia.", "gain": -1, "next": "fragmento_1.4.1" }
+                       
+                    ]
+                }
+            ]
+        },
+        "fragmento_1.4.1": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "Eso no es una respuesta a mi pregunta." },
+                { "character": "Shai", "text": "No puedo darte una respuesta que yo tampoco conozco." },
+                { "character": "Tarik", "text": "..." },
+                { "character": "Tarik", "text": "Voy a retirarme por ahora Shai." },
+                { "character": "Tarik", "text": "Necesito aclarar mis ideas." }
+            ]
+        },
+        "fragmento_1.4.2": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "¿Entonces cuál es el punto?" },
+                { "character": "Tarik", "text": "¿En qué puedo creer, si esperar algo de Ra es demasiado?" },
+                { "character": "Shai", "text": "Tarik, los dioses son una guía." },
+                { "character": "Shai", "text": "Debes tomar tus propias decisiones sin esperar algo a cambio." },
+                { "character": "Shai", "text": "La fe en un dios puede ser muy reconfortante en momentos de crisis." },
+                { "character": "Shai", "text": "Pero al final vivimos en el mundo de los mortales." },
+                { "character": "Shai", "text": "No podemos depender de ellos." },
+                { "character": "Tarik", "text": "..." },
+                { "character": "Tarik", "text": "¿Sigues confiando en él?" },
+                { "character": "Shai", "text": "El sol sigue alzándose cada mañana, ¿verdad?" }
+            ]
+        },
+   
+    
         "evento2.1": {
             
             "dialogs": [

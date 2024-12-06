@@ -70,6 +70,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
 		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
 		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
 	}
 	cronometro;
 	GameLoop()
@@ -90,7 +91,7 @@ export default class EscenaCombate extends Phaser.Scene {
 }
 Win(){
 	this.combatSound.stop();
-	if(this.oleada != 5 && this.oleada != 6){
+	if(this.oleada < 5 || this.oleada == 7){
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
 		this.finaltext.setVisible(true);
@@ -98,7 +99,7 @@ Win(){
 		this.finaltext.setText("HAS GANADO");
 	}
 	else{
-		this.oleada = this.oleada + 1;
+		this.oleada = this.oleada + 1;;
 		this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
 	}
 }
@@ -106,6 +107,8 @@ defeat(){
 	this.combatSound.stop();
 	this.endCombatSound = this.sound.add('Lose');
 	this.endCombatSound.play({loop:true});
+	let Pendejo = this.sound.add('Pendejo');
+	Pendejo.play(Pendejo);
 	this.finaltext.setVisible(true);
 	this. Returndefeat.setVisible(true);
 	this.finaltext.setText("HAS PERDIDO");
@@ -292,10 +295,7 @@ defeat(){
 			listaenemigos.setVisible(false);
 			posiblesenemigos.setVisible(false);
 			this.enemymatriz.EliminaLista();
-			this.cronometro.paused=false;
-
-			
-			
+			this.cronometro.paused=false;			
 		})
 
 		 
@@ -314,8 +314,7 @@ defeat(){
 					strokeThickness: 4,
 					backgroundColor: '#000000',
 					padding: { x: 30, y: 20 },
-					fontStyle: 'bold' });
-					
+					fontStyle: 'bold' });					
 					this.Returnwin.setInteractive();
 					this.Returnwin.setVisible(false);
 					this.Returnwin.on('pointerup', pointer =>{
@@ -323,7 +322,11 @@ defeat(){
 						var numero = this.oleada;
 						numero += 1;
 						console.log(numero)
-						this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+						if(this.oleada == 7) {
+							console.log("Cambio")
+							this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
+						}
+						else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
 					})	
 				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
 					fill: '#fff',

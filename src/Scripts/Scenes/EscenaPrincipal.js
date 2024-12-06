@@ -27,6 +27,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		var inventory = new Inventory();
 		inventory.AddGift(6);
 		this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2,'Background');
+		var title = this.add.text(380,200,"CHAMBER OF THE HEART").setScale(6,6);
 		var start = this.add.text(800,500,"EMPEZAR");
 		start.setScale(5,5);
 		var exit = this.add.text(850,600,"SALIR");

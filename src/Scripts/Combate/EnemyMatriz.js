@@ -51,9 +51,6 @@ export default class EnemyMatriz {
         case 'H':
             enemigo = "CURANDERO"
           break;
-        case 'B':
-            enemigo = "APOFIS"
-          break;
       }
       this.texts[this.enemycount] = this.scene.add.text(1600,(300 + this.enemycount * 100),enemigo).setScale(2,2);
       this.enemycount++;

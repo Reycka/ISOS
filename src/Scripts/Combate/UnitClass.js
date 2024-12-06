@@ -15,9 +15,11 @@ unittexture;
 acthealth;
 unitType;
 isready;
+scene
 instakillChance = 0;
 
-constructor(cardclass, _unittexture){
+constructor(_scene,cardclass, _unittexture){
+    this.scene = _scene;
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
     this.isaplayer =this.card.iscard;
@@ -96,7 +98,8 @@ applyEnemyEffects(unit){
 
 Attack(enemy){
     if( this.isready == true){
-        
+        let pega = this.scene.sound.add('Pego');
+        pega.play();
         this.actcooldown = this.cooldown;
         this.isready = false;
         
@@ -144,7 +147,8 @@ ReciveHeal(n){
 
 GetDamage(atq,type){
     var multi
-    
+    let mepegan = this.scene.sound.add('MePegan');
+    mepegan.play();
     //seteamos el multi de daño
     if((type == "LA"||type=="SA") &&(this.unitType=="G"||this.unitType=="C" )){
         multi = 2;

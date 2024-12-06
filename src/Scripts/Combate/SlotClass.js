@@ -49,19 +49,18 @@ ocupada = false;
         return this._unittexture;
     }
     //Setea la unidad 
-    SetUnit(unit){
-        this.unit = unit;
+    SetUnit(_unit){
+        this.unit = _unit;
         this.ocupada = true;
-        this._unittexture = unit.unittexture;
-        //console.log(t+" " +this._unittexture);
-        this.setTexture(this._unittexture);
+        this._unittexture = _unit.unittexture;
+        this.setTexture(this.unit.unittexture);
         this.setScale(0.33,0.33);
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){
-        //console.log("Libero" + "\n") //DEBUG
+        console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
-           this._unittexture = null;
+           this._unittexture = 'MatrixGround';
            this.setTexture('MatrixGround');
     }
     //Asigna la tropa pasada a la nueva posición y setea a true en la matriz de booleanos

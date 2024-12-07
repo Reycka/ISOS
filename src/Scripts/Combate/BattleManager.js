@@ -10,11 +10,11 @@ export default class BattleManager {
     enemymatriz; //Matriz de enemigos que se crea aquí
     victory = false;
     defeat = false;
-   scene;
-   auxd;
-   auxv;
-   target = false;
-   jeros = new Jeroglifico();
+    scene;
+    auxd;
+    auxv;
+    target = false;
+    jeros = new Jeroglifico();
     uxunitchange;
 
     //CONSTRUCTORA
@@ -26,8 +26,8 @@ export default class BattleManager {
         this.enemymatriz = _enemymatriz;
         this.victory = false;
         this.defeat = false
-    this.AlteredStates = new AlteredStateClass();
-    this.numCards = 0;
+        this.AlteredStates = new AlteredStateClass();
+        this.numCards = 0;
     }
     //MÉTODOS
     ///Método encargado asignar la carta seleccionada del inventario al battleManager
@@ -53,10 +53,10 @@ export default class BattleManager {
         }
     }
     GetVictory() {
-            if (this.victory == true) {
-                return true;
-            }
-            else return false;
+        if (this.victory == true) {
+            return true;
+        }
+        else return false;
     }
     Battle() {
 
@@ -138,18 +138,17 @@ export default class BattleManager {
                                 //unidades que no curan
                                 if ((j - 1) != -1) {
 
-                                    if (this.enemymatriz.Enemymat.mat[i][j - 1].GetState()) 
-                                        {
-                                        if(this.target == false){
-                                        this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit())
-                                        if (this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit().isalife == false) {
-                                            this.enemymatriz.Enemymat.mat[i][j - 1].SetFree();
-                                        } else {
-                                            this.enemymatriz.Enemymat.mat[i][j - 1].Getdamage();
+                                    if (this.enemymatriz.Enemymat.mat[i][j - 1].GetState()) {
+                                        if (this.target == false) {
+                                            this.mat.mat[i][j].GetUnit().Update(this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit())
+                                            if (this.enemymatriz.Enemymat.mat[i][j - 1].GetUnit().isalife == false) {
+                                                this.enemymatriz.Enemymat.mat[i][j - 1].SetFree();
+                                            } else {
+                                                this.enemymatriz.Enemymat.mat[i][j - 1].Getdamage();
+                                            }
+                                            this.target = true;
                                         }
-                                        this.target = true;
-                                    }
-                                      
+
                                     }
 
                                 }
@@ -182,65 +181,55 @@ export default class BattleManager {
                                 }
 
                                 if (this.target == false) {
-                                    
+
                                     this.encontrado = false;
                                     this.indiceaux = 0;
-
-                                    while (this.indiceaux < 2 && (this.encontrado==false)) {
-                                        console.log("entro"+this.encontrado)
+                                    console.log("mi posicion" + i + "," + j)
+                                    while (this.indiceaux < 2 && (this.encontrado == false)) {
+                                        console.log("entro" + this.encontrado)
                                         if (this.mat.mat[i][this.indiceaux].GetState()) {
-                                            if (this.enemymatriz.Enemymat.mat[this.indiceaux][j-1].GetUnit() && j > 0) {
-                                                this.encontrado = true;
-                                                this.auxunitchange = this.mat.mat[i][j];
-                                                
-                                                
-                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+                                            if (j > 0) {
+                                                if (this.enemymatriz.Enemymat.mat[this.indiceaux][j - 1].GetState()) {
+                                                    this.encontrado = true;
+                                                    this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
 
-                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][this.indiceaux].ocupada = true;
-                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
-                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
-                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
-                                        
-                                                this.mat.mat[i][j].SetFree();
-                                              
-                                                
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
 
+                                    
+                                                    this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
+
+                                                    this.mat.mat[i][j].SetFree();
+                                                }
                                             }
-                                            else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j].GetUnit()) {
+                                            else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j].GetState()) {
                                                 this.encontrado = true;
                                                 this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
 
-                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][this.indiceaux].ocupada = true;
-                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
-                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
-                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
-                                        
-                                                this.mat.mat[i][j].SetFree();
-                                              
-                                               
-                                            }
-                                            else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j+1].GetUnit() && j < this.mat.row) {
-                                                this.encontrado = true;
-                                                this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-                                                
-                                                this.mat.mat[i][this.indiceaux].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+                                          
+                                                this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
 
-                                                this.mat.mat[i][this.indiceaux].unit = this.mat.mat[i][j].GetUnit();
-                                                this.mat.mat[i][this.indiceaux].ocupada = true;
-                                                this.mat.mat[i][this.indiceaux]._unittexture = this.mat.mat[i][j].GetUnit().unittexture;
-                                                this.mat.mat[i][this.indiceaux].setTexture(this.mat.mat[i][this.indiceaux]._unittexture);
-                                                this.mat.mat[i][this.indiceaux].setScale(0.33,0.33);
-                                        
                                                 this.mat.mat[i][j].SetFree();
-                                               
+
+
                                             }
-                                            
+                                            if (j == 0) {
+                                                if (this.enemymatriz.Enemymat.mat[this.indiceaux][j + 1].GetState()) {
+                                                    this.encontrado = true;
+                                                    this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
+                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+
+
+                                                    this.mat.mat[i][j].SetFree();
+
+                                                }
+                                            }
+                                            this.indiceaux+=1;
+                                            console.log(this.indiceaux);
                                         }
-                                        this.indiceaux++;
-                                    }console.log("aaasaaaaaz")
+                                       
+                                    } console.log("aaasaaaaaz")
                                 }
 
 
@@ -256,7 +245,7 @@ export default class BattleManager {
             //bucle matriz enemigos
             for (var i = 0; i < this.enemymatriz.Enemymat.row; i++) {
                 for (var j = 0; j < this.enemymatriz.Enemymat.col; j++) {
-                    if(this.enemymatriz.Enemymat.mat[i][j].GetUnit().card.unit_type == "B" && this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false){
+                    if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().card.unit_type == "B" && this.enemymatriz.Enemymat.mat[i][j].GetUnit().isalife == false) {
                         this.victory = true;
                     }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
@@ -334,7 +323,7 @@ export default class BattleManager {
 
                         } this.enemymatriz.Enemymat.mat[i][j].GetUnit().Cooldown();
                         this.auxv = false;
-                        if(this.victory == true) this.auxv = true;
+                        if (this.victory == true) this.auxv = true;
                     }
 
                 }
@@ -365,35 +354,34 @@ export default class BattleManager {
                 }
             }
         }
-      }
-    ApplySinergy(dios){ //El dios representa al número del array de jeroglificos
+    }
+    ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
         let Sinergias = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
         //console.log(this.jeros[dios]);
 
-        for(let i = 0; i < this.jeros.getSize(dios); ++i){
-            if(this.jeros.getIsActive(dios,i) == false)
-            {
+        for (let i = 0; i < this.jeros.getSize(dios); ++i) {
+            if (this.jeros.getIsActive(dios, i) == false) {
                 Sinergias = false; //Si hay un jeroglifico que no esta activado, la sinergia no se activa.
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
         }
 
         //if (!Sinergias) this.AlteredStates.applyAlteredStates(dios);
-        
+
         // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
         //const alteredStateInstance = new AlteredStateClass();
         //alteredStateInstance.getAlteredState(this.Sinergias);
 
         return Sinergias; //Devolvemos si es verdadero o falso
     }
-    getJeros(){
+    getJeros() {
         return this.jeros;
     }
 };
 class Jeroglifico {
     jeros = [];
-    tamaño = [3,5,5,4,3,4];
+    tamaño = [3, 5, 5, 4, 3, 4];
     /*  jeros[0] --> Osiris (3)
       jeros[1] --> Ra (5)
       jeros[2] --> Anubis (5)
@@ -434,13 +422,13 @@ class Jeroglifico {
 
     setIsActive(i, j, _isActive) {
         //if (this.jeros[i] && this.jeros[i][j]) {
-        console.log(  "ANTES" + this.jeros[i][j].isActive);
-            this.jeros[i][j].isActive = _isActive;
-            console.log("Después" +  this.jeros[i][j].isActive);
+        console.log("ANTES" + this.jeros[i][j].isActive);
+        this.jeros[i][j].isActive = _isActive;
+        console.log("Después" + this.jeros[i][j].isActive);
         //}
     }
 
-    getSize(i){
+    getSize(i) {
         return this.tamaño[i];
     }
 }

@@ -35,8 +35,8 @@ export default class CardLogic {
         if (rnd == 0) {
             
             this.health = 10;
-            this.attack = 5;
-            this.speed = 5;
+            this.attack = 35;
+            this.speed = 1;
             this.defense = 5;
             this.unit_type = "SA";
             this.letter = l;

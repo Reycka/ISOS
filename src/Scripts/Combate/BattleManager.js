@@ -101,37 +101,53 @@ export default class BattleManager {
                                         this.mat.mat[i][j + 1].Getheal();
                                     }
                                 }
-
-                                // if (!this.target) {
-                                //     this.encontrado = false;
-                                //     this.indiceaux = 0;
-                                //     while (this.indiceaux < this.mat.row && !this.encontrado) {
-                                //         if (this.mat.mat[indiceaux][j].GetState()) {
-                                //             if (this.mat.mat[indiceaux][j - 1].GetUnit() && j >= 0) {
-                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
-                                //                 this.mat.mat[i][j].SetFree();
-                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
-                                //                 this.encontrado = true;
-
-                                //             }
-                                //             else if (this.mat.mat[i][j].GetUnit()) {
-                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
-                                //                 this.mat.mat[i][j].SetFree();
-                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
-                                //                 this.encontrado = true;
-                                //             }
-                                //             else if (this.mat.mat[i][j].GetUnit() && i < this.mat.row) {
-                                //                 this.auxunitchange = this.mat.mat[i][j].GetUnit();
-                                //                 this.mat.mat[i][j].SetFree();
-                                //                 this.mat.mat[i][indiceaux].SetUnit(auxunitchange);
-                                //                 this.encontrado = true;
-                                //             }
-                                //             else indiceaux++;
-                                //         }
-
-                                //     }
-                                // }
-
+                                if (this.target == false) {
+                                    this.encontrado = false;
+                                    this.indiceaux = 0;
+                                    console.log("mi posicion" + i + "," + j)
+                                    while (this.indiceaux < this.mat.row && (this.encontrado == false)) {
+                                        console.log("entro" + this.encontrado)
+                                        if (this.mat.mat[this.indiceaux][j].GetState()==false) {
+                                            //detras
+                                            if (j > 0) {
+                                                if (this.mat.mat[this.indiceaux][j - 1].GetState()) {
+                                                    this.encontrado = true;
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                    this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
+                                                    this.mat.mat[i][j].SetFree();
+                                                }
+                                            }
+                                           //frente
+                                            if (j == 0) {
+                                                if (this.mat.mat[this.indiceaux][j + 1].GetState()) {
+                                                    this.encontrado = true;
+                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                    this.mat.mat[i][j].SetFree();
+                                                }
+                                            }
+                                            if (this.indiceaux > 0) {
+                                                if (this.mat.mat[this.indiceaux-1][j].GetState()) {
+                                                    this.encontrado = true;
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                    this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
+                                                    this.mat.mat[i][j].SetFree();
+                                                }
+                                            }
+                                           //frente
+                                            if (this.indiceaux == 0) {
+                                                if (this.mat.mat[this.indiceaux+1][j].GetState()) {
+                                                    this.encontrado = true;
+                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
+                                                    this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
+                                                    this.mat.mat[i][j].SetFree();
+                                                }
+                                            }     
+                                        }
+                                        this.indiceaux+=1;
+                                        console.log(this.indiceaux);
+                                    }
+                                }
                             }
                             else {
 
@@ -181,37 +197,23 @@ export default class BattleManager {
                                 }
 
                                 if (this.target == false) {
-
                                     this.encontrado = false;
                                     this.indiceaux = 0;
-                                    console.log("mi posicion" + i + "," + j)
-                                    while (this.indiceaux < 2 && (this.encontrado == false)) {
-                                        console.log("entro" + this.encontrado)
-                                        if (this.mat.mat[i][this.indiceaux].GetState()) {
+                                    while (this.indiceaux < this.mat.row && (this.encontrado == false)) {
+                                        if (this.mat.mat[this.indiceaux][j].GetState()==false) {
                                             if (j > 0) {
                                                 if (this.enemymatriz.Enemymat.mat[this.indiceaux][j - 1].GetState()) {
                                                     this.encontrado = true;
-                                                    this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
-
-                                    
                                                     this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
-
                                                     this.mat.mat[i][j].SetFree();
                                                 }
                                             }
                                             else if (this.enemymatriz.Enemymat.mat[this.indiceaux][j].GetState()) {
                                                 this.encontrado = true;
-                                                this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-
                                                 this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
-                                          
                                                 this.mat.mat[this.indiceaux][j].setScale(0.33, 0.33);
-
                                                 this.mat.mat[i][j].SetFree();
-
-
                                             }
                                             if (j == 0) {
                                                 if (this.enemymatriz.Enemymat.mat[this.indiceaux][j + 1].GetState()) {
@@ -219,20 +221,14 @@ export default class BattleManager {
                                                     this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
                                                     console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
-
-
                                                     this.mat.mat[i][j].SetFree();
-
                                                 }
                                             }
-                                            this.indiceaux+=1;
-                                            console.log(this.indiceaux);
+                                            
                                         }
-                                       
-                                    } console.log("aaasaaaaaz")
+                                        this.indiceaux+=1;
+                                    }
                                 }
-
-
                             }
                         }
                         this.mat.mat[i][j].GetUnit().Cooldown();

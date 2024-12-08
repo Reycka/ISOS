@@ -20,12 +20,21 @@ export default class AffinityRegister{
 
     //aumentos o disminuciones de los valores de afinidad
     AddRa(valor){
+        var dif =  this.Ra += valor;
         this.Ra += valor;
-        this.numtotalpnt += valor;
+       
+        if(dif<=0){
+            this.Ra = 1;
+            this.numtotalpnt += Math.abs(dif)+1;
+        } else this.numtotalpnt +=valor ;
     }
     AddIsis(valor){
+        var dif =  this.Isis += valor;
         this.Isis += valor;
-        this.numtotalpnt += valor;
+        if(dif<=0){
+            this.Isis = 1;
+            this.numtotalpnt += Math.abs(dif)+1;
+        } else this.numtotalpnt +=valor ;
     }
     AddAnubis(valor){
         this.Anubis += valor;

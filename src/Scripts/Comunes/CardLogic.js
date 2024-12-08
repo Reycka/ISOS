@@ -25,8 +25,9 @@ export default class CardLogic {
 
 
     constructor(l) {
+        //l es la letra de la carta generada en el AffinityRegister
         var rnd = Math.floor(Math.random() * 6);
-        //console.log(rnd)
+
         this.textureindex = rnd;
         //generador de cartas
 

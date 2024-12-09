@@ -25,8 +25,9 @@ export default class CardLogic {
 
 
     constructor(l) {
+        //l es la letra de la carta generada en el AffinityRegister
         var rnd = Math.floor(Math.random() * 6);
-        //console.log(rnd)
+
         this.textureindex = rnd;
         //generador de cartas
 
@@ -35,8 +36,8 @@ export default class CardLogic {
         if (rnd == 0) {
             
             this.health = 10;
-            this.attack = 5;
-            this.speed = 5;
+            this.attack = 35;
+            this.speed = 2;
             this.defense = 5;
             this.unit_type = "SA";
             this.letter = l;
@@ -49,7 +50,7 @@ export default class CardLogic {
             
             this.health = 10;
             this.attack = 15;
-            this.speed = 10;
+            this.speed = 5;
             this.defense = 5;
             this.unit_type = "LA";
             this.letter = l;
@@ -62,7 +63,7 @@ export default class CardLogic {
            
             this.health = 25;
             this.attack = 5;
-            this.speed = 5;
+            this.speed = 6;
             this.defense = 5;
             this.unit_type = "C";
             this.letter = l;
@@ -73,9 +74,9 @@ export default class CardLogic {
         //infanteria
         else if (rnd == 3) {
             
-            this.health = 1;
-            this.attack = 1;
-            this.speed = 15;
+            this.health = 10;
+            this.attack = 15;
+            this.speed = 3;
             this.defense = 2;
             this.unit_type = "G";
             this.letter = l;
@@ -86,8 +87,8 @@ export default class CardLogic {
         //Magos de ataque
         else if (rnd == 4) {
             
-            this.health = 1;
-            this.attack = 1;
+            this.health = 15;
+            this.attack = 10;
             this.speed = 11;
             this.defense = 3;
             this.unit_type = "M";

@@ -319,7 +319,7 @@ defeat(){
 					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
 					}else{
-						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2').setScale(0.85,0.85);
+						//this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2').setScale(0.85,0.85);
 					}
 				}
 			}

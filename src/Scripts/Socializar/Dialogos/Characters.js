@@ -1,6 +1,6 @@
 
 class Character {
-    constructor(scene, x, y, sprites, id) {
+    constructor(scene, x, y, sprites, id,) {
        
         this.scene = scene;
         this.x = x;

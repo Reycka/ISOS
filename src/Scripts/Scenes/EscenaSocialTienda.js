@@ -155,6 +155,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn.setInteractive();
         this.battlebtn.setVisible(false);
         this.battlebtn.on('pointerup', pointer => {
+            this.inventory.day++;
+            console.log(this.inventory.day);
             this.socialbacksound.stop();
             this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
             
@@ -280,7 +282,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.shopbacksound.play({ loop: true });
                 }
                
-                if(stage != 0 && day != 1){
+                if(stage != 0 || this.inventory.day != 1){       
 
                     botonDch.setVisible(true);  
                 }  

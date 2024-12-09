@@ -280,11 +280,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.shopbacksound.play({ loop: true });
                 }
                
-                if(stage != 0){
+                if(stage != 0 && day != 1){
 
                     botonDch.setVisible(true);  
                 }  
-                
+
                 this.showAllCharacters();
                 if (stage === 3) {
                     this.battlebtn.setVisible(true);

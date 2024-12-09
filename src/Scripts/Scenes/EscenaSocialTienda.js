@@ -133,6 +133,17 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
                     this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
                 auxcard.setScale(1 / 2, 1 / 2);
+                this.anim = this.tweens.add({
+                    targets: auxcard,
+                    y: -1700,
+                    duration: 400,
+                    ease: 'Sine.easeInOut',
+                    flipX: false,
+                    yoyo: true,
+                    repeat: 0,
+                    delay: 10
+                });
+                this.anim.play();
             }
         })
 

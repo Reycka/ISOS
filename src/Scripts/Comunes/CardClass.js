@@ -13,6 +13,7 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y,_texture, _cardLogic) {   
        super(scene, x, y,_texture);
         this.texture = _texture;
+        
         this.scene = scene;
         this.stads = _cardLogic;
         this.textureindex = this.stads.textureindex;
@@ -20,6 +21,9 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         this.isaCard = this.stads.iscard;
        this.isused = false;
         console.log(this.textureindex);
+        this.setScale(1 / 2, 1 / 2);
+      
+        
       
     }
     GetTextureIndex(){

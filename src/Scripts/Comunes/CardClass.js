@@ -47,6 +47,11 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
             return this;
         }
     }
+    RecoverCard(){
+        if (this.isused == true){
+            this.isused = false;
+        }
+    }
     back(){
         this.isused = false;
     }

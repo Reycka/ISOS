@@ -259,10 +259,9 @@ defeat(){
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
-
+					//Coloca la textura de las tropas
 					if(this.mat.mat[i][j].texture != null){
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
-						
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
 					}
 				})
 			}
@@ -275,7 +274,11 @@ defeat(){
 			this.preCombatSound.stop();
 			this.combatSound.play({loop: true})
 			this.AlteredState = new AlteredState();
-
+			let _card;
+			for(_card of this.inventory.listCardClass){
+				_card.RecoverCard();
+				console.log("Recupero las cartas")
+			}
 			if(this.oleada <= 5)this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);

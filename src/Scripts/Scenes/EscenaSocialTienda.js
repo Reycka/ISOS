@@ -4,7 +4,7 @@ import DialogSystem from '../Socializar/Dialogos/DialogSystem.js';
 import Character from '../Socializar/Dialogos/Characters.js';
 import Inventory from './../Comunes/Inventory.js'
 import CardClass from '../Comunes/CardClass.js';
-
+import AffinityBar from '../Comunes/AffinityBar.js';
 
 
 
@@ -120,6 +120,27 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         const desplazamiento = 3840 + 1920 / 2;
         //const velocitypan = 1000;
         const velocitypan = 400;
+
+        let RaAffinity = inventory.affreg.GetRa()/inventory.affreg.numtotalpnt;
+        let IsisAffinity = inventory.affreg.GetIsis()/inventory.affreg.numtotalpnt;
+        let HorusAffinity = inventory.affreg.GetHorus()/inventory.affreg.numtotalpnt;
+        let OsirisAffinity = inventory.affreg.GetOsiris()/inventory.affreg.numtotalpnt;
+        let AnubisAffinity = inventory.affreg.GetAnubis()/inventory.affreg.numtotalpnt;
+        let SethAffinity = inventory.affreg.GetSeth()/inventory.affreg.numtotalpnt;
+
+        var RaBar = new AffinityBar(this,0,0,10,60,"0x00000000");
+        var IsisBar = new AffinityBar(this,10,0,10,60,"0x00000000");
+        var HorusBar = new AffinityBar(this,20,0,10,60,"0x00000000");
+        var OsirisBar = new AffinityBar(this,30,0,10,60,"0x00000000");
+        var AnubisBar = new AffinityBar(this,40,0,10,60,"0x00000000");
+        var SethBar = new AffinityBar(this,50,0,10,60,"0x00000000");
+
+        RaBar.setSize(RaBar.x,RaAffinity/RaBar.height);
+        IsisBar.setSize(IsisBar.x,IsisAffinity/IsisBar.height);
+        HorusBar.setSize(HorusBar.x,HorusAffinity/HorusBar.height);
+        OsirisBar.setSize(OsirisBar.x,OsirisAffinity/OsirisBar.height);
+        AnubisBar.setSize(AnubisBar.x,AnubisAffinity/AnubisBar.height);
+        SethBar.setSize(SethBar.x,SethAffinity/SethBar.height);
 
         //Si pulsamos en el boton, se añade algo a tu inventario
         Khayyat.on('pointerdown', pointer => {

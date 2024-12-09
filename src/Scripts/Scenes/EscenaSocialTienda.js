@@ -194,7 +194,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
         //boton cambio de escena a la de combate
-        this.battlebtn = this.add.image(this.sys.game.canvas.width - 50, 50, 'batalla')
+        this.battlebtn = this.add.image(this.sys.game.canvas.width - 50, this.sys.game.canvas.height - 50, 'batalla')
         this.battlebtn.setScale(0.2, 0.2);
         this.battlebtn.setInteractive();
         this.battlebtn.setVisible(false);

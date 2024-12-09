@@ -20,8 +20,8 @@
                     "character": "Tarik",
                     "text": "A estas alturas dudo que defienda su propio templo.",
                     "options": [
-                        { "response": "Ten más confianza en él, Tarik.", "gain": 0 },
-                        { "response": "Deberíamos pensar en algo.", "gain": 1 }
+                        { "response": "Ten más confianza en él, Tarik.", "gain": 0, "god": "Ra"  },
+                        { "response": "Deberíamos pensar en algo.", "gain": 1, "god": "Ra"  }
                     ]
                 },
                 {},
@@ -50,9 +50,9 @@
                     "character": "Tarik",
                     "text": "Les entiendo hasta cierto punto, pero no estoy seguro de que sea la mejor motivación.",
                     "options": [
-                        { "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…", "gain": -1 },
-                        { "response": "La volatilidad de nuestras tropas también me preocupa.", "gain": 0 },
-                        { "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.", "gain": 1 }
+                        { "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…", "gain": -1, "god": "Ra" },
+                        { "response": "La volatilidad de nuestras tropas también me preocupa.", "gain": 0, "god": "Ra"  },
+                        { "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.", "gain": 1, "god": "Ra"  }
                     ]
                 },
                 {},
@@ -88,9 +88,9 @@
                     "character": "Shai",
                     "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?",
                     "options": [
-                        { "response": "No tiene sentido pensar demasiado en ello, \ntenemos que encargarnos de Apofis.", "gain": 0, "next": "fragmento_1.4.1" },
-                        { "response": "La única manera en la que cambiaremos la \nsituación es con nuestras propias acciones.", "gain": 1, "next": "fragmento_1.4.2" },
-                        { "response": "Dudar de nuestro dios en su propio templo \nno es el camino si quieres su asistencia.", "gain": -1, "next": "fragmento_1.4.1" }
+                        { "response": "No tiene sentido pensar demasiado en ello, \ntenemos que encargarnos de Apofis.", "gain": 0, "next": "fragmento_1.4.1", "god": "Ra"  },
+                        { "response": "La única manera en la que cambiaremos la \nsituación es con nuestras propias acciones.", "gain": 1, "next": "fragmento_1.4.2", "god": "Ra"  },
+                        { "response": "Dudar de nuestro dios en su propio templo \nno es el camino si quieres su asistencia.", "gain": -1, "next": "fragmento_1.4.1", "god": "Ra"  }
                        
                     ]
                 }

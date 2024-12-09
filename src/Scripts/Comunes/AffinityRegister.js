@@ -8,33 +8,70 @@ export default class AffinityRegister{
     rnd2;
 
     constructor(){
-        this.Ra = 1;
-        this.Isis = 1;
-        this.Horus = 1;
-        this.Anubis = 1;
-        this.Osiris = 1;
-        this.Seth = 1;
-        this.numtotalpnt = 6;
+        this.Ra = 10;
+        this.Isis = 10;
+        this.Horus = 10;
+        this.Anubis = 10;
+        this.Osiris = 10;
+        this.Seth = 0;
+        this.numtotalpnt = 50;
         this.rnd2 = 0;
+    }
+
+    AddRep(val, god, minus){
+
+        if (god == "Ra"){
+            this.AddRa(val);
+        }
+        else if(god == "Isis"){
+            this.AddIsis(val);
+        }
+        else if(god == "Anubis"){
+            this.AddAnubis(val);
+        }
+        else if(god == "Horus"){
+            this.AddHorus(val);
+        }
+        else if(god == "Osiris"){
+            this.AddOsiris(val);
+        }
+        else if(god == "Seth"){
+            
+            this.AddSeth(val);
+            this.AddRa(minus);
+            this.AddIsis(minus);
+            this.AddAnubis(minus);
+            this.AddHorus(minus);
+            this.AddOsiris(minus);
+
+        }
+
+        console.log(this.Ra,"", this.Isis,"", this.Anubis,"", this.Horus,"", this.Osiris,"", this.Seth)
+
+
     }
 
     //aumentos o disminuciones de los valores de afinidad
     AddRa(valor){
-        var dif =  this.Ra += valor;
+
+        console.log(valor);
+        //var dif =  this.Ra += valor;
         this.Ra += valor;
+        this.numtotalpnt += valor;
        
-        if(dif<=0){
+        /*if(dif<=0){
             this.Ra = 1;
             this.numtotalpnt += Math.abs(dif)+1;
-        } else this.numtotalpnt +=valor ;
+        } else this.numtotalpnt +=valor ;*/
     }
     AddIsis(valor){
-        var dif =  this.Isis += valor;
+        //var dif =  this.Isis += valor;
         this.Isis += valor;
-        if(dif<=0){
+        this.numtotalpnt += valor;
+        /*if(dif<=0){
             this.Isis = 1;
             this.numtotalpnt += Math.abs(dif)+1;
-        } else this.numtotalpnt +=valor ;
+        } else this.numtotalpnt +=valor ;*/
     }
     AddAnubis(valor){
         this.Anubis += valor;

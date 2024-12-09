@@ -151,16 +151,42 @@ export default class DialogSystem {
     handleOptionSelection(gain, option) {
         //console.log(`Opción seleccionada: ${gain}`);
 
+        if(gain == -1){
+
+            this.inventory.affreg.AddRep(-5, option.god);
+
+        }
+
         if(gain === 0){
 
             this.inventory.AddGift(1);
-            console.log(this.inventory);
+            //console.log(this.inventory);
+
+            if(option.god == "Seth"){
+
+                this.inventory.affreg.AddRep(0, option.god, -1);
+            }
+            else{
+                this.inventory.affreg.AddRep(0, option.god);
+            }
+
+
+            
         }
 
         if(gain === 1){
 
             this.inventory.AddGift(2);
-            console.log(this.inventory);
+            //console.log(this.inventory);
+
+            if(option.god == "Seth"){
+
+                this.inventory.affreg.AddRep(5, option.god, -3);
+            }
+            else{
+                this.inventory.affreg.AddRep(5, option.god);
+            }
+
         }
 
         if (option.next) {

@@ -36,28 +36,28 @@ export default class EnemyMatriz {
     if(!rep) {
       switch (enemigo){
         case 'G':
-          enemigo = "GUERRERO"
+          enemigo = "Guerrero"
           break;
         case 'SA':
-          enemigo = "ARCO CORTO"
+          enemigo = "Arco corto"
           break;
         case 'LA':
-            enemigo = "ARCO LARGO"
+            enemigo = "Arco largo"
           break;
         case 'M':
-            enemigo = "MAGO"
+            enemigo = "Mago"
           break;
         case 'C':
-            enemigo = "CARRO"
+            enemigo = "Carro"
           break;
         case 'H':
-            enemigo = "CURANDERO"
+            enemigo = "Curandero"
           break;
         case 'B':
             enemigo = "?????"
             break;
       }
-      this.texts[this.enemycount] = this.scene.add.text(1650,(520 + this.enemycount * 60),enemigo).setScale(2,2);
+      this.texts[this.enemycount] = this.scene.add.text(1500,(520 + this.enemycount * 60),enemigo).setScale(2,2);
       this.enemycount++;
     }
   }

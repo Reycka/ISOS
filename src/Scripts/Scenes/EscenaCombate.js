@@ -212,8 +212,8 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		let listaenemigos = this.add.image(1722,675,'MatrixGround2').setScale(2,3);
-		let posiblesenemigos  = this.add.text(1560,450,"POSIBLES ENEMIGOS").setScale(2,2);
+		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
+		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;
@@ -267,8 +267,8 @@ defeat(){
 			}
 		}
 		//Boton de pegarse
-		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
-		pelea.setScale(0.3,0.3);
+		var pelea = this.add.image((this.sys.game.canvas.width)*11.55 / 12, this.sys.game.canvas.height*14.15/ 15,'Pelea')
+		pelea.setScale(0.2,0.2);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
 			this.preCombatSound.stop();

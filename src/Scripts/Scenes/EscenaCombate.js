@@ -212,8 +212,8 @@ defeat(){
 			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
 			card3.alpha = 0.5;
 		})
-		let listaenemigos = this.add.image(1700,500,'MatrixGround2').setScale(3,5);
-		let posiblesenemigos  = this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
+		let listaenemigos = this.add.image(1722,675,'MatrixGround2').setScale(2,3);
+		let posiblesenemigos  = this.add.text(1560,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;

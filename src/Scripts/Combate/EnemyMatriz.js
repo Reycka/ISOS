@@ -57,7 +57,7 @@ export default class EnemyMatriz {
             enemigo = "?????"
             break;
       }
-      this.texts[this.enemycount] = this.scene.add.text(1600,(300 + this.enemycount * 100),enemigo).setScale(2,2);
+      this.texts[this.enemycount] = this.scene.add.text(1650,(520 + this.enemycount * 60),enemigo).setScale(2,2);
       this.enemycount++;
     }
   }

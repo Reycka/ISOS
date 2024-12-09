@@ -8,7 +8,7 @@ export default class AffinityRegister{
     rnd2;
 
     constructor(){
-        this.Ra = 10;
+        this.Ra = 15;
         this.Isis = 10;
         this.Horus = 10;
         this.Anubis = 10;
@@ -54,13 +54,14 @@ export default class AffinityRegister{
 
     //aumentos o disminuciones de los valores de afinidad
     AddRa(valor) {
-        var dif = this.Ra += valor;
+        const dif = this.Ra + valor;
         this.numtotalpnt += valor;
     
         if (dif < 0) {
             this.Ra = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+        
     }
     
     AddIsis(valor) {

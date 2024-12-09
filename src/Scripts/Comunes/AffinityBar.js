@@ -6,9 +6,8 @@ export default class AffinityBar extends Phaser.GameObjects.Rectangle{
 
     create(){
         this.setPosition(x,y);
-        this.setRotation(this.rotation);
         this.setSize(this.width,this.height);
-        this.fillColor(this.color)
+        this.fillColor(this.color);
     }
 
     preUpdate(t, dt){ //Se puede usar para hacer animaciones a la barra de vida

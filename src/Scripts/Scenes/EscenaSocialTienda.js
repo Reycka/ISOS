@@ -5,6 +5,7 @@ import Character from '../Socializar/Dialogos/Characters.js';
 import Inventory from './../Comunes/Inventory.js'
 import CardClass from '../Comunes/CardClass.js';
 import AffinityBar from '../Comunes/AffinityBar.js';
+import AffinityRegister from '../Comunes/AffinityRegister.js';
 
 
 
@@ -119,28 +120,50 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //const desplazamiento = 5760 - 5760 / 5;
         const desplazamiento = 3840 + 1920 / 2;
         //const velocitypan = 1000;
-        const velocitypan = 400;
+        const velocitypan = 2000;
 
-        let RaAffinity = inventory.affreg.GetRa()/inventory.affreg.numtotalpnt;
-        let IsisAffinity = inventory.affreg.GetIsis()/inventory.affreg.numtotalpnt;
-        let HorusAffinity = inventory.affreg.GetHorus()/inventory.affreg.numtotalpnt;
-        let OsirisAffinity = inventory.affreg.GetOsiris()/inventory.affreg.numtotalpnt;
-        let AnubisAffinity = inventory.affreg.GetAnubis()/inventory.affreg.numtotalpnt;
-        let SethAffinity = inventory.affreg.GetSeth()/inventory.affreg.numtotalpnt;
+        let widthBar = 30;
+        let heightBar = 160;
 
-        var RaBar = new AffinityBar(this,0,0,10,60,"0x00000000");
-        var IsisBar = new AffinityBar(this,10,0,10,60,"0x00000000");
-        var HorusBar = new AffinityBar(this,20,0,10,60,"0x00000000");
-        var OsirisBar = new AffinityBar(this,30,0,10,60,"0x00000000");
-        var AnubisBar = new AffinityBar(this,40,0,10,60,"0x00000000");
-        var SethBar = new AffinityBar(this,50,0,10,60,"0x00000000");
+        var RaBar = new AffinityBar(this,60,120,widthBar,heightBar,0xe8b14c);
+        var IsisBar = new AffinityBar(this,100,120,widthBar,heightBar,0x55c7c8);
+        var HorusBar = new AffinityBar(this,140,120,widthBar,heightBar,0x3c4e9a);
+        var OsirisBar = new AffinityBar(this,180,120,widthBar,heightBar,0x448162);
+        var AnubisBar = new AffinityBar(this,220,120,widthBar,heightBar,0x24212a);
+        var SethBar = new AffinityBar(this,260,120,widthBar,heightBar,0xc92b1f);
 
-        RaBar.setSize(RaBar.x,RaAffinity/RaBar.height);
-        IsisBar.setSize(IsisBar.x,IsisAffinity/IsisBar.height);
-        HorusBar.setSize(HorusBar.x,HorusAffinity/HorusBar.height);
-        OsirisBar.setSize(OsirisBar.x,OsirisAffinity/OsirisBar.height);
-        AnubisBar.setSize(AnubisBar.x,AnubisAffinity/AnubisBar.height);
-        SethBar.setSize(SethBar.x,SethAffinity/SethBar.height);
+        RaBar.setScrollFactor(0);
+        IsisBar.setScrollFactor(0);
+        HorusBar.setScrollFactor(0);
+        OsirisBar.setScrollFactor(0);
+        AnubisBar.setScrollFactor(0);
+        SethBar.setScrollFactor(0);
+
+        function updateBar(bar, affinity, initialHeight) {
+            let newHeight = affinity * initialHeight; // Altura ajustada
+            let offsetY = (initialHeight - newHeight) / 2; // Calcular el desplazamiento hacia abajo
+            bar.setSize(bar.width, newHeight); // Ajustar el tamaño
+            bar.setPosition(bar.x, 120 + offsetY); // Ajustar la posición en Y
+        }
+
+        function UpdateBars(){
+            let RaAffinity = inventory.affreg.GetRa()/inventory.affreg.numtotalpnt;
+            console.log(inventory.affreg.Ra,RaAffinity);
+            let IsisAffinity = inventory.affreg.GetIsis()/inventory.affreg.numtotalpnt;
+            let HorusAffinity = inventory.affreg.GetHorus()/inventory.affreg.numtotalpnt;
+            let OsirisAffinity = inventory.affreg.GetOsiris()/inventory.affreg.numtotalpnt;
+            let AnubisAffinity = inventory.affreg.GetAnubis()/inventory.affreg.numtotalpnt;
+            let SethAffinity = inventory.affreg.GetSeth()/inventory.affreg.numtotalpnt;
+
+            updateBar(RaBar, RaAffinity, heightBar);
+            updateBar(IsisBar, IsisAffinity, heightBar);
+            updateBar(HorusBar, HorusAffinity, heightBar);
+            updateBar(OsirisBar, OsirisAffinity, heightBar);
+            updateBar(AnubisBar, AnubisAffinity, heightBar);
+            updateBar(SethBar, SethAffinity, heightBar);
+        }
+
+        UpdateBars();
 
         //Si pulsamos en el boton, se añade algo a tu inventario
         Khayyat.on('pointerdown', pointer => {
@@ -184,9 +207,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             botonIzq.on('pointerdown', pointer => {
                 console.log('Boton izquierdo presionado');
                 const nuevoScrollX = this.cameras.main.scrollY - desplazamiento;
-                this.cameras.main.pan(
-                    nuevoScrollX, this.cameras.main.scrollY, velocitypan
-                );
+                this.animatePan(nuevoScrollX,velocitypan);
                 this.shopbacksound.stop();
                 this.socialbacksound.play({ loop: true });
             });
@@ -195,9 +216,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 console.log('Boton derecho presionado');
                 const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
                 console.log(this.cameras.main.scrollY, desplazamiento);
-                this.cameras.main.pan(
-                    nuevoScrollX, this.cameras.main.scrollY, velocitypan
-                );
+                this.animatePan(nuevoScrollX,velocitypan);
                 console.log(this.cameras.main.scrollX);
                 this.socialbacksound.stop();
                 this.shopbacksound.play({ loop: true });
@@ -293,9 +312,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                   
                     const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
                     console.log(this.cameras.main.scrollY, desplazamiento);
-                    this.cameras.main.pan(
-                        nuevoScrollX, this.cameras.main.scrollY, velocitypan
-                    );
+                    this.animatePan(nuevoScrollX,velocitypan);
                     console.log(this.cameras.main.scrollX);
                     this.socialbacksound.stop();
                     this.shopbacksound.play({ loop: true });
@@ -305,7 +322,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 if (stage === 3) {
                     this.battlebtn.setVisible(true);
                 }
-                
+
+                UpdateBars();
             });
 
             this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla
@@ -342,7 +360,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //OFRENDAS
 
             //texto para mostrar el número de ofrendas
-            this.ofrendastx = this.add.text(20, 20, 'Ofrendas: ' + this.inventory.numgift,
+            this.ofrendastx = this.add.text(this.sys.game.canvas.width - 240,20, 'Ofrendas: ' + this.inventory.numgift,
                 {
                     font: '30px Arial, sans-serif',
                     fill: '#fff',
@@ -354,5 +372,18 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 });
             this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
         
+    }
+
+    animatePan(targetScrollX, duration) {
+        // Usa un tween para animar el scrollX de la cámara
+        this.tweens.add({
+            targets: this.cameras.main, // Objetivo: la cámara principal
+            scrollX: targetScrollX, // Interpolar hasta este valor
+            duration: duration, // Duración de la animación en ms
+            ease: 'Linear', // Efecto de interpolación (puedes cambiarlo)
+            onComplete: () => {
+                console.log('Animación completada');
+            }
+        });
     }
 }

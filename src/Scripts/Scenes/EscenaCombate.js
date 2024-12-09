@@ -186,31 +186,47 @@ defeat(){
 
 		})
 		downBoton.setFlipY(true);
+		let actualcard;
 		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
 		card1.setScale(0.3,0.3);
-
-		card1.setInteractive();
-		card1.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
-			card1.alpha = 0.5;
-		})
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		card2.setScale(0.3,0.3);
-		card2.setInteractive();
-		card2.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
-			card2.alpha = 0.5;
-		})
-		
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 		card3.setScale(0.3,0.3);
+
+		card1.setInteractive();
+		card1.on('pointerup', pointer =>{
+			if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false){
+				actualcard = this.inventoryindex;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
+				card1.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+			}
+		})
+		card2.setInteractive();
+		card2.on('pointerup', pointer =>{
+			if(this.inventory.listCardClass[this.inventoryindex + 1].GetIsused()== false){
+				actualcard = this.inventoryindex + 1;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
+				card2.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+			}
+		})
+		
 		card3.setInteractive();
 		card3.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
-			card3.alpha = 0.5;
+			if(this.inventory.listCardClass[this.inventoryindex + 2].GetIsused()== false){
+				actualcard = this.inventoryindex + 2;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
+				card3.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
+			}
 		})
 		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
 		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
@@ -260,6 +276,8 @@ defeat(){
 					this.battleManager.Summon(i,j);
 					//Coloca la textura de las tropas
 					if(this.mat.mat[i][j].texture != null){
+						this.battleManager.Summon(i,j);
+						this.inventory.listCardClass[actualcard].DeleteCard();
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
 					}
 				})

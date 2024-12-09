@@ -45,50 +45,74 @@ export default class AffinityRegister{
             this.AddOsiris(minus);
 
         }
+        
 
-        console.log(this.Ra,"", this.Isis,"", this.Anubis,"", this.Horus,"", this.Osiris,"", this.Seth)
+        console.log(this.Ra,"", this.Isis,"", this.Anubis,"", this.Horus,"", this.Osiris,"", this.Seth, "total:", this.numtotalpnt)
 
 
     }
 
     //aumentos o disminuciones de los valores de afinidad
-    AddRa(valor){
+    AddRa(valor) {
+        var dif = this.Ra += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Ra = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
+    
+    AddIsis(valor) {
+        var dif = this.Isis += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Isis = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
+    
+    AddAnubis(valor) {
+        var dif = this.Anubis += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Anubis = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
+    
+    AddHorus(valor) {
+        var dif = this.Horus += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Horus = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
+    
+    AddOsiris(valor) {
+        var dif = this.Osiris += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Osiris = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
+    
+    AddSeth(valor) {
+        var dif = this.Seth += valor;
+        this.numtotalpnt += valor;
+    
+        if (dif < 0) {
+            this.Seth = 0;
+            this.numtotalpnt += Math.abs(dif);
+        } 
+    }
 
-        console.log(valor);
-        //var dif =  this.Ra += valor;
-        this.Ra += valor;
-        this.numtotalpnt += valor;
-       
-        /*if(dif<=0){
-            this.Ra = 1;
-            this.numtotalpnt += Math.abs(dif)+1;
-        } else this.numtotalpnt +=valor ;*/
-    }
-    AddIsis(valor){
-        //var dif =  this.Isis += valor;
-        this.Isis += valor;
-        this.numtotalpnt += valor;
-        /*if(dif<=0){
-            this.Isis = 1;
-            this.numtotalpnt += Math.abs(dif)+1;
-        } else this.numtotalpnt +=valor ;*/
-    }
-    AddAnubis(valor){
-        this.Anubis += valor;
-        this.numtotalpnt += valor;
-    }
-    AddHorus(valor){
-        this.Horus += valor;
-        this.numtotalpnt += valor;
-    }
-    AddOsiris(valor){
-        this.Osiris += valor;
-        this.numtotalpnt += valor;
-    }
-    AddSeth(valor){
-        this.Seth += valor;
-        this.numtotalpnt += valor;
-    }
     
     //observadores de los valores de afinidad
 

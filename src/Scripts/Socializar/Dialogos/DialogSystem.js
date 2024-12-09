@@ -99,12 +99,15 @@ export default class DialogSystem {
             // Crear opciones
             if (options.length > 0) {
                 this.hasOptions = true;
-                options.forEach((option, index) => {
-                    const buttonText = `→ ${option.response}`;
-                    const optionXPosition = this.centerX + 600;
-                    const optionYPosition = dialogueBoxYPosition - 250 + (index * 100);
 
-                    const button = this.scene.add.text(optionXPosition, optionYPosition, buttonText, {
+                let baseYPosition = dialogueBoxYPosition -100; //Punto fijo en y
+
+                options.reverse().forEach((option, index) => {
+                    const buttonText = `→ ${option.response}`;
+                    const initialXPosition = this.centerX + 910; // Punto fijo en X
+
+                    // Posición temporal
+                    const button = this.scene.add.text(initialXPosition, baseYPosition, buttonText, {
                         font: '30px Arial, sans-serif',
                         fill: '#fff',
                         stroke: '#000',
@@ -119,16 +122,26 @@ export default class DialogSystem {
                     .on('pointerout', () => {
                         button.setStyle({ fill: '#fff', backgroundColor: '#000000' });
                     })
-                    .on('pointerdown', () => this.handleOptionSelection(option.gain,option));
+                    .on('pointerdown', () => this.handleOptionSelection(option.gain, option));
 
+                    // Ajustar x
+                    const adjustedXPosition = initialXPosition - button.width / 2;
+                    button.setX(adjustedXPosition);
+
+                    
+                    // Siguente botón (hacia arriba)
+                    baseYPosition -= button.height+20; // + altura del botón anterior
+
+                    
                     this.optionButtons.push(button);
                 });
 
-                
-                
+                // Revertir la lista de botones para mantener el orden original
+                options.reverse();
             } else {
                 this.hasOptions = false;
             }
+
 
             this.dialogIndex++;
             
@@ -190,7 +203,7 @@ export default class DialogSystem {
         }
 
         if (option.next) {
-            console.log(`Opción con 'next' encontrada: ${option.response} -> next: ${option.next}`);
+            //console.log(`Opción con 'next' encontrada: ${option.response} -> next: ${option.next}`);
             this.showEventDialogues(option.next, this.Dialogues);
         }
         else{

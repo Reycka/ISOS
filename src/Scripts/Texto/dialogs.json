@@ -50,9 +50,9 @@
                     "character": "Tarik",
                     "text": "Les entiendo hasta cierto punto, pero no estoy seguro de que sea la mejor motivación.",
                     "options": [
-                        { "response": "Mientras que sus esfuerzos sirvan para parar a Apofis…", "gain": -1, "god": "Ra" },
-                        { "response": "La volatilidad de nuestras tropas también me preocupa.", "gain": 0, "god": "Ra"  },
-                        { "response": "Espero que con el tiempo su dolor disminuya, y su incentivo para luchar cambie.", "gain": 1, "god": "Ra"  }
+                        { "response": "Mientras que sus esfuerzos sirvan \npara parar a Apofis…", "gain": -1, "god": "Ra" },
+                        { "response": "La volatilidad de nuestras tropas \ntambién me preocupa.", "gain": 0, "god": "Ra"  },
+                        { "response": "Espero que con el tiempo su dolor \ndisminuya, y su incentivo para luchar cambie.", "gain": 1, "god": "Ra"  }
                     ]
                 },
                 {},

@@ -239,6 +239,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         personaje.noInteractive();
                         this.hideAllCharactersExcept(personaje);
                         this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);
+                        botonDch.setVisible(false);
 
                         //console.log(stage, " ", personaje.disponible)
                         personaje.eventNum++;
@@ -256,19 +257,18 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.events.on('endDialogue', () => { //volver a mostrar personajes
                 this.UpdateOfrendasText();
                 if(this.inventory.day == 1 && stage==1)
-
-                    {
-                        botonDch.setVisible(true); //para el tutorial
-                        const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
-                        console.log(this.cameras.main.scrollY, desplazamiento);
-                        this.cameras.main.pan(
-                            nuevoScrollX, this.cameras.main.scrollY, velocitypan
-                        );
-                        console.log(this.cameras.main.scrollX);
-                        this.socialbacksound.stop();
-                        this.shopbacksound.play({ loop: true });
-                    }
-                    
+                {
+                  
+                    const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
+                    console.log(this.cameras.main.scrollY, desplazamiento);
+                    this.cameras.main.pan(
+                        nuevoScrollX, this.cameras.main.scrollY, velocitypan
+                    );
+                    console.log(this.cameras.main.scrollX);
+                    this.socialbacksound.stop();
+                    this.shopbacksound.play({ loop: true });
+                }
+                botonDch.setVisible(true);    
                 this.showAllCharacters();
                 if (stage === 3) {
                     this.battlebtn.setVisible(true);

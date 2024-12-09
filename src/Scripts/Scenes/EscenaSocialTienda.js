@@ -255,7 +255,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         //console.log(stage, " ", personaje.disponible)
                         personaje.eventNum++;
 
-                        console.log(personaje.eventNum)
+                        //console.log(personaje.eventNum)
 
 
                     } else {
@@ -279,7 +279,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.socialbacksound.stop();
                     this.shopbacksound.play({ loop: true });
                 }
-                botonDch.setVisible(true);    
+               
+                if(stage != 0){
+
+                    botonDch.setVisible(true);  
+                }  
+                
                 this.showAllCharacters();
                 if (stage === 3) {
                     this.battlebtn.setVisible(true);

@@ -257,7 +257,6 @@ defeat(){
 				this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
-					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
 					//Coloca la textura de las tropas
 					if(this.mat.mat[i][j].texture != null){

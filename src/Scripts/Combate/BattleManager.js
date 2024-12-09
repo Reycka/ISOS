@@ -35,9 +35,6 @@ export default class BattleManager {
         this.card = _card;
         this._texture = id;
         this.texture = id;
-        console.log("its me");
-        console.log(this.card);
-        console.log(this._texture);
     }
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {

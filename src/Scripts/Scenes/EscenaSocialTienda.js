@@ -189,9 +189,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             var ListaPersonajes = [];
 
             // Personaje
-            ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2 + 400, this.sys.game.canvas.height + 500, 'Shai', 1);
+            ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2 + 400, this.sys.game.canvas.height + 500, 'Shai', 0);
             ListaPersonajes[0].switchDisponible();
-            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, 'Shai2', 2);
+            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, 'Shai2', 1);
             ListaPersonajes[1].switchDisponible();
 
             //Personaje1.setInteractive({ pixelPerfect: true });
@@ -239,7 +239,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
                     this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
 
-                    const eventoId = `evento${personaje.num}.${personaje.eventNum}`;
+                    
+
+                    const eventoId = `evento${personaje.num}.${this.inventory.EventList[personaje.num]}`;
 
                     if (this.reader.dialogData.Eventos[eventoId]) {
 
@@ -255,9 +257,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         botonDch.setVisible(false);
 
                         //console.log(stage, " ", personaje.disponible)
-                        personaje.eventNum++;
+                        this.inventory.EventList[personaje.num]++;
 
-                        //console.log(personaje.eventNum)
+                        
 
 
                     } else {

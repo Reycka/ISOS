@@ -12,7 +12,7 @@ class Character {
 
         //Número del personaje
         this.num = id;
-        this.eventNum = 1;
+        //this.eventNum = 1;
 
         //Variables para diálogos
         

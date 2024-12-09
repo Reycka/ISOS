@@ -8,13 +8,25 @@ export default class Inventory{
     listCardlogic = [];
     listCardClass=[]
     affreg;
+
+    //Eventos de las personas
+    EventList =[];
+
+    
+
     constructor(){
         this.numgift = 0;
         this.numcards = 0;
         this.day = 1;
         this.affreg = new AffinityRegister();
+
+        for (var i=0; i<5; i++)
+        {
+            this.EventList[i] = 1;
+        }
         
     }
+    
     AddGift(n) {
         this.numgift = this.numgift + n;
     }

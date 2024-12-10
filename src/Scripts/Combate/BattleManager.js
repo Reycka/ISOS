@@ -35,9 +35,6 @@ export default class BattleManager {
         this.card = _card;
         this._texture = id;
         this.texture = id;
-        console.log("its me");
-        console.log(this.card);
-        console.log(this._texture);
     }
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {
@@ -315,12 +312,10 @@ export default class BattleManager {
             }
             //comprobamos si alguna de las matrices se ha quedado sin enemigos aprobechando el recorrido de los updates
             if (this.auxv == true && this.auxd == false) {
-                console.log("has Ganado");
                 this.victory = true;
                 return false;
             }
             else if (this.auxv == false && this.auxd == true) {
-                console.log("has perdido");
                 this.defeat = true;
                 return false;
             }
@@ -335,7 +330,6 @@ export default class BattleManager {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
                 if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
-                    console.log("ACTIVAMOS JEROGLIFICO");
                     this.jeros.setIsActive(i, j, true);
                 }
             }
@@ -407,11 +401,7 @@ class Jeroglifico {
     }
 
     setIsActive(i, j, _isActive) {
-        //if (this.jeros[i] && this.jeros[i][j]) {
-        console.log("ANTES" + this.jeros[i][j].isActive);
         this.jeros[i][j].isActive = _isActive;
-        console.log("Después" + this.jeros[i][j].isActive);
-        //}
     }
 
     getSize(i) {

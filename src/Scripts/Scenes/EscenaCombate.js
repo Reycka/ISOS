@@ -186,34 +186,50 @@ defeat(){
 
 		})
 		downBoton.setFlipY(true);
+		let actualcard;
 		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
 		card1.setScale(0.3,0.3);
-
-		card1.setInteractive();
-		card1.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
-			card1.alpha = 0.5;
-		})
 		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		card2.setScale(0.3,0.3);
-		card2.setInteractive();
-		card2.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
-			card2.alpha = 0.5;
-		})
-		
 		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 		card3.setScale(0.3,0.3);
+
+		card1.setInteractive();
+		card1.on('pointerup', pointer =>{
+			if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false){
+				actualcard = this.inventoryindex;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
+				card1.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+			}
+		})
+		card2.setInteractive();
+		card2.on('pointerup', pointer =>{
+			if(this.inventory.listCardClass[this.inventoryindex + 1].GetIsused()== false){
+				actualcard = this.inventoryindex + 1;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
+				card2.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+			}
+		})
+		
 		card3.setInteractive();
 		card3.on('pointerup', pointer =>{
-			this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
-			card3.alpha = 0.5;
+			if(this.inventory.listCardClass[this.inventoryindex + 2].GetIsused()== false){
+				actualcard = this.inventoryindex + 2;
+				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
+				card3.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
+			}
 		})
-		let listaenemigos = this.add.image(1700,500,'MatrixGround2').setScale(3,5);
-		let posiblesenemigos  = this.add.text(1500,200,"POSIBLES ENEMIGOS").setScale(2,2);
+		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
+		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;
 		let col = 2;
@@ -257,25 +273,36 @@ defeat(){
 				this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
-					console.log("Soy clickable");
 					this.battleManager.Summon(i,j);
-
+					//Coloca la textura de las tropas
 					if(this.mat.mat[i][j].texture != null){
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());
-						
+						this.battleManager.Summon(i,j);
+						this.inventory.listCardClass[actualcard].DeleteCard();
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
 					}
 				})
 			}
 		}
 		//Boton de pegarse
-		var pelea = this.add.image((this.sys.game.canvas.width)*11.5 / 12, this.sys.game.canvas.height*14/ 15,'Pelea')
-		pelea.setScale(0.3,0.3);
+		var pelea = this.add.image((this.sys.game.canvas.width)*11.55 / 12, this.sys.game.canvas.height*14.15/ 15,'Pelea')
+		pelea.setScale(0.2,0.2);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
+			for(let i = 0; i < this.mat.row; i++){
+				for(let j = 0; j < this.mat.col; j++){
+					if(this.mat.mat[i][j].ocupada == false){
+						this.mat.mat[i][j].SetFree();
+					}
+				}
+			}
 			this.preCombatSound.stop();
 			this.combatSound.play({loop: true})
 			this.AlteredState = new AlteredState();
-
+			let _card;
+			for(_card of this.inventory.listCardClass){
+				_card.RecoverCard();
+				console.log("Recupero las cartas")
+			}
 			if(this.oleada <= 5)this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);
@@ -283,10 +310,6 @@ defeat(){
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					
-					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					//algo.setScale(0.85,0.85);
-					
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
 						if(this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture() == 'B'){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("B");
@@ -295,11 +318,7 @@ defeat(){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-						
-					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
-					}else{
-						this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2').setScale(0.85,0.85);
 					}
 				}
 			}

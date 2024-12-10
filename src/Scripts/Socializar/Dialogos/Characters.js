@@ -1,6 +1,6 @@
 
 class Character {
-    constructor(scene, x, y, sprites, id) {
+    constructor(scene, x, y, sprites, id,) {
        
         this.scene = scene;
         this.x = x;
@@ -12,7 +12,7 @@ class Character {
 
         //Número del personaje
         this.num = id;
-        this.eventNum = 1;
+        //this.eventNum = 1;
 
         //Variables para diálogos
         

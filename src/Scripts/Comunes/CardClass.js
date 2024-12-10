@@ -41,10 +41,17 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         return new UnitClass(this.scene,this,unitexture);
     }
     SetCard(){
-        
+
+        if(!this.isused) return this;
+    }
+    DeleteCard(){
         if (this.isused == false){
             this.isused = true;
-            return this;
+        }
+    }
+    RecoverCard(){
+        if (this.isused == true){
+            this.isused = false;
         }
     }
     back(){

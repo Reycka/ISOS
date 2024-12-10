@@ -53,6 +53,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
         this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
 
+        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
+
     }
 
     UpdateOfrendasText() {
@@ -164,6 +166,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         }
 
         UpdateBars();
+
+        this.add.image(160,120,'fondoSinergias');
 
         //Si pulsamos en el boton, se añade algo a tu inventario
         Khayyat.on('pointerdown', pointer => {

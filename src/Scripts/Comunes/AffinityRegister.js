@@ -8,7 +8,7 @@ export default class AffinityRegister{
     rnd2;
 
     constructor(){
-        this.Ra = 15;
+        this.Ra = 10;
         this.Isis = 10;
         this.Horus = 10;
         this.Anubis = 10;

@@ -40,9 +40,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
     preload() {
-        //BACKGROUND IMAGEN
+        //fondo
         this.load.image('BackgroundSocialTienda', 'src/Assets/Finales/fondo_socializartienda2.png')
-        //BOTON IMAGEN
+        //imagen botones
         this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
         this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
@@ -57,6 +57,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
         this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
         this.load.image('EsheTarikNo', 'src/Assets/Finales/EsheTarikNo.png');
+        this.load.image('EsheTarikT', 'src/Assets/Finales/EsheTarikT.png');
+        this.load.image('EsheTarikE', 'src/Assets/Finales/EsheTarikE.png');
 
         //Adio
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
@@ -70,6 +72,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
 
     }
+
+    //REPUTACIÓN
 
     UpdateAffinityValues(){
         this.affinityValues = [this.inventory.affreg.GetRa()/this.inventory.affreg.maxAffinity,
@@ -276,12 +280,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
             ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, ImagenesAdio, 4);
-            
-
-            //Personaje1.setInteractive({ pixelPerfect: true });
-            //Personaje2.setInteractive({ pixelPerfect: true });
-
-            
+       
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 

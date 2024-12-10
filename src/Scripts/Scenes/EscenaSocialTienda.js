@@ -53,6 +53,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
 
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
+
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
         this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
@@ -178,20 +179,41 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
                 console.log(this.inventory);
-                auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
-                    this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
-                auxcard.setScale(1 / 2, 1 / 2);
-                this.anim = this.tweens.add({
-                    targets: auxcard,
-                    y: -1700,
-                    duration: 400,
+                this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
+                this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.auxcard.setScale(1 / 2, 1 / 2);
+                this.anim2 = this.tweens.add({
+                    targets: this.auxcard,
+                    props: {
+                        scaleX: { value: 0, duration: 200, yoyo: true },
+                        texture: {value:'cardTexture', frameIndex: this.inventory.listCardClass[this.inventory.numcards - 1].textureindex, duration: 0, delay: 200 }
+                    },
+                    repeat: 1,
+                    ease: 'Expo.easeIn',
+                });
+                
+                this.anim1 = this.tweens.add({
+                    targets: this.auxcard,
+                    y: -200,
+                    duration: 500,
                     ease: 'Sine.easeInOut',
+                    
+                    texture: { value:  'backcard', duration:0, delay: 0},
+                    
                     flipX: false,
                     yoyo: true,
                     repeat: 0,
-                    delay: 10
+                    delay: 10,
+                    onComplete: () => {
+                        this.anim2.play(); 
+                    }
                 });
-                this.anim.play();
+            
+                
+                
+               
+                //this.anim2.play();
+    
             }
         })
 

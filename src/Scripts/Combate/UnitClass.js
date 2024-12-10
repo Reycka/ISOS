@@ -151,13 +151,13 @@ GetDamage(atq,type){
     mepegan.play();
     //seteamos el multi de daño
     if((type == "LA"||type=="SA") &&(this.unitType=="G"||this.unitType=="C" )){
-        multi = 2;
+        multi = 1,3;
     }
     else if((type == "M") &&(this.unitType=="LA"||this.unitType=="A" )){
-        multi = 2;
+        multi = 1,3;
     }
     else if((type == "C"||type=="G") &&(this.unitType=="M"||this.unitType=="H" )){   
-        multi = 2;
+        multi = 1,3;
     }
     else multi = 1;
     

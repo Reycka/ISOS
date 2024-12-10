@@ -6,6 +6,7 @@ export default class AffinityRegister{
     Osiris;
     Seth;
     rnd2;
+    maxAffinity;
 
     constructor(){
         this.Ra = 10;
@@ -15,6 +16,7 @@ export default class AffinityRegister{
         this.Osiris = 10;
         this.Seth = 0;
         this.numtotalpnt = 50;
+        this.maxAffinity = 35;
         this.rnd2 = 0;
     }
 
@@ -54,7 +56,7 @@ export default class AffinityRegister{
 
     //aumentos o disminuciones de los valores de afinidad
     AddRa(valor) {
-        const dif = this.Ra + valor;
+        const dif = this.Ra += valor;
         this.numtotalpnt += valor;
     
         if (dif < 0) {

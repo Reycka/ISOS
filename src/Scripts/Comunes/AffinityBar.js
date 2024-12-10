@@ -13,4 +13,6 @@ export default class AffinityBar extends Phaser.GameObjects.Rectangle{
     preUpdate(t, dt){ //Se puede usar para hacer animaciones a la barra de vida
         
     }
+
+    
 }

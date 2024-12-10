@@ -253,15 +253,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //PARTE SOCIALIZAR
 
             var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik'];
-            var ImagenesEsheTarik = ['Adio'];
+            var ImagenesAdio = ['Adio'];
 
             var ListaPersonajes = [];
 
             // Personaje
-            ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2 + 400, this.sys.game.canvas.height + 500, 'Shai', 0);
+            ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
-            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, 'Shai2', 1);
-            ListaPersonajes[1].switchDisponible();
+            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, ImagenesAdio, 4);
+            
 
             //Personaje1.setInteractive({ pixelPerfect: true });
             //Personaje2.setInteractive({ pixelPerfect: true });

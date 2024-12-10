@@ -22,10 +22,10 @@ export default class EnemyStads {
     constructor(unittype) {
         //arco Corto
         if (unittype == "SA") {  
-            this.health = 10;
-            this.attack = 5;
-            this.speed = 20;
-            this.defense = 5;
+            this.health = 100;
+            this.attack = 10;
+            this.speed = 2;
+            this.defense = 1;
             this.unit_type = "SA";
             this.letter = null;
             this.iscard = false;
@@ -34,10 +34,10 @@ export default class EnemyStads {
         //arco largo
         else if (unittype == "LA") {
             
-            this.health = 10;
-            this.attack = 15;
-            this.speed = 10;
-            this.defense = 5;
+            this.health = 100;
+            this.attack = 25;
+            this.speed = 6;
+            this.defense = 1;
             this.unit_type = "LA";
             this.letter = null;
             this.iscard = false;
@@ -46,10 +46,10 @@ export default class EnemyStads {
         //soldado Carro
         else if (unittype == "C") {
            
-            this.health = 25;
-            this.attack = 5;
+            this.health = 100;
+            this.attack = 20;
             this.speed = 5;
-            this.defense = 5;
+            this.defense = 1;
             this.unit_type = "C";
             this.letter = null;
             this.iscard = false;
@@ -58,10 +58,10 @@ export default class EnemyStads {
         //infanteria
         else if (unittype == "G") {
             
-            this.health = 8;
-            this.attack = 12;
-            this.speed = 15;
-            this.defense = 5;
+            this.health = 150;
+            this.attack = 15;
+            this.speed = 4;
+            this.defense = 1;
             this.unit_type = "G";
             this.letter = null;
             this.iscard = false;
@@ -70,10 +70,10 @@ export default class EnemyStads {
         //Magos de ataque
         else if (unittype == "M") {
             
-            this.health = 9;
+            this.health = 100;
             this.attack = 15;
-            this.speed = 11;
-            this.defense = 5;
+            this.speed = 4;
+            this.defense = 1;
             this.unit_type = "M";
             this.letter = null;
             this.iscard = false;
@@ -82,10 +82,10 @@ export default class EnemyStads {
         //curandero
         else if (unittype == "H") {
            
-            this.health = 10;
-            this.attack = 10;
-            this.speed = 5;
-            this.defense = 5;
+            this.health = 150;
+            this.attack = 8;
+            this.speed = 4;
+            this.defense = 1;
             this.unit_type = "H";
             this.letter = null;
             this.iscard = false;

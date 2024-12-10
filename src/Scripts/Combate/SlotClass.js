@@ -14,7 +14,6 @@ ocupada = false;
         this.row = x;
         this.col = y;
         this._unittexture = _texture;
-        //console.log("Me construyo" + "\n");
         this.unit = null;
         this.ocupada = false;
         this.scene.add.existing(this);
@@ -26,7 +25,6 @@ ocupada = false;
             callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
         })
     }Getheal(){
-        console.log("me curabn cambio color")
         this.setTint(0x0000000) //color ARGB
         this.scene.time.addEvent({
             delay: 700,
@@ -41,11 +39,9 @@ ocupada = false;
     }
     //Devuelve si hay una tropa o no en dicha posición
     GetState(){
-        //console.log(this.ocupada + "\n"); //DEBUG
         return this.ocupada;
     } 
     GetTexture(){
-        console.log(this._unittexture)
         return this._unittexture;
     }
     //Setea la unidad 
@@ -58,22 +54,19 @@ ocupada = false;
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){
-        console.log("Libero" + "\n") //DEBUG
            this.ocupada = false;
            this._unittexture = 'MatrixGround';
-           this.setTexture('MatrixGround');
+           this.setTexture('MatrixGround').setVisible(false);//No se como elminar la textura xd
     }
     //Asigna la tropa pasada a la nueva posición y setea a true en la matriz de booleanos
     SetFull(mat){ //mat representa la posición nueva a seteear, es un slotClass que hay que pasarle
         if(mat.GetState()){
             //Llamada al método que cambia la posición de la tropa
-           console.log("He cambiado los valores" + "\n") //Debug
            this.ocupada = false;
            mat.SetUnit(this.unit);
            this.unit = null;
            this._unittexture = null;
         }
-        else console.log("No he podido cambiarlos, no habia hueco disponible" + "\n");//DEBUG
     }
     GetUnit(){
         return this.unit;

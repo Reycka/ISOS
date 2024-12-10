@@ -35,10 +35,10 @@ export default class CardLogic {
         //arco Corto
         if (rnd == 0) {
             
-            this.health = 10;
-            this.attack = 35;
+            this.health = 100;
+            this.attack = 10;
             this.speed = 2;
-            this.defense = 5;
+            this.defense = 1;
             this.unit_type = "SA";
             this.letter = l;
             this.iscard = true;
@@ -48,10 +48,10 @@ export default class CardLogic {
         //arco largo
         else if (rnd == 1) {
             
-            this.health = 10;
-            this.attack = 15;
+            this.health = 100;
+            this.attack = 25;
             this.speed = 5;
-            this.defense = 5;
+            this.defense = 1;
             this.unit_type = "LA";
             this.letter = l;
             this.iscard = true;
@@ -61,10 +61,10 @@ export default class CardLogic {
         //soldado Carro
         else if (rnd == 2) {
            
-            this.health = 25;
-            this.attack = 5;
+            this.health = 200;
+            this.attack = 20;
             this.speed = 6;
-            this.defense = 5;
+            this.defense = 1;
             this.unit_type = "C";
             this.letter = l;
             this.iscard = true;
@@ -74,10 +74,10 @@ export default class CardLogic {
         //infanteria
         else if (rnd == 3) {
             
-            this.health = 10;
+            this.health = 150;
             this.attack = 15;
-            this.speed = 3;
-            this.defense = 2;
+            this.speed = 4;
+            this.defense = 1;
             this.unit_type = "G";
             this.letter = l;
             this.iscard = true;
@@ -87,9 +87,9 @@ export default class CardLogic {
         //Magos de ataque
         else if (rnd == 4) {
             
-            this.health = 15;
-            this.attack = 10;
-            this.speed = 11;
+            this.health = 100;
+            this.attack = 15;
+            this.speed = 4;
             this.defense = 3;
             this.unit_type = "M";
             this.letter = l;
@@ -100,10 +100,10 @@ export default class CardLogic {
         //curandero
         else if (rnd == 5) {
            
-            this.health = 10;
-            this.attack = 7;
-            this.speed = 5;
-            this.defense = 5;
+            this.health = 150;
+            this.attack = 8;
+            this.speed = 4;
+            this.defense = 1;
             this.unit_type = "H";
             this.letter = l;
             this.iscard = true;

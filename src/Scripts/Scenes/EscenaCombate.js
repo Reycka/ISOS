@@ -288,6 +288,13 @@ defeat(){
 		pelea.setScale(0.2,0.2);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
+			for(let i = 0; i < this.mat.row; i++){
+				for(let j = 0; j < this.mat.col; j++){
+					if(this.mat.mat[i][j].ocupada == false){
+						this.mat.mat[i][j].SetFree();
+					}
+				}
+			}
 			this.preCombatSound.stop();
 			this.combatSound.play({loop: true})
 			this.AlteredState = new AlteredState();

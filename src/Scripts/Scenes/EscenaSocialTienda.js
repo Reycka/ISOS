@@ -48,8 +48,13 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
         this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
 
+        //Eshe y Tarik
+
         this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
         this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
+        this.load.image('EsheTarikNo', 'src/Assets/Finales/EsheTarikNo.png');
+
+        //Adio
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
 
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });

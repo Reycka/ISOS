@@ -303,10 +303,6 @@ defeat(){
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
-					
-					//var algo = this.add.image(j * 180  + 550 +600, i * 160 + 150,'MatrixGround2'); //Colocamos el fondo
-					//algo.setScale(0.85,0.85);
-					
 					if(this.battleManager.enemymatriz.Enemymat.mat[i][j].ocupada == true){
 						if(this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture() == 'B'){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("B");
@@ -315,11 +311,7 @@ defeat(){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-						
-					//var set = this.add.image(j * 180  + 550+600 , i * 160 + 150,this.battleManager.enemymatriz.Enemymat.mat[i][j].GetTexture());
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
-					}else{
-						//this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture('MatrixGround2').setScale(0.85,0.85);
 					}
 				}
 			}

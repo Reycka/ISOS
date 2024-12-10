@@ -31,6 +31,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.oleada = data.oleada;
         console.log(this.oleada);
         console.log(this.inventory);
+        let value;
+        this.affinitys = [{value}];
+        this.UpdateAffinityValues();        
+        console.log(this.affinityValues);
     }
 
 
@@ -63,12 +67,38 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
         this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
 
+        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
+
+    }
+
+    UpdateAffinityValues(){
+        this.affinityValues = [this.inventory.affreg.GetRa()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetIsis()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetAnubis()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetHorus()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetOsiris()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetSeth()/this.inventory.affreg.maxAffinity];
+    }
+
+    UpdateBar(bar, affinity, initialHeight) {
+        let newHeight = affinity * initialHeight; // Altura ajustada
+        let offsetY = (initialHeight - newHeight) / 2; // Calcular el desplazamiento hacia abajo
+        bar.setSize(bar.width, newHeight); // Ajustar el tamaño
+        bar.setPosition(bar.x, 120 + offsetY); // Ajustar la posición en Y
     }
 
     UpdateOfrendasText() {
         this.ofrendastx.text =
             ('Ofrendas: ' + this.inventory.numgift)
     }
+
+    UpdateAffinitys(){
+        this.UpdateAffinityValues();
+        for (let i = 0; i < this.affinitys.length; ++i){
+            this.UpdateBar(this.affinitys[i],this.affinitys[i].value,160);
+        }
+    }
+
     create() {
 
         this.socialbacksound = this.sound.add('SocialSound');
@@ -135,45 +165,23 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         let widthBar = 30;
         let heightBar = 160;
 
-        var RaBar = new AffinityBar(this,60,120,widthBar,heightBar,0xe8b14c);
-        var IsisBar = new AffinityBar(this,100,120,widthBar,heightBar,0x55c7c8);
-        var HorusBar = new AffinityBar(this,140,120,widthBar,heightBar,0x3c4e9a);
-        var OsirisBar = new AffinityBar(this,180,120,widthBar,heightBar,0x448162);
-        var AnubisBar = new AffinityBar(this,220,120,widthBar,heightBar,0x24212a);
-        var SethBar = new AffinityBar(this,260,120,widthBar,heightBar,0xc92b1f);
+        this.affinitys[0] =  new AffinityBar(this,60,120,widthBar,heightBar,0xe8b14c);
+        this.affinitys[1] = new AffinityBar(this,100,120,widthBar,heightBar,0x55c7c8);
+        this.affinitys[2] = new AffinityBar(this,140,120,widthBar,heightBar,0x3c4e9a);
+        this.affinitys[3] = new AffinityBar(this,180,120,widthBar,heightBar,0x448162);
+        this.affinitys[4] = new AffinityBar(this,220,120,widthBar,heightBar,0x24212a);
+        this.affinitys[5] = new AffinityBar(this,260,120,widthBar,heightBar,0xc92b1f);
 
-        RaBar.setScrollFactor(0);
-        IsisBar.setScrollFactor(0);
-        HorusBar.setScrollFactor(0);
-        OsirisBar.setScrollFactor(0);
-        AnubisBar.setScrollFactor(0);
-        SethBar.setScrollFactor(0);
+        console.log(this.affinitys.length);
 
-        function updateBar(bar, affinity, initialHeight) {
-            let newHeight = affinity * initialHeight; // Altura ajustada
-            let offsetY = (initialHeight - newHeight) / 2; // Calcular el desplazamiento hacia abajo
-            bar.setSize(bar.width, newHeight); // Ajustar el tamaño
-            bar.setPosition(bar.x, 120 + offsetY); // Ajustar la posición en Y
+        this.UpdateAffinityValues();
+        for (let i = 0; i < this.affinitys.length; ++i){
+            this.affinitys[i].setScrollFactor(0);
+            this.UpdateBar(this.affinitys[i],this.affinityValues[i],160);
         }
 
-        function UpdateBars(){
-            let RaAffinity = inventory.affreg.GetRa()/inventory.affreg.numtotalpnt;
-            console.log(inventory.affreg.Ra,RaAffinity);
-            let IsisAffinity = inventory.affreg.GetIsis()/inventory.affreg.numtotalpnt;
-            let HorusAffinity = inventory.affreg.GetHorus()/inventory.affreg.numtotalpnt;
-            let OsirisAffinity = inventory.affreg.GetOsiris()/inventory.affreg.numtotalpnt;
-            let AnubisAffinity = inventory.affreg.GetAnubis()/inventory.affreg.numtotalpnt;
-            let SethAffinity = inventory.affreg.GetSeth()/inventory.affreg.numtotalpnt;
-
-            updateBar(RaBar, RaAffinity, heightBar);
-            updateBar(IsisBar, IsisAffinity, heightBar);
-            updateBar(HorusBar, HorusAffinity, heightBar);
-            updateBar(OsirisBar, OsirisAffinity, heightBar);
-            updateBar(AnubisBar, AnubisAffinity, heightBar);
-            updateBar(SethBar, SethAffinity, heightBar);
-        }
-
-        UpdateBars();
+        this.backgroundAffinitys = this.add.image(160,120,'fondoSinergias');
+        this.backgroundAffinitys.setScrollFactor(0);
 
         //Si pulsamos en el boton, se añade algo a tu inventario
         Khayyat.on('pointerdown', pointer => {
@@ -241,6 +249,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 console.log('Boton izquierdo presionado');
                 const nuevoScrollX = this.cameras.main.scrollY - desplazamiento;
                 this.animatePan(nuevoScrollX,velocitypan);
+                this.InvisibleBackground();
                 this.shopbacksound.stop();
                 this.socialbacksound.play({ loop: true });
             });
@@ -250,6 +259,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
                 console.log(this.cameras.main.scrollY, desplazamiento);
                 this.animatePan(nuevoScrollX,velocitypan);
+                this.InvisibleBackground();
                 console.log(this.cameras.main.scrollX);
                 this.socialbacksound.stop();
                 this.shopbacksound.play({ loop: true });
@@ -366,7 +376,13 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.battlebtn.setVisible(true);
                 }
 
-                UpdateBars();
+                //ACTUALIZACION DE AFINIDADES
+                this.UpdateAffinityValues();
+                for (let i = 0; i < this.affinitys.length; ++i){
+                    this.affinitys[i].setScrollFactor(0);
+                    this.UpdateBar(this.affinitys[i],this.affinityValues[i],160);
+                }
+                if (this.inventory.day == 1 && stage == 1) this.InvisibleBackground();
             });
 
             this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla
@@ -403,7 +419,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //OFRENDAS
 
             //texto para mostrar el número de ofrendas
-            this.ofrendastx = this.add.text(this.sys.game.canvas.width - 240,20, 'Ofrendas: ' + this.inventory.numgift,
+            this.ofrendastx = this.add.text(this.sys.game.canvas.width - 250,20, 'Ofrendas: ' + this.inventory.numgift,
                 {
                     font: '30px Arial, sans-serif',
                     fill: '#fff',
@@ -425,8 +441,25 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             duration: duration, // Duración de la animación en ms
             ease: 'Linear', // Efecto de interpolación (puedes cambiarlo)
             onComplete: () => {
+                this.VisibleBackground();
                 console.log('Animación completada');
             }
         });
+    }
+
+    InvisibleBackground(){
+        this.backgroundAffinitys.setVisible(false);
+        for (let i = 0; i < this.affinitys.length; ++i){
+            this.affinitys[i].setVisible(false);
+        }
+        this.ofrendastx.setVisible(false);
+    }
+
+    VisibleBackground(){
+        this.backgroundAffinitys.setVisible(true);
+        for (let i = 0; i < this.affinitys.length; ++i){
+            this.affinitys[i].setVisible(true);
+        }
+        this.ofrendastx.setVisible(true);
     }
 }

@@ -13,6 +13,7 @@ export default class BattleManager {
     scene;
     auxd;
     auxv;
+    auxcard;
     target = false;
     jeros = new Jeroglifico();
     uxunitchange;
@@ -37,12 +38,26 @@ export default class BattleManager {
         this.texture = id;
     }
     //Método encargado de summonear la tropa en la casilla
-    Summon(posX, posY) {
+    Summon(posX, posY) { 
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
+            this.auxcard = -1; //Cambia el parámetro
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            this.SetJeroglifico();
+            this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+        }
+        else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
+            this.SetJeroglifico(this.card,true);
+            this.card = null;
+            this._texture = null;
+        }
+        else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit();
         }
     }
     GetVictory() {
@@ -222,7 +237,7 @@ export default class BattleManager {
                                                     this.mat.mat[i][j].SetFree();
                                                 }
                                             }
-                                            
+
                                         }
                                         this.indiceaux+=1;
                                     }
@@ -326,11 +341,11 @@ export default class BattleManager {
 
         }
     }
-    SetJeroglifico() {
+    SetJeroglifico(card,aux) {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
-                    this.jeros.setIsActive(i, j, true);
+                if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
+                    this.jeros.setIsActive(i, j, aux);
                 }
             }
         }
@@ -346,13 +361,6 @@ export default class BattleManager {
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
         }
-
-        //if (!Sinergias) this.AlteredStates.applyAlteredStates(dios);
-
-        // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
-        //const alteredStateInstance = new AlteredStateClass();
-        //alteredStateInstance.getAlteredState(this.Sinergias);
-
         return Sinergias; //Devolvemos si es verdadero o falso
     }
     getJeros() {

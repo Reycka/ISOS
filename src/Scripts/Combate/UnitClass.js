@@ -6,6 +6,7 @@ import BattleManager from "./BattleManager.js";
 export default class UnitClass{
 card;
 //isahealer = false;
+whichcard;
 isalife;
 cooldown;
 actcooldown;
@@ -22,6 +23,7 @@ constructor(_scene,cardclass, _unittexture){
     this.scene = _scene;
     this.unittexture = _unittexture;
     this.card = cardclass.stads;
+    this.whichcard = cardclass;
     this.isaplayer =this.card.iscard;
     
     this.acthealth =  this.card.health;  

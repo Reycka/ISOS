@@ -48,6 +48,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
         this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
 
+        this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
+        this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
+        this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
@@ -225,6 +229,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             });
 
             //PARTE SOCIALIZAR
+
+            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik'];
+            var ImagenesEsheTarik = ['Adio'];
 
             var ListaPersonajes = [];
 

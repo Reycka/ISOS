@@ -91,17 +91,17 @@
                     "text": "Eshe, confía en Ra.",
                     "options": [
                         { 
-                            "response": "Si no nos protegemos a nosotros mismos primero, no podremos proteger a nadie.", 
+                            "response": "Si no nos protegemos a nosotros mismos \nprimero, no podremos proteger a nadie.", 
                             "gain": 0, "next": "fragmento_0.3.2",
                             "god": "Ra" 
                         },
                         { 
-                            "response": "Eshe, confía en Ra. No dejará que algo así perjudique nuestra supervivencia.", 
+                            "response": "Eshe, confía en Ra. No dejará que algo así \nperjudique nuestra supervivencia.", 
                             "gain": -1, "next": "fragmento_0.3.1",
                             "god": "Ra" 
                         },
                         { 
-                            "response": "Asumiré ese riesgo si significa ayudar a todo aquel que pida auxilio.", 
+                            "response": "Asumiré ese riesgo si significa ayudar a \ntodo aquel que pida auxilio.", 
                             "gain": 1, "next": "fragmento_0.3.1",
                             "god": "Ra" 
                         }

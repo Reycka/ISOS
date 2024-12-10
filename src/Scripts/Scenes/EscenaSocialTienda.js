@@ -377,7 +377,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.affinitys[i].setScrollFactor(0);
                     this.UpdateBar(this.affinitys[i],this.affinityValues[i],160);
                 }
-                this.InvisibleBackground();
+                if (this.inventory.day == 1 && stage == 1) this.InvisibleBackground();
             });
 
             this.hideAllCharactersExcept = (activeCharacter) => { //Ocultar todos los personajes menos el que habla
@@ -414,7 +414,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //OFRENDAS
 
             //texto para mostrar el número de ofrendas
-            this.ofrendastx = this.add.text(this.sys.game.canvas.width - 240,20, 'Ofrendas: ' + this.inventory.numgift,
+            this.ofrendastx = this.add.text(this.sys.game.canvas.width - 250,20, 'Ofrendas: ' + this.inventory.numgift,
                 {
                     font: '30px Arial, sans-serif',
                     fill: '#fff',

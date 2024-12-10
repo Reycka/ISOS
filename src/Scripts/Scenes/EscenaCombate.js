@@ -137,26 +137,25 @@ defeat(){
 		upperBoton.setScale(0.2,0.2);
 		upperBoton.setInteractive();
 		upperBoton.on('pointerup', pointer => {
-			if(this.inventoryindex!=0)
 				{ 
 				this.inventoryindex--; 
-				card1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
 					{
-					card1.alpha = 0.5;
+					imagecard1.alpha = 0.5;
 					}
-				else {card1.alpha = 1;}
+				else {imagecard1.alpha = 1;}
 				
-				card2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				imagecard2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
 					{
-					card2.alpha = 0.5;
-				}else {card2.alpha = 1;}
+					imagecard2.alpha = 0.5;
+				}else {imagecard2.alpha = 1;}
 				
-				card3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				imagecard3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
-					card3.alpha = 0.5;
-				}else{ card3.alpha = 1;}
+					imagecard3.alpha = 0.5;
+				}else{ imagecard3.alpha = 1;}
 			}
 			})
 		var downBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height*13 / 14, 'flecha')
@@ -165,67 +164,69 @@ defeat(){
 		downBoton.on('pointerup', pointer => {
 			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
 				this.inventoryindex++; 
-				card1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
 					{
-					card1.alpha = 0.5;
+					imagecard1.alpha = 0.5;
 					}
-				else {card1.alpha = 1;}
+				else {imagecard1.alpha = 1;}
 				
-				card2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				imagecard2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
 					{
-					card2.alpha = 0.5;
-				}else {card2.alpha = 1;}
+					imagecard2.alpha = 0.5;
+				}else {imagecard2.alpha = 1;}
 				
-				card3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				imagecard3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
-					card3.alpha = 0.5;
-				}else{ card3.alpha = 1;}
+					imagecard3.alpha = 0.5;
+				}else{ imagecard3.alpha = 1;}
 			}
 
 		})
 		downBoton.setFlipY(true);
-		let actualcard;
-		var card1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
+		let actualcard = null;
+		var imagecard1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
-		card1.setScale(0.3,0.3);
-		var card2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
+		imagecard1.setScale(0.3,0.3);
+		var imagecard2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
-		card2.setScale(0.3,0.3);
-		var card3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
+		imagecard2.setScale(0.3,0.3);
+		var imagecard3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-		card3.setScale(0.3,0.3);
-
-		card1.setInteractive();
-		card1.on('pointerup', pointer =>{
+		imagecard3.setScale(0.3,0.3);
+		imagecard1.setInteractive();
+		imagecard1.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false){
 				actualcard = this.inventoryindex;
+				this.inventory.listCardClass[this.inventoryindex].SetCard().inventoryindex = this.inventoryindex;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
-				card1.alpha = 0.5;
-				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
-				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+				imagecard1.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 			}
 		})
-		card2.setInteractive();
-		card2.on('pointerup', pointer =>{
+		imagecard2.setInteractive();
+		imagecard2.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex + 1].GetIsused()== false){
 				actualcard = this.inventoryindex + 1;
+				this.inventory.listCardClass[this.inventoryindex + 1].SetCard().inventoryindex  = this.inventoryindex + 1;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
-				card2.alpha = 0.5;
-				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
-				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) card3.alpha = 1;
+				imagecard2.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 			}
 		})
 		
-		card3.setInteractive();
-		card3.on('pointerup', pointer =>{
+		imagecard3.setInteractive();
+		imagecard3.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex + 2].GetIsused()== false){
 				actualcard = this.inventoryindex + 2;
+				this.inventory.listCardClass[this.inventoryindex + 2].SetCard().inventoryindex  =  this.inventoryindex + 2;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
-				card3.alpha = 0.5;
-				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) card1.alpha = 1;
-				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) card2.alpha = 1;
+				imagecard3.alpha = 0.5;
+				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
+				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 			}
 		})
 		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
@@ -273,11 +274,19 @@ defeat(){
 				this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
-					this.battleManager.Summon(i,j);
 					//Coloca la textura de las tropas
 					if(this.mat.mat[i][j].texture != null){
 						this.battleManager.Summon(i,j);
-						this.inventory.listCardClass[actualcard].DeleteCard();
+						if(this.battleManager.auxcard == -1){
+							this.inventory.listCardClass[actualcard].DeleteCard();
+						}
+						else{
+							if(actualcard != null) this.inventory.listCardClass[actualcard].DeleteCard();
+							this.inventory.listCardClass[this.battleManager.auxcard].RecoverCard();
+							if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
+							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
+							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
+						}
 						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
 					}
 				})
@@ -335,9 +344,9 @@ defeat(){
 			}
 
 			pelea.setVisible(false);
-			card1.setVisible(false);
-			card2.setVisible(false);
-			card3.setVisible(false);
+			imagecard1.setVisible(false);
+			imagecard2.setVisible(false);
+			imagecard3.setVisible(false);
 			downBoton.setVisible(false);
 			upperBoton.setVisible(false);
 			listaenemigos.setVisible(false);

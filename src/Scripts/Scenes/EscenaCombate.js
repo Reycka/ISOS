@@ -76,6 +76,9 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
 		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
 		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.WAV')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.WAV')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.WAV')
 	}
 	cronometro;
 	GameLoop()
@@ -128,16 +131,21 @@ defeat(){
 				this.GameLoop()
             },})
 		this.preCombatSound = this.sound.add('PreCombate');
+		this.movecardsound = this.sound.add('movercartas');
+		this.Choosecardsound = this.sound.add('elegircartas');
+		this.starBattlesound = this.sound.add('iniciabatalla');
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
-			//SETEAMOS AMBAS MATRICES
+		
+		//Botones para movernos por el inventario
 		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
 		upperBoton.setScale(0.2,0.2);
 		upperBoton.setInteractive();
 		upperBoton.on('pointerup', pointer => {
 				{ 
+					this.movecardsound.play({loop:false});
 				this.inventoryindex--; 
 				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
@@ -162,6 +170,7 @@ defeat(){
 		downBoton.setScale(0.2,0.2);
 		downBoton.setInteractive();
 		downBoton.on('pointerup', pointer => {
+			this.movecardsound.play({loop:false});
 			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
 				this.inventoryindex++; 
 				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
@@ -186,6 +195,8 @@ defeat(){
 		})
 		downBoton.setFlipY(true);
 		let actualcard = null;
+
+		/*imagenes de las cartas interactuables del inventario*/
 		var imagecard1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
 		imagecard1.setScale(0.3,0.3);
@@ -198,6 +209,7 @@ defeat(){
 		imagecard1.setInteractive();
 		imagecard1.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false){
+				this.Choosecardsound.play({loop:false});
 				actualcard = this.inventoryindex;
 				this.inventory.listCardClass[this.inventoryindex].SetCard().inventoryindex = this.inventoryindex;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex].SetCard(),this.inventory.listCardClass[this.inventoryindex].stads.unit_type)
@@ -209,6 +221,7 @@ defeat(){
 		imagecard2.setInteractive();
 		imagecard2.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex + 1].GetIsused()== false){
+				this.Choosecardsound.play({loop:false});
 				actualcard = this.inventoryindex + 1;
 				this.inventory.listCardClass[this.inventoryindex + 1].SetCard().inventoryindex  = this.inventoryindex + 1;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 1].SetCard(),this.inventory.listCardClass[this.inventoryindex+1].stads.unit_type)
@@ -221,6 +234,7 @@ defeat(){
 		imagecard3.setInteractive();
 		imagecard3.on('pointerup', pointer =>{
 			if(this.inventory.listCardClass[this.inventoryindex + 2].GetIsused()== false){
+				this.Choosecardsound.play({loop:false});
 				actualcard = this.inventoryindex + 2;
 				this.inventory.listCardClass[this.inventoryindex + 2].SetCard().inventoryindex  =  this.inventoryindex + 2;
 				this.battleManager.SetCard(this.inventory.listCardClass[this.inventoryindex + 2].SetCard(),this.inventory.listCardClass[this.inventoryindex+2].stads.unit_type)
@@ -229,6 +243,8 @@ defeat(){
 				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 			}
 		})
+		/*inicializacion e la matriz dde enemigos con la lectura de archivo correspondiente */
+
 		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
 		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
@@ -266,6 +282,7 @@ defeat(){
 			this.preCombatSound.play({loop: true});
 			this.combatSound = this.sound.add('Combate');
 		}
+		//inicializacion del battlemanager
 		this.mat = new Matriz(fil,col,this, 'MatrixGround',false,colpos);
 		this.battleManager = new BattleManager(this.mat,this.enemymatriz,this);
 		for(let i = 0; i < this.mat.row; i++){
@@ -297,6 +314,8 @@ defeat(){
 		pelea.setScale(0.2,0.2);
 		pelea.setInteractive();
 		pelea.on('pointerup', pointer =>{
+			this.starBattlesound.play({loop:false});
+
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
 					if(this.mat.mat[i][j].ocupada == false){
@@ -356,7 +375,9 @@ defeat(){
 		})
 
 		 
-	
+	/*
+	Resultados del combate
+	*/
 		this.finaltext = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2, " has algo", { font: '60px Arial, sans-serif',
             fill: '#fff',
             stroke: '#000',
@@ -400,7 +421,4 @@ defeat(){
 					})
 	}
 
-	update(){		
-
-	}
 }

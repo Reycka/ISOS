@@ -46,11 +46,19 @@ ocupada = false;
     }
     //Setea la unidad 
     SetUnit(_unit){
-        this.unit = _unit;
-        this.ocupada = true;
-        this._unittexture = _unit.unittexture;
-        this.setTexture(this.unit.unittexture);
-        this.setScale(0.33,0.33);
+        if(_unit){
+            this.unit = _unit;
+            this.ocupada = true;
+            this._unittexture = _unit.unittexture;
+            this.setTexture(this.unit.unittexture);
+            this.setScale(0.33,0.33);
+        }
+        else{
+            this.unit = null;
+            this.ocupada = false;
+            this._unittexture =  this._unittexture = 'MatrixGround';;
+            this.setTexture('MatrixGround').setScale(0.85,0.85);
+        }
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){

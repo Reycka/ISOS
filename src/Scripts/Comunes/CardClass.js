@@ -10,10 +10,11 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
     textureindex;
     isused
     scene;
+    inventoryindex;
     constructor(scene, x, y,_texture, _cardLogic) {   
        super(scene, x, y,_texture);
         this.texture = _texture;
-        
+        this.inventoryindex = 0;
         this.scene = scene;
         this.stads = _cardLogic;
         this.textureindex = this.stads.textureindex;

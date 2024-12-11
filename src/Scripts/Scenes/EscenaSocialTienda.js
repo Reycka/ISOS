@@ -46,6 +46,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
         this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
+        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
 
         //Imagenes personajes
 
@@ -62,15 +63,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         //Adio
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
-
+        //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
 
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
-        this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
+        //Audio
+        this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
         this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
-
-        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
-
+        this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
+       
     }
 
     //REPUTACIÓN
@@ -106,9 +107,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     create() {
 
         this.socialbacksound = this.sound.add('SocialSound');
+        this.cardsound = this.sound.add('sacarcartaSFX');
+        
         this.shopbacksound = this.sound.add('TiendaSound');
         this.socialbacksound.play({ loop: true });
-
+        
         //Etapa del día 
         var stage = 0;
 
@@ -198,6 +201,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 console.log(this.inventory);
                 this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
                 this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.cardsound.play({loop:false});
                 this.auxcard.setScale(1 / 2, 1 / 2);
                 this.anim2 = this.tweens.add({
                     targets: this.auxcard,

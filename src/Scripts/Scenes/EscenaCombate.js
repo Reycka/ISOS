@@ -148,6 +148,7 @@ defeat(){
 					this.movecardsound.play({loop:false});
 				if(this.inventoryindex>0){this.inventoryindex--; 
 				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				imagecard1letter.setFrame(this.inventory.listCardClass[this.inventoryindex].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
 					{
 					imagecard1.alpha = 0.5;
@@ -155,12 +156,14 @@ defeat(){
 				else {imagecard1.alpha = 1;}
 				
 				imagecard2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+1].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
 					{
 					imagecard2.alpha = 0.5;
 				}else {imagecard2.alpha = 1;}
 				
 				imagecard3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+2].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
 					imagecard3.alpha = 0.5;
 				}else{ imagecard3.alpha = 1;}
@@ -175,7 +178,7 @@ defeat(){
 			if(this.inventoryindex<this.inventory.GetNumCards()-3){ 
 				this.inventoryindex++; 
 				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
-				imagecard1letter.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+				imagecard1letter.setFrame(this.inventory.listCardClass[this.inventoryindex].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
 					{
 					imagecard1.alpha = 0.5;
@@ -183,14 +186,14 @@ defeat(){
 				else {imagecard1.alpha = 1;}
 				
 				imagecard2.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
-				imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+				imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+1].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== true)
 					{
 					imagecard2.alpha = 0.5;
 				}else {imagecard2.alpha = 1;}
 				
 				imagecard3.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-				imagecard3letter.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
+				imagecard3letter.setFrame(this.inventory.listCardClass[this.inventoryindex+2].stads.letter);
 				if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== true){
 					imagecard3.alpha = 0.5;
 				}else{ imagecard3.alpha = 1;}
@@ -201,24 +204,26 @@ defeat(){
 		let actualcard = null;
 
 		/*imagenes de las cartas interactuables del inventario*/
-		var imagecard1 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,
+		var imagecard1 = this.add.image(((this.sys.game.canvas.width) / 10), (this.sys.game.canvas.height*2.5 / 10),
 		this.inventory.listCardClass[this.inventoryindex].GetTexture(),this.inventory.listCardClass[this.inventoryindex].textureindex);
 		imagecard1.setScale(0.3,0.3);
 
-		var imagecard1letter =this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,'lettersTextures')
-		imagecard1letter.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
+		var imagecard1letter =this.add.image(((this.sys.game.canvas.width) / 10)-62, (this.sys.game.canvas.height*2.5 / 10)-97,'lettersTextures')
+		imagecard1letter.setFrame(this.inventory.listCardClass[this.inventoryindex].stads.letter);
+		imagecard1letter.setScale(0.45,0.45)
 
 		var imagecard2 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+1].GetTexture(),this.inventory.listCardClass[this.inventoryindex+1].textureindex);
 		imagecard2.setScale(0.3,0.3);
-		var imagecard2letter =this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,'lettersTextures')
-		imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+1].textureindex);
+		var imagecard2letter =this.add.image(((this.sys.game.canvas.width) / 10)-62, (this.sys.game.canvas.height*5 / 10)-97,'lettersTextures')
+		imagecard2letter.setFrame(this.inventory.listCardClass[this.inventoryindex+1].stads.letter);
+		imagecard2letter.setScale(0.45,0.45)
 
 		var imagecard3 = this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*7.5 / 10,
 		this.inventory.listCardClass[this.inventoryindex+2].GetTexture(),this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-		var imagecard3letter =this.add.image((this.sys.game.canvas.width) / 10, this.sys.game.canvas.height*2.5 / 10,'lettersTextures')
-		imagecard3letter.setFrame(this.inventory.listCardClass[this.inventoryindex+2].textureindex);
-
+		var imagecard3letter =this.add.image(((this.sys.game.canvas.width) / 10)-62, (this.sys.game.canvas.height*7.5 / 10)-97,'lettersTextures')
+		imagecard3letter.setFrame(this.inventory.listCardClass[this.inventoryindex+2].stads.letter);
+		imagecard3letter.setScale(0.45,0.45)
 		imagecard3.setScale(0.3,0.3);
 		imagecard1.setInteractive();
 		imagecard1.on('pointerup', pointer =>{

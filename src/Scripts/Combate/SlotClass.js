@@ -17,18 +17,7 @@ ocupada = false;
         this.unit = null;
         this.ocupada = false;
         this.scene.add.existing(this);
-        this.scene.anim1 = this.tweens.add({
-            targets: this,
-            x: -200,
-            duration: 10,
-            ease: 'Sine.easeInOut', 
-    
-            flipX: false,
-            yoyo: true,
-            repeat: -1,
-            delay: 10,
-            
-        });
+        
     }
     Getdamage(){
         this.setTint(0xffff0000) //color ARGB
@@ -64,6 +53,18 @@ ocupada = false;
             this._unittexture = _unit.unittexture;
             this.setTexture(this.unit.unittexture);
             this.setScale(0.33,0.33);
+            this.scene.anim1 = this.scene.tweens.add({
+                targets: this,
+                x: (this.x +20),
+                duration: 500+100*this.unit.cooldown,
+                ease: 'easeInOutQuart', 
+        
+                flipX: false,
+                yoyo: true,
+                repeat: -1,
+                delay: 0,
+                
+            });
             this.scene.anim1.play();
         }
         else{

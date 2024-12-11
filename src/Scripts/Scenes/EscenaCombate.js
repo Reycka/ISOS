@@ -39,6 +39,9 @@ export default class EscenaCombate extends Phaser.Scene {
 
 		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
 
+		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/background_posibles_enemigos.png');
+		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/background_chuleta_sinergias.png');
+
 		//FONDO MATRIZ
 		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
 
@@ -246,7 +249,8 @@ defeat(){
 		})
 		/*inicializacion e la matriz dde enemigos con la lectura de archivo correspondiente */
 
-		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
+		let listaenemigos = this.add.image(1580,675,'BackgroundPosiblesEnemigos').setScale(0.8,0.8);
+		let chuletaSinergias = this.add.image(1480,180,'BackgroundChuletaSinergias').setScale(0.5,0.5);
 		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;

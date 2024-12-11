@@ -46,7 +46,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
         this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
-        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
+        this.load.image('fondoSinergias', 'src/Assets/Finales/Fondo.png')
 
         //Imagenes personajes
 

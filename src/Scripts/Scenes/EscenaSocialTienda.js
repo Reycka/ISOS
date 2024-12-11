@@ -190,14 +190,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         this.backgroundAffinitys = this.add.image(160,120,'fondoSinergias');
         this.backgroundAffinitys.setScrollFactor(0);
-<<<<<<< Updated upstream
 
-=======
         this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,null);
         this.auxcard.setVisible(false)
-        this.auxlsprite = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,'lettersTextures');
+        this.auxlsprite = this.add.sprite(((this.sys.game.canvas.width / 2) * 5)+15, this.sys.game.canvas.height / 2 + 315,'lettersTextures');
         this.auxlsprite.setVisible(false);
->>>>>>> Stashed changes
         //Si pulsamos en el boton, se añade algo a tu inventario
         this.auxcardbool = true;
         Khayyat.on('pointerdown', pointer => {
@@ -205,11 +202,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             console.log(this.inventory.numgift + "mi numero de gift");
             if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
-<<<<<<< Updated upstream
-=======
+
                 this.auxlsprite-setVisible(false);
                 this.auxcardbool = false;
->>>>>>> Stashed changes
+
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
                 console.log(this.inventory);
@@ -245,12 +241,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     delay: 10,
                     onComplete: () => {
                         this.anim2.play(); 
-<<<<<<< Updated upstream
-=======
                         this.auxlsprite.setVisible(true)
                         this.auxlsprite.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].stads.letter)
                         this.auxcardbool = true; 
->>>>>>> Stashed changes
+
                     }
                 });
             
@@ -283,11 +277,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.animatePan(nuevoScrollX,velocitypan);
                 this.InvisibleBackground();
                 this.shopbacksound.stop();
-<<<<<<< Updated upstream
-=======
+
                 this.auxcard.setVisible(false);
                 this.auxlsprite.setVisible(false);
->>>>>>> Stashed changes
+
                 this.socialbacksound.play({ loop: true });
             });
 

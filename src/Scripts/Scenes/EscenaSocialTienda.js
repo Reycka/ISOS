@@ -95,6 +95,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     UpdateOfrendasText() {
         this.ofrendastx.text =
             ('Ofrendas: ' + this.inventory.numgift)
+            
     }
 
     UpdateAffinitys(){

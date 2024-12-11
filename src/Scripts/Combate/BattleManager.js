@@ -331,7 +331,15 @@ export default class BattleManager {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
                 if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
                     this.jeros.setIsActive(i, j, true);
+                    
                 }
+            }   
+            var sinergia = true;
+            for (let j = 0; j < this.jeros.getSize(i); ++j) {
+               
+                     if(this.jeros.getValue(i,j))  sinergia = false;
+                    if(sinergia) this.scene.activeSinergy(i);
+              
             }
         }
     }
@@ -352,7 +360,7 @@ export default class BattleManager {
         // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
         //const alteredStateInstance = new AlteredStateClass();
         //alteredStateInstance.getAlteredState(this.Sinergias);
-
+        if(Sinergias) this.scene.activeSinergy(dios);
         return Sinergias; //Devolvemos si es verdadero o falso
     }
     getJeros() {

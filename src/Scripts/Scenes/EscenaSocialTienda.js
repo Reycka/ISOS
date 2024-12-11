@@ -40,31 +40,41 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
     preload() {
-        //BACKGROUND IMAGEN
+        //fondo
         this.load.image('BackgroundSocialTienda', 'src/Assets/Finales/fondo_socializartienda2.png')
-        //BOTON IMAGEN
+        //imagen botones
         this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
         this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
+        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
 
         //Imagenes personajes
 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
         this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
 
+        //Eshe y Tarik
+
         this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
         this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
-        this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+        this.load.image('EsheTarikNo', 'src/Assets/Finales/EsheTarikNo.png');
+        this.load.image('EsheTarikT', 'src/Assets/Finales/EsheTarikT.png');
+        this.load.image('EsheTarikE', 'src/Assets/Finales/EsheTarikE.png');
 
+        //Adio
+        this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+        //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
 
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
-        this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Ether Main.WAV')
+        //Audio
+        this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
         this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
-
-        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
-
+        this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
+       
     }
+
+    //REPUTACIÓN
 
     UpdateAffinityValues(){
         this.affinityValues = [this.inventory.affreg.GetRa()/this.inventory.affreg.maxAffinity,
@@ -97,9 +107,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     create() {
 
         this.socialbacksound = this.sound.add('SocialSound');
+        this.cardsound = this.sound.add('sacarcartaSFX');
+        
         this.shopbacksound = this.sound.add('TiendaSound');
         this.socialbacksound.play({ loop: true });
-
+        
         //Etapa del día 
         var stage = 0;
 
@@ -187,6 +199,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 console.log(this.inventory);
                 this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
                 this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.cardsound.play({loop:false});
                 this.auxcard.setScale(1 / 2, 1 / 2);
                 this.anim2 = this.tweens.add({
                     targets: this.auxcard,
@@ -260,7 +273,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             //PARTE SOCIALIZAR
 
-            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik'];
+            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik','EsheTarikNo','EsheTarikT','EsheTarikE'];
             var ImagenesAdio = ['Adio'];
 
             var ListaPersonajes = [];
@@ -269,12 +282,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
             ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, ImagenesAdio, 4);
-            
-
-            //Personaje1.setInteractive({ pixelPerfect: true });
-            //Personaje2.setInteractive({ pixelPerfect: true });
-
-            
+       
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
@@ -314,7 +322,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes.forEach(personaje => {
                 personaje.sprite.on('pointerup', () => {
 
-                    this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
+                    this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos,personaje);
 
                     
 

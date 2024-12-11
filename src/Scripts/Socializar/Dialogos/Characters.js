@@ -30,10 +30,11 @@ class Character {
 
 
     // Cambiar Sprite (Expresiones y cambio entre Sprite_fondo y Sprite_diálogo)
-    /*changeExpression(expression) {
-        this.sprite.setTexture(this.expressions[expression]);
-        this.currentExpression = expression;
-    }*/
+    changeSprite(num)
+    {
+        this.sprite.setTexture(this.spriteList[num]);
+    }
+
 
     switchDisponible() {
 

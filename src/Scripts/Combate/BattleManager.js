@@ -344,9 +344,9 @@ export default class BattleManager {
     SetJeroglifico(card,aux) {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
+                //if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
                     this.jeros.setIsActive(i, j, aux);
-                }
+              //  }
             }
         }
     }

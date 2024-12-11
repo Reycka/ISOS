@@ -66,6 +66,22 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
 		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
 
+		//sinergias
+		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/FondoPosiblesEnemigos.png');
+		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/FondoSinergias.png');
+		this.load.image('Rades','src/Assets/Finales/JeroflificosRa.png')
+		this.load.image('RAact')
+		this.load.image('Osirisdes','src/Assets/Finales/JeroflificosOsiris.png')
+		this.load.image('Osirisact')
+		this.load.image('Horusdes','src/Assets/Finales/JeroflificosHorus.png')
+		this.load.image('Horusact')
+		this.load.image('Irisdes','src/Assets/Finales/JeroflificosIris.png')
+		this.load.image('Irisact')
+		this.load.image('Anubisdes','src/Assets/Finales/JeroflificosAnubis.png')
+		this.load.image('Anubisact')
+		this.load.image('Sethdes','src/Assets/Finales/JeroflificosSeth.png')
+		this.load.image('Setact')
+		
 		//Música
 		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
 		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
@@ -134,11 +150,13 @@ defeat(){
 		this.movecardsound = this.sound.add('movercartas');
 		this.Choosecardsound = this.sound.add('elegircartas');
 		this.starBattlesound = this.sound.add('iniciabatalla');
+		
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
-		
+			let listaenemigos = this.add.image(1580,675,'BackgroundPosiblesEnemigos').setScale(0.8,0.8);
+			this.chuletaSinergias = this.add.image(1480,180,'BackgroundChuletaSinergias').setScale(0.5,0.5);
 		//Botones para movernos por el inventario
 		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
 		upperBoton.setScale(0.2,0.2);
@@ -264,7 +282,7 @@ defeat(){
 		})
 		/*inicializacion e la matriz dde enemigos con la lectura de archivo correspondiente */
 
-		let listaenemigos = this.add.image(1580,675,'MatrixGround2').setScale(2,3);
+	
 		let posiblesenemigos  = this.add.text(1415,450,"POSIBLES ENEMIGOS").setScale(2,2);
 		this.enemymatriz = new EnemyMatriz('src/Scripts/Texto/Oleadas.json',this,null,this.oleada);	
 		let fil;

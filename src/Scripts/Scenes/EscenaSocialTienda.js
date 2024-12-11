@@ -66,7 +66,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
         //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
-        
+        this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         //Audio
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
@@ -235,7 +235,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     duration: 500,
                     ease: 'Sine.easeInOut',
                     
-                    texture: { value:  'backcard', duration:0, delay: 0},
+                    texture: { value:  'cardback', duration:0, delay: 0},
                     
                     flipX: false,
                     yoyo: true,

@@ -189,18 +189,22 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         this.backgroundAffinitys = this.add.image(160,120,'fondoSinergias');
         this.backgroundAffinitys.setScrollFactor(0);
-
+        this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,null);
+        this.auxcard.setVisible(false)
         //Si pulsamos en el boton, se añade algo a tu inventario
+        this.auxcardbool = true;
         Khayyat.on('pointerdown', pointer => {
 
             console.log(this.inventory.numgift + "mi numero de gift");
-            if (this.inventory.numgift > 0) {
+            if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
+                this.auxcardbool = false;
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
                 console.log(this.inventory);
-                this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
-                this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.auxcard.setVisible(true)
+                this.auxcard.setTexture(this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture()); 
+                this.auxcard.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].textureindex)
                 this.cardsound.play({loop:false});
                 this.auxcard.setScale(1 / 2, 1 / 2);
                 this.anim2 = this.tweens.add({
@@ -208,6 +212,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     props: {
                         scaleX: { value: 0, duration: 200, yoyo: true },
                         texture: {value:'cardTexture', frameIndex: this.inventory.listCardClass[this.inventory.numcards - 1].textureindex, duration: 0, delay: 200 }
+                    },
+                    onComplete: () => {
+                       
                     },
                     repeat: 1,
                     ease: 'Expo.easeIn',
@@ -227,6 +234,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     delay: 10,
                     onComplete: () => {
                         this.anim2.play(); 
+                        this.auxcardbool = true; 
                     }
                 });
             
@@ -259,6 +267,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.animatePan(nuevoScrollX,velocitypan);
                 this.InvisibleBackground();
                 this.shopbacksound.stop();
+                this.auxcard.setVisible(false);
                 this.socialbacksound.play({ loop: true });
             });
 

@@ -105,8 +105,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
-        //Aplicamos funciones de lo que importemos en una variable
-        var inventory = new Inventory();
 
         //Creamos el background y le aplicamos la escala
         var back = this.add.image(this.sys.game.canvas.width, this.sys.game.canvas.height / 2, 'BackgroundSocialTienda');

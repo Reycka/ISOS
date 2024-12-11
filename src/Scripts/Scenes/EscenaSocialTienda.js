@@ -66,7 +66,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
         //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
-
+        this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         //Audio
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
@@ -194,7 +194,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,null);
         this.auxcard.setVisible(false)
-        this.auxlsprite = this.add.sprite(((this.sys.game.canvas.width / 2) * 5)+15, this.sys.game.canvas.height / 2 + 315,'lettersTextures');
+        this.auxlsprite = this.add.sprite(((this.sys.game.canvas.width / 2) * 5)-102, this.sys.game.canvas.height / 2 +138,'lettersTextures');
+        this.auxlsprite.setScale(0.8,0.8)
         this.auxlsprite.setVisible(false);
         //Si pulsamos en el boton, se añade algo a tu inventario
         this.auxcardbool = true;
@@ -204,7 +205,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
 
-                this.auxlsprite-setVisible(false);
+                this.auxlsprite.setVisible(false);
                 this.auxcardbool = false;
 
                 this.inventory.numgift--;
@@ -234,7 +235,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     duration: 500,
                     ease: 'Sine.easeInOut',
                     
-                    texture: { value:  'backcard', duration:0, delay: 0},
+                    texture: { value:  'cardback', duration:0, delay: 0},
                     
                     flipX: false,
                     yoyo: true,

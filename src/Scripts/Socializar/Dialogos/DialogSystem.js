@@ -1,8 +1,9 @@
 import Inventory from './../../Comunes/Inventory.js'
+import Character from './Characters.js';
 
 export default class DialogSystem {
 
-    constructor(scene, _inventory, allDialogues) {
+    constructor(scene, _inventory, allDialogues, characters) {
         this.scene = scene;
         this.inventory = _inventory;
         this.Dialogues = allDialogues;
@@ -13,6 +14,9 @@ export default class DialogSystem {
         if (!(this.inventory instanceof Inventory)) {
             console.error("Error: `inventory` no es una instancia de Inventory");
         }
+
+        this.character = characters;
+        
 
         this.centerX = this.scene.cameras.main.width / 2;
         this.centerY = this.scene.cameras.main.height / 1.1;
@@ -65,6 +69,8 @@ export default class DialogSystem {
         if (this.dialogIndex < this.dialogues.length) {
             const { character, text, options = [] } = this.dialogues[this.dialogIndex];
 
+            
+
             // Mostrar nombre del personaje y cuadro
             this.characterNameText.setText(character);
             const nameBoxWidth = 300;
@@ -75,7 +81,27 @@ export default class DialogSystem {
             this.characterNameBox.lineStyle(2, 0x000000, 1);
             this.characterNameBox.fillStyle(0x000000, 0.8);
             this.characterNameBox.fillRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60);
-            this.characterNameBox.strokeRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60);
+            this.characterNameBox.strokeRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60); 
+
+            //Cambiar sprites
+            if(this.character.num ==0)
+
+                console.log("Es Tarik y Eshe");
+            {
+                if(character == "Tarik")
+                {
+                    this.character.changeSprite(3);
+     
+                }
+               else if(character == "Eshe")
+               {
+                   this.character.changeSprite(4);
+               }
+               else
+               {
+                   this.character.changeSprite(2);
+               }
+            }
 
             // Limpiar botones previos
             this.optionButtons.forEach(button => button.destroy());

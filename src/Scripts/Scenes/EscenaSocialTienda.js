@@ -275,7 +275,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             //PARTE SOCIALIZAR
 
-            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik'];
+            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik','EsheTarikNo','EsheTarikT','EsheTarikE'];
             var ImagenesAdio = ['Adio'];
 
             var ListaPersonajes = [];
@@ -324,7 +324,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes.forEach(personaje => {
                 personaje.sprite.on('pointerup', () => {
 
-                    this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos);
+                    this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos,personaje);
 
                     
 

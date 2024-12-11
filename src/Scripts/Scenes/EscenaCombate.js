@@ -146,7 +146,7 @@ defeat(){
 		upperBoton.on('pointerup', pointer => {
 				{ 
 					this.movecardsound.play({loop:false});
-				this.inventoryindex--; 
+				if(this.inventoryindex>0){this.inventoryindex--; 
 				imagecard1.setFrame(this.inventory.listCardClass[this.inventoryindex].textureindex);
 				if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== true)
 					{
@@ -165,6 +165,7 @@ defeat(){
 					imagecard3.alpha = 0.5;
 				}else{ imagecard3.alpha = 1;}
 			}
+		}
 			})
 		var downBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height*13 / 14, 'flecha')
 		downBoton.setScale(0.2,0.2);

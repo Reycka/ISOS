@@ -199,10 +199,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.auxlsprite.setVisible(false);
 >>>>>>> Stashed changes
         //Si pulsamos en el boton, se añade algo a tu inventario
+        this.auxcardbool = true;
         Khayyat.on('pointerdown', pointer => {
 
             console.log(this.inventory.numgift + "mi numero de gift");
-            if (this.inventory.numgift > 0) {
+            if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
 <<<<<<< Updated upstream
 =======
@@ -212,8 +213,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
                 console.log(this.inventory);
-                this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
-                this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.auxcard.setVisible(true)
+                this.auxcard.setTexture(this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture()); 
+                this.auxcard.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].textureindex)
                 this.cardsound.play({loop:false});
                 this.auxcard.setScale(1 / 2, 1 / 2);
                 this.anim2 = this.tweens.add({
@@ -221,6 +223,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     props: {
                         scaleX: { value: 0, duration: 200, yoyo: true },
                         texture: {value:'cardTexture', frameIndex: this.inventory.listCardClass[this.inventory.numcards - 1].textureindex, duration: 0, delay: 200 }
+                    },
+                    onComplete: () => {
+                       
                     },
                     repeat: 1,
                     ease: 'Expo.easeIn',

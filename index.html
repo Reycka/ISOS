@@ -4,68 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src = "src/Scripts/Librerias/phaser.js"></script> 
+  <script src="logic.js" type="module"></script>
+  <script src="src/Scripts/Librerias/phaser.js"></script> 
   <title>Chamber of the Heart</title>
 </head>
 <body>
     <h1>CHAMBER OF THE HEART</h1>
-    <script src="src/Scripts/main.js" type="module"></script>
     <div class="title-subtitle">
         <br><br>
         <p class="empresa">
             <strong>Desarrollado por ISOS</strong><br><br>
         </p>
+    </div> 
+    <!--Creamos los botones para cambiar de pestaña-->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')">JUEGO</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">SINOPSIS</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">PERSONAJES</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">DESARROLLADORES</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">REDES</button>
     </div>
-    
-    <div id = "juego">
-        <script src = "./src/Scripts/main.js" type="module"></script>
-    </div>
-    <div class="container">
-        <div class="text-container">
-            <h2 class="description">
-                <br><br><br>
-                CONTROLES:<br>
-            </h2>
-            <p class = "texto">
-                Se trata de un clicker, por lo que para jugar deberá interactuar con los elementos del entorno.<br><br>
-                TEMPLO:<br><br>
-                Para hablar con un personaje simplemnte coloque el cursor sobre él y haga click para iniciar la conversación.<br><br>
-                TIENDA:<br><br>
-                Para comprar cartas haga click en el gato para recibir una tropa a cambio de una ofrenda las cuales obtiene al interactuar con los personajes.<br><br>
-                COMBATE:<br><br>
-                1º Elija una carta del inventario seleccionandola con el cursor.<br>
-                2º Coloquela en la casilla del campo de batalla que considere. <br>
-                3º Haga click en el botón de empezar batalla cuando tenga listo su ejercito para iniciar el combate <br><br>
-            </p>
-            <h3 class="description">
-                SINOPSIS<br>
-            </h3>
-            <p class="texto">
-                Shai ha custodiado un templo dedicado a Ra toda su vida y ahora se enfrenta a la mayor amenaza contra su dios, La Serpiente Apofis.<br>
-                La Serpiente ha empezado a atacar numerosas regiones egipcias por la noche, y cada vez está más cerca. <br>
-                Con la ayuda de guerreros dispuestos a unirse a su causa y refugiados que ahora viven en el templo, Shai deberá plantar cara a Apofis cada noche hasta que su hogar vuelva a estar a salvo.<br>
-            </p>
-            <div>
-                <h3 class="referencias">
-                    Desarrolladores principales:<br>
-                    David Benito<br>
-                    David Fernández<br>
-                    Asher Carrero<br>
-                    Iker Martínez<br>
-                </h3>
-            </div>
-            <h3 class="referencias">
-                <p>
-                    Para más información acceda a nuestro <a href="https://docs.google.com/document/d/1vm_c3KQ5eyVxFHb7YAOze5Hc20gusHqWzp8KM7xdX5w" style="color:#8C7E72;">GDD</a><br><br>
-                    <strong>REDES:</strong><br><br>
-                    <a href="https://x.com/isocatinabox">
-                        <img src="https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Twitter.png?raw=true" class="image" alt="Twitter">
-                    </a>
+    <!--AL DARLE AL BOTÓN VOLVEMOS A PONER EL GAME Y DEMÁS-->
+    <div id="Tab1" class="tabcontent">  
+       <script src = "./src/Scripts/main.js" type = "module"></script>
+        <!--Controles-->
+        <div class="container">
+            <div class="text-container">
+                <h2 class="description">
+                    <br><br><br>
+                    CONTROLES:<br>
+                </h2>
+                <p class="texto">
+                    Se trata de un clicker, por lo que para jugar deberá interactuar con los elementos del entorno.<br><br>
+                    TEMPLO:<br><br>
+                    Para hablar con un personaje simplemente coloque el cursor sobre él y haga click para iniciar la conversación.<br><br>
+                    TIENDA:<br><br>
+                    Para comprar cartas haga click en el gato para recibir una tropa a cambio de una ofrenda las cuales obtiene al interactuar con los personajes.<br><br>
+                    COMBATE:<br><br>
+                    1º Elija una carta del inventario seleccionándola con el cursor.<br>
+                    2º Colóquela en la casilla del campo de batalla que considere. <br>
+                    3º Haga click en el botón de empezar batalla cuando tenga listo su ejército para iniciar el combate <br><br>
+                    4º Si desea eliminar o sustituir una tropa por otra, haga click en la tropa a eliminar y esta volverá al inventario
                 </p>
+            </div>
+        </div>
+    </div>
+    <!--Sinopsis-->
+    <div id="Tab2" class="tabcontent">
+        <div class = 'invisible'></div>
+        <h2 class="description">SINOPSIS</h2><br><br><br>
+        <p class="texto">
+            Shai ha custodiado un templo dedicado a Ra toda su vida y ahora se enfrenta a la mayor amenaza contra su dios, La Serpiente Apofis.<br>
+            La Serpiente ha empezado a atacar numerosas regiones egipcias por la noche, y cada vez está más cerca. <br>
+            Con la ayuda de guerreros dispuestos a unirse a su causa y refugiados que ahora viven en el templo, Shai deberá plantar cara a Apofis cada noche hasta que su hogar vuelva a estar a salvo.<br>
+        </p>
+    </div>
+    <!--Personajes-->
+    <div id="Tab3" class="tabcontent">
+        <div class = 'invisible'></div>
+        <h2 class="description">PERSONAJES</h2><br><br><br>
+        <section>
+          <!--  <img src="https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Shai.png?raw=true">
+            <img src="https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/AdioWeb.png">-->
+            <img src="https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/EsheTarik.png">
+        </section>
+       <!-- <div class="shai">
+            <img src="https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Shai.png?raw=true" class="character" alt="Shai">
+        </div>-->
+    </div>
+    <!--Desarrolladores-->
+    <div id="Tab4" class="tabcontent">
+        <div class = 'invisible'></div>
+        <h2 class="description">DESARROLLADORES</h2><br><br><br>
+        <div>
+            <h3 class="referencias">
+                Desarrolladores principales:<br>
+                David Benito<br>
+                David Fernández<br>
+                Asher Carrero<br>
+                Iker Martínez<br>
             </h3>
         </div>
-        <div class="shai">
-            <img src="https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Shai.png?raw=true" class="character" alt="Shai">
+    </div>
+    <!--Redes-->
+    <div id="Tab5" class="tabcontent">
+        <div class = 'invisible'></div>
+        <h2 class="description">REDES</h2><br><br><br>
+        <div>
+            <h3 class="referencias">
+                Para más información acceda a nuestro <a href="https://docs.google.com/document/d/1vm_c3KQ5eyVxFHb7YAOze5Hc20gusHqWzp8KM7xdX5w" style="color:#8C7E72;">GDD</a><br><br>
+                <strong>REDES:</strong><br><br>
+                <a href="https://x.com/isocatinabox">
+                    <img src="https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Twitter.png?raw=true" class="image" alt="Twitter">
+                </a>
+            </h3>
         </div>
     </div>
 </body>

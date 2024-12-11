@@ -26,7 +26,7 @@ ocupada = false;
             callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
         })
     }Getheal(){
-        this.setTint(0x0000000) //color ARGB
+        this.setTint(0xff00ff00) //color ARGB
         this.scene.time.addEvent({
             delay: 700,
             callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
@@ -71,6 +71,7 @@ ocupada = false;
             this.unit = null;
             this.ocupada = false;
             this._unittexture =  this._unittexture = 'MatrixGround';;
+            this.scene.anim1.stop();
             this.setTexture('MatrixGround').setScale(0.85,0.85);
         }
     }

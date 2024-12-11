@@ -1,5 +1,5 @@
 import Inventory from './../../Comunes/Inventory.js'
-import Character from './Characters.js';
+
 
 export default class DialogSystem {
 
@@ -83,10 +83,10 @@ export default class DialogSystem {
             this.characterNameBox.fillRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60);
             this.characterNameBox.strokeRect(nameXPosition, this.centerY - 200, nameBoxWidth, 60); 
 
-            //Cambiar sprites
+            //Cambiar sprites (voy a diferenciar entre lo que son 2 personajes y los que son solo 1)
             if(this.character.num ==0)
 
-                console.log("Es Tarik y Eshe");
+                
             {
                 if(character == "Tarik")
                 {

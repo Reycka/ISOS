@@ -324,8 +324,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes.forEach(personaje => {
                 personaje.sprite.on('pointerup', () => {
 
-                    console.log(personaje);
-
                     this.dialogueSystem = new DialogSystem(this, this.inventory,this.reader.dialogData.Eventos,personaje);
 
                     

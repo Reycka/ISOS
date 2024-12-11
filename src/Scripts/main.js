@@ -51,4 +51,4 @@ let config = {
 /*
     Instanciamos Phaser con la configuración deseada, Phaser se encargará de lanzar la primera escena del array de escenas
 */
-new Phaser.Game(config); 
+export default config;

@@ -27,7 +27,7 @@ window.openTab = function(evt, tabName) {
         document.querySelector('canvas').classList.remove('invisible');
     } else {
         // Hacer invisible el canvas si no es la pestaña "Tab1"
-        document.querySelector('canvas').classList.add('invisible');
+        if (window.game) document.querySelector('canvas').classList.add('invisible');
     }
 }
 

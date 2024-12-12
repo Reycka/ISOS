@@ -43,7 +43,7 @@ Tanto los ejectos de sonido como música pueden encontrarse en https://ovanisoun
 
 UML.
 
-![imagen](https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_GDD/UML.png?raw=true)
+![imagen]assets_git/assets_GDD/UML.png
 
 Cantidad de escenas = entre 4
 -menú inicial

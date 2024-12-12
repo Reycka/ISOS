@@ -309,16 +309,16 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             //PARTE SOCIALIZAR
 
             var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarikNo','EsheTarikT','EsheTarikE'];
-            var ImagenesAdio = ['AdioChibi','Adio','AdioNo'];
-            var ImagenesAdio = ['KhalidChibi','Khalid','KhalidNo'];
+            var ImagenesAdio = ['AdioChibi','AdioNo','Adio',];
+            var ImagenesKhalid = ['KhalidChibi','KhalidNo','Khalid'];
 
             var ListaPersonajes = [];
 
             // Personaje
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
-            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, ImagenesAdio, 4);
-       
+            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 -500 , this.sys.game.canvas.height/2 + 200, ImagenesKhalid, 2);
+            ListaPersonajes[1].cooldown = 1;
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
@@ -394,7 +394,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.UpdateOfrendasText();
                 if(this.inventory.day == 1 && stage==1)
                 {
-                  
+                
                     const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
                     console.log(this.cameras.main.scrollY, desplazamiento);
                     this.animatePan(nuevoScrollX,velocitypan);
@@ -402,6 +402,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.socialbacksound.stop();
                     this.shopbacksound.play({ loop: true });
                 }
+                
                
                 if(stage != 0 || this.inventory.day != 1){       
 

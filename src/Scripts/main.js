@@ -24,8 +24,8 @@ let config = {
             height: 188
         },
 		max: {
-            width: 1312,
-            height: 752
+            width: 1812,
+            height: 1052
         },
 		zoom: 1
     },

@@ -195,21 +195,152 @@
                 { "character": "Shai", "text": "El sol sigue alzándose cada mañana, ¿verdad?" }
             ]
         },
-   
-    
-        "evento1.1": {
+
+        
             
+        "evento2.1": {
             "dialogs": [
-                { "character": "Tarik", "text": "¡Shai! ¡Estás aquí! Menos mal." },
-                { "character": "Shai", "text": "¿Qué sucede Tarik?" },
-                { "character": "Tarik", "text": "Es La Serpiente, cada vez se acerca más." },
-                { "character": "Tarik", "text": "Ha atacado un asentamiento cercano esta noche." },
-                { "character": "Tarik", "text": "Maldita Nepai." },
-                { "character": "Shai", "text": "¿Te refieres a Apofis?" },
-                { "character": "Shai", "text": "¿Cómo de cerca estamos hablando?" }
-               
+                {},
+                { "character": "Shai", "text": "Hola pequeño, ¿qué haces tú solo en este templo?" },
+                { "character": "???", "text": "Hola." },
+                { "character": "???", "text": "¿Trabajas aquí?" },
+                { "character": "???", "text": "Estoy buscando a alguien que trabaje aquí." },
+                { "character": "Shai", "text": "Sí, me encargo de cuidar este templo." },
+                { "character": "???", "text": "Bien." },
+                { "character": "???", "text": "Entonces te estaba buscando a ti." },
+                { "character": "???", "text": "Necesito tu ayuda." },
+                { "character": "???", "text": "¿Sabes mucho de ritos y bendiciones, verdad?" },
+                { "character": "Shai", "text": "Vamos a bajar la velocidad un poco." },
+                { "character": "Shai", "text": "Aún no me has dicho tu nombre." },
+                { "character": "???", "text": "Ah." },
+                { "character": "???", "text": "Lo siento." },
+                { "character": "???", "text": "Me llamo Khalid." },
+                { "character": "Shai", "text": "Un placer conocerte Khalid, yo soy Shai." },
+                { "character": "Shai", "text": "¿En qué necesitas ayuda?" },
+                { "character": "Khalid", "text": "Necesito ayuda para hacer un rito funerario." },
+                {
+                    "character": "Shai",
+                    "text": "Sin cuerpos.",
+                    "options": [
+                        { "response": "Puedo intentar ayudarte, pero no\n sé demasiado sobre ritos funerarios.", "gain": 1, "god": "Ra" },
+                        { "response": "¿Sin cuerpos? ¿Es eso posible?", "gain": 0, "god": "Ra" },
+                        { "response": "¿Por qué necesitaría un niño \nrealizar un rito funerario?", "gain": -1, "god": "Ra" }
+                    ]
+                },
+                {},
+                { "character": "Khalid", "text": "De cualquier manera, somos sacerdotes de Ra, no de Anubis." },
+                { "character": "Khalid", "text": "No pasa nada." },
+                { "character": "Khalid", "text": "Yo sé cómo se hacen." },
+                { "character": "Khalid", "text": "Pero no puedo solo y sin cuerpos." },
+                { "character": "Khalid", "text": "Necesito ayuda." },
+                { "character": "Shai", "text": "Prometo buscar información sobre el tema." },
+                { "character": "Shai", "text": "¿Por qué no descansas aquí mientras tanto?" },
+                { "character": "Khalid", "text": "Vale." },
+                { "character": "Khalid", "text": "Pero recuerda." },
+                { "character": "Khalid", "text": "Me lo has prometido." }
+            ]
+                        
+        },
+
+        "evento2.2": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "Has vuelto." },
+                { "character": "Shai", "text": "Prometí que buscaría información, y lo he hecho." },
+                { "character": "Khalid", "text": "¿Has encontrado algo?" },
+                { "character": "Shai", "text": "Lo siento, pero nada sobre rituales sin cuerpos." },
+                { "character": "Shai", "text": "¿Estás seguro de que no hay manera de recuperarlos?" },
+                { "character": "Khalid", "text": "Es imposible." },
+                { "character": "Khalid", "text": "La Serpiente se los comió." },
+                { "character": "Shai", "text": "¿Apofis?" },
+                { "character": "Khalid", "text": "Sí." },
+                { "character": "Khalid", "text": "Se comió todo." },
+                { "character": "Khalid", "text": "Las casas, los animales, las personas… " },
+                { "character": "Khalid", "text": "Se comió a mis padres. " },
+                { "character": "Khalid", "text": "Pero quiero que estén bien en su siguiente vida." },
+                {
+                    "character": "Shai",
+                    "text": "Así que tengo que hacer los ritos funerarios.",
+                    "options": [
+                        { "response": "Quiero ayudarte, pero sin cuerpos\n es difícil saber si servirá para algo", "gain": 0, "god": "Ra" },
+                        { "response": "Para tus padres sería suficiente\n saber que estás a salvo.", "gain": -1, "god": "Ra" },
+                        { "response": "Seguro que tus padres aprecian\n lo que estás intentando hacer.", "gain": 1, "god": "Ra" }
+                    ]
+                },
+                {},
+                { "character": "Khalid", "text": "Mis padres sabrían qué hacer." },
+                { "character": "Shai", "text": "¿Qué te parece si hacemos todos los ritos funerarios que sepas?" },
+                { "character": "Shai", "text": "Podemos usar una de las salas del templo." },
+                { "character": "Shai", "text": "¿Tienes algo suyo que pueda servir como sustituto de los cuerpos?" },
+                { "character": "Khalid", "text": "Sí." },
+                { "character": "Khalid", "text": "Muchas gracias." }
+            ]
+        },
+
+        "evento2.3": {
+            "dialogs": [
+                {},
+                { "character": "Shai", "text": "¿Khalid?" },
+                { "character": "Khalid", "text": "…" },
+                { "character": "Shai", "text": "Khalid, ¿estás bien?" },
+                { "character": "Khalid", "text": "Hola Shai." },
+                { "character": "Khalid", "text": "Estoy pensando." },
+                { "character": "Shai", "text": "¿Pensando en…?" },
+                { "character": "Khalid", "text": "Cosas." },
+                { "character": "Shai", "text": "¿Y te importaría compartir esas cosas conmigo?" },
+                { "character": "Khalid", "text": "No sé qué hacer ahora." },
+                { "character": "Khalid", "text": "Mis padres no están, mis amigos no están, mi casa no está." },
+                { "character": "Khalid", "text": "Y ahora La Serpiente está intentando comerse este sitio también." },
+                { "character": "Khalid", "text": "No sé qué hacer." },
+                { "character": "Shai", "text": "Puedes quedarte aquí todo lo que quieras, por lo menos quédate hasta que cesen los ataques de Apofis." },
+                { "character": "Shai", "text": "Por lo menos quédate hasta que cesen los ataques de Apofis." },
+                { "character": "Khalid", "text": "…" },
+                {
+                    "character": "Shai",
+                    "text": "¿Podemos hablar de otra cosa?",
+                    "options": [
+                        { "response": "Claro, por qué no me cuentas algo sobre esa máscara.", "gain": 1, "god": "Ra" },
+                        { "response": "¿Quieres hablarme de tus padres?", "gain": 0, "god": "Ra" },
+                        { "response": "Esto es algo serio Khalid, tenemos que hablar de ello.", "gain": -1, "god": "Ra" }
+                    ]
+                }
+            ]
+                
+        
+        },
+
+
+        "fragmento_2.3.1": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "Vale." },
+                { "character": "Khalid", "text": "Eh… Esta máscara era de mi madre. " },
+                { "character": "Khalid", "text": "Mis padres eran sacerdotes de Anubis." },
+                { "character": "Khalid", "text": "Yo también quería serlo." },
+                { "character": "Shai", "text": "Esa es una buena aspiración." },
+                { "character": "Shai", "text": "¿Sigues queriendo serlo?" },
+                { "character": "Khalid", "text": "No sé." },
+                { "character": "Khalid", "text": "Ahora mismo quiero dormir." },
+                { "character": "Shai", "text": "Adiós entonces, dulces sueños." }
+            ]
+        },
+        "fragmento_2.3.2": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "¡No sé qué quiero hacer! ¡No sé si quiero quedarme! ¡A lo mejor quiero irme con mis padres!" },
+                { "character": "Shai", "text": "Khalid…" },
+                { "character": "Khalid", "text": "…Lo siento. Voy… a dormir." }
             ]
         }
-       
     }
 }
+     
+
+            
+        
+        
+   
+    
+       
+
+

@@ -33,15 +33,14 @@ Organizando al ejército para defender el templo de las fuerzas de Apofis
 
 ![imagen](https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/Capturas%20del%20Juego/Preparaci%C3%B3n%20del%20ejercito.png?raw=true)
 ![imagen](https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/Capturas%20del%20Juego/Batalla.png?raw=true)
-
+**ASSETS**
 Al tratarse  de un juego ambientado en Egipto se ha buscado una estética que se encuentre acorde al mismo, con un templo basado en los de los dioses y con personajes que toman mucho de atuendos egipcios clásicos con joyería y maquillaje  de la misma tal y como lleva nuestro protagonista.
 
-Todas las imágenes han sido creadas a mano por nuestros artistas Asher Carrero e Iker Martínez y su uso queda restringido bajo derechos de autor 
-**ASSETS**
-Todos los ddiseños visuales son de creacion propia.
-Tanto los ejectos de sonido como música pueden encontrarse en https://ovanisound.com
+Todas las imágenes han sido creadas a mano por nuestros artistas Asher Carrero e Iker Martínez y su uso queda restringido bajo derechos de autor. 
+Tanto los ejectos de sonido como música pueden encontrarse en https://ovanisound.com.
 **architecture**
-UML
-![imagen](https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_GDD/UML.png?raw=true)
+UML.
+
+![imagen](https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_GDD/UML.png)
 
 

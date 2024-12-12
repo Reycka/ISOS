@@ -317,8 +317,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             // Personaje
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
-            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 -500 , this.sys.game.canvas.height/2 + 200, ImagenesKhalid, 2);
-            ListaPersonajes[1].cooldown = 1;
+            ListaPersonajes[2] = new Character(this, this.sys.game.canvas.width / 2 -500 , this.sys.game.canvas.height/2 + 200, ImagenesKhalid, 2);
+            ListaPersonajes[2].cooldown = 1;
+            ListaPersonajes[4] = new Character(this, this.sys.game.canvas.width / 2 -750, this.sys.game.canvas.height/2 + 200, ImagenesAdio, 4);
+            ListaPersonajes[4].cooldown = 0;
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 

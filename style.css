@@ -9,6 +9,30 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.tab {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center; /* Centra los botones verticalmente */
+  flex-wrap: wrap; /* Permite que los botones se envuelvan si es necesario */
+}
+.tablinks {
+  align-items: center;
+  width: 250px;
+  background-color: black; /* Fondo negro */
+  border: 2px solid grey; /* Borde gris */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar en línea */
+  font-size: 16px; /* Tamaño de la fuente */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+.tablinks:hover {
+  background-color: grey; /* Fondo gris al pasar el ratón por encima */
+  color: black; /* Color del texto al pasar el ratón por encima */
+}
 
 .container {
   display: flex;
@@ -33,7 +57,7 @@ h1 {
 
 .empresa {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 70px;
+  font-size: 50px;
   color: #59381C;
   margin: 0; /* Elimina el margen para alinear mejor */
   text-align: center;
@@ -107,7 +131,7 @@ section img:hover{
   margin-top: -150px;
   box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.85);
   height: auto;
-  width: 534px;
+  width: 1000px;
   border-radius: 15px;
   object-fit: cover;
 }
@@ -127,7 +151,7 @@ section img:hover{
   width: 80%;
   text-align: center;
   margin-top: 20px;
-  margin-left: -110px;
+  margin-left: -200px;
 }
 
 .texto-carrusel h3 {
@@ -176,19 +200,25 @@ section img:hover{
   color:#8D6742;
 }
 .arrowleft, .arrowright { 
+  margin: 250px;
   position: absolute; 
   top: 50%; 
-  transform: translateY(-50%); 
+  transform: translateY(-50%) scale(0.5); /* Reduce el tamaño de las flechas */
   cursor: pointer;
 }
-.arrowright{
-  right:10px;
-  transform: rotate(90deg);
+
+.arrowright {
+  right: 20px; /* Ajusta la distancia de la flecha derecha a la imagen */
+  margin-right: 350px;
+  transform: translateY(-50%) scale(0.5) rotate(90deg); /* Reduce el tamaño y rota la flecha */
 }
-.arrowleft{
-  left: 10px;
-  transform: rotate(270deg);
+
+.arrowleft {
+  left: 20px; /* Ajusta la distancia de la flecha izquierda a la imagen */
+  margin-left: 350px;
+  transform: translateY(-50%) scale(0.5) rotate(270deg); /* Reduce el tamaño y rota la flecha */
 }
+
 #juego { 
   margin-left:-20px;
   margin-right:-60px;

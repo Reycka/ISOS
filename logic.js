@@ -38,9 +38,10 @@ document.addEventListener("DOMContentLoaded", function() {
         tabcontent[i].style.display = "none";
     }
 });
+//Imágenes del carrusel
 const images = [
     {
-        src: "https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Shai.png?raw=true",
+        src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/ShaiWeb.png?raw=true?raw=true",
         title: "SHAI",
         description: "Sacerdote principal del templo de Ra y protagonista del juego, su misión es proteger el templo de los ataques de Apofis"
     },
@@ -57,13 +58,14 @@ const images = [
     {
         src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/AdioWeb.png?raw=true",
         title: "ADIO",
-        description: ""
+        description: "Antiguo guardia de un templo de Horus. Es uno de los únicos supervivientes del ataque de Apofis a su templo, ahora se refugia en el templo de Shai"
     }
     // Agrega más objetos de imagen según sea necesario
 ];
-
+//Index
 let currentIndex = 0;
 
+//Función que muestra la imagen y el texto en función del index
 function updateContent(index) {
     const imgElement = document.querySelector("#img-carrusel img");
     const titleElement = document.querySelector("#texto-carrusel h3");

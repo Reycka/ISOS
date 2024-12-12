@@ -48,24 +48,13 @@ ocupada = false;
     //Setea la unidad 
     SetUnit(_unit){
         if(_unit){
+            this.setVisible(true);
             this.unit = _unit;
             this.ocupada = true;
             this._unittexture = _unit.unittexture;
             this.setTexture(this.unit.unittexture);
             this.setScale(0.33,0.33);
-            this.scene.anim1 = this.scene.tweens.add({
-                targets: this,
-                x: (this.x +20),
-                duration: 500+100*this.unit.cooldown,
-                ease: 'easeInOutQuart', 
-        
-                flipX: false,
-                yoyo: true,
-                repeat: -1,
-                delay: 0,
-                
-            });
-            this.scene.anim1.play();
+            
         }
         else{
             this.unit = null;
@@ -74,6 +63,21 @@ ocupada = false;
             this.scene.anim1.stop();
             this.setTexture('MatrixGround').setScale(0.85,0.85);
         }
+    }
+    StartCombat(){
+        this.scene.anim1 = this.scene.tweens.add({
+            targets: this,
+            x: (this.x +20),
+            duration: 500+100*Math.random(),
+            ease: 'easeInOutQuart', 
+    
+            flipX: false,
+            yoyo: true,
+            repeat: -1,
+            delay: 0,
+            
+        });
+        this.scene.anim1.play();
     }
     //Método que se llamará cada vez que una tropa muera o se desplace, coloca a False su valor ocupada
     SetFree(){

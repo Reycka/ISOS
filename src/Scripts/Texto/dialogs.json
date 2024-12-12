@@ -327,9 +327,14 @@
         "fragmento_2.3.2": {
             "dialogs": [
                 {},
-                { "character": "Khalid", "text": "¡No sé qué quiero hacer! ¡No sé si quiero quedarme! ¡A lo mejor quiero irme con mis padres!" },
+                { "character": "Khalid", "text": "¡No sé qué quiero hacer!" },
+                { "character": "Khalid", "text": "¡No sé si quiero quedarme!" },
+                { "character": "Khalid", "text": "¡A lo mejor quiero irme con mis padres!" },
                 { "character": "Shai", "text": "Khalid…" },
-                { "character": "Khalid", "text": "…Lo siento. Voy… a dormir." }
+                { "character": "Khalid", "text": "…" },
+                { "character": "Khalid", "text": "Lo siento." },
+                { "character": "Khalid", "text": "Voy…" },
+                { "character": "Khalid", "text": "A dormir." }
             ]
         }
     }

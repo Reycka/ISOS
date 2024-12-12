@@ -176,7 +176,7 @@ export default class DialogSystem {
 
             this.dialogIndex++;
             
-        } else {
+        } else if (this.dialogIndex !=0) {
             // Fin del diálogo
             this.end = true;
             this.scene.events.emit('endDialogue');

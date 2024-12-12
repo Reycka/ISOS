@@ -89,9 +89,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     UpdateAffinityValues(){
         this.affinityValues = [this.inventory.affreg.GetRa()/this.inventory.affreg.maxAffinity,
             this.inventory.affreg.GetIsis()/this.inventory.affreg.maxAffinity,
-            this.inventory.affreg.GetAnubis()/this.inventory.affreg.maxAffinity,
             this.inventory.affreg.GetHorus()/this.inventory.affreg.maxAffinity,
             this.inventory.affreg.GetOsiris()/this.inventory.affreg.maxAffinity,
+            this.inventory.affreg.GetAnubis()/this.inventory.affreg.maxAffinity,
             this.inventory.affreg.GetSeth()/this.inventory.affreg.maxAffinity];
     }
 
@@ -318,9 +318,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
             ListaPersonajes[2] = new Character(this, this.sys.game.canvas.width / 2 -500 , this.sys.game.canvas.height/2 + 200, ImagenesKhalid, 2);
-            ListaPersonajes[2].cooldown = 1;
+            if(this.inventory.day == 1) ListaPersonajes[2].cooldown = 1;
+            else ListaPersonajes[2].switchDisponible();
+            
             ListaPersonajes[4] = new Character(this, this.sys.game.canvas.width / 2 -750, this.sys.game.canvas.height/2 + 200, ImagenesAdio, 4);
-            ListaPersonajes[4].cooldown = 0;
+            if(this.inventory.day == 1) ListaPersonajes[4].cooldown = 0;
+            else ListaPersonajes[4].switchDisponible();
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 

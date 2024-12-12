@@ -1,7 +1,7 @@
 export default class AffinityRegister{
     Ra;
     Isis;
-    Anibis;
+    Anubis;
     Horus;
     Osiris;
     Seth;

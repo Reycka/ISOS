@@ -222,13 +222,14 @@
                     "character": "Shai",
                     "text": "Sin cuerpos.",
                     "options": [
-                        { "response": "Puedo intentar ayudarte, pero no\n sé demasiado sobre ritos funerarios.", "gain": 1, "god": "Ra" },
-                        { "response": "¿Sin cuerpos? ¿Es eso posible?", "gain": 0, "god": "Ra" },
-                        { "response": "¿Por qué necesitaría un niño \nrealizar un rito funerario?", "gain": -1, "god": "Ra" }
+                        { "response": "Puedo intentar ayudarte, pero no\n sé demasiado sobre ritos funerarios.", "gain": 1, "god": "Anubis" },
+                        { "response": "¿Sin cuerpos?\n ¿Es eso posible?", "gain": 0, "god": "Anubis" },
+                        { "response": "¿Por qué necesitaría un niño \nrealizar un rito funerario?", "gain": -1, "god": "Anubis" }
                     ]
                 },
                 {},
-                { "character": "Khalid", "text": "De cualquier manera, somos sacerdotes de Ra, no de Anubis." },
+                { "character": "Shai", "text": "De cualquier manera, somos sacerdotes de Ra, no de Anubis. " },
+                { "character": "Shai", "text": " No sé cómo de viable es realizar ceremonias funerarias por nuestra cuenta. " },
                 { "character": "Khalid", "text": "No pasa nada." },
                 { "character": "Khalid", "text": "Yo sé cómo se hacen." },
                 { "character": "Khalid", "text": "Pero no puedo solo y sin cuerpos." },
@@ -262,9 +263,9 @@
                     "character": "Shai",
                     "text": "Así que tengo que hacer los ritos funerarios.",
                     "options": [
-                        { "response": "Quiero ayudarte, pero sin cuerpos\n es difícil saber si servirá para algo", "gain": 0, "god": "Ra" },
-                        { "response": "Para tus padres sería suficiente\n saber que estás a salvo.", "gain": -1, "god": "Ra" },
-                        { "response": "Seguro que tus padres aprecian\n lo que estás intentando hacer.", "gain": 1, "god": "Ra" }
+                        { "response": "Quiero ayudarte, pero sin cuerpos\n es difícil saber si servirá para algo", "gain": 0, "god": "Anubis" },
+                        { "response": "Para tus padres sería suficiente\n saber que estás a salvo.", "gain": -1, "god": "Anubis" },
+                        { "response": "Seguro que tus padres aprecian\n lo que estás intentando hacer.", "gain": 1, "god": "Anubis" }
                     ]
                 },
                 {},
@@ -299,9 +300,9 @@
                     "character": "Shai",
                     "text": "¿Podemos hablar de otra cosa?",
                     "options": [
-                        { "response": "Claro, por qué no me cuentas algo sobre esa máscara.", "gain": 1, "god": "Ra" },
-                        { "response": "¿Quieres hablarme de tus padres?", "gain": 0, "god": "Ra" },
-                        { "response": "Esto es algo serio Khalid, tenemos que hablar de ello.", "gain": -1, "god": "Ra" }
+                        { "response": "Claro, por qué no me cuentas \nalgo sobre esa máscara.", "gain": 1, "god": "Anubis" },
+                        { "response": "¿Quieres hablarme\n de tus padres?", "gain": 0, "god": "Anubis" },
+                        { "response": "Esto es algo serio Khalid, \ntenemos que hablar de ello.", "gain": -1, "god": "Anubis" }
                     ]
                 }
             ]

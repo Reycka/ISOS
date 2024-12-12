@@ -79,7 +79,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         //Audio
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
-        this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
+        this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
         this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
        
     }

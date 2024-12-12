@@ -19,6 +19,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('Background','src/Assets/Finales/fondo_socializar.png')
 		this.load.image('Titulo','src/Assets/Finales/TituloChamberOfTheHeart.png');
 		this.load.image('BotonComenzar','src/Assets/Finales/boton_comenzar.png');
+		this.load.image('IMPORTANTITISISISMOCLAVEINDISPENSABLE','src/Assets/raizclaveimportantisimadelproyecto.jpg')
 		this.load.image('BotonSalir','src/Assets/Finales/boton_salir.png');
 		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal Heartbeat Main.WAV')
 		this.oleada1 = 1;
@@ -27,7 +28,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	create() {
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});
-		var inventory = new Inventory();
+		var inventory = new Inventory('IMPORTANTITISISISMOCLAVEINDISPENSABLE');
 		inventory.AddGift(6);
 		this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2,'Background');
 		var title = this.add.image(this.sys.game.canvas.width / 2,300,"Titulo");

@@ -51,6 +51,13 @@ export default class BattleManager {
         }
         else return false;
     }
+    StartBattleAnim(){
+        for (var i = 0; i < this.mat.row; i++) {
+            for (var j = 0; j < this.mat.col; j++) {
+                if(this.mat.mat[i][j].GetState())this.mat.mat[i][j].StartCombat();
+                if(this.enemymatriz.Enemymat.mat[i][j].GetState() )this.enemymatriz.Enemymat.mat[i][j].StartCombat();
+            }}
+    }
     /*
     Se encarga de que todas las unidades ejecuten sus updates y genstiona el movimiento de estas, 
     liberacion de casillas y la victoria o derrota
@@ -338,9 +345,10 @@ export default class BattleManager {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
                
                      if(this.jeros.getValue(i,j))  sinergia = false;
-                    if(sinergia) this.scene.activeSinergy(i);
+                   
               
             }
+            if(sinergia) this.scene.activeSinergy(i);
         }
     }
     ApplySinergy(dios) { //El dios representa al número del array de jeroglificos

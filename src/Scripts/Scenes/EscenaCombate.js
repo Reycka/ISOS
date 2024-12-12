@@ -402,6 +402,8 @@ activeSinergy(dios){
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);
 			}
+			
+
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
@@ -428,7 +430,7 @@ activeSinergy(dios){
 					}
 				}
 			}
-
+			this.battleManager.StartBattleAnim();
 			pelea.setVisible(false);
 			imagecard1.setVisible(false);
 			imagecard1letter.setVisible(false);
@@ -441,6 +443,13 @@ activeSinergy(dios){
 			listaenemigos.setVisible(false);
 			posiblesenemigos.setVisible(false);
 			this.enemymatriz.EliminaLista();
+			this.chuletaSinergias.setVisible(false)
+			this.rasin.setVisible(false)
+			this.isissin.setVisible(false)
+			this.horussin.setVisible(false)
+			this.sethsin.setVisible(false)
+			this.anubissin.setVisible(false)
+			this.osirissin.setVisible(false)
 			this.cronometro.paused=false;			
 		})
 

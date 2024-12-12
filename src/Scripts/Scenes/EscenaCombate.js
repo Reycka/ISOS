@@ -430,7 +430,7 @@ activeSinergy(dios){
 					}
 				}
 			}
-			this.battleManager.StartBattleAnim();
+			
 			pelea.setVisible(false);
 			imagecard1.setVisible(false);
 			imagecard1letter.setVisible(false);

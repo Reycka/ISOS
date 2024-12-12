@@ -64,16 +64,22 @@ ocupada = false;
             this.setTexture('MatrixGround').setScale(0.85,0.85);
         }
     }
-    StartCombat(){
+    AttackMove(isenemy){
+        var dir;
+        if(isenemy){
+             dir =  (this.x -20);
+        }else {
+            dir =  (this.x +20);
+        }
         this.scene.anim1 = this.scene.tweens.add({
             targets: this,
-            x: (this.x +20),
-            duration: 500+100*Math.random(),
+            x: dir,
+            duration: 1000,
             ease: 'easeInOutQuart', 
     
             flipX: false,
             yoyo: true,
-            repeat: -1,
+            repeat: 0,
             delay: 0,
             
         });

@@ -51,13 +51,7 @@ export default class BattleManager {
         }
         else return false;
     }
-    StartBattleAnim(){
-        for (var i = 0; i < this.mat.row; i++) {
-            for (var j = 0; j < this.mat.col; j++) {
-                if(this.mat.mat[i][j].GetState())this.mat.mat[i][j].StartCombat();
-                if(this.enemymatriz.Enemymat.mat[i][j].GetState() )this.enemymatriz.Enemymat.mat[i][j].StartCombat();
-            }}
-    }
+   
     /*
     Se encarga de que todas las unidades ejecuten sus updates y genstiona el movimiento de estas, 
     liberacion de casillas y la victoria o derrota
@@ -74,6 +68,9 @@ export default class BattleManager {
                     this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
                         //comprobamos si esta lista
+                        if(this.mat.mat[i][j].unit.actcooldown==1){
+                            this.mat.mat[i][j].AttackMove(false);
+                        }
                         if (this.mat.mat[i][j].GetUnit().isready) {
                             //En caso de ser healer le pasamos unidades aliadas
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
@@ -250,6 +247,9 @@ export default class BattleManager {
                         this.victory = true;
                     }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
+                        if(this.enemymatriz.Enemymat.mat[i][j].unit.actcooldown==1){
+                            this.enemymatriz.Enemymat.mat[i][j].AttackMove(true);
+                        }
                         if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isready) {
                             this.target = false;
                             if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().IsaHealer()) {

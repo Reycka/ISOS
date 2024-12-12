@@ -39,10 +39,24 @@ export default class BattleManager {
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
+            this.auxcard = -1; 
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            this.SetJeroglifico();
+            this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+        }
+        else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
+            this.SetJeroglifico(this.card,true);
+            this.card = null;
+            this._texture = null;
+        }
+        else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit();
         }
     }
     GetVictory() {
@@ -51,6 +65,7 @@ export default class BattleManager {
         }
         else return false;
     }
+   
     /*
     Se encarga de que todas las unidades ejecuten sus updates y genstiona el movimiento de estas, 
     liberacion de casillas y la victoria o derrota
@@ -67,6 +82,9 @@ export default class BattleManager {
                     this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
                         //comprobamos si esta lista
+                        if(this.mat.mat[i][j].unit.actcooldown==1){
+                            this.mat.mat[i][j].AttackMove(false);
+                        }
                         if (this.mat.mat[i][j].GetUnit().isready) {
                             //En caso de ser healer le pasamos unidades aliadas
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
@@ -243,6 +261,9 @@ export default class BattleManager {
                         this.victory = true;
                     }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
+                        if(this.enemymatriz.Enemymat.mat[i][j].unit.actcooldown==1){
+                            this.enemymatriz.Enemymat.mat[i][j].AttackMove(true);
+                        }
                         if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().isready) {
                             this.target = false;
                             if (this.enemymatriz.Enemymat.mat[i][j].GetUnit().IsaHealer()) {
@@ -326,13 +347,21 @@ export default class BattleManager {
 
         }
     }
-    SetJeroglifico() {
+    SetJeroglifico(card,aux) {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
-                    this.jeros.setIsActive(i, j, true);
+                if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
+                    this.jeros.setIsActive(i, j, aux);
                 }
+            }   
+            var sinergia = true;
+            for (let j = 0; j < this.jeros.getSize(i); ++j) {
+               
+                     if(this.jeros.getValue(i,j))  sinergia = false;
+                   
+              
             }
+            if(sinergia) this.scene.activeSinergy(i);
         }
     }
     ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
@@ -352,7 +381,7 @@ export default class BattleManager {
         // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
         //const alteredStateInstance = new AlteredStateClass();
         //alteredStateInstance.getAlteredState(this.Sinergias);
-
+        if(Sinergias) this.scene.activeSinergy(dios);
         return Sinergias; //Devolvemos si es verdadero o falso
     }
     getJeros() {

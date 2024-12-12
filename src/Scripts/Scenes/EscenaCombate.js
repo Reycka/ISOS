@@ -66,22 +66,23 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
 		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
 
+
 		//sinergias
 		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/FondoPosiblesEnemigos.png');
 		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/FondoSinergias.png');
-		this.load.image('Rades','src/Assets/Finales/JeroflificosRa.png')
-		this.load.image('RAact')
-		this.load.image('Osirisdes','src/Assets/Finales/JeroflificosOsiris.png')
-		this.load.image('Osirisact')
-		this.load.image('Horusdes','src/Assets/Finales/JeroflificosHorus.png')
-		this.load.image('Horusact')
-		this.load.image('Irisdes','src/Assets/Finales/JeroflificosIris.png')
-		this.load.image('Irisact')
-		this.load.image('Anubisdes','src/Assets/Finales/JeroflificosAnubis.png')
-		this.load.image('Anubisact')
-		this.load.image('Sethdes','src/Assets/Finales/JeroflificosSeth.png')
-		this.load.image('Setact')
-		
+		this.load.image('Rades','src/Assets/Finales/JeroglificosRa.png')
+		this.load.image('Raact','src/Assets/Finales/JeroglificosRaIluminado.png')
+		this.load.image('Osirisdes','src/Assets/Finales/JeroglificosOsiris.png')
+		this.load.image('Osirisact','src/Assets/Finales/JeroglificosOsirisIluminado.png')
+		this.load.image('Horusdes','src/Assets/Finales/JeroglificosHorus.png')
+		this.load.image('Horusact','src/Assets/Finales/JeroglificosHorusIluminado.png')
+		this.load.image('Isisdes','src/Assets/Finales/JeroglificosIsis.png')
+		this.load.image('Isisact','src/Assets/Finales/JeroglificosIsisIluminado.png')
+		this.load.image('Anubisdes','src/Assets/Finales/JeroglificosAnubis.png')
+		this.load.image('Anubisact','src/Assets/Finales/JeroglificosAnubisIluminado.png')
+		this.load.image('Sethdes','src/Assets/Finales/JeroglificosSeth.png')
+		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
+
 		//Música
 		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
 		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
@@ -137,6 +138,26 @@ defeat(){
 	this. Returndefeat.setVisible(true);
 	this.finaltext.setText("HAS PERDIDO");
 }
+activeSinergy(dios){
+	if(dios==0){
+		this.rasin.setTexture('Raact')
+	}
+	if(dios==1){
+		this.isissin.setTexture('Isisact')
+	}
+	if(dios==2){
+		this.anubissin.setTexture('Anubisact')
+	}if(dios==3){
+		this.osirissin.setTexture('Osirisact')
+	}
+	if(dios==4){
+		this.horussin.setTexture('Horusact')
+	}
+	if(dios==5){
+		this.sethsin.setTexture('Sethact')
+	}1
+}
+
 	create() {
 		
 		this.cronometro = this.time.addEvent({
@@ -155,8 +176,17 @@ defeat(){
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
 			this.cameras.main.height / this.textures.get('Background1').getSourceImage().height);
+
 			let listaenemigos = this.add.image(1580,675,'BackgroundPosiblesEnemigos').setScale(0.8,0.8);
-			this.chuletaSinergias = this.add.image(1480,180,'BackgroundChuletaSinergias').setScale(0.5,0.5);
+			/*Sinergias */
+
+			this.chuletaSinergias = this.add.image(1580,180,'BackgroundChuletaSinergias').setScale(0.5,0.5);
+			this.rasin = this.add.image(1455,145,'Rades').setScale(0.2,0.2);
+			this.isissin = this.add.image(1620,145,'Isisdes').setScale(0.2,0.2);
+			this.horussin = this.add.image(1790,145,'Horusdes').setScale(0.2,0.2);
+			this.anubissin = this.add.image(1460,265,'Anubisdes').setScale(0.2,0.2);
+			this.osirissin = this.add.image(1640,265,'Osirisdes').setScale(0.2,0.2);
+			this.sethsin = this.add.image(1760,265,'Sethdes').setScale(0.2,0.2);
 		//Botones para movernos por el inventario
 		var upperBoton = this.add.image(this.sys.game.canvas.width / 10, this.sys.game.canvas.height / 14, 'flecha')
 		upperBoton.setScale(0.2,0.2);
@@ -372,6 +402,8 @@ defeat(){
 			for(let i = 0; i < 6; i++){
 				this.battleManager.ApplySinergy(i);
 			}
+			
+
 			this.battleManager.enemymatriz.SummonEnemy();
 			for(let i = 0; i < this.mat.row; i++){
 				for(let j = 0; j < this.mat.col; j++){
@@ -398,16 +430,26 @@ defeat(){
 					}
 				}
 			}
-
+			
 			pelea.setVisible(false);
 			imagecard1.setVisible(false);
+			imagecard1letter.setVisible(false);
 			imagecard2.setVisible(false);
+			imagecard2letter.setVisible(false);
 			imagecard3.setVisible(false);
+			imagecard3letter.setVisible(false);
 			downBoton.setVisible(false);
 			upperBoton.setVisible(false);
 			listaenemigos.setVisible(false);
 			posiblesenemigos.setVisible(false);
 			this.enemymatriz.EliminaLista();
+			this.chuletaSinergias.setVisible(false)
+			this.rasin.setVisible(false)
+			this.isissin.setVisible(false)
+			this.horussin.setVisible(false)
+			this.sethsin.setVisible(false)
+			this.anubissin.setVisible(false)
+			this.osirissin.setVisible(false)
 			this.cronometro.paused=false;			
 		})
 

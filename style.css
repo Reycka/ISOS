@@ -1,5 +1,8 @@
 body {
-  margin: 100px;
+  margin-top: 100px;
+  margin-bottom:300px;
+  margin-left: 350px;
+  margin-right: 350px;
   background-image: url(https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Fondo%20web.png?raw=true);
   background-position: center;
   background-attachment: fixed;
@@ -22,7 +25,7 @@ body {
 
 h1 {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 48px;
+  font-size: 88px;
   color: #8D6742;
   margin: 0; /* Elimina el margen para alinear mejor */
   text-align: center;
@@ -30,7 +33,7 @@ h1 {
 
 .empresa {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 36px;
+  font-size: 70px;
   color: #59381C;
   margin: 0; /* Elimina el margen para alinear mejor */
   text-align: center;
@@ -39,33 +42,55 @@ h1 {
 .description {
   font-family: 'Times New Roman', Times, serif;
   color: #BfBCBA;
-  font-size: 24px;
+  font-size: 40px;
   text-align: left; /* Alineado a la izquierda para el resto del texto */
 }
 .referencias {
+  margin: 0;
     font-family: 'Times New Roman', Times, serif;
     color: #BfBCBA;
-    font-size: 24px;
+    font-size: 35px;
     text-align:center;
 }
 
 .texto {
+  margin-left: 30px ;
   font-family: 'Times New Roman', Times, serif;
   color: #BfBCBA;
-  font-size: 24px;
-  text-align: left;
-}
-
-.shai {
-  text-align:end;
+  font-size: 30px;
+  text-align: justify-all;
 }
 
 .image {
-  width: 100px;
+  width: 240px;
   height: auto;
 }
 
-.character {
-    width: 500px;
-    height: 700px;
+.invisible { 
+  display: none;
+}
+section{
+  display: flex;
+  width: 600;
+  height: 430;
+}
+section img{
+  width: 0;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: .8;
+  transition: .5s ease;
+}
+section img:hover{
+  cursor: crosshair;
+  width: 300;
+  opacity: 1;
+  filter: contrast(110%);
+}
+#juego { 
+  margin-left:-20px;
+  margin-right:-60px;
+  width: 100%; 
+  height: 90vh; /* Ajusta la altura del canvas */ 
+  margin-bottom: 10px; /* Añade separación de la parte baja */ 
 }

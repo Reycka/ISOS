@@ -143,42 +143,50 @@ export default class AffinityRegister{
         //primer random el dios
         var rnd = Math.floor(Math.random() * this.numtotalpnt);
         console.log("elrandom"+rnd);
-        if(rnd<this.Ra){
-             this.rnd2 = Math.floor(Math.random() * 3);
-             console.log("elrandomaaa "+this.rnd2);
-            return this.rnd2;
-        } 
-        aux +=this.Ra;
-        if(rnd>aux-1 && rnd<this.Isis+aux){
+         
+        
+        if(rnd>aux-1 && rnd<this.Ra+aux){
             this.rnd2 = Math.floor(Math.random() * 5);
             this.rnd2 += 2
             console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
             
         }
-        aux += this.Isis;
-        if(rnd>aux-1 && rnd<this.Horus+aux){
+        aux +=this.Ra;
+        
+        if(rnd>aux-1 && rnd<this.Isis+aux){
             this.rnd2 = Math.floor(Math.random() * 4);
-            this.rnd2 += 13;
-            if (this.rnd2 == 15) this.rnd2 = 3;
+            this.rnd2 += 12;
+            if(this.rnd2 == 13) this.rnd2 =1;
+                if (this.rnd2 == 14) this.rnd2 =11;
             console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
 
-        }  aux += this.Horus;
-        if(rnd>aux-1 && rnd<this.Anubis+aux){
-            this.rnd2 = Math.floor(Math.random() * 5);
-            this.rnd2 += 6;
+        } aux += this.Isis; 
+        if(rnd>aux-1 && rnd<this.Horus+aux){
+            this.rnd2 = Math.floor(Math.random() * 3);
+            this.rnd2 += 13;
+            if(this.rnd2 == 15) this.rnd2 = 3;
             console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
-        }
-        aux += this.Anubis
-      
+        }aux += this.Horus;
+        
+        if(rnd>aux-1 && rnd<this.Anubis+aux){
+            this.rnd2 = Math.floor(Math.random() * 5);
+             console.log("elrandomaaa "+this.rnd2);
+             this.rnd2+=6;
+            return this.rnd2;
+            
+
+        }aux += this.Anubis
+         
         if(rnd>aux-1 && rnd<this.Osiris+aux){
             this.rnd2 = Math.floor(Math.random() * 4);
-                if(this.rnd2 == 13) this.rnd2 =1;
-                if (this.rnd2 == 14) this.rnd2 =15;
-                console.log("elrandomaaa "+this.rnd2);
-                return this.rnd2;
+             console.log("elrandomaaa "+this.rnd2);
+            
+            return this.rnd2;
+            
+    
 
         }  aux += this.Osiris
         if(rnd>aux-1 && rnd<this.Seth+aux){

@@ -64,13 +64,22 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         //Adio
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+        this.load.image('AdioNo', 'src/Assets/Finales/AdioNo.png');
+        this.load.image('AdioChibi', 'src/Assets/Finales/AdioChibi.png');
+
+        //Khalid
+        this.load.image('Khalid', 'src/Assets/Finales/Khalid.png');
+        this.load.image('KhalidNo', 'src/Assets/Finales/KhalidNo.png');
+        this.load.image('KhalidChibi', 'src/Assets/Finales/KhalidChibi.png');
+
+
         //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
         this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         //Audio
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
-        this.load.audio('TiendaSound', 'src/Assets/sfx/musica/TEMPORALES/Boutique - The Legend of Zelda Ocarina of Time 3D OST.WAV')
+        this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
         this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
        
     }
@@ -299,16 +308,19 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             //PARTE SOCIALIZAR
 
-            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik','EsheTarikNo','EsheTarikT','EsheTarikE'];
-            var ImagenesAdio = ['Adio'];
+            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarikNo','EsheTarikT','EsheTarikE'];
+            var ImagenesAdio = ['AdioChibi','AdioNo','Adio',];
+            var ImagenesKhalid = ['KhalidChibi','KhalidNo','Khalid'];
 
             var ListaPersonajes = [];
 
             // Personaje
             ListaPersonajes[0] = new Character(this, this.sys.game.canvas.width / 2, this.sys.game.canvas.height/2 +200, ImagenesEsheTarik, 0);
             ListaPersonajes[0].switchDisponible();
-            ListaPersonajes[1] = new Character(this, this.sys.game.canvas.width / 2 - 400, this.sys.game.canvas.height + 500, ImagenesAdio, 4);
-       
+            ListaPersonajes[2] = new Character(this, this.sys.game.canvas.width / 2 -500 , this.sys.game.canvas.height/2 + 200, ImagenesKhalid, 2);
+            ListaPersonajes[2].cooldown = 1;
+            ListaPersonajes[4] = new Character(this, this.sys.game.canvas.width / 2 -750, this.sys.game.canvas.height/2 + 200, ImagenesAdio, 4);
+            ListaPersonajes[4].cooldown = 0;
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
@@ -384,7 +396,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.UpdateOfrendasText();
                 if(this.inventory.day == 1 && stage==1)
                 {
-                  
+                
                     const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
                     console.log(this.cameras.main.scrollY, desplazamiento);
                     this.animatePan(nuevoScrollX,velocitypan);
@@ -392,6 +404,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     this.socialbacksound.stop();
                     this.shopbacksound.play({ loop: true });
                 }
+                
                
                 if(stage != 0 || this.inventory.day != 1){       
 

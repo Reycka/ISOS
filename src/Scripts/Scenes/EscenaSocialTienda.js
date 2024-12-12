@@ -64,6 +64,15 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
         //Adio
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+        this.load.image('AdioNo', 'src/Assets/Finales/AdioNo.png');
+        this.load.image('AdioChibi', 'src/Assets/Finales/AdioChibi.png');
+
+        //Khalid
+        this.load.image('Khalid', 'src/Assets/Finales/Khalid.png');
+        this.load.image('KhalidNo', 'src/Assets/Finales/KhalidNo.png');
+        this.load.image('KhalidChibi', 'src/Assets/Finales/KhalidChibi.png');
+
+
         //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
         this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
@@ -299,8 +308,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             //PARTE SOCIALIZAR
 
-            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarik','EsheTarikNo','EsheTarikT','EsheTarikE'];
-            var ImagenesAdio = ['Adio'];
+            var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarikNo','EsheTarikT','EsheTarikE'];
+            var ImagenesAdio = ['AdioChibi','Adio','AdioNo'];
+            var ImagenesAdio = ['KhalidChibi','Khalid','KhalidNo'];
 
             var ListaPersonajes = [];
 

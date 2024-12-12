@@ -85,22 +85,27 @@ export default class DialogSystem {
 
             //Cambiar sprites (voy a diferenciar entre lo que son 2 personajes y los que son solo 1)
             if(this.character.num ==0)
-
-                
             {
                 if(character == "Tarik")
                 {
-                    this.character.changeSprite(3);
+                    this.character.changeSprite(2);
      
                 }
                else if(character == "Eshe")
                {
-                   this.character.changeSprite(4);
+                   this.character.changeSprite(3);
                }
                else
                {
-                   this.character.changeSprite(2);
+                   this.character.changeSprite(1);
                }
+            }
+            else if(character != "Shai")
+            {
+                this.character.changeSprite(2);
+            }
+            else{
+                this.character.changeSprite(1);
             }
 
             // Limpiar botones previos

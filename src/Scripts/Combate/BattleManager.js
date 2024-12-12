@@ -39,10 +39,24 @@ export default class BattleManager {
     //Método encargado de summonear la tropa en la casilla
     Summon(posX, posY) {
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
+            this.auxcard = -1; 
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            this.SetJeroglifico();
+            this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+        }
+        else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
+            this.SetJeroglifico(this.card,true);
+            this.card = null;
+            this._texture = null;
+        }
+        else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
+            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
+            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
+            this.mat.mat[posX][posY].SetUnit();
         }
     }
     GetVictory() {
@@ -333,12 +347,11 @@ export default class BattleManager {
 
         }
     }
-    SetJeroglifico() {
+    SetJeroglifico(card,aux) {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
-                    this.jeros.setIsActive(i, j, true);
-                    
+                if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
+                    this.jeros.setIsActive(i, j, aux);
                 }
             }   
             var sinergia = true;

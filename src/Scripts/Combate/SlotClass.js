@@ -60,7 +60,7 @@ ocupada = false;
             this.unit = null;
             this.ocupada = false;
             this._unittexture =  this._unittexture = 'MatrixGround';;
-            this.scene.anim1.stop();
+            
             this.setTexture('MatrixGround').setScale(0.85,0.85);
         }
     }

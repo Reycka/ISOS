@@ -15,7 +15,7 @@ export default class Inventory{
     
 
     constructor(nabo){
-        if(nabo != undefined){
+        if(nabo.texture.key == 'IMPORTANTITISISISMOCLAVEINDISPENSABLE'){
             this.numgift = 0;
              this.numcards = 0;
             this.day = 1;
@@ -26,7 +26,7 @@ export default class Inventory{
             this.EventList[i] = 1;
         }
         }
-        
+        else console.warn("me falta la raiz de todo lo importante, me falta el pilar que sustenta este proyecto sin el el barco se hunde, ¿por que? la pregunta no es porque si no desde cuando, es el nabo el que lo sustenta todo o es porque lenta pero inexorablemete esta clase mal llamada inventario que guarda mas cosas que solo lo que se esperaria de un inventario es el pilar fundamental en el paso de informacion entre escenas es el alfa y el omega el principio y el fin es el todo de este proyecto y por eso si no existe la imagen de un nabo en los archivos del juego se caga encima y deja de compilar, de na da")
         
     }
     

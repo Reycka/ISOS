@@ -129,7 +129,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //Tomamos las medidas de la pantalla para la camara
         const { width, height } = this.cameras.main;
         //Aplicamos funciones de lo que importemos en una variable
-        var inventory = new Inventory();
+      
 
         //Creamos el background y le aplicamos la escala
         var back = this.add.image(this.sys.game.canvas.width, this.sys.game.canvas.height / 2, 'BackgroundSocialTienda');
@@ -273,7 +273,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn = this.add.image(this.sys.game.canvas.width - 50, this.sys.game.canvas.height - 50, 'batalla')
         this.battlebtn.setScale(0.2, 0.2);
         this.battlebtn.setInteractive();
-       // this.battlebtn.setVisible(false);
+        this.battlebtn.setVisible(false);
         this.battlebtn.on('pointerup', pointer => {
             this.inventory.day++;
             console.log(this.inventory.day);

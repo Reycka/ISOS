@@ -99,30 +99,49 @@ section img:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
+  position: relative;
 }
 .img-carrusel{
+  position: relative;
+  margin-top: -150px;
   box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.85);
-  height: 576px;
-  width: 1134px;
+  height: auto;
+  width: 534px;
   border-radius: 15px;
-  margin: 5px;
   object-fit: cover;
-  /*filter: saturate(175%);*/
 }
-.texto-carrusel{
-  overflow: hidden;
-  position: absolute;
-  flex-direction: column;
-  transform: translateY(0px);
-  margin-bottom: 9px;
+.texto-carrusel {
+  position: relative;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   backdrop-filter: blur(20px);
-  background-color: #BfBCBA; 
+  background-color: black; 
   display: flex;
+  flex-direction: column; /* Asegura que el texto esté debajo del título */
   align-items: center;
   justify-content: center;
   border-radius: 30px;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: -110px;
 }
+
+.texto-carrusel h3 {
+  margin: 0;
+  color: #8D6742;
+  font-size: 27px;
+}
+
+.texto-carrusel p {
+  margin: 0;
+  color: #BfBCBA;
+  font-size: 20px;
+}
+
 .imagenes .texto{
   width: 600px;
   height: 100px;
@@ -133,10 +152,41 @@ section img:hover{
   transform: translateY(-150px);
   height: 300px;
 }
+.imagenes:hover .texto p{
+  transition: font-size 0s .2s linear;
+  font-size: 23px;
+  font-weight: 300;
+  text-shadow:  0px 0px 10px #000000;
+}
+.puntos{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.puntos p{
+  font-size: 100px;
+  font-weight: 500;
+  margin-top: -50px;
+  color:#59381C;
+}
+.puntos .bold{
+  font-weight: 700;
+  margin-left: 10px;
+  margin-right: 10px;
+  color:#8D6742;
+}
+.arrowleft, .arrowright { 
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  cursor: pointer;
+}
 .arrowright{
+  right:10px;
   transform: rotate(90deg);
 }
 .arrowleft{
+  left: 10px;
   transform: rotate(270deg);
 }
 #juego { 

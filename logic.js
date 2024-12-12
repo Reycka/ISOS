@@ -38,3 +38,51 @@ document.addEventListener("DOMContentLoaded", function() {
         tabcontent[i].style.display = "none";
     }
 });
+const images = [
+    {
+        src: "https://github.com/Reycka/ISOS/blob/Web-Branch/assets_git/assets_web/Shai.png?raw=true",
+        title: "SHAI",
+        description: "Sacerdote principal del templo de Ra y protagonista del juego, su misión es proteger el templo de los ataques de Apofis"
+    },
+    {
+        src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/EsheTarikWeb.png?raw=true",
+        title: "TARIK & ESHE",
+        description: "Tarik es parte del sacerdocio del templo de Ra, lleva trabajando en el desde muy joven, su hermana Eshe, vive allí  pese a no formar parte de su personal para estar cerca de él."
+    },
+    {
+        src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/KhalidWeb.png?raw=true",
+        title: "KHALID",
+        description: "Un niño que se ha refugiado en el templo tras perder a sus padres tras el ataque de la serpiente"
+    },
+    {
+        src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/AdioWeb.png?raw=true",
+        title: "ADIO",
+        description: ""
+    }
+    // Agrega más objetos de imagen según sea necesario
+];
+
+let currentIndex = 0;
+
+function updateContent(index) {
+    const imgElement = document.querySelector("#img-carrusel img");
+    const titleElement = document.querySelector("#texto-carrusel h3");
+    const descriptionElement = document.querySelector("#texto-carrusel p");
+
+    imgElement.src = images[index].src;
+    titleElement.textContent = images[index].title;
+    descriptionElement.textContent = images[index].description;
+}
+
+document.getElementById("arrowleft").addEventListener("click", function() {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+    updateContent(currentIndex);
+});
+
+document.getElementById("arrowright").addEventListener("click", function() {
+    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+    updateContent(currentIndex);
+});
+
+// Inicializa el contenido con la primera imagen
+updateContent(currentIndex);

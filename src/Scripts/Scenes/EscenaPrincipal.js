@@ -26,9 +26,11 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	}
 	
 	create() {
+		var importante = this.add.image(this.sys.game.canvas.width / 2,300,'IMPORTANTITISISISMOCLAVEINDISPENSABLE');
+		console.log(importante.texture)
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});
-		var inventory = new Inventory('IMPORTANTITISISISMOCLAVEINDISPENSABLE');
+		var inventory = new Inventory(importante);
 		inventory.AddGift(6);
 		this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2,'Background');
 		var title = this.add.image(this.sys.game.canvas.width / 2,300,"Titulo");
@@ -44,6 +46,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 			this.scene.start('EscenaSocialTienda',{oleada: this.oleada1, inventario: inventory});
 		})
 		exit.on('pointerup', pointer => {
+
 			location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 		})
 	}

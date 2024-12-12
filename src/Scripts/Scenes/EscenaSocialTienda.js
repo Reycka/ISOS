@@ -47,7 +47,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
         this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
-
+        this.load.spritesheet('lettersTextures','src/Assets/Finales/JeroglificosSpritesheet.png',{ frameWidth: 61, frameHeight: 61 })
+     
         //Imagenes personajes
 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
@@ -65,7 +66,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('Adio', 'src/Assets/Finales/Adio.png');
         //miscelanea de imagenes
         this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
-
+        this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
         this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
         //Audio
         this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
@@ -95,6 +96,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     UpdateOfrendasText() {
         this.ofrendastx.text =
             ('Ofrendas: ' + this.inventory.numgift)
+            
     }
 
     UpdateAffinitys(){
@@ -190,17 +192,28 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.backgroundAffinitys = this.add.image(160,120,'fondoSinergias');
         this.backgroundAffinitys.setScrollFactor(0);
 
+        this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,null);
+        this.auxcard.setVisible(false)
+        this.auxlsprite = this.add.sprite(((this.sys.game.canvas.width / 2) * 5)-102, this.sys.game.canvas.height / 2 +138,'lettersTextures');
+        this.auxlsprite.setScale(0.8,0.8)
+        this.auxlsprite.setVisible(false);
         //Si pulsamos en el boton, se añade algo a tu inventario
+        this.auxcardbool = true;
         Khayyat.on('pointerdown', pointer => {
 
             console.log(this.inventory.numgift + "mi numero de gift");
-            if (this.inventory.numgift > 0) {
+            if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
+
+                this.auxlsprite.setVisible(false);
+                this.auxcardbool = false;
+
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
                 console.log(this.inventory);
-                this.auxcard = this.add.sprite((this.sys.game.canvas.width / 2) * 5, this.sys.game.canvas.height / 2 + 300,
-                this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture(), this.inventory.listCardClass[this.inventory.numcards - 1].textureindex);
+                this.auxcard.setVisible(true)
+                this.auxcard.setTexture(this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture()); 
+                this.auxcard.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].textureindex)
                 this.cardsound.play({loop:false});
                 this.auxcard.setScale(1 / 2, 1 / 2);
                 this.anim2 = this.tweens.add({
@@ -208,6 +221,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     props: {
                         scaleX: { value: 0, duration: 200, yoyo: true },
                         texture: {value:'cardTexture', frameIndex: this.inventory.listCardClass[this.inventory.numcards - 1].textureindex, duration: 0, delay: 200 }
+                    },
+                    onComplete: () => {
+                       
                     },
                     repeat: 1,
                     ease: 'Expo.easeIn',
@@ -219,7 +235,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     duration: 500,
                     ease: 'Sine.easeInOut',
                     
-                    texture: { value:  'backcard', duration:0, delay: 0},
+                    texture: { value:  'cardback', duration:0, delay: 0},
                     
                     flipX: false,
                     yoyo: true,
@@ -227,6 +243,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     delay: 10,
                     onComplete: () => {
                         this.anim2.play(); 
+                        this.auxlsprite.setVisible(true)
+                        this.auxlsprite.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].stads.letter)
+                        this.auxcardbool = true; 
+
                     }
                 });
             
@@ -244,7 +264,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn = this.add.image(this.sys.game.canvas.width - 50, this.sys.game.canvas.height - 50, 'batalla')
         this.battlebtn.setScale(0.2, 0.2);
         this.battlebtn.setInteractive();
-        this.battlebtn.setVisible(false);
+       // this.battlebtn.setVisible(false);
         this.battlebtn.on('pointerup', pointer => {
             this.inventory.day++;
             console.log(this.inventory.day);
@@ -259,6 +279,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 this.animatePan(nuevoScrollX,velocitypan);
                 this.InvisibleBackground();
                 this.shopbacksound.stop();
+
+                this.auxcard.setVisible(false);
+                this.auxlsprite.setVisible(false);
+
                 this.socialbacksound.play({ loop: true });
             });
 

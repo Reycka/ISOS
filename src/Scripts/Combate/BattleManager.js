@@ -13,7 +13,6 @@ export default class BattleManager {
     scene;
     auxd;
     auxv;
-    auxcard;
     target = false;
     jeros = new Jeroglifico();
     uxunitchange;
@@ -38,26 +37,12 @@ export default class BattleManager {
         this.texture = id;
     }
     //Método encargado de summonear la tropa en la casilla
-    Summon(posX, posY) { 
+    Summon(posX, posY) {
         if (this.card != null && this.mat.mat[posX][posY].ocupada == false) {
-            this.auxcard = -1; //Cambia el parámetro
             this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            this.SetJeroglifico(this.card,true);
+            this.SetJeroglifico();
             this.card = null;
             this._texture = null;
-        }
-        else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
-            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
-            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
-            this.mat.mat[posX][posY].SetUnit(this.card.SummonUnit((this._texture)));
-            this.SetJeroglifico(this.card,true);
-            this.card = null;
-            this._texture = null;
-        }
-        else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
-            this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
-            this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
-            this.mat.mat[posX][posY].SetUnit();
         }
     }
     GetVictory() {
@@ -237,7 +222,7 @@ export default class BattleManager {
                                                     this.mat.mat[i][j].SetFree();
                                                 }
                                             }
-
+                                            
                                         }
                                         this.indiceaux+=1;
                                     }
@@ -341,12 +326,20 @@ export default class BattleManager {
 
         }
     }
-    SetJeroglifico(card,aux) {
+    SetJeroglifico() {
         for (let i = 0; i < 6; ++i) {
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-                if (card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) != aux) {
-                    this.jeros.setIsActive(i, j, aux);
+                if (this.card.stads.letter == this.jeros.getValue(i, j) && this.jeros.getValue(i, j) != undefined && this.jeros.getIsActive(i, j) == false) {
+                    this.jeros.setIsActive(i, j, true);
+                    
                 }
+            }   
+            var sinergia = true;
+            for (let j = 0; j < this.jeros.getSize(i); ++j) {
+               
+                     if(this.jeros.getValue(i,j))  sinergia = false;
+                    if(sinergia) this.scene.activeSinergy(i);
+              
             }
         }
     }
@@ -361,6 +354,13 @@ export default class BattleManager {
                 break; //Salimos del bucle porque no hace falta seguir comprobandolo
             }
         }
+
+        //if (!Sinergias) this.AlteredStates.applyAlteredStates(dios);
+
+        // Instancia de AlteredStateClass para enviar las sinergias activadas a cada tropa en su Update
+        //const alteredStateInstance = new AlteredStateClass();
+        //alteredStateInstance.getAlteredState(this.Sinergias);
+        if(Sinergias) this.scene.activeSinergy(dios);
         return Sinergias; //Devolvemos si es verdadero o falso
     }
     getJeros() {
@@ -369,21 +369,21 @@ export default class BattleManager {
 };
 class Jeroglifico {
     jeros = [];
-    tamaño = [3, 5, 5, 4, 3, 4];
-    /*  jeros[0] --> Osiris (3)
-      jeros[1] --> Ra (5)
-      jeros[2] --> Anubis (5)
-      jeros[3] --> Isis (4)
-      jeros[4] --> Horus (3)
-      jeros[5] --> Seth (4)
+    tamaño = [5, 4, 5, 3, 3, 4];
+    /*  jeros[0] --> Ra (5) 2 3 4 5 6
+      jeros[1] --> Isis (4) 1 11 12 15
+      jeros[2] --> Anubis (5) 6 7 8 9 10
+      jeros[3] --> Osiris (3) 0 1 2
+      jeros[4] --> Horus (3) 3 13 14
+      jeros[5] --> Seth (4) 15 16 17 18
     */
     constructor() {
         // Inicializar los arrays con objetos que tienen propiedades value e isActive
-        this.jeros[0] = [{ value: 0, isActive: false }, { value: 1, isActive: false }, { value: 2, isActive: false }];
-        this.jeros[1] = [{ value: 3, isActive: false }, { value: 4, isActive: false }, { value: 5, isActive: false }, { value: 6, isActive: false }, { value: 2, isActive: false }];
-        this.jeros[2] = [{ value: 7, isActive: false }, { value: 8, isActive: false }, { value: 6, isActive: false }, { value: 9, isActive: false }, { value: 10, isActive: false }];
-        this.jeros[3] = [{ value: 1, isActive: false }, { value: 15, isActive: false }, { value: 11, isActive: false }, { value: 12, isActive: false }];
-        this.jeros[4] = [{ value: 13, isActive: false }, { value: 14, isActive: false }, { value: 3, isActive: false }];
+        this.jeros[0] = [{ value: 2, isActive: false }, { value: 3, isActive: false }, { value: 4, isActive: false },{ value:5, isActive:false },{ value:6, isActive:false }];
+        this.jeros[1] = [{ value: 1, isActive: false }, { value: 11, isActive: false }, { value: 12, isActive: false }, { value: 15, isActive: false }];
+        this.jeros[2] = [{ value: 6, isActive: false }, { value: 7, isActive: false }, { value: 8, isActive: false }, { value: 9, isActive: false }, { value: 10, isActive: false }];
+        this.jeros[3] = [{ value: 0, isActive: false }, { value: 1, isActive: false }, { value: 2, isActive: false }];
+        this.jeros[4] = [{ value: 3, isActive: false }, { value: 13, isActive: false }, { value: 14, isActive: false }];
         this.jeros[5] = [{ value: 15, isActive: false }, { value: 16, isActive: false }, { value: 17, isActive: false }, { value: 18, isActive: false }];
     }
 

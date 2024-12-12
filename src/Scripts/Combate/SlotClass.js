@@ -17,6 +17,7 @@ ocupada = false;
         this.unit = null;
         this.ocupada = false;
         this.scene.add.existing(this);
+        
     }
     Getdamage(){
         this.setTint(0xffff0000) //color ARGB
@@ -25,7 +26,7 @@ ocupada = false;
             callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
         })
     }Getheal(){
-        this.setTint(0x0000000) //color ARGB
+        this.setTint(0xff00ff00) //color ARGB
         this.scene.time.addEvent({
             delay: 700,
             callback: ()=>{this.setTint(0xffffffff)}  //después de 0.5 segundos modificamos a un tinte blanco que dejará la imagen igual
@@ -52,11 +53,25 @@ ocupada = false;
             this._unittexture = _unit.unittexture;
             this.setTexture(this.unit.unittexture);
             this.setScale(0.33,0.33);
+            this.scene.anim1 = this.scene.tweens.add({
+                targets: this,
+                x: (this.x +20),
+                duration: 500+100*this.unit.cooldown,
+                ease: 'easeInOutQuart', 
+        
+                flipX: false,
+                yoyo: true,
+                repeat: -1,
+                delay: 0,
+                
+            });
+            this.scene.anim1.play();
         }
         else{
             this.unit = null;
             this.ocupada = false;
             this._unittexture =  this._unittexture = 'MatrixGround';;
+            this.scene.anim1.stop();
             this.setTexture('MatrixGround').setScale(0.85,0.85);
         }
     }

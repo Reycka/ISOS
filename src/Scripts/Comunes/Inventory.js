@@ -14,16 +14,19 @@ export default class Inventory{
 
     
 
-    constructor(){
-        this.numgift = 0;
-        this.numcards = 0;
-        this.day = 1;
-        this.affreg = new AffinityRegister();
+    constructor(nabo){
+        if(nabo != undefined){
+            this.numgift = 0;
+             this.numcards = 0;
+            this.day = 1;
+            this.affreg = new AffinityRegister();
 
         for (var i=0; i<5; i++)
         {
             this.EventList[i] = 1;
         }
+        }
+        
         
     }
     

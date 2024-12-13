@@ -84,18 +84,18 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
 
 		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.WAV')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.WAV')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.WAV')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.WAV')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.WAV')
 		//SFX
 		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.WAV')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.WAV')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.WAV')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.WAV')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.WAV')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.WAV')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.WAV')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.WAV')
 	}
 	cronometro;
 	GameLoop()

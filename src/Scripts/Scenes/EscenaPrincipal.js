@@ -21,8 +21,8 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('BotonComenzar','src/Assets/Finales/boton_comenzar.png');
 		this.load.image('IMPORTANTITISISISMOCLAVEINDISPENSABLE','src/Assets/raizclaveimportantisimadelproyecto.jpg')
 		this.load.image('BotonSalir','src/Assets/Finales/boton_salir.png');
-		
-		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/EtherealHeartbeatMain.wav')
+
+		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal HeartbeatMain.wav')
 		this.oleada1 = 1;
 	}
 	

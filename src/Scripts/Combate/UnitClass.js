@@ -31,7 +31,7 @@ constructor(_scene,cardclass, _unittexture){
     this.unitType = this.card.unit_type;
     this.actcooldown = this.cooldown; 
     this.isalife = true;
-    this.isready = true;
+    this.isready = false;
     if(this.unitType == "H")this.isahealer = true;
     else this.isahealer =false;
 

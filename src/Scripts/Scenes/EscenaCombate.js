@@ -82,6 +82,9 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Anubisact','src/Assets/Finales/JeroglificosAnubisIluminado.png')
 		this.load.image('Sethdes','src/Assets/Finales/JeroglificosSeth.png')
 		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
+		this.load.image('victoria','src/Assets/Finales/Victoria.png')
+		this.load.image('derrota','src/Assets/Finales/Derrota.png')
+		this.load.image('volver','src/Assets/Finales/boton_volver.png')
 
 		//Música
 		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
@@ -103,10 +106,8 @@ export default class EscenaCombate extends Phaser.Scene {
 		console.log(this.battleManager.GetVictory());
 		if(this.battleManager.Battle()== false){
 			console.log("acabe");
-			this.finaltext.setDepth(3); 
-			this.finaltext.setOrigin(0.5,0.5)
 			if(this.battleManager.GetVictory()== true){
-				this.Win();	
+				this.Win();
 			}
 			else{
 				this.defeat();
@@ -119,9 +120,20 @@ Win(){
 		this.combatSound.stop();
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
-		this.finaltext.setVisible(true);
-		this.Returnwin.setVisible(true);
-		this.finaltext.setText("HAS GANADO");
+		this.add.image(this.sys.game.canvas.width / 2,300,'victoria')
+		var botndevolver = this.add.image(this.sys.game.canvas.width / 2,700,'volver').setScale(0.5,0.5)
+				botndevolver.setInteractive()
+				botndevolver.on('pointerup', pointer => {
+					this.endCombatSound.stop();
+						var numero = this.oleada;
+						numero += 1;
+						console.log(numero)
+						if(this.oleada == 7) {
+							console.log("Cambio")
+							this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
+						}
+						else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+				})
 	}
 	else{
 		this.oleada = this.oleada + 1;;
@@ -134,9 +146,13 @@ defeat(){
 	this.endCombatSound.play({loop:true});
 	let Pendejo = this.sound.add('Pendejo');
 	Pendejo.play(Pendejo);
-	this.finaltext.setVisible(true);
-	this. Returndefeat.setVisible(true);
-	this.finaltext.setText("HAS PERDIDO");
+	this.add.image(this.sys.game.canvas.width / 2,300,'derrota')
+				var botndevolver = this.add.image(this.sys.game.canvas.width / 2,700,'volver').setScale(0.5,0.5)
+				botndevolver.setInteractive()
+				botndevolver.on('pointerup', pointer => {
+					this.endCombatSound.stop();
+						this.scene.start('EscenaPrincipal');
+				})
 }
 activeSinergy(dios){
 	if(dios==0){
@@ -473,50 +489,8 @@ desactiveSinergy(dios){
 		})
 
 		 
-	/*
-	Resultados del combate
-	*/
-		this.finaltext = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2, " has algo", { font: '60px Arial, sans-serif',
-            fill: '#fff',
-            stroke: '#000',
-            strokeThickness: 4,
-            backgroundColor: '#000000',
-            padding: { x: 30, y: 20 },
-            fontStyle: 'bold' });
-			this.finaltext.setVisible(false);
-				this.Returnwin = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " Continuar", { font: '60px Arial, sans-serif',
-					fill: '#fff',
-					stroke: '#000',
-					strokeThickness: 4,
-					backgroundColor: '#000000',
-					padding: { x: 30, y: 20 },
-					fontStyle: 'bold' });					
-					this.Returnwin.setInteractive();
-					this.Returnwin.setVisible(false);
-					this.Returnwin.on('pointerup', pointer =>{
-						this.endCombatSound.stop();
-						var numero = this.oleada;
-						numero += 1;
-						console.log(numero)
-						if(this.oleada == 7) {
-							console.log("Cambio")
-							this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
-						}
-						else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-					})	
-				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
-					fill: '#fff',
-					stroke: '#000',
-					strokeThickness: 4,
-					backgroundColor: '#000000',
-					padding: { x: 30, y: 20 },
-					fontStyle: 'bold' });
-					this.Returndefeat.setInteractive();
-					this.Returndefeat.setVisible(false);
-					this.Returndefeat.on('pointerup', pointer =>{
-						this.endCombatSound.stop();
-						this.scene.start('EscenaPrincipal');
-					})
+	
+	
 	}
 
 }

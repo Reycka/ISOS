@@ -84,18 +84,18 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
 
 		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.WAV')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.WAV')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.WAV')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.WAV')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.WAV')
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.wav')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.wav')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.wav')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.wav')
 		//SFX
-		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.WAV')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.WAV')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.WAV')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.WAV')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.WAV')
+		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.wav')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.wav')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.wav')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.wav')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.wav')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.wav')
 	}
 	cronometro;
 	GameLoop()

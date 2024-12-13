@@ -39,7 +39,7 @@ class Character {
     switchDisponible() {
 
         this.disponible = !this.disponible
-        console.log("DisponibleCambio")
+        console.log("Char:", this.num, "Disponible:", this.disponible, "Cooldown", this.cooldown);
 
         if(this.disponible){
 

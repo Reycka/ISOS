@@ -159,7 +159,7 @@
                 { "character": "Tarik", "text": "Incluso nuestro propio dios ha dejado que esto suceda." },
                 { "character": "Tarik", "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?" },
                 {
-                    "character": "Shai",
+                    "character": "Tarik",
                     "text": "¿Qué ha hecho que La Serpiente nos ataque a los mortales en lugar de a la barca de Ra?",
                     "options": [
                         { "response": "No tiene sentido pensar demasiado en ello, \ntenemos que encargarnos de Apofis.", "gain": 0, "next": "fragmento_0.4.1", "god": "Ra"  },
@@ -219,7 +219,7 @@
                 { "character": "Shai", "text": "¿En qué necesitas ayuda?" },
                 { "character": "Khalid", "text": "Necesito ayuda para hacer un rito funerario." },
                 {
-                    "character": "Shai",
+                    "character": "Khalid",
                     "text": "Sin cuerpos.",
                     "options": [
                         { "response": "Puedo intentar ayudarte, pero no\n sé demasiado sobre ritos funerarios.", "gain": 1, "god": "Anubis" },
@@ -260,7 +260,7 @@
                 { "character": "Khalid", "text": "Se comió a mis padres. " },
                 { "character": "Khalid", "text": "Pero quiero que estén bien en su siguiente vida." },
                 {
-                    "character": "Shai",
+                    "character": "Khalid",
                     "text": "Así que tengo que hacer los ritos funerarios.",
                     "options": [
                         { "response": "Quiero ayudarte, pero sin cuerpos\n es difícil saber si servirá para algo", "gain": 0, "god": "Anubis" },
@@ -297,12 +297,12 @@
                 { "character": "Shai", "text": "Por lo menos quédate hasta que cesen los ataques de Apofis." },
                 { "character": "Khalid", "text": "…" },
                 {
-                    "character": "Shai",
+                    "character": "Khalid",
                     "text": "¿Podemos hablar de otra cosa?",
                     "options": [
-                        { "response": "Claro, por qué no me cuentas \nalgo sobre esa máscara.", "gain": 1, "god": "Anubis" },
-                        { "response": "¿Quieres hablarme\n de tus padres?", "gain": 0, "god": "Anubis" },
-                        { "response": "Esto es algo serio Khalid, \ntenemos que hablar de ello.", "gain": -1, "god": "Anubis" }
+                        { "response": "Claro, por qué no me cuentas \nalgo sobre esa máscara.", "gain": 1, "god": "Anubis", "next": "fragmento_2.3.1" },
+                        { "response": "¿Quieres hablarme\n de tus padres?", "gain": 0, "god": "Anubis", "next": "fragmento_2.3.1" },
+                        { "response": "Esto es algo serio Khalid, \ntenemos que hablar de ello.", "gain": -1, "god": "Anubis", "next": "fragmento_2.3.2"  }
                     ]
                 }
             ]
@@ -337,8 +337,41 @@
                 { "character": "Khalid", "text": "Voy…" },
                 { "character": "Khalid", "text": "A dormir." }
             ]
+        },
+
+        "evento4.1": {
+            "dialogs": [
+                {},
+                { "character": "Shai", "text": "Buenos días." },
+                { "character": "Shai", "text": "¿Qué te trae a nuestro hogar?" },
+                { "character": "???", "text": "Buen día." },
+                { "character": "???", "text": "Estoy buscando un lugar donde descansar un rato." },
+                { "character": "???", "text": "¿Eres el Sumo sacerdote…" },
+                { "character": "???", "text": "..." },
+                { "character": "???", "text": "…o sacerdotisa de este templo?" },
+                { "character": "Shai", "text": "Así es." },
+                { "character": "Shai", "text": "Cualquiera de los dos títulos es correcto." },
+                { "character": "Shai", "text": "Estás invitado a reposar todo el tiempo que quieras aquí." },
+                { "character": "Shai", "text": "¿Puedo preguntar tu nombre?" },
+                { "character": "???", "text": "Me llamo Adio." },
+                {
+                    "character": "Adio",
+                    "text": "¿Siempre sois así de hospitalarios en este templo?",
+                    "options": [
+                        { "response": "Estamos pasando por tiempos difíciles.\n Todo el mundo necesita ayuda.", "gain": 0, "god": "Horus" },
+                        { "response": "Lo consideramos parte de\n nuestras responsabilidades.", "gain": 1, "god": "Horus" },
+                        { "response": "Mientras no causes problemas, \nserás bienvenido. Es igual para todos.", "gain": -1, "god": "Horus" }
+                    ]
+                },
+                {},
+                { "character": "Adio", "text": "Ya veo." },
+                { "character": "Adio", "text": "Muchas gracias, entonces." },
+                { "character": "Adio", "text": "Antes de retirarme, ¿cómo debería dirigirme a ti?" },
+                { "character": "Shai", "text": "Mi nombre es Shai." }
+            ]
         }
     }
+    
 }
      
 

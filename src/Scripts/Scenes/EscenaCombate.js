@@ -155,7 +155,26 @@ activeSinergy(dios){
 	}
 	if(dios==5){
 		this.sethsin.setTexture('Sethact')
-	}1
+	}
+}
+desactiveSinergy(dios){
+	if(dios==0){
+		this.rasin.setTexture('Rades')
+	}
+	if(dios==1){
+		this.isissin.setTexture('Isisdes')
+	}
+	if(dios==2){
+		this.anubissin.setTexture('Anubisdes')
+	}if(dios==3){
+		this.osirissin.setTexture('Osirisdes')
+	}
+	if(dios==4){
+		this.horussin.setTexture('Horusdes')
+	}
+	if(dios==5){
+		this.sethsin.setTexture('Sethdes')
+	}
 }
 
 	create() {

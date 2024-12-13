@@ -356,12 +356,13 @@ export default class BattleManager {
             }   
             var sinergia = true;
             for (let j = 0; j < this.jeros.getSize(i); ++j) {
-               
-                     if(this.jeros.getValue(i,j))  sinergia = false;
-                   
-              
+                     if(!this.jeros.getIsActive(i,j)){
+                        sinergia = false;
+                        break;
+                     }
             }
             if(sinergia) this.scene.activeSinergy(i);
+            else this.scene.desactiveSinergy(i);
         }
     }
     ApplySinergy(dios) { //El dios representa al número del array de jeroglificos

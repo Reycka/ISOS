@@ -63,6 +63,10 @@ export default class AffinityRegister{
             this.Ra = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Ra = 35;
+        }
         
     }
     
@@ -74,6 +78,10 @@ export default class AffinityRegister{
             this.Isis = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Isis = 35;
+        }
     }
     
     AddAnubis(valor) {
@@ -84,6 +92,10 @@ export default class AffinityRegister{
             this.Anubis = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Anubis = 35;
+        }
     }
     
     AddHorus(valor) {
@@ -94,6 +106,10 @@ export default class AffinityRegister{
             this.Horus = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Horus = 35;
+        }
     }
     
     AddOsiris(valor) {
@@ -104,6 +120,10 @@ export default class AffinityRegister{
             this.Osiris = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Osiris = 35;
+        }
     }
     
     AddSeth(valor) {
@@ -114,6 +134,10 @@ export default class AffinityRegister{
             this.Seth = 0;
             this.numtotalpnt += Math.abs(dif);
         } 
+
+        if (dif > this.maxAffinity){
+            this.Seth = 35;
+        }
     }
 
     

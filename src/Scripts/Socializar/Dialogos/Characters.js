@@ -43,7 +43,6 @@ class Character {
 
         if(this.disponible){
 
-            
             this.sprite.visible = true;
             this.sprite.setInteractive({ pixelPerfect: true });
     
@@ -54,12 +53,10 @@ class Character {
     volverDisponible() {
 
         if(this.disponible == false && this.cooldown > 0) {
-
-            this.switchDisponible();
+            
             this.cooldown = 0;
-            
-            
-
+            this.switchDisponible();
+  
         }
         else if(this.disponible == false) {
             this.cooldown++;

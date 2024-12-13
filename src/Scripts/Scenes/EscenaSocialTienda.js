@@ -25,6 +25,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     socialbacksound;
     shopbacksound;
     allDialogues = {};
+    
 
     init(data) {
         this.inventory = data.inventario;
@@ -275,6 +276,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn.setInteractive();
         this.battlebtn.setVisible(false);
         this.battlebtn.on('pointerup', pointer => {
+            stage = 0;
             this.inventory.day++;
             console.log(this.inventory.day);
             this.socialbacksound.stop();

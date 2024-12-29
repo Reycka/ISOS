@@ -166,11 +166,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         botonDch.setInteractive();
         botonDch.setScale(0.25);
         //boton muestra inventario
-        var botoninv = this.add.image(0, this.sys.game.canvas.height*4 / 5,'BotonMoverseIzq') ;
+      /*  var botoninv = this.add.image(0, this.sys.game.canvas.height*4 / 5,'BotonMoverseIzq') ;
         botoninv.setInteractive();
         botoninv.on('pointerdown', pointer => {
             this.scene.start('EscenaInventario', this.inventory);
-        })
+        })*/
         //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
         //botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
         botonDch.setPosition(width - botonDch.width / 4, height / 2);

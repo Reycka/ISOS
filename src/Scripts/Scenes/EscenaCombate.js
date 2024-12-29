@@ -113,6 +113,8 @@ export default class EscenaCombate extends Phaser.Scene {
 			}
 			this.cronometro.remove();
 	}
+	var x = 1-(this.battleManager.numenemiestrops/(this.battleManager.numenemiestrops+this.battleManager.numplayertrops))
+	this.barradeprogreso.setScale(x,1);
 }
 Win(){
 	if(this.oleada < 5 || this.oleada == 7){
@@ -395,6 +397,13 @@ desactiveSinergy(dios){
 				})
 			}
 		}
+		this.barradeprogresobacgound = this.add.rectangle(((this.sys.game.canvas.width)/2),this.sys.game.canvas.height*14.15/ 15, 1000,60,0xffffffff)
+		this.barradeprogreso = this.add.rectangle(((this.sys.game.canvas.width)/2)-500,this.sys.game.canvas.height*14.15/ 15, 1000,50,0xff00ff00)
+
+		this.barradeprogreso.setOrigin(0,0.5);
+		this.barradeprogreso.setScale(0.5,1);
+		this.barradeprogresobacgound.setVisible(false);
+		this.barradeprogreso.setVisible(false);
 		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width)*11.55 / 12, this.sys.game.canvas.height*14.15/ 15,'Pelea')
 		pelea.setScale(0.2,0.2);
@@ -469,6 +478,8 @@ desactiveSinergy(dios){
 			this.sethsin.setVisible(false)
 			this.anubissin.setVisible(false)
 			this.osirissin.setVisible(false)
+			this.barradeprogresobacgound.setVisible(true);
+			this.barradeprogreso.setVisible(true);
 			this.cronometro.paused=false;			
 		})
 

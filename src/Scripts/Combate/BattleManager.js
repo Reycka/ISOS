@@ -11,6 +11,8 @@ export default class BattleManager {
     victory = false;
     defeat = false;
     scene;
+    numplayertrops= 12;
+    numenemiestrops = 12;
     auxd;
     auxv;
     target = false;
@@ -44,6 +46,7 @@ export default class BattleManager {
             this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+            
         }
         else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
             this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
@@ -52,11 +55,13 @@ export default class BattleManager {
             this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+           
         }
         else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
             this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
             this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
             this.mat.mat[posX][posY].SetUnit();
+        
         }
     }
     GetVictory() {
@@ -76,11 +81,14 @@ export default class BattleManager {
             //boooleanos para comprobar si quedan tropas
             this.auxv = true;
             this.auxd = true;
+            this.numplayertrops = 0;
+            this.numenemiestrops = 0;
             //Primer bucle que ejecuta todos los updates de la matriz aliada
             for (var i = 0; i < this.mat.row; i++) {
                 for (var j = 0; j < this.mat.col; j++) {
                     this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
+                        this.numplayertrops++;
                         //comprobamos si esta lista
                         if(this.mat.mat[i][j].unit.actcooldown==1){
                             this.mat.mat[i][j].AttackMove(false);
@@ -261,6 +269,7 @@ export default class BattleManager {
                         this.victory = true;
                     }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
+                        this.numenemiestrops++;
                         if(this.enemymatriz.Enemymat.mat[i][j].unit.actcooldown==1){
                             this.enemymatriz.Enemymat.mat[i][j].AttackMove(true);
                         }

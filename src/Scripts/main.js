@@ -2,7 +2,7 @@ import EscenaPrincipal from './Scenes/EscenaPrincipal.js';
 import EscenaCombate from './Scenes/EscenaCombate.js';
 import EscenaSocialTienda from './Scenes/EscenaSocialTienda.js';
 import EscenaVictoria from './Scenes/EscenaVictoria.js';
-import EscenaInventario from './Scenes/EscenaInventario.js';
+
 let config = {
     type: Phaser.WEBGL,
     antialias: true,
@@ -29,7 +29,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [EscenaPrincipal,EscenaSocialTienda,EscenaCombate,EscenaVictoria,EscenaInventario], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
+    scene: [EscenaPrincipal,EscenaSocialTienda,EscenaCombate,EscenaVictoria], //Aquí metemos todas las escenas que tendrá nuestro juego (su clase, luego cambiaremos de una a otra mediante el id)
 
     physics: {  
         default: 'arcade', //Tenemos físicas simple, arcade

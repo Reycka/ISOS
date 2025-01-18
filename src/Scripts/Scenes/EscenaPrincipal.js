@@ -31,7 +31,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});
 		var inventory = new Inventory(importante);
-		inventory.AddGift(6);
+		inventory.AddGift(46);
 		this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2,'Background');
 		var title = this.add.image(this.sys.game.canvas.width / 2,300,"Titulo");
 		var start = this.add.image(this.sys.game.canvas.width / 2,700,"BotonComenzar");

@@ -36,6 +36,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.affinitys = [{value}];
         this.UpdateAffinityValues();        
         console.log(this.affinityValues);
+       
     }
 
 
@@ -49,6 +50,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
         this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
         this.load.spritesheet('lettersTextures','src/Assets/Finales/JeroglificosSpritesheet.png',{ frameWidth: 61, frameHeight: 61 })
+        this.load.image('botoninventario','src/Assets/Finales/boton_inventario.png')
      
         //Imagenes personajes
 
@@ -161,18 +163,28 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         //botonIzq.setPosition(width + botonIzq.width / 4, height - botonIzq.height / 0.75);
         botonIzq.setPosition(2 * width + botonIzq.width / 4, height / 2);
 
+        //boton para ir al inventario(esta en la parte del gacha)
+        var botoninv = this.add.image(3 * width- botonIzq.width / 4, height/2,'botoninventario');
+        botoninv.setScale(0.25);
+        botoninv.setInteractive();
+        botoninv.on('pointerdown', pointer => {
+            //sorroco
+            const nuevoScrollX = this.cameras.main.scrollY+123324234 + desplazamiento;
+                this.animatePan(nuevoScrollX,velocitypan);
+                this.InvisibleBackground();
+                this.shopbacksound.stop();
+
+                this.auxcard.setVisible(false);
+                this.auxlsprite.setVisible(false);
+
+                this.socialbacksound.play({ loop: true });
+
+        });
         //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
         botonDch.setScale(0.25);
-        //boton muestra inventario
-      /*  var botoninv = this.add.image(0, this.sys.game.canvas.height*4 / 5,'BotonMoverseIzq') ;
-        botoninv.setInteractive();
-        botoninv.on('pointerdown', pointer => {
-            this.scene.start('EscenaInventario', this.inventory);
-        })*/
-        //WIDTH - MEDIDA DEL BOTON PARA EL LAZO IZQUIERDO
-        //botonDch.setPosition(width - botonDch.width / 4, height - botonDch.height/0.75 );
+        
         botonDch.setPosition(width - botonDch.width / 4, height / 2);
 
         if(this.inventory.day == 1)
@@ -262,7 +274,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         this.auxlsprite.setVisible(true)
                         this.auxlsprite.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].stads.letter)
                         this.auxcardbool = true; 
-
+                        this.AddCardToInvVisible();
                     }
                 });
             
@@ -481,7 +493,8 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                     fontStyle: 'bold'
                 });
             this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
-        
+     
+            this.AddAllCardToInvVisible();
     }
 
     animatePan(targetScrollX, duration) {
@@ -513,4 +526,37 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         }
         this.ofrendastx.setVisible(true);
     }
+    invvisible = [];
+    limtcartasinvv = 9;
+    AddAllCardToInvVisible(){
+        var linea = 0;
+        var x = 0;
+        for(var i=0;i<this.inventory.numcards;i++){
+            var auxc = this.add.sprite((x*180)+210,(215*linea)+330,this.inventory.listCardClass[i].GetTexture())
+            //auxc.scale(0.5);
+            console.log("mepongo");
+            auxc.setFrame(this.inventory.listCardClass[i].textureindex)
+            auxc.setScale(0.245);
+            this.invvisible.push(auxc);
+            x++;
+            if (x == this.limtcartasinvv){
+                linea++;
+                x=0;
+            } 
+
+        }
+    }
+    AddCardToInvVisible(){
+        var linea =  Math.floor((this.inventory.numcards-1)/this.limtcartasinvv);
+        
+        var i = (this.inventory.numcards-1%this.limtcartasinvv)-linea*this.limtcartasinvv;
+            var auxc = this.add.sprite((i*180)+210,(215*linea)+330,this.inventory.listCardClass[this.inventory.numcards-1].GetTexture())
+            
+            console.log("mepongo");
+            auxc.setFrame(this.inventory.listCardClass[i].textureindex)
+            auxc.setScale(0.245);
+            
+        
+    }
+
 }

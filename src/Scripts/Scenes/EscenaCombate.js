@@ -17,9 +17,11 @@ export default class EscenaCombate extends Phaser.Scene {
 	enemymatriz;
 	matimg;
 	inventory;
-	inventoryindex = 0;
+	inventoryindex;
 	battleManager;
-	oleada
+	oleada;
+	BattleParticles;
+	HealParticles;
 	//SOUNDS
 	preCombatSound;
 	combatSound;
@@ -28,34 +30,38 @@ export default class EscenaCombate extends Phaser.Scene {
 		super({ key: 'EscenaCombate' });
 	}
 	init(data){
+		this.inventoryindex = 0;
 		this.oleada = data.oleada;
 		this.inventory = data.inventario;
-		console.log(this.oleada);
-		console.log(this.inventory);
 	}
 
 	preload() {
 		//BACKGROUND IMAGEN
-
 		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
 
 		//FONDO MATRIZ
 		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
 
 		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
-		//INFANTERÍA PRUEBA
 
+		//INFANTERÍA PRUEBA
 		this.load.image('LA', 'src/Assets/Finales/p1.png');
+
 		//ARQUERO LARGO PRUEBA
 		this.load.image('G', 'src/Assets/Finales/p2.png');
+
 		//MAGO PRUEBA
 		this.load.image('M', 'src/Assets/Finales/p3.png');
+
 		//HEALER PRUEBA
 		this.load.image('H', 'src/Assets/Finales/p4.png');
+
 		//CARRO PRUEBA
 		this.load.image('C', 'src/Assets/Finales/p5.png');
+
 		//ARCO CORTO PRUEBA
 		this.load.image('SA', 'src/Assets/Finales/p6.png');
+
 		//enemigo
 		this.load.image('E', 'src/Assets/Finales/e.png');
 
@@ -89,6 +95,7 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
 		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
 		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+
 		//SFX
 		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
 		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
@@ -100,9 +107,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	cronometro;
 	GameLoop()
 	{
-		console.log(this.battleManager.GetVictory());
 		if(this.battleManager.Battle()== false){
-			console.log("acabe");
 			this.finaltext.setDepth(3); 
 			this.finaltext.setOrigin(0.5,0.5)
 			if(this.battleManager.GetVictory()== true){
@@ -126,7 +131,7 @@ Win(){
 		this.finaltext.setText("HAS GANADO");
 	}
 	else{
-		this.oleada = this.oleada + 1;;
+		this.oleada = this.oleada + 1;
 		this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
 	}
 }
@@ -188,11 +193,11 @@ desactiveSinergy(dios){
             callback: () => {
 				this.GameLoop()
             },})
+		//Audio y Sonidos
 		this.preCombatSound = this.sound.add('PreCombate');
 		this.movecardsound = this.sound.add('movercartas');
 		this.Choosecardsound = this.sound.add('elegircartas');
 		this.starBattlesound = this.sound.add('iniciabatalla');
-		
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,

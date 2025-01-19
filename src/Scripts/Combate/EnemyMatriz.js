@@ -17,6 +17,7 @@ export default class EnemyMatriz {
   enemycount;
   texts
   isABoss;
+
   //Constructor
   constructor(_oleada, _scene, _textura,_whichOleada) { //Pasamos la path del archivo a leer
     this.oleada = _oleada;  //Asignamos el valor
@@ -62,7 +63,7 @@ export default class EnemyMatriz {
     }
   }
     SetOleada(){
-      if(this.oleada == undefined || this.oleada == null) console.log("MONDONGO") //Comprobación de que lee bien el archivo
+      if(this.oleada == undefined || this.oleada == null) console.log("Oleada no encontrada") //Comprobación de que lee bien el archivo
       //Lo abrimos y seteamos las características de la oleada
       else{
           this.scene.load.json('oleada',this.oleada);

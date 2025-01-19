@@ -51,7 +51,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
         this.load.spritesheet('lettersTextures','src/Assets/Finales/JeroglificosSpritesheet.png',{ frameWidth: 61, frameHeight: 61 })
         this.load.image('botoninventario','src/Assets/Finales/boton_inventario.png')
-     
+        this.load.image('invbackground','src/Assets/Finales/fondoinventario.png')
         //Imagenes personajes
 
         this.load.image('Shai', 'src/Assets/Finales/Shai.png');
@@ -164,22 +164,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         botonIzq.setPosition(2 * width + botonIzq.width / 4, height / 2);
 
         //boton para ir al inventario(esta en la parte del gacha)
-        var botoninv = this.add.image(3 * width- botonIzq.width / 4, height/2,'botoninventario');
-        botoninv.setScale(0.25);
-        botoninv.setInteractive();
-        botoninv.on('pointerdown', pointer => {
-            //sorroco
-            const nuevoScrollX = this.cameras.main.scrollY+123324234 + desplazamiento;
-                this.animatePan(nuevoScrollX,velocitypan);
-                this.InvisibleBackground();
-                this.shopbacksound.stop();
-
-                this.auxcard.setVisible(false);
-                this.auxlsprite.setVisible(false);
-
-                this.socialbacksound.play({ loop: true });
-
-        });
+       
         //Hacemos un boton que se ajusta para ir a la derecha usando el ancho de la pantalla
         var botonDch = this.add.image(0, 0, 'BotonMoverseDch');
         botonDch.setInteractive();
@@ -495,6 +480,14 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             this.ofrendastx.setScrollFactor(0); // Hacer que el texto siga a la cámara
      
             this.AddAllCardToInvVisible();
+            var botoninv = this.add.image(3 * width- botonIzq.width / 4, 3+height/2,'botoninventario');
+            botoninv.setScale(0.25);
+            botoninv.setInteractive();
+            botoninv.on('pointerdown', pointer => {
+                //sorroco
+                 this.inventriovisible();
+    
+            });
     }
 
     animatePan(targetScrollX, duration) {
@@ -512,6 +505,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     }
 
     InvisibleBackground(){
+        
         this.backgroundAffinitys.setVisible(false);
         for (let i = 0; i < this.affinitys.length; ++i){
             this.affinitys[i].setVisible(false);
@@ -528,16 +522,35 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     }
     invvisible = [];
     limtcartasinvv = 9;
+    oninv = false; 
+    inventriovisible(){
+        if (this.oninv ==false) this.oninv = true;
+        else this.oninv = false;
+        console.log("me activo");
+        for(var i = 0; i< this.invvisible.length;i++){
+            this.invvisible[i].setVisible(this.oninv);
+        }
+    }
     AddAllCardToInvVisible(){
         var linea = 0;
         var x = 0;
+        var backg = this.add.image(0,0,'invbackground')
+        backg.setScale(123);
+        backg.setVisible(false)
+        this.invvisible.push(backg);
         for(var i=0;i<this.inventory.numcards;i++){
-            var auxc = this.add.sprite((x*180)+210,(215*linea)+330,this.inventory.listCardClass[i].GetTexture())
+            var auxc = this.add.sprite((i*180)+((this.sys.game.canvas.width) * 2)+210,(215*linea)+330,this.inventory.listCardClass[i].GetTexture())
             //auxc.scale(0.5);
             console.log("mepongo");
             auxc.setFrame(this.inventory.listCardClass[i].textureindex)
             auxc.setScale(0.245);
+            auxc.setVisible(false);
             this.invvisible.push(auxc);
+            var auxl = this.add.sprite((i*180)+((this.sys.game.canvas.width) * 2)+160,(215*linea)+250,'lettersTextures');
+            auxl.setFrame(this.inventory.listCardClass[i].stads.letter)
+            auxl.setScale(0.4)
+            auxl.setVisible(false)
+            this.invvisible.push(auxl);
             x++;
             if (x == this.limtcartasinvv){
                 linea++;
@@ -550,12 +563,17 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         var linea =  Math.floor((this.inventory.numcards-1)/this.limtcartasinvv);
         
         var i = (this.inventory.numcards-1%this.limtcartasinvv)-linea*this.limtcartasinvv;
-            var auxc = this.add.sprite((i*180)+210,(215*linea)+330,this.inventory.listCardClass[this.inventory.numcards-1].GetTexture())
-            
+            var auxc = this.add.sprite((i*180)+((this.sys.game.canvas.width) * 2)+210,(215*linea)+330,this.inventory.listCardClass[this.inventory.numcards-1].GetTexture())
+            var auxl = this.add.sprite((i*180)+((this.sys.game.canvas.width) * 2)+160,(215*linea)+250,'lettersTextures');
+            auxl.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].stads.letter)
+            auxl.setScale(0.4);
+            auxl.setVisible(false)
+            this.invvisible.push(auxl);
             console.log("mepongo");
             auxc.setFrame(this.inventory.listCardClass[i].textureindex)
             auxc.setScale(0.245);
-            
+            auxc.setVisible(false);
+            this.invvisible.push(auxc);
         
     }
 

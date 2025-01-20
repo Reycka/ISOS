@@ -27,7 +27,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
             this.PosY = PosY;
             //Imágenes de las Partículas
             this.scene.load.image('DamageParticles','src/Assets/Finales/damageParticles.png');
-            this.scene.load.image('HealParticles','src/Assets/Finakes/healParticles.png');
+            this.scene.load.image('HealParticles','src/Assets/Finales/healParticles.png');
         }
         Getdamage(){
             this.setTint(0xffff0000) //color ARGB

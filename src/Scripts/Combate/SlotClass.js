@@ -34,17 +34,18 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
             //Partículas de Sangre
             this.Particles = this.scene.add.particles(0,0,'DamageParticles',{ 
                 x: this.PosX,
-                y: this.PosY,
-                lifespan: { min: 300, max: 500 },
-                speed: { min: 150, max: 170 },
+                y: this.PosY - 50,
+                angle: {min: 0, max: 360},
+                lifespan: { min: 100, max: 300 },
+                speed: { min: 300, max: 500 },
                 timeScale: 0.35,
                 gravityY: 42,
                 scale: {
-                    start: 0.33,
-                    end: 0.51,
+                    start: 0.81,
+                    end: 0.30,
                 },
-                duration: 200,
-                quantity: 1,
+                duration: 50,
+                quantity: 5,
                 frequency: 25,
             });  
             this.Particles.start();
@@ -69,7 +70,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                     end: 0.51,
                 },
                 duration: 200,
-                quantity: 1,
+                quantity: 5,
                 frequency: 25,
             });  
             this.Particles.start();

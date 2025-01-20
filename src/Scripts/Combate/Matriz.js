@@ -9,7 +9,6 @@ export default class Matriz{
         this.row = _fil;
         this.col = _col;
         this.mat = new Array(this.row);
-        
         if(isenemy==false){
             var par = 0;
         for (let i = 0; i < this.row; i++) {
@@ -17,7 +16,11 @@ export default class Matriz{
            
             for (let j = 0; j < this.col; j++) {
                 //j * 180  + 550 , i * 160 + 150
-                this.mat[i][j] = new SlotClass(scene,i,j,_slottexture);
+                //Posiciones reales de las unidades,(se usan para indicar de donde deben salir las partículas)
+                var PosX = j * 360  + 450 +(par*180);
+                var PosY = 7*(i * 180 + posfil)/8;
+                //Creamos la SlotClass para poder setear la tropa 
+                this.mat[i][j] = new SlotClass(scene,i,j,_slottexture,PosX,PosY);
                 this.mat[i][j].setPosition(j * 360  + 450 +(par*180), 7*(i * 180 + posfil)/8);
             }
             if(par == 0){
@@ -33,7 +36,11 @@ export default class Matriz{
            
                 for (let j = 0; j < this.col; j++) {
                     //j * 180  + 550 , i * 160 + 150
-                    this.mat[i][j] = new SlotClass(scene,i,j,_slottexture);
+                    //Posiciones reales de las unidades,(se usan para indicar de donde deben salir las partículas)
+                    var PosX = j * 360  +1250+(par*180);
+                    var PosY = 7*(i * 180 + posfil)/8;
+                    //Creamos la SlotClass para poder setear la tropa 
+                    this.mat[i][j] = new SlotClass(scene,i,j,_slottexture,PosX,PosY);
                     this.mat[i][j].setPosition(j * 360  +1250+(par*180), 7*(i * 180+ posfil)/8);
                 }
                 if(par == 0){

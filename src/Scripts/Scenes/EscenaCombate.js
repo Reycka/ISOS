@@ -119,74 +119,74 @@ desactiveSinergy(dios){
 		this.anims.create({
 			key: 'LAIDLE',
 			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'GIDLE',
 			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'MIDLE',
 			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'HIDLE',
 			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'CIDLE',
 			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'SAIDLE',
 			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
-			frameRate: 10,
+			frameRate: 7,
 			repeat: -1 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'LAA',
 			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'GA',
 			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'MA',
 			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'HA',
 			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'CA',
 			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
 		});
 		this.anims.create({
 			key: 'SAA',
 			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
-			frameRate: 10,
-			repeat: -1 // Repetir indefinidamente
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
 		});
 
 
@@ -401,7 +401,8 @@ desactiveSinergy(dios){
 							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 						}
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);						
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);		
+								
 					}
 				})
 			}
@@ -452,7 +453,8 @@ desactiveSinergy(dios){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.15);
+					
 					}
 				}
 			}

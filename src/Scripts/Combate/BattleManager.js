@@ -96,7 +96,6 @@ export default class BattleManager {
                         if (this.mat.mat[i][j].GetUnit().isready) {
                             //En caso de ser healer le pasamos unidades aliadas
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
-                                console.log("entro a curar y eso");
                                 if ((i - 1) != -1) {
                                     if (this.mat.mat[i - 1][j].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i - 1][j].GetUnit())
@@ -144,7 +143,6 @@ export default class BattleManager {
                                             if (j == 0) {
                                                 if (this.mat.mat[this.indiceaux][j + 1].GetState()) {
                                                     this.encontrado = true;
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
@@ -161,14 +159,12 @@ export default class BattleManager {
                                             if (this.indiceaux == 0) {
                                                 if (this.mat.mat[this.indiceaux+1][j].GetState()) {
                                                     this.encontrado = true;
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
                                             }     
                                         }
                                         this.indiceaux+=1;
-                                        console.log(this.indiceaux);
                                     }
                                 }
                             }
@@ -243,7 +239,6 @@ export default class BattleManager {
                                                 if (this.enemymatriz.Enemymat.mat[this.indiceaux][j + 1].GetState()) {
                                                     this.encontrado = true;
                                                     this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
@@ -307,10 +302,8 @@ export default class BattleManager {
                                 if ((j + 1) < this.mat.col) {
                                     if (this.mat.mat[i][j + 1].GetState()) {
                                         this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j + 1].GetUnit())
-                                        //  console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
                                         if (this.mat.mat[i][j + 1].GetUnit().isalife == false) {
                                             this.mat.mat[i][j + 1].SetFree();
-                                            //   console.log("casilla liberada"+i+j+1);
                                         } else this.mat.mat[i][j + 1].Getdamage();
                                         this.target = true;
                                     }
@@ -377,7 +370,6 @@ export default class BattleManager {
     ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
         let Sinergias = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        //console.log(this.jeros[dios]);
 
         for (let i = 0; i < this.jeros.getSize(dios); ++i) {
             if (this.jeros.getIsActive(dios, i) == false) {

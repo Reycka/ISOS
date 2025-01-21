@@ -82,7 +82,6 @@ applyAllyEffects(unit){
     }
 }
 applyEnemyEffects(unit){
-    console.log(this.isAttackedMissed());
     if (this.isahealer){
         if (!this.isAttackedMissed()){
             this.Heal(unit);
@@ -107,8 +106,7 @@ Attack(enemy){
         
             if (this.card.iscard){ //ATAQUE DE ALIADO (CON SUS VENTAJAS)
                 if (!this.isInstakillTriggered()) {
-                    console.log("DAÑO DEL ALIADO POTENCIADO: " + this.getAttackPower());
-                    console.log("TOMA BONK");
+                    //DAÑO DEL ALIADO POTENCIADO
                     enemy.GetDamage(this.getAttackPower(),this.unitType); //Hacemos el daño normal o el potenciado siendo aliado
                 }
                 else {
@@ -117,7 +115,6 @@ Attack(enemy){
 
             } else { //ATAQUE DE ENEMIGO
                 enemy.GetDamage(this.card.attack,this.unitType);
-                console.log("TOMA BONK SUAVE");
             }
                 
     }
@@ -138,13 +135,12 @@ Heal(ally){
     }
 }
 ReciveHeal(n){
-    console.log("mecurfo"+n);
+    //CURACION
     this.acthealth +=n;
     if(this.acthealth> this.card.health)
         {
         this.acthealth = this.card.health;
     }
-    console.log("cura vida actual = "+ this.acthealth+"/"+ this.card.health)
 }
 
 GetDamage(atq,type){
@@ -168,18 +164,15 @@ GetDamage(atq,type){
     if (type == "QUEMADURA" || type == "INSTAKILL") daño = (Math.round(atq)*multi)+1;
     else daño = (Math.round(atq/this.card.defense)*multi)+1;
 
-console.log("daño vida actual = "+ this.acthealth+"/"+ this.card.health)
 this.acthealth -= daño;
-//console.log("me ICIERON DALO"+daño+"  "+ this.acthealth)
 if(this.acthealth <=0){
     if (this.tryRevive()) 
     {
         this.acthealth = this.card.health;
-        console.log("TROPA ALIADA REVIVIDA");
+        //TROPA ALIADA REVIVIDA
     }
     else{
         this.isalife = false;
-        //console.log("PROCEDO A LA MORISION POR MAL RNG");
     } 
 }
 }
@@ -236,7 +229,6 @@ applyPeriodicHeal(percent){ // ENTRE 0.0 y 1.0
 }
 handlePeriodicHeal(){
     if (this.periodicHeal > 0){ //Si hay curacion periodica aplicamos el porcentaje de curación a la vida maxima de la carta
-        console.log("ME CURO PROGRESIVAMENTE");
         this.ReciveHeal(this.card.health * this.periodicHeal);
     }
 }
@@ -247,8 +239,6 @@ boostAttack(percent){ //ENTRE 0.0 y 1.0
     this.attackBoost = percent || 0;
 }
 getAttackPower(){
-    console.log("ATAQUE NORMAL: " + this.card.attack);
-    console.log("ATAQUE POTENCIADO: " + this.card.attack * (1 + (this.attackBoost || 0)));
     return Math.floor(this.card.attack * (1 + (this.attackBoost || 0))); //Siempre devolvemos un valor, si no hay aumento de ataque no lo sumamos al daño inicial, en caso contrario sí.
 }
 

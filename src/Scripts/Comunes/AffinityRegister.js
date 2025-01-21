@@ -47,9 +47,6 @@ export default class AffinityRegister{
             this.AddOsiris(minus);
 
         }
-        
-
-        console.log(this.Ra,"", this.Isis,"", this.Anubis,"", this.Horus,"", this.Osiris,"", this.Seth, "total:", this.numtotalpnt)
 
 
     }
@@ -166,13 +163,11 @@ export default class AffinityRegister{
         var aux = 0;
         //primer random el dios
         var rnd = Math.floor(Math.random() * this.numtotalpnt);
-        console.log("elrandom"+rnd);
          
         
         if(rnd>aux-1 && rnd<this.Ra+aux){
             this.rnd2 = Math.floor(Math.random() * 5);
             this.rnd2 += 2
-            console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
             
         }
@@ -183,7 +178,6 @@ export default class AffinityRegister{
             this.rnd2 += 12;
             if(this.rnd2 == 13) this.rnd2 =1;
                 if (this.rnd2 == 14) this.rnd2 =11;
-            console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
 
         } aux += this.Isis; 
@@ -191,13 +185,11 @@ export default class AffinityRegister{
             this.rnd2 = Math.floor(Math.random() * 3);
             this.rnd2 += 13;
             if(this.rnd2 == 15) this.rnd2 = 3;
-            console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
         }aux += this.Horus;
         
         if(rnd>aux-1 && rnd<this.Anubis+aux){
             this.rnd2 = Math.floor(Math.random() * 5);
-             console.log("elrandomaaa "+this.rnd2);
              this.rnd2+=6;
             return this.rnd2;
             
@@ -206,7 +198,6 @@ export default class AffinityRegister{
          
         if(rnd>aux-1 && rnd<this.Osiris+aux){
             this.rnd2 = Math.floor(Math.random() * 4);
-             console.log("elrandomaaa "+this.rnd2);
             
             return this.rnd2;
             
@@ -216,7 +207,6 @@ export default class AffinityRegister{
         if(rnd>aux-1 && rnd<this.Seth+aux){
             this.rnd2 = Math.floor(Math.random() * 4);
             this.rnd2 += 15;
-            console.log("elrandomaaa "+this.rnd2);
             return this.rnd2;
         }  aux += this.Seth
         

@@ -40,11 +40,9 @@ export default class EscenaCombate extends Phaser.Scene {
 		if(this.battleManager.Battle()== false){
 		
 			if(this.battleManager.GetVictory()== true){
-				console.log("Entro en el fokin Win")
 				this.Win();	
 			}
 			else{
-				console.log("Entro en el fokin Loose")
 				this.defeat();
 			}
 			this.cronometro.remove();
@@ -288,7 +286,6 @@ desactiveSinergy(dios){
 			loop: true,
 			paused: true,
             callback: () => {
-				console.log("Estoy Llamando al GameLoop")
 				this.GameLoop()
             },})
 		//Audio y Sonidos

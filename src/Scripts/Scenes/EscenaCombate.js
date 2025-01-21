@@ -59,9 +59,9 @@ Win(){
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
 		//Seteamos los botones de victoria
-		let victoriaimg = this.add.image('victoria',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
-	    victoriaimg.setDepth(3); 
-		let Returnwin = this.add.image('continuar',(this.sys.game.canvas.width)*2 /3, this.sys.game.canvas.height / 2)				
+		let victoriaimg = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 4,'victoria')
+	    victoriaimg.setScale(1,1.1);
+		let Returnwin = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'continuar').setScale(0.5,0,5);				
 			Returnwin.setInteractive();
 			Returnwin.setDepth(3); 
 			Returnwin.on('pointerup', pointer =>{
@@ -85,9 +85,10 @@ defeat(){
 	this.endCombatSound.play({loop:true});
 	let Pendejo = this.sound.add('Pendejo');
 	Pendejo.play(Pendejo);
-	this.add.image('derrota',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2).setScale(34,32);
+	let derr = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 4,'derrota');
+	derr.setScale(1,1.1);
 	//Seteamos los botones de derrota
-	let Returndefeat = this.add.image('volver',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2)
+	let Returndefeat = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'volver').setScale(0.5,0.5);
 			Returndefeat.setInteractive();			
 			Returndefeat.on('pointerup', pointer =>{
 				this.endCombatSound.stop();

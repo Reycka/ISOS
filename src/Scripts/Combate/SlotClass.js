@@ -5,7 +5,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
     col;
     unit; //UnitClass
     ocupada = false;
-    
+    isaenemy = false
     PosX;
     PosY;
     scene;
@@ -103,7 +103,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                 this._unittexture = _unit.unittexture;
                 this.setTexture(this.unit.unittexture);
                 this.setScale(0.15,0.15);
-                this.anims.play(this.unit.unittexture+'IDLE', true);	
+                
+               this.anims.play(this.unit.unittexture+'IDLE', true);	
                 
             }
             else{
@@ -122,6 +123,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                 dir =  (this.x +20);
             }
             this.anims.play(this.unit.unittexture+'A', true);	
+            
             this.scene.anim1 = this.scene.tweens.add({
                 targets: this,
                 x: dir,
@@ -133,7 +135,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                 repeat: 0,
                 delay: 0,
                 onComplete: () => {
-                    this.anims.play(this.unit.unittexture+'IDLE', true);
+                    
+                    this.anims.play(this.unit.unittexture+'IDLE', true);	
                 }
                 
             });
@@ -157,5 +160,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
         }
         GetUnit(){
             return this.unit;
+        }
+        setisenemy(){
+            this.isaenemy = true;
         }
     };

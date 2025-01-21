@@ -36,25 +36,25 @@ export default class EnemyMatriz {
     }
     if(!rep) {
       switch (enemigo){
-        case 'G':
+        case 'EG':
           enemigo = "Guerrero"
           break;
-        case 'SA':
+        case 'ESA':
           enemigo = "Arco corto"
           break;
-        case 'LA':
+        case 'ELA':
             enemigo = "Arco largo"
           break;
-        case 'M':
+        case 'EM':
             enemigo = "Mago"
           break;
-        case 'C':
+        case 'EC':
             enemigo = "Carro"
           break;
-        case 'H':
+        case 'EH':
             enemigo = "Curandero"
           break;
-        case 'B':
+        case 'EB':
             enemigo = "?????"
             break;
       }
@@ -78,7 +78,7 @@ export default class EnemyMatriz {
                 this.enemies[i] = this.oleadaData.Oleadas[this.whicholeada].Enemigos[i];
                 indexactual++;
                 this.EsribeEnemigo(this.enemies[i],indexactual);
-                if(this.enemies[i] == "B"){
+                if(this.enemies[i] == "EB"){
                   this.isABoss = true;
                 }
               }
@@ -103,7 +103,7 @@ export default class EnemyMatriz {
             let boss = null;
             for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){
-                  if(this.enemies[totalenem] == "B" && boss == null){
+                  if(this.enemies[totalenem] == "EB" && boss == null){
                     this.stads = new EnemyStads(this.enemies[totalenem]);
                     this.texture = this.stads.unit_type; 
                     this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
@@ -111,7 +111,7 @@ export default class EnemyMatriz {
                     totalenem++;
                     boss = this.Enemymat.mat[i][j].GetUnit();
                   }
-                  else if(this.enemies[totalenem] == "B"){
+                  else if(this.enemies[totalenem] == "EB"){
                     this.Enemymat.mat[i][j].SetUnit(boss);
                     totalenem++;
                   }
@@ -129,9 +129,10 @@ export default class EnemyMatriz {
             for(let i = 0; i < this.row; ++i){
               for(let j = 0; j < this.col; ++j){
                   this.stads = new EnemyStads(this.enemies[totalenem]);
-                  this.texture = this.stads.unit_type; 
+                  this.texture = 'E'+this.stads.unit_type; 
                   this.card = new CardClass(this.scene,i,j,this.texture,this.stads);
                   this.Enemymat.mat[i][j].SetUnit(this.card.SummonUnit(this.texture));
+                  this.Enemymat.mat[i][j].setisenemy()
                   totalenem++;
                   }
             }

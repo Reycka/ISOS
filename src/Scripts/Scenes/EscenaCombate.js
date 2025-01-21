@@ -189,6 +189,80 @@ desactiveSinergy(dios){
 			repeat: 0 // Repetir indefinidamente
 		});
 
+		//animaciones enemigos
+		this.anims.create({
+			key: 'ELAIDLE',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGIDLE',
+			frames: this.anims.generateFrameNumbers('EG', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMIDLE',
+			frames: this.anims.generateFrameNumbers('EM', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHIDLE',
+			frames: this.anims.generateFrameNumbers('EH', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECIDLE',
+			frames: this.anims.generateFrameNumbers('EC', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAIDLE',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ELAA',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGA',
+			frames: this.anims.generateFrameNumbers('EG', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMA',
+			frames: this.anims.generateFrameNumbers('EM', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHA',
+			frames: this.anims.generateFrameNumbers('EH', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECA',
+			frames: this.anims.generateFrameNumbers('EC', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAA',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
 
 		this.cronometro = this.time.addEvent({
             delay: 1000, // 1 segundos
@@ -450,7 +524,7 @@ desactiveSinergy(dios){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("B");
 						}
 						else{
-							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						 this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture();
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
 					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.15);

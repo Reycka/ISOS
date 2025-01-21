@@ -95,6 +95,24 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		//ARCO CORTO PRUEBA
 		this.load.spritesheet('SA', 'src/Assets/Finales/ARQUEROCORTO.png',{ frameWidth: 1560, frameHeight: 1560});
 
+		//INFANTERÍA PRUEBA
+		this.load.spritesheet('ELA', 'src/Assets/Finales/ARQUEROLARGOE.png',{ frameWidth:1560, frameHeight:1560});
+
+		//ARQUERO LARGO PRUEBA
+		this.load.spritesheet('EG', 'src/Assets/Finales/GUERREROE.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//MAGO PRUEBA
+		this.load.spritesheet('EM', 'src/Assets/Finales/MAGOE.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//HEALER PRUEBA
+		this.load.spritesheet('EH', 'src/Assets/Finales/CURANDEROE.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//CARRO PRUEBA
+		this.load.spritesheet('EC', 'src/Assets/Finales/CARROE.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//ARCO CORTO PRUEBA
+		this.load.spritesheet('ESA', 'src/Assets/Finales/ARQUEROCORTOE.png',{ frameWidth: 1560, frameHeight: 1560});
+
 		//enemigo
 		this.load.image('E', 'src/Assets/Finales/e.png');
 

@@ -21,7 +21,7 @@ export default class EnemyStads {
 
     constructor(unittype) {
         //arco Corto
-        if (unittype == "SA") {  
+        if (unittype == "ESA") {  
             this.health = 100;
             this.attack = 10;
             this.speed = 2;
@@ -32,7 +32,7 @@ export default class EnemyStads {
             this.textureindex = 0;
         }
         //arco largo
-        else if (unittype == "LA") {
+        else if (unittype == "ELA") {
             
             this.health = 100;
             this.attack = 25;
@@ -44,7 +44,7 @@ export default class EnemyStads {
             this.textureindex = 1;
         }
         //soldado Carro
-        else if (unittype == "C") {
+        else if (unittype == "EC") {
            
             this.health = 100;
             this.attack = 20;
@@ -56,7 +56,7 @@ export default class EnemyStads {
             this.textureindex = 2;
         }
         //infanteria
-        else if (unittype == "G") {
+        else if (unittype == "EG") {
             
             this.health = 150;
             this.attack = 15;
@@ -68,7 +68,7 @@ export default class EnemyStads {
             this.textureindex = 3;
         }
         //Magos de ataque
-        else if (unittype == "M") {
+        else if (unittype == "EM") {
             
             this.health = 100;
             this.attack = 15;
@@ -80,7 +80,7 @@ export default class EnemyStads {
             this.textureindex = 4;
         }
         //curandero
-        else if (unittype == "H") {
+        else if (unittype == "EH") {
            
             this.health = 150;
             this.attack = 8;
@@ -92,7 +92,7 @@ export default class EnemyStads {
             this.textureindex = 5;
         }
         //Boss
-        else if (unittype == "B") {
+        else if (unittype == "EB") {
            
             this.health = 1;
             this.attack = 15;

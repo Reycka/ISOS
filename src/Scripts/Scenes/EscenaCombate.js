@@ -115,7 +115,81 @@ desactiveSinergy(dios){
 }
 
 	create() {
-		
+		//animaciones
+		this.anims.create({
+			key: 'LAIDLE',
+			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GIDLE',
+			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MIDLE',
+			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HIDLE',
+			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CIDLE',
+			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAIDLE',
+			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'LAA',
+			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GA',
+			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MA',
+			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HA',
+			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CA',
+			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAA',
+			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
+			frameRate: 10,
+			repeat: -1 // Repetir indefinidamente
+		});
+
+
 		this.cronometro = this.time.addEvent({
             delay: 1000, // 1 segundos
 			loop: true,

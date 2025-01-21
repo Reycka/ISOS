@@ -78,22 +78,22 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
 
 		//INFANTERÍA PRUEBA
-		this.load.spritesheet('LA', 'src/Assets/Finales/ALI.png',{ frameWidth:1560, frameHeight:1560});
+		this.load.spritesheet('LA', 'src/Assets/Finales/ARQUEROLARGO.png',{ frameWidth:1560, frameHeight:1560});
 
 		//ARQUERO LARGO PRUEBA
-		this.load.spritesheet('G', 'src/Assets/Finales/GI.png',{ frameWidth: 1560, frameHeight: 1560});
+		this.load.spritesheet('G', 'src/Assets/Finales/GUERRERO.png',{ frameWidth: 1560, frameHeight: 1560});
 
 		//MAGO PRUEBA
-		this.load.spritesheet('M', 'src/Assets/Finales/MI.png',{ frameWidth: 1560, frameHeight: 1560});
+		this.load.spritesheet('M', 'src/Assets/Finales/MAGO.png',{ frameWidth: 1560, frameHeight: 1560});
 
 		//HEALER PRUEBA
-		this.load.spritesheet('H', 'src/Assets/Finales/CUI.png',{ frameWidth: 1560, frameHeight: 1560});
+		this.load.spritesheet('H', 'src/Assets/Finales/CURANDERO.png',{ frameWidth: 1560, frameHeight: 1560});
 
 		//CARRO PRUEBA
-		this.load.spritesheet('C', 'src/Assets/Finales/CI.png',{ frameWidth: 1560, frameHeight: 1560});
+		this.load.spritesheet('C', 'src/Assets/Finales/CARRO.png',{ frameWidth: 1560, frameHeight: 1560});
 
 		//ARCO CORTO PRUEBA
-		this.load.spritesheet('SA', 'src/Assets/Finales/ACI.png',{ frameWidth: 1560, frameHeight: 1560});
+		this.load.spritesheet('SA', 'src/Assets/Finales/ARQUEROCORTO.png',{ frameWidth: 1560, frameHeight: 1560});
 
 		//enemigo
 		this.load.image('E', 'src/Assets/Finales/e.png');

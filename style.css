@@ -8,6 +8,8 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  min-width: 2300px;
+  min-height: 1480px;
 }
 
 .tab {
@@ -104,6 +106,7 @@ h1 {
   overflow: hidden;
   width: 100%;
   height: 100vh;
+  transform: translateY(20px) scale(1);
 }
 
 .imagenes {
@@ -112,6 +115,7 @@ h1 {
   align-items: center;
   justify-content: center;
   position: relative;
+  transform: translateY(20px) scale(1);
 }
 
 .img-carrusel {
@@ -122,6 +126,7 @@ h1 {
   width: 1000px;
   border-radius: 15px;
   object-fit: cover;
+  transform: translateY(20px) scale(1);
 }
 
 .texto-carrusel {
@@ -131,7 +136,7 @@ h1 {
   transform: translateX(-50%);
   backdrop-filter: blur(20px);
   background-color: black; 
-  display: flex;
+  display: block;
   flex-direction: column; /* Asegura que el texto esté debajo del título */
   align-items: center;
   justify-content: center;
@@ -196,21 +201,19 @@ h1 {
 
 .arrowleft, .arrowright { 
   margin: 250px;
-  position: absolute; 
   top: 50%; 
-  transform: translateY(-50%) scale(0.5); /* Reduce el tamaño de las flechas */
   cursor: pointer;
 }
 
 .arrowright {
   right: 20px; /* Ajusta la distancia de la flecha derecha a la imagen */
 
-  transform: translateY(-50%) scale(0.5) rotate(90deg); /* Reduce el tamaño y rota la flecha */
+  transform: scale(0.5) rotate(90deg); /* Reduce el tamaño y rota la flecha */
 }
 
 .arrowleft {
   left: 20px; /* Ajusta la distancia de la flecha izquierda a la imagen */
-  transform: translateY(-50%) scale(0.5) rotate(270deg); /* Reduce el tamaño y rota la flecha */
+  transform:  scale(0.5) rotate(270deg); /* Reduce el tamaño y rota la flecha */
 }
 
 #juego { 
@@ -219,72 +222,4 @@ h1 {
   width: 100%; 
   height: 90vh; /* Ajusta la altura del canvas */ 
   margin-bottom: 10px; /* Añade separación de la parte baja */ 
-}
-
-/* Media queries para diferentes resoluciones de pantalla */
-@media (max-width: 1200px) {
-  body {
-    margin-left: 100px;
-    margin-right: 100px;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-
-  .img-carrusel {
-    width: 100%;
-  }
-
-  .texto-carrusel {
-    width: 90%;
-    margin-left: 0;
-  }
-
-  .arrowleft, .arrowright {
-    transform: translateY(-50%) scale(0.4); /* Ajusta el tamaño de las flechas para pantallas más pequeñas */
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  h1 {
-    font-size: 48px;
-  }
-
-  .empresa {
-    font-size: 40px;
-  }
-
-  .description {
-    font-size: 20px;
-  }
-
-  .referencias {
-    font-size: 18px;
-  }
-
-  .texto {
-    font-size: 16px;
-  }
-
-  .img-carrusel {
-    width: 100%;
-  }
-
-  .texto-carrusel {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .arrowleft, .arrowright {
-    transform: translateY(-50%) scale(0.3); /* Ajusta el tamaño de las flechas para pantallas más pequeñas */
-  }
 }

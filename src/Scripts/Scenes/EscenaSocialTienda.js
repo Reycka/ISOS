@@ -140,7 +140,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.affinitys[4] = new AffinityBar(this,220,120,widthBar,heightBar,0x24212a);
         this.affinitys[5] = new AffinityBar(this,260,120,widthBar,heightBar,0xc92b1f);
 
-        console.log(this.affinitys.length);
+
 
         this.UpdateAffinityValues();
         for (let i = 0; i < this.affinitys.length; ++i){
@@ -160,7 +160,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.auxcardbool = true;
         Khayyat.on('pointerdown', pointer => {
 
-            console.log(this.inventory.numgift + "mi numero de gift");
             if (this.inventory.numgift > 0&&this.auxcardbool) {
                 this.inventory.AddCard(this, 'cardTexture');
 
@@ -169,7 +168,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
                 this.inventory.numgift--;
                 this.UpdateOfrendasText();
-                console.log(this.inventory);
                 this.auxcard.setVisible(true)
                 this.auxcard.setTexture(this.inventory.listCardClass[this.inventory.numcards - 1].GetTexture()); 
                 this.auxcard.setFrame(this.inventory.listCardClass[this.inventory.numcards - 1].textureindex)
@@ -227,14 +225,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         this.battlebtn.on('pointerup', pointer => {
             stage = 0;
             this.inventory.day++;
-            console.log(this.inventory.day);
             this.socialbacksound.stop();
             this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
             
         })
 
             botonIzq.on('pointerdown', pointer => {
-                console.log('Boton izquierdo presionado');
                 const nuevoScrollX = this.cameras.main.scrollY - desplazamiento;
                 this.animatePan(nuevoScrollX,velocitypan);
                 this.InvisibleBackground();
@@ -247,12 +243,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             });
 
             botonDch.on('pointerdown', pointer => {
-                console.log('Boton derecho presionado');
                 const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
-                console.log(this.cameras.main.scrollY, desplazamiento);
                 this.animatePan(nuevoScrollX,velocitypan);
                 this.InvisibleBackground();
-                console.log(this.cameras.main.scrollX);
                 this.socialbacksound.stop();
                 this.shopbacksound.play({ loop: true });
             });
@@ -333,16 +326,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                         this.dialogueSystem.showEventDialogues(eventoId, this.reader.dialogData.Eventos);
                         botonDch.setVisible(false);
 
-                        //console.log(stage, " ", personaje.disponible)
                         this.inventory.EventList[personaje.num]++;
 
                         
 
 
-                    } else {
-                        console.log('Evento no encontrado: ' + eventoId);
-                    }
-
+                    } 
                 });
             });
 
@@ -352,9 +341,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
                 {
                 
                     const nuevoScrollX = this.cameras.main.scrollY + desplazamiento;
-                    console.log(this.cameras.main.scrollY, desplazamiento);
                     this.animatePan(nuevoScrollX,velocitypan);
-                    console.log(this.cameras.main.scrollX);
                     this.socialbacksound.stop();
                     this.shopbacksound.play({ loop: true });
                 }
@@ -394,14 +381,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
                     if (personaje.disponible == true && stage < 3) {
 
-                        //console.log("Personaje Disponible");
                         personaje.originalPosition();
                         personaje.sprite.setVisible(true);
                     }
                     else {
                         personaje.sprite.setVisible(false);
                     }
-                    console.log("Stage: ", stage);
                 });
             };
 
@@ -445,7 +430,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ease: 'Linear', // Efecto de interpolación (puedes cambiarlo)
             onComplete: () => {
                 this.VisibleBackground();
-                console.log('Animación completada');
             }
         });
     }
@@ -472,7 +456,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     inventriovisible(){
         if (this.oninv ==false) this.oninv = true;
         else this.oninv = false;
-        console.log("me activo");
         for(var i = 0; i< this.invvisible.length;i++){
             this.invvisible[i].setVisible(this.oninv);
         }
@@ -487,7 +470,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         for(var i=0;i<this.inventory.numcards;i++){
             var auxc = this.add.sprite((i*180)+((this.sys.game.canvas.width) * 2)+210,(215*linea)+330,this.inventory.listCardClass[i].GetTexture())
             //auxc.scale(0.5);
-            console.log("mepongo");
             auxc.setFrame(this.inventory.listCardClass[i].textureindex)
             auxc.setScale(0.245);
             auxc.setVisible(false);
@@ -515,7 +497,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             auxl.setScale(0.4);
             auxl.setVisible(false)
             this.invvisible.push(auxl);
-            console.log("mepongo");
             auxc.setFrame(this.inventory.listCardClass[i].textureindex)
             auxc.setScale(0.245);
             auxc.setVisible(false);

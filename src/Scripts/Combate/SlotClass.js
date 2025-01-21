@@ -102,7 +102,8 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                 this.ocupada = true;
                 this._unittexture = _unit.unittexture;
                 this.setTexture(this.unit.unittexture);
-                this.setScale(0.33,0.33);
+                this.setScale(0.15,0.15);
+                this.anims.play(this.unit.unittexture+'IDLE', true);	
                 
             }
             else{
@@ -120,16 +121,20 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
             }else {
                 dir =  (this.x +20);
             }
+            this.anims.play(this.unit.unittexture+'A', true);	
             this.scene.anim1 = this.scene.tweens.add({
                 targets: this,
                 x: dir,
                 duration: 1000,
                 ease: 'easeInOutQuart', 
-        
+                //onComplete:this.anims.play(this.unit.unittexture+'IDLE', true),
                 flipX: false,
                 yoyo: true,
                 repeat: 0,
                 delay: 0,
+                onComplete: () => {
+                    this.anims.play(this.unit.unittexture+'IDLE', true);
+                }
                 
             });
             this.scene.anim1.play();

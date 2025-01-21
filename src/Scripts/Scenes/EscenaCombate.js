@@ -36,80 +36,13 @@ export default class EscenaCombate extends Phaser.Scene {
 	}
 
 	preload() {
-		//BACKGROUND IMAGEN
-		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
-
-		//FONDO MATRIZ
-		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
-
-		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
-
-		//INFANTERÍA PRUEBA
-		this.load.image('LA', 'src/Assets/Finales/p1.png');
-
-		//ARQUERO LARGO PRUEBA
-		this.load.image('G', 'src/Assets/Finales/p2.png');
-
-		//MAGO PRUEBA
-		this.load.image('M', 'src/Assets/Finales/p3.png');
-
-		//HEALER PRUEBA
-		this.load.image('H', 'src/Assets/Finales/p4.png');
-
-		//CARRO PRUEBA
-		this.load.image('C', 'src/Assets/Finales/p5.png');
-
-		//ARCO CORTO PRUEBA
-		this.load.image('SA', 'src/Assets/Finales/p6.png');
-
-		//enemigo
-		this.load.image('E', 'src/Assets/Finales/e.png');
-
-		//BOSS
-		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
 		
-		//flecha inventario
-		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
-		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
-
-
-		//sinergias
-		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/FondoPosiblesEnemigos.png');
-		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/FondoSinergias.png');
-		this.load.image('Rades','src/Assets/Finales/JeroglificosRa.png')
-		this.load.image('Raact','src/Assets/Finales/JeroglificosRaIluminado.png')
-		this.load.image('Osirisdes','src/Assets/Finales/JeroglificosOsiris.png')
-		this.load.image('Osirisact','src/Assets/Finales/JeroglificosOsirisIluminado.png')
-		this.load.image('Horusdes','src/Assets/Finales/JeroglificosHorus.png')
-		this.load.image('Horusact','src/Assets/Finales/JeroglificosHorusIluminado.png')
-		this.load.image('Isisdes','src/Assets/Finales/JeroglificosIsis.png')
-		this.load.image('Isisact','src/Assets/Finales/JeroglificosIsisIluminado.png')
-		this.load.image('Anubisdes','src/Assets/Finales/JeroglificosAnubis.png')
-		this.load.image('Anubisact','src/Assets/Finales/JeroglificosAnubisIluminado.png')
-		this.load.image('Sethdes','src/Assets/Finales/JeroglificosSeth.png')
-		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
-
-		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
-
-		//SFX
-		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.WAV')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.WAV')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.WAV')
 	}
 	cronometro;
 	GameLoop()
 	{
 		if(this.battleManager.Battle()== false){
-			this.finaltext.setDepth(3); 
-			this.finaltext.setOrigin(0.5,0.5)
+		
 			if(this.battleManager.GetVictory()== true){
 				this.Win();	
 			}
@@ -126,9 +59,8 @@ Win(){
 		this.combatSound.stop();
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
-		this.finaltext.setVisible(true);
-		this.Returnwin.setVisible(true);
-		this.finaltext.setText("HAS GANADO");
+		
+		
 	}
 	else{
 		this.oleada = this.oleada + 1;
@@ -141,9 +73,7 @@ defeat(){
 	this.endCombatSound.play({loop:true});
 	let Pendejo = this.sound.add('Pendejo');
 	Pendejo.play(Pendejo);
-	this.finaltext.setVisible(true);
-	this. Returndefeat.setVisible(true);
-	this.finaltext.setText("HAS PERDIDO");
+
 }
 activeSinergy(dios){
 	if(dios==0){
@@ -185,7 +115,81 @@ desactiveSinergy(dios){
 }
 
 	create() {
-		
+		//animaciones
+		this.anims.create({
+			key: 'LAIDLE',
+			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GIDLE',
+			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MIDLE',
+			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HIDLE',
+			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CIDLE',
+			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAIDLE',
+			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'LAA',
+			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GA',
+			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MA',
+			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HA',
+			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CA',
+			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAA',
+			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
+
 		this.cronometro = this.time.addEvent({
             delay: 1000, // 1 segundos
 			loop: true,
@@ -397,7 +401,8 @@ desactiveSinergy(dios){
 							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 						}
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);		
+								
 					}
 				})
 			}
@@ -448,7 +453,8 @@ desactiveSinergy(dios){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.15);
+					
 					}
 				}
 			}
@@ -463,6 +469,8 @@ desactiveSinergy(dios){
 					}
 				}
 			}
+			
+	
 			
 			pelea.setVisible(false);
 			imagecard1.setVisible(false);
@@ -487,52 +495,37 @@ desactiveSinergy(dios){
 			this.barradeprogreso.setVisible(true);
 			this.cronometro.paused=false;			
 		})
-
-		 
-	/*
+		/*
 	Resultados del combate
 	*/
-		this.finaltext = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2, " has algo", { font: '60px Arial, sans-serif',
-            fill: '#fff',
-            stroke: '#000',
-            strokeThickness: 4,
-            backgroundColor: '#000000',
-            padding: { x: 30, y: 20 },
-            fontStyle: 'bold' });
-			this.finaltext.setVisible(false);
-				this.Returnwin = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " Continuar", { font: '60px Arial, sans-serif',
-					fill: '#fff',
-					stroke: '#000',
-					strokeThickness: 4,
-					backgroundColor: '#000000',
-					padding: { x: 30, y: 20 },
-					fontStyle: 'bold' });					
-					this.Returnwin.setInteractive();
-					this.Returnwin.setVisible(false);
-					this.Returnwin.on('pointerup', pointer =>{
-						this.endCombatSound.stop();
-						var numero = this.oleada;
-						numero += 1;
-						console.log(numero)
-						if(this.oleada == 7) {
-							console.log("Cambio")
-							this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
-						}
-						else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-					})	
-				this.Returndefeat = this.add.text((this.sys.game.canvas.width) /2, this.sys.game.canvas.height*2 / 3, " volver al menu principal", { font: '60px Arial, sans-serif',
-					fill: '#fff',
-					stroke: '#000',
-					strokeThickness: 4,
-					backgroundColor: '#000000',
-					padding: { x: 30, y: 20 },
-					fontStyle: 'bold' });
-					this.Returndefeat.setInteractive();
-					this.Returndefeat.setVisible(false);
-					this.Returndefeat.on('pointerup', pointer =>{
-						this.endCombatSound.stop();
-						this.scene.start('EscenaPrincipal');
-					})
+	this.victoriaimg = this.add.image('victoria',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
+	this.victoriaimg.setDepth(3); 
+		this.Returnwin = this.add.image('continuar',(this.sys.game.canvas.width)*2 /3, this.sys.game.canvas.height / 2)				
+			this.Returnwin.setInteractive();
+			this.Returnwin.setDepth(3); 
+			this.Returnwin.on('pointerup', pointer =>{
+				this.endCombatSound.stop();
+				var numero = this.oleada;
+				numero += 1;
+				console.log(numero)
+				if(this.oleada == 7) {
+					console.log("Cambio")
+					this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
+				}
+				else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+			})	
+			this.defimg = this.add.image('derrota',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
+		this.defimg.setDepth(3); 
+		this.Returndefeat = this.add.image('derrota',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2)
+				this.Returndefeat.setInteractive();
+				
+				this.Returndefeat.on('pointerup', pointer =>{
+					this.endCombatSound.stop();
+					this.scene.start('EscenaPrincipal');
+				})
+	this.Returndefeat.setDepth(3); 
+		 
+	
 	}
 
 }

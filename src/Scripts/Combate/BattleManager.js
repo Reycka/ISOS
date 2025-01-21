@@ -15,6 +15,7 @@ export default class BattleManager {
     numenemiestrops = 12;
     auxd;
     auxv;
+    onbattle = false;
     target = false;
     jeros = new Jeroglifico();
     uxunitchange;
@@ -76,6 +77,7 @@ export default class BattleManager {
     liberacion de casillas y la victoria o derrota
     */
     Battle() {
+        this.onbattle = true;
         if (this.victory == false && this.defeat == false) {
             //comprobamos las unidades que pueden atacar de la matriz aliada
             //boooleanos para comprobar si quedan tropas

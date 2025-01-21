@@ -61,17 +61,16 @@ Win(){
 		//Seteamos los botones de victoria
 		let victoriaimg = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 4,'victoria')
 	    victoriaimg.setScale(1,1.1);
-		let Returnwin = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'continuar').setScale(0.5,0,5);				
-			Returnwin.setInteractive();
-			Returnwin.setDepth(3); 
-			Returnwin.on('pointerup', pointer =>{
+		let Returndefeat = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'continuar').setScale(0.5,0.5);
+			Returndefeat.setInteractive();			
+			Returndefeat.on('pointerup', pointer =>{
 				this.endCombatSound.stop();
-				if(this.oleada == 7) {
-					this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
+				if(this.oleada == 3) {
+					this.scene.start('EscenaCreditos',{oleada: this.oleada, inventario: this.inventory})
 				}
 				else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-			})	
-		
+			})
+	
 	}
 	else{
 		this.oleada = this.oleada + 1;
@@ -480,7 +479,7 @@ desactiveSinergy(dios){
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
 				 //Colocamos el fondo
-				this.mat.mat[i][j].setScale(0.85,0.85)
+				 this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					//Coloca la textura de las tropas
@@ -489,14 +488,17 @@ desactiveSinergy(dios){
 						if(this.battleManager.auxcard == -1){
 							this.inventory.listCardClass[actualcard].DeleteCard();
 						}
-						else{
+						else if(!this.battleManager.onbattle) {
 							if(actualcard != null) this.inventory.listCardClass[actualcard].DeleteCard();
 							this.inventory.listCardClass[this.battleManager.auxcard].RecoverCard();
+							this.mat.mat[i][j].anims.stop()
+							this.mat.mat[i][j].setTexture("MatrizGround")
+							this.mat.mat[i][j].setScale(0.85,0.85)
 							if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 						}
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);		
+						else this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);		
 								
 					}
 				})

@@ -30,24 +30,11 @@ export default class EscenaSocialTienda extends Phaser.Scene {
     init(data) {
         this.inventory = data.inventario;
         this.oleada = data.oleada;
-        console.log(this.oleada);
-        console.log(this.inventory);
         let value;
         this.affinitys = [{value}];
         this.UpdateAffinityValues();        
-        console.log(this.affinityValues);
-       
     }
-
-
-
-    preload() {
-
-       
-    }
-
     //REPUTACIÓN
-
     UpdateAffinityValues(){
         this.affinityValues = [this.inventory.affreg.GetRa()/this.inventory.affreg.maxAffinity,
             this.inventory.affreg.GetIsis()/this.inventory.affreg.maxAffinity,

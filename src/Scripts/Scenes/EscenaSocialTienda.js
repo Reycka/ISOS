@@ -273,10 +273,6 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             // Cargar el archivo JSON con los diálogos
             this.reader.loadJSON('src/Scripts/Texto/dialogs.json').then(() => {
-
-                //console.log(this.reader.dialogData);
-
-
             });
 
             // Inicializar el sistema de diálogos

@@ -42,48 +42,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
     preload() {
-        //fondo
-        this.load.image('BackgroundSocialTienda', 'src/Assets/Finales/fondo_socializartienda2.png')
-        //imagen botones
-        this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
-        this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
-        this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
-        this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
-        this.load.spritesheet('lettersTextures','src/Assets/Finales/JeroglificosSpritesheet.png',{ frameWidth: 61, frameHeight: 61 })
-        this.load.image('botoninventario','src/Assets/Finales/boton_inventario.png')
-        this.load.image('invbackground','src/Assets/Finales/fondoinventario.png')
-        //Imagenes personajes
 
-        this.load.image('Shai', 'src/Assets/Finales/Shai.png');
-        this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
-
-        //Eshe y Tarik
-
-        this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
-        this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
-        this.load.image('EsheTarikNo', 'src/Assets/Finales/EsheTarikNo.png');
-        this.load.image('EsheTarikT', 'src/Assets/Finales/EsheTarikT.png');
-        this.load.image('EsheTarikE', 'src/Assets/Finales/EsheTarikE.png');
-
-        //Adio
-        this.load.image('Adio', 'src/Assets/Finales/Adio.png');
-        this.load.image('AdioNo', 'src/Assets/Finales/AdioNo.png');
-        this.load.image('AdioChibi', 'src/Assets/Finales/AdioChibi.png');
-
-        //Khalid
-        this.load.image('Khalid', 'src/Assets/Finales/Khalid.png');
-        this.load.image('KhalidNo', 'src/Assets/Finales/KhalidNo.png');
-        this.load.image('KhalidChibi', 'src/Assets/Finales/KhalidChibi.png');
-
-
-        //miscelanea de imagenes
-        this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
-        this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
-        this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
-        //Audio
-        this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
-        this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
-        this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
        
     }
 

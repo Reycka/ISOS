@@ -23,6 +23,124 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('BotonSalir','src/Assets/Finales/boton_salir.png');
 		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal Heartbeat Main.WAV')
 		this.oleada1 = 1;
+
+		//ESCENA SOCIALIZAR
+		        //fondo
+				this.load.image('BackgroundSocialTienda', 'src/Assets/Finales/fondo_socializartienda2.png')
+				//imagen botones
+				this.load.image('BotonMoverseIzq', 'src/Assets/Finales/boton_socializar.png');
+				this.load.image('BotonMoverseDch', 'src/Assets/Finales/boton_tienda.png');
+				this.load.image('BotonGenerarCarta', 'src/Assets/Finales/Khayyat.png');
+				this.load.image('fondoSinergias', 'src/Assets/Temporales/Fondo.png')
+				this.load.spritesheet('lettersTextures','src/Assets/Finales/JeroglificosSpritesheet.png',{ frameWidth: 61, frameHeight: 61 })
+				this.load.image('botoninventario','src/Assets/Finales/boton_inventario.png')
+				this.load.image('invbackground','src/Assets/Finales/fondoinventario.png')
+				//Imagenes personajes
+		
+				this.load.image('Shai', 'src/Assets/Finales/Shai.png');
+				this.load.image('Shai2', 'src/Assets/Finales/Shai3.png');
+		
+				//Eshe y Tarik
+		
+				this.load.image('EsheTarikChibi', 'src/Assets/Finales/EsheTarikChibi.png');
+				this.load.image('EsheTarik', 'src/Assets/Finales/EsheTarik.png');
+				this.load.image('EsheTarikNo', 'src/Assets/Finales/EsheTarikNo.png');
+				this.load.image('EsheTarikT', 'src/Assets/Finales/EsheTarikT.png');
+				this.load.image('EsheTarikE', 'src/Assets/Finales/EsheTarikE.png');
+		
+				//Adio
+				this.load.image('Adio', 'src/Assets/Finales/Adio.png');
+				this.load.image('AdioNo', 'src/Assets/Finales/AdioNo.png');
+				this.load.image('AdioChibi', 'src/Assets/Finales/AdioChibi.png');
+		
+				//Khalid
+				this.load.image('Khalid', 'src/Assets/Finales/Khalid.png');
+				this.load.image('KhalidNo', 'src/Assets/Finales/KhalidNo.png');
+				this.load.image('KhalidChibi', 'src/Assets/Finales/KhalidChibi.png');
+		
+		
+				//miscelanea de imagenes
+				this.load.spritesheet('cardTexture', 'src/Assets/Finales/spritesheet_cartas.png', { frameWidth: 3763 / 6, frameHeight: 882 });
+				this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
+				this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
+				//Audio
+				this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
+				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
+				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
+
+				//ESCENA DE COMBATE 
+				//BACKGROUND IMAGEN
+		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
+
+		//FONDO MATRIZ
+		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
+
+		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
+
+		//INFANTERÍA PRUEBA
+		this.load.spritesheet('LA', 'src/Assets/Finales/ALI.png',{ frameWidth:1560, frameHeight:1560});
+
+		//ARQUERO LARGO PRUEBA
+		this.load.spritesheet('G', 'src/Assets/Finales/GI.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//MAGO PRUEBA
+		this.load.spritesheet('M', 'src/Assets/Finales/MI.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//HEALER PRUEBA
+		this.load.spritesheet('H', 'src/Assets/Finales/CUI.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//CARRO PRUEBA
+		this.load.spritesheet('C', 'src/Assets/Finales/CI.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//ARCO CORTO PRUEBA
+		this.load.spritesheet('SA', 'src/Assets/Finales/ACI.png',{ frameWidth: 1560, frameHeight: 1560});
+
+		//enemigo
+		this.load.image('E', 'src/Assets/Finales/e.png');
+
+		//BOSS
+		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
+		
+		//flecha inventario
+		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
+		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
+		//VICTORIA Y DERROTA
+			this.load.image('victoria','src/Assets/Finales/Victoria.png')
+			this.load.image('derrota','src/Assets/Finales/Derrota.png');
+			this.load.image('volver','src/Assets/Finales/boton_volver.png')
+			this.load.image('continuar','src/Assets/Finales/boton_continuar.png')
+
+		//sinergias
+		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/FondoPosiblesEnemigos.png');
+		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/FondoSinergias.png');
+		this.load.image('Rades','src/Assets/Finales/JeroglificosRa.png')
+		this.load.image('Raact','src/Assets/Finales/JeroglificosRaIluminado.png')
+		this.load.image('Osirisdes','src/Assets/Finales/JeroglificosOsiris.png')
+		this.load.image('Osirisact','src/Assets/Finales/JeroglificosOsirisIluminado.png')
+		this.load.image('Horusdes','src/Assets/Finales/JeroglificosHorus.png')
+		this.load.image('Horusact','src/Assets/Finales/JeroglificosHorusIluminado.png')
+		this.load.image('Isisdes','src/Assets/Finales/JeroglificosIsis.png')
+		this.load.image('Isisact','src/Assets/Finales/JeroglificosIsisIluminado.png')
+		this.load.image('Anubisdes','src/Assets/Finales/JeroglificosAnubis.png')
+		this.load.image('Anubisact','src/Assets/Finales/JeroglificosAnubisIluminado.png')
+		this.load.image('Sethdes','src/Assets/Finales/JeroglificosSeth.png')
+		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
+
+		//Música
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+
+		//SFX
+		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.WAV')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.WAV')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.WAV')
+
 	}
 	
 	create() {

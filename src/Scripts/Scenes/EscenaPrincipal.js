@@ -68,8 +68,8 @@ export default class EscenaPrincipal extends Phaser.Scene {
 				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
 				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
 
-				//ESCENA DE COMBATE 
-				//BACKGROUND IMAGEN
+		//ESCENA DE COMBATE 
+		//BACKGROUND IMAGEN
 		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
 
 		//FONDO MATRIZ
@@ -145,7 +145,6 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	
 	create() {
 		var importante = this.add.image(this.sys.game.canvas.width / 2,300,'IMPORTANTITISISISMOCLAVEINDISPENSABLE');
-		console.log(importante.texture)
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});
 		var inventory = new Inventory(importante);
@@ -160,7 +159,6 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		exit.setInteractive();
 		start.on('pointerup', pointer => {
 			audio.stop();
-			console.log(this.oleada1);
 			this.scene.start('EscenaSocialTienda',{oleada: this.oleada1, inventario: inventory});
 		})
 		exit.on('pointerup', pointer => {

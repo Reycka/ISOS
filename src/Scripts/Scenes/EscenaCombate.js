@@ -22,6 +22,7 @@ export default class EscenaCombate extends Phaser.Scene {
 	oleada;
 	BattleParticles;
 	HealParticles;
+	cronometro;
 	//SOUNDS
 	preCombatSound;
 	combatSound;
@@ -34,19 +35,16 @@ export default class EscenaCombate extends Phaser.Scene {
 		this.oleada = data.oleada;
 		this.inventory = data.inventario;
 	}
-
-	preload() {
-		
-	}
-	cronometro;
 	GameLoop()
 	{
 		if(this.battleManager.Battle()== false){
 		
 			if(this.battleManager.GetVictory()== true){
+				console.log("Entro en el fokin Win")
 				this.Win();	
 			}
 			else{
+				console.log("Entro en el fokin Loose")
 				this.defeat();
 			}
 			this.cronometro.remove();
@@ -56,10 +54,23 @@ export default class EscenaCombate extends Phaser.Scene {
 }
 Win(){
 	if(this.oleada < 5 || this.oleada == 7){
+		//Cambiamos la música de combate
 		this.combatSound.stop();
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
-		
+		//Seteamos los botones de victoria
+		let victoriaimg = this.add.image('victoria',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
+	    victoriaimg.setDepth(3); 
+		let Returnwin = this.add.image('continuar',(this.sys.game.canvas.width)*2 /3, this.sys.game.canvas.height / 2)				
+			Returnwin.setInteractive();
+			Returnwin.setDepth(3); 
+			Returnwin.on('pointerup', pointer =>{
+				this.endCombatSound.stop();
+				if(this.oleada == 7) {
+					this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
+				}
+				else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+			})	
 		
 	}
 	else{
@@ -68,12 +79,20 @@ Win(){
 	}
 }
 defeat(){
+	//Sonidos de derrota
 	this.combatSound.stop();
 	this.endCombatSound = this.sound.add('Lose');
 	this.endCombatSound.play({loop:true});
 	let Pendejo = this.sound.add('Pendejo');
 	Pendejo.play(Pendejo);
-
+	this.add.image('derrota',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2).setScale(34,32);
+	//Seteamos los botones de derrota
+	let Returndefeat = this.add.image('volver',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2)
+			Returndefeat.setInteractive();			
+			Returndefeat.on('pointerup', pointer =>{
+				this.endCombatSound.stop();
+				this.scene.start('EscenaPrincipal');
+			})
 }
 activeSinergy(dios){
 	if(dios==0){
@@ -121,6 +140,7 @@ desactiveSinergy(dios){
 			loop: true,
 			paused: true,
             callback: () => {
+				console.log("Estoy Llamando al GameLoop")
 				this.GameLoop()
             },})
 		//Audio y Sonidos
@@ -359,7 +379,6 @@ desactiveSinergy(dios){
 			let _card;
 			for(_card of this.inventory.listCardClass){
 				_card.RecoverCard();
-				console.log("Recupero las cartas")
 			}
 			if(this.oleada <= 5)this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
@@ -419,37 +438,5 @@ desactiveSinergy(dios){
 			this.barradeprogreso.setVisible(true);
 			this.cronometro.paused=false;			
 		})
-		/*
-	Resultados del combate
-	*/
-	this.victoriaimg = this.add.image('victoria',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
-	this.victoriaimg.setDepth(3); 
-		this.Returnwin = this.add.image('continuar',(this.sys.game.canvas.width)*2 /3, this.sys.game.canvas.height / 2)				
-			this.Returnwin.setInteractive();
-			this.Returnwin.setDepth(3); 
-			this.Returnwin.on('pointerup', pointer =>{
-				this.endCombatSound.stop();
-				var numero = this.oleada;
-				numero += 1;
-				console.log(numero)
-				if(this.oleada == 7) {
-					console.log("Cambio")
-					this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
-				}
-				else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-			})	
-			this.defimg = this.add.image('derrota',(this.sys.game.canvas.width) /2, this.sys.game.canvas.height / 2)
-		this.defimg.setDepth(3); 
-		this.Returndefeat = this.add.image('derrota',(this.sys.game.canvas.width) *2/3, this.sys.game.canvas.height / 2)
-				this.Returndefeat.setInteractive();
-				
-				this.Returndefeat.on('pointerup', pointer =>{
-					this.endCombatSound.stop();
-					this.scene.start('EscenaPrincipal');
-				})
-	this.Returndefeat.setDepth(3); 
-		 
-	
 	}
-
 }

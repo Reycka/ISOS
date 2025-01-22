@@ -194,10 +194,58 @@
                 { "character": "Tarik", "text": "¿Sigues confiando en él?" },
                 { "character": "Shai", "text": "El sol sigue alzándose cada mañana, ¿verdad?" }
             ]
+        },     
+        "evento0.5": {
+            "dialogs": [
+                {},
+                { "character": "Eshe", "text": "Buenos días Shai." },
+                { "character": "Eshe", "text": "A mi hermano y a mí nos gustaría hablar contigo." },
+                { "character": "Shai", "text": "Claro, ¿qué necesitáis?" },
+                { "character": "Tarik", "text": "Una vez que esta situación termine, voy a acompañar a Eshe en su próximo viaje." },
+                { "character": "Tarik", "text": "Necesito un tiempo lejos del templo." },
+                { "character": "Shai", "text": "¿Tiene que ver con nuestra anterior conversación?" },
+                { "character": "Tarik", "text": "Sí." },
+                { "character": "Tarik", "text": "Me gustaría aclarar mis ideas antes de volver…" },
+                { "character": "Tarik", "text": "O decidir buscar otra cosa a la que dedicarme." },
+                {
+                    "character": "Tarik",
+                    "text": "Me parecería hipócrita de mi parte ser sacerdote en el templo de un dios en el que no puedo confiar.",
+                    "options": [
+                        { "response": "Lo primero que hay que hacer es \ncentrarse en derrotar a Apofis.", "gain": -1, "next": "fragmento_0.5.2", "god": "Ra" },
+                        { "response": "Lo entiendo. Siempre seréis \nbienvenidos en el templo.", "gain": 1, "next": "fragmento_0.5.1", "god": "Ra" },
+                        { "response": "Si esa es tu decisión, ten cuidado.\n Espero que sea lo correcto para ti.", "gain": 0, "next": "fragmento_0.5.1", "god": "Ra" }
+                    ]
+                }
+            ]
         },
 
-        
-            
+        "fragmento_0.5.2": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "Simplemente creí oportuno avisarte de ello antes de tiempo." },
+                { "character": "Tarik", "text": "Soy consciente, no soy un niño." },
+                { "character": "Shai", "text": "No te voy a parar Tarik, es tu vida y tienes que tomar tus propias decisiones." },
+                { "character": "Shai", "text": "Solo creo que te estás precipitando al pensar en ello ahora." },
+                { "character": "Eshe", "text": "Yo creo que no pensar en ello solo le habría hecho mal." },
+                { "character": "Shai", "text": "Puede que tengas razón." },
+                { "character": "Shai", "text": "Solo espero que no signifique que nunca os volveré a ver." },
+                { "character": "Tarik", "text": "Shai, sea cual sea mi decisión final, nada nos va a parar de venir a visitarte." }
+            ]
+        },
+
+        "fragmento_0.5.1": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "Gracias." },
+                { "character": "Eshe", "text": "No te preocupes demasiado por él." },
+                { "character": "Eshe", "text": "No voy a apartarme de su lado, así que si alguien intenta algo se las verá conmigo." },
+                { "character": "Shai", "text": "Te confío su seguridad entonces, Eshe." },
+                { "character": "Tarik", "text": "Sois conscientes de que soy un adulto, ¿verdad?" },
+                { "character": "Eshe", "text": "Como si eso cambiase algo." }
+            ]
+        },
+
+
         "evento2.1": {
             "dialogs": [
                 {},
@@ -340,151 +388,151 @@
         },
 
         "evento2.4": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "Shai…" },
-            { "character": "Shai", "text": "Hola Khalid." },
-            { "character": "Shai", "text": "¿Te encuentras mejor?" },
-            { "character": "Khalid", "text": "No sé." },
-            { "character": "Khalid", "text": "Estoy menos cansado." },
-            { "character": "Shai", "text": "Eso es algo bueno, ¿no?" },
-            { "character": "Khalid", "text": "Supongo." },
-            { "character": "Khalid", "text": "Estoy bastante aburrido." },
-            { "character": "Khalid", "text": "Y solo." },
-            { "character": "Khalid", "text": "No sé qué hacer." },
-            { "character": "Shai", "text": "Es cierto que no hay mucho que puedas hacer ni mucha gente de tu edad por aquí." },
-            { "character": "Khalid", "text": "No me gusta que haya tanta gente." },
-            {
-                "character": "Khalid",
-                "text": "Hacen mucho ruido.",
-                "options": [
-                    {
-                        "response": "¿Quieres salir un rato \ncon alguno de los guardias?",
-                        "gain": 1,
-                        "god": "Anubis",
-                        "next": "fragmento_2.4.1"
-                    },
-                    {
-                        "response": "Lo siento, pero es mejor \nestar aburrido y a salvo.",
-                        "gain": -1,
-                        "god": "Anubis",
-                        "next": "fragmento_2.4.2"
-                    },
-                    {
-                        "response": "Puedo buscar algún otro \nniño con quien puedas jugar.",
-                        "gain": 0,
-                        "god": "Anubis",
-                        "next": "fragmento_2.4.2"
-                    }
-                ]
-            }
-        ]
-    },
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "Shai…" },
+                { "character": "Shai", "text": "Hola Khalid." },
+                { "character": "Shai", "text": "¿Te encuentras mejor?" },
+                { "character": "Khalid", "text": "No sé." },
+                { "character": "Khalid", "text": "Estoy menos cansado." },
+                { "character": "Shai", "text": "Eso es algo bueno, ¿no?" },
+                { "character": "Khalid", "text": "Supongo." },
+                { "character": "Khalid", "text": "Estoy bastante aburrido." },
+                { "character": "Khalid", "text": "Y solo." },
+                { "character": "Khalid", "text": "No sé qué hacer." },
+                { "character": "Shai", "text": "Es cierto que no hay mucho que puedas hacer ni mucha gente de tu edad por aquí." },
+                { "character": "Khalid", "text": "No me gusta que haya tanta gente." },
+                {
+                    "character": "Khalid",
+                    "text": "Hacen mucho ruido.",
+                    "options": [
+                        {
+                            "response": "¿Quieres salir un rato \ncon alguno de los guardias?",
+                            "gain": 1,
+                            "god": "Anubis",
+                            "next": "fragmento_2.4.1"
+                        },
+                        {
+                            "response": "Lo siento, pero es mejor \nestar aburrido y a salvo.",
+                            "gain": -1,
+                            "god": "Anubis",
+                            "next": "fragmento_2.4.2"
+                        },
+                        {
+                            "response": "Puedo buscar algún otro \nniño con quien puedas jugar.",
+                            "gain": 0,
+                            "god": "Anubis",
+                            "next": "fragmento_2.4.2"
+                        }
+                    ]
+                }
+            ]
+        },
 
-    "fragmento_2.4.1": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "¿De verdad?" },
-            { "character": "Khalid", "text": "¿Puedo?" },
-            { "character": "Shai", "text": "Siempre que prometas tener cuidado y hacer caso a quien vaya contigo." },
-            { "character": "Khalid", "text": "¡Vale!" },
-            { "character": "Shai", "text": "Y volved antes de que empiece a anochecer." },
-            { "character": "Khalid", "text": "No soy tonto." },
-            { "character": "Khalid", "text": "No quiero que la serpiente me coma." },
-            { "character": "Shai", "text": "¿Entonces me lo prometes?" },
-            { "character": "Khalid", "text": "Te lo prometo." },
-            { "character": "Khalid", "text": "Gracias." }
-        ]
-    },
+        "fragmento_2.4.1": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "¿De verdad?" },
+                { "character": "Khalid", "text": "¿Puedo?" },
+                { "character": "Shai", "text": "Siempre que prometas tener cuidado y hacer caso a quien vaya contigo." },
+                { "character": "Khalid", "text": "¡Vale!" },
+                { "character": "Shai", "text": "Y volved antes de que empiece a anochecer." },
+                { "character": "Khalid", "text": "No soy tonto." },
+                { "character": "Khalid", "text": "No quiero que la serpiente me coma." },
+                { "character": "Shai", "text": "¿Entonces me lo prometes?" },
+                { "character": "Khalid", "text": "Te lo prometo." },
+                { "character": "Khalid", "text": "Gracias." }
+            ]
+        },
 
-    "fragmento_2.4.2": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "Oh." },
-            { "character": "Khalid", "text": "Vale." },
-            { "character": "Khalid", "text": "¿No puedo salir un rato?" },
-            { "character": "Shai", "text": "Khalid, eso es peligroso." },
-            { "character": "Khalid", "text": "Pero no voy a molestar a nadie." },
-            { "character": "Shai", "text": "Ese no es el problema." },
-            { "character": "Shai", "text": "Un niño no debería estar solo en la situación en la que estamos." },
-            { "character": "Khalid", "text": "¿Y si convenzo a un adulto de que venga conmigo?" },
-            { "character": "Shai", "text": "…" },
-            { "character": "Shai", "text": "Está bien, pero solo un rato." },
-            { "character": "Shai", "text": "No esperéis a que se haga de noche." },
-            { "character": "Shai", "text": "Y no molestes a la gente que esté trabajando." },
-            { "character": "Khalid", "text": "Vale." }
-        ]
-    },
+        "fragmento_2.4.2": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "Oh." },
+                { "character": "Khalid", "text": "Vale." },
+                { "character": "Khalid", "text": "¿No puedo salir un rato?" },
+                { "character": "Shai", "text": "Khalid, eso es peligroso." },
+                { "character": "Khalid", "text": "Pero no voy a molestar a nadie." },
+                { "character": "Shai", "text": "Ese no es el problema." },
+                { "character": "Shai", "text": "Un niño no debería estar solo en la situación en la que estamos." },
+                { "character": "Khalid", "text": "¿Y si convenzo a un adulto de que venga conmigo?" },
+                { "character": "Shai", "text": "…" },
+                { "character": "Shai", "text": "Está bien, pero solo un rato." },
+                { "character": "Shai", "text": "No esperéis a que se haga de noche." },
+                { "character": "Shai", "text": "Y no molestes a la gente que esté trabajando." },
+                { "character": "Khalid", "text": "Vale." }
+            ]
+        },
 
-    "evento2.5": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "¡Shai!" },
-            { "character": "Khalid", "text": "Hola." },
-            { "character": "Shai", "text": "Buen día Khalid, ¿qué tal fue tu paseo?" },
-            { "character": "Khalid", "text": "Bien." },
-            { "character": "Khalid", "text": "Encontré un amigo." },
-            { "character": "Shai", "text": "¿Un niño en medio del desierto?" },
-            { "character": "Khalid", "text": "No." },
-            { "character": "Khalid", "text": "Un perro." },
-            { "character": "Khalid", "text": "Mira." },
-            { "character": "Shai", "text": "Eh…" },
-            { "character": "Shai", "text": "Khalid, eso es un chacal." },
-            { "character": "Khalid", "text": "No." },
-            { "character": "Khalid", "text": "Es mi perro." },
-            {
-                "character": "Khalid",
-                "text": "Se llama Perro.",
-                "options": [
-                    {
-                        "response": "¿Tu chacal se llama Perro?",
-                        "gain": 0,
-                        "god": "Anubis",
-                        "next": "fragmento_2.5.1"
-                    },
-                    {
-                        "response": "No puedes meter un chacal en el templo, Khalid.",
-                        "gain": -1,
-                        "god": "Anubis",
-                        "next": "fragmento_2.5.2"
-                    },
-                    {
-                        "response": "Me alegro de que hayas encontrado un amigo.",
-                        "gain": 1,
-                        "god": "Anubis",
-                        "next": "fragmento_2.5.1"
-                    }
-                ]
-            }
-        ]
-    },
+        "evento2.5": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "¡Shai!" },
+                { "character": "Khalid", "text": "Hola." },
+                { "character": "Shai", "text": "Buen día Khalid, ¿qué tal fue tu paseo?" },
+                { "character": "Khalid", "text": "Bien." },
+                { "character": "Khalid", "text": "Encontré un amigo." },
+                { "character": "Shai", "text": "¿Un niño en medio del desierto?" },
+                { "character": "Khalid", "text": "No." },
+                { "character": "Khalid", "text": "Un perro." },
+                { "character": "Khalid", "text": "Mira." },
+                { "character": "Shai", "text": "Eh…" },
+                { "character": "Shai", "text": "Khalid, eso es un chacal." },
+                { "character": "Khalid", "text": "No." },
+                { "character": "Khalid", "text": "Es mi perro." },
+                {
+                    "character": "Khalid",
+                    "text": "Se llama Perro.",
+                    "options": [
+                        {
+                            "response": "¿Tu chacal se llama Perro?",
+                            "gain": 0,
+                            "god": "Anubis",
+                            "next": "fragmento_2.5.1"
+                        },
+                        {
+                            "response": "No puedes meter un chacal en el templo, Khalid.",
+                            "gain": -1,
+                            "god": "Anubis",
+                            "next": "fragmento_2.5.2"
+                        },
+                        {
+                            "response": "Me alegro de que hayas encontrado un amigo.",
+                            "gain": 1,
+                            "god": "Anubis",
+                            "next": "fragmento_2.5.1"
+                        }
+                    ]
+                }
+            ]
+        },
 
-    "fragmento_2.5.1": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "¡Sí!" },
-            { "character": "Khalid", "text": "Y hace menos ruido que la gente." },
-            { "character": "Shai", "text": "Creo haber leído que los chacales hacen mucho ruido por las noches." },
-            { "character": "Khalid", "text": "Da igual." },
-            { "character": "Khalid", "text": "Perro no es un chacal." },
-            { "character": "Khalid", "text": "Y si hace ruido por la noche a lo mejor asusta a La Serpiente." },
-            { "character": "Shai", "text": "Sería una bonita sorpresa, sin duda." }
-        ]
-    },
+        "fragmento_2.5.1": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "¡Sí!" },
+                { "character": "Khalid", "text": "Y hace menos ruido que la gente." },
+                { "character": "Shai", "text": "Creo haber leído que los chacales hacen mucho ruido por las noches." },
+                { "character": "Khalid", "text": "Da igual." },
+                { "character": "Khalid", "text": "Perro no es un chacal." },
+                { "character": "Khalid", "text": "Y si hace ruido por la noche a lo mejor asusta a La Serpiente." },
+                { "character": "Shai", "text": "Sería una bonita sorpresa, sin duda." }
+            ]
+        },
 
-    "fragmento_2.5.2": {
-        "dialogs": [
-            {},
-            { "character": "Khalid", "text": "Pero Perro no es un chacal." },
-            { "character": "Khalid", "text": "Y es mi amigo." },
-            { "character": "Shai", "text": "Me alegro de que te lo hayas pasado bien, pero es un animal salvaje." },
-            { "character": "Shai", "text": "Te podría morder a ti o a alguno de los otros habitantes del templo." },
-            { "character": "Shai", "text": "Por favor, mañana deja a Perro donde lo encontraste." },
-            { "character": "Shai", "text": "Puedes ir a visitarlo fuera cuando salgas a dar un paseo." },
-            { "character": "Khalid", "text": "Jo." },
-            { "character": "Khalid", "text": "Vale." }
-        ]
-    },
+        "fragmento_2.5.2": {
+            "dialogs": [
+                {},
+                { "character": "Khalid", "text": "Pero Perro no es un chacal." },
+                { "character": "Khalid", "text": "Y es mi amigo." },
+                { "character": "Shai", "text": "Me alegro de que te lo hayas pasado bien, pero es un animal salvaje." },
+                { "character": "Shai", "text": "Te podría morder a ti o a alguno de los otros habitantes del templo." },
+                { "character": "Shai", "text": "Por favor, mañana deja a Perro donde lo encontraste." },
+                { "character": "Shai", "text": "Puedes ir a visitarlo fuera cuando salgas a dar un paseo." },
+                { "character": "Khalid", "text": "Jo." },
+                { "character": "Khalid", "text": "Vale." }
+            ]
+        },
 
 
 
@@ -518,8 +566,74 @@
                 { "character": "Adio", "text": "Antes de retirarme, ¿cómo debería dirigirme a ti?" },
                 { "character": "Shai", "text": "Mi nombre es Shai." }
             ]
+        },
+
+        "evento4.2": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento4.3": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento4.4": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento4.5": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento5.1": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento5.2": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento5.3": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento5.4": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
+        },
+        "evento5.5": {
+            "dialogs": [
+                {},
+                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                
+            ]
         }
     }
+
+    
     
 }
      

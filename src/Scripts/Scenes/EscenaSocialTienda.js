@@ -116,7 +116,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
         botonDch.setInteractive();
         botonDch.setScale(0.25);
         
-        botonDch.setPosition(width - botonDch.width / 4, height / 2);
+        botonDch.setPosition(width - botonDch.width / 4 + 50, height / 2);
 
         if(this.inventory.day == 1)
         {
@@ -257,6 +257,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             var ImagenesEsheTarik = ['EsheTarikChibi','EsheTarikNo','EsheTarikT','EsheTarikE'];
             var ImagenesAdio = ['AdioChibi','AdioNo','Adio',];
             var ImagenesKhalid = ['KhalidChibi','KhalidNo','Khalid'];
+            var ImagenesZiyad = ['ZiyadChibi','ZiyadNo','Ziyad'];
 
             var ListaPersonajes = [];
 
@@ -270,6 +271,10 @@ export default class EscenaSocialTienda extends Phaser.Scene {
             ListaPersonajes[4] = new Character(this, this.sys.game.canvas.width / 2 -750, this.sys.game.canvas.height/2 + 200, ImagenesAdio, 4);
             if(this.inventory.day == 1) ListaPersonajes[4].cooldown = 0;
             else ListaPersonajes[4].switchDisponible();
+
+            ListaPersonajes[5] = new Character(this, this.sys.game.canvas.width / 2 +750, this.sys.game.canvas.height/2 + 200, ImagenesZiyad, 5);
+            if(this.inventory.day == 1) ListaPersonajes[5].cooldown = 0;
+            else ListaPersonajes[5].switchDisponible();
             
             this.reader = new ReadDialog(this);  // Instanciar ReadDialog
 
@@ -315,7 +320,7 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
                         
 
-
+                        ListaPersonajes[personaje.num].cooldown = -1;
                         stage++;
                         personaje.centerPosition();
                         personaje.switchDisponible();
@@ -330,6 +335,9 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
 
                     } 
+                    else{
+                        console.log("No se ha encontrado el " + eventoId);
+                    }
                 });
             });
 
@@ -374,10 +382,12 @@ export default class EscenaSocialTienda extends Phaser.Scene {
 
             this.showAllCharacters = () => {
                 ListaPersonajes.forEach((personaje) => {
+                    
 
                     personaje.volverDisponible(); //cooldown de personaje
 
-                    if (personaje.disponible == true && stage < 3) {
+                    if (personaje.disponible == true && stage < 3 && this.inventory.EventList[personaje.num]<6) 
+                    {
 
                         personaje.originalPosition();
                         personaje.sprite.setVisible(true);

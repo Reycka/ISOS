@@ -21,7 +21,7 @@ export default class Inventory{
             this.day = 1;
             this.affreg = new AffinityRegister();
 
-        for (var i=0; i<5; i++)
+        for (var i=0; i<6; i++)
         {
             this.EventList[i] = 1;
         }

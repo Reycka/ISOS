@@ -501,7 +501,7 @@ desactiveSinergy(dios){
 			}
 		}
 		this.barradeprogresobacgound = this.add.rectangle(((this.sys.game.canvas.width)/2),this.sys.game.canvas.height*14.15/ 15, 1000,60,0xffffffff)
-		this.barradeprogreso = this.add.rectangle(((this.sys.game.canvas.width)/2)-500,this.sys.game.canvas.height*14.15/ 15, 1000,50,0xff00ff00)
+		this.barradeprogreso = this.add.rectangle(((this.sys.game.canvas.width)/2)-500,this.sys.game.canvas.height*14.15/ 15, 1000,50,0xdaa520)
 
 		this.barradeprogreso.setOrigin(0,0.5);
 		this.barradeprogreso.setScale(0.5,1);

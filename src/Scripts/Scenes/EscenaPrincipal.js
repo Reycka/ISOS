@@ -21,7 +21,8 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('BotonComenzar','src/Assets/Finales/boton_comenzar.png');
 		this.load.image('IMPORTANTITISISISMOCLAVEINDISPENSABLE','src/Assets/raizclaveimportantisimadelproyecto.jpg')
 		this.load.image('BotonSalir','src/Assets/Finales/boton_salir.png');
-		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal Heartbeat Main.WAV')
+
+		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/EtherealHeartbeatMain.wav')
 		this.oleada1 = 1;
 
 		//ESCENA SOCIALIZAR
@@ -70,9 +71,9 @@ export default class EscenaPrincipal extends Phaser.Scene {
 				this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
 				this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
 				//Audio
-				this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.WAV')
-				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.WAV')
-				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
+				this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/EtherealGoldenCloudsMain.wav')
+				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/EtherealLuminesceIntensity2.wav')
+				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FXMagicDeck004.wav')
 
 		//ESCENA DE COMBATE 
 		//BACKGROUND IMAGEN
@@ -151,23 +152,170 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
 
 		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.WAV')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.WAV')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.WAV')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.WAV')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.WAV')
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.wav')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.wav')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.wav')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.wav')
 
 		//SFX
-		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.WAV')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.WAV')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.WAV')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.WAV')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.WAV')
+		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.wav')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.wav')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.wav')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.wav')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.wav')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.wav')
 
 	}
 	
 	create() {
+		//animaciones
+		this.anims.create({
+			key: 'LAIDLE',
+			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GIDLE',
+			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MIDLE',
+			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HIDLE',
+			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CIDLE',
+			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAIDLE',
+			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'LAA',
+			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GA',
+			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MA',
+			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HA',
+			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CA',
+			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAA',
+			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
+		//animaciones enemigos
+		this.anims.create({
+			key: 'ELAIDLE',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGIDLE',
+			frames: this.anims.generateFrameNumbers('EG', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMIDLE',
+			frames: this.anims.generateFrameNumbers('EM', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHIDLE',
+			frames: this.anims.generateFrameNumbers('EH', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECIDLE',
+			frames: this.anims.generateFrameNumbers('EC', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAIDLE',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ELAA',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGA',
+			frames: this.anims.generateFrameNumbers('EG', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMA',
+			frames: this.anims.generateFrameNumbers('EM', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHA',
+			frames: this.anims.generateFrameNumbers('EH', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECA',
+			frames: this.anims.generateFrameNumbers('EC', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAA',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
 		var importante = this.add.image(this.sys.game.canvas.width / 2,300,'IMPORTANTITISISISMOCLAVEINDISPENSABLE');
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});

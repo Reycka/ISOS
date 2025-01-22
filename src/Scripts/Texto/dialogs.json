@@ -198,10 +198,54 @@
         "evento0.5": {
             "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
+                { "character": "Eshe", "text": "Buenos días Shai." },
+                { "character": "Eshe", "text": "A mi hermano y a mí nos gustaría hablar contigo." },
+                { "character": "Shai", "text": "Claro, ¿qué necesitáis?" },
+                { "character": "Tarik", "text": "Una vez que esta situación termine, voy a acompañar a Eshe en su próximo viaje." },
+                { "character": "Tarik", "text": "Necesito un tiempo lejos del templo." },
+                { "character": "Shai", "text": "¿Tiene que ver con nuestra anterior conversación?" },
+                { "character": "Tarik", "text": "Sí." },
+                { "character": "Tarik", "text": "Me gustaría aclarar mis ideas antes de volver…" },
+                { "character": "Tarik", "text": "O decidir buscar otra cosa a la que dedicarme." },
+                {
+                    "character": "Tarik",
+                    "text": "Me parecería hipócrita de mi parte ser sacerdote en el templo de un dios en el que no puedo confiar.",
+                    "options": [
+                        { "response": "Lo primero que hay que hacer es \ncentrarse en derrotar a Apofis.", "gain": -1, "next": "fragmento_0.5.2", "god": "Ra" },
+                        { "response": "Lo entiendo. Siempre seréis \nbienvenidos en el templo.", "gain": 1, "next": "fragmento_0.5.1", "god": "Ra" },
+                        { "response": "Si esa es tu decisión, ten cuidado.\n Espero que sea lo correcto para ti.", "gain": 0, "next": "fragmento_0.5.1", "god": "Ra" }
+                    ]
+                }
             ]
         },
+
+        "fragmento_0.5.2": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "Simplemente creí oportuno avisarte de ello antes de tiempo." },
+                { "character": "Tarik", "text": "Soy consciente, no soy un niño." },
+                { "character": "Shai", "text": "No te voy a parar Tarik, es tu vida y tienes que tomar tus propias decisiones." },
+                { "character": "Shai", "text": "Solo creo que te estás precipitando al pensar en ello ahora." },
+                { "character": "Eshe", "text": "Yo creo que no pensar en ello solo le habría hecho mal." },
+                { "character": "Shai", "text": "Puede que tengas razón." },
+                { "character": "Shai", "text": "Solo espero que no signifique que nunca os volveré a ver." },
+                { "character": "Tarik", "text": "Shai, sea cual sea mi decisión final, nada nos va a parar de venir a visitarte." }
+            ]
+        },
+
+        "fragmento_0.5.1": {
+            "dialogs": [
+                {},
+                { "character": "Tarik", "text": "Gracias." },
+                { "character": "Eshe", "text": "No te preocupes demasiado por él." },
+                { "character": "Eshe", "text": "No voy a apartarme de su lado, así que si alguien intenta algo se las verá conmigo." },
+                { "character": "Shai", "text": "Te confío su seguridad entonces, Eshe." },
+                { "character": "Tarik", "text": "Sois conscientes de que soy un adulto, ¿verdad?" },
+                { "character": "Eshe", "text": "Como si eso cambiase algo." }
+            ]
+        },
+
+
         "evento2.1": {
             "dialogs": [
                 {},

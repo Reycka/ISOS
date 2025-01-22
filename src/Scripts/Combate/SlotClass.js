@@ -102,7 +102,7 @@ export default class SlotClass extends Phaser.GameObjects.Sprite{
                 this.ocupada = true;
                 this._unittexture = _unit.unittexture;
                 this.setTexture(this.unit.unittexture);
-                this.setScale(0.16);
+                this.setScale(0.78);
                 
                this.anims.play(this.unit.unittexture+'IDLE', true);	
                 

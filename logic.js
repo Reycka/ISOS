@@ -63,7 +63,7 @@ const images = [
     {
         src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/ZiyadWeb.png?raw=true",
         title: "ZIYAD",
-        description: "aaaa"
+        description: "Mago dedicado al camino de Seth, lo que le provoca una gran cantidad de conflictos con el resto del mundo."
     }
     // Agrega más objetos de imagen según sea necesario
 ];

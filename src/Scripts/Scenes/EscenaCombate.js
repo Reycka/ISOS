@@ -66,7 +66,7 @@ Win(){
 				if(this.oleada == 3) {
 					this.scene.start('EscenaCreditos',{oleada: this.oleada, inventario: this.inventory})
 				}
-				else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
+				else this.scene.start('EscenaSocialTienda',{oleada: this.oleada + 1, inventario: this.inventory});
 			})
 	
 	}

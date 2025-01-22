@@ -63,7 +63,7 @@ Win(){
 			Returndefeat.setInteractive();			
 			Returndefeat.on('pointerup', pointer =>{
 				this.endCombatSound.stop();
-				if(this.oleada == 3) {
+				if(this.oleada == 4) {
 					this.scene.start('EscenaCreditos',{oleada: this.oleada, inventario: this.inventory})
 				}
 				else this.scene.start('EscenaSocialTienda',{oleada: this.oleada + 1, inventario: this.inventory});

@@ -596,27 +596,134 @@
                 
             ]
         },
-        "evento5.1": {
-            "dialogs": [
+        
+            "evento5.1": {
+              "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
-            ]
-        },
-        "evento5.2": {
-            "dialogs": [
+                { "character": "Shai", "text": "Buenos días." },
+                { "character": "Shai", "text": "¿Hay algún motivo por el qué estés escondido en una esquina del templo?" },
+                { "character": "???", "text": "Hola." },
+                { "character": "???", "text": "Me preguntaba cuando algún encargado del templo tardaría en darse cuenta de mi presencia." },
+                { "character": "Shai", "text": "No me malinterpretes, simplemente me gustaría saber por qué te escondes." },
+                { "character": "???", "text": "Quería descansar un rato antes de que alguien me intentara echar." },
+                { "character": "???", "text": "Estoy algo cansado de la gente acusandome de realizar blasfemias." },
+                { "character": "Shai", "text": "Asumo que eres un mago entonces." },
+                { "character": "Shai", "text": "¿Qué tan malo puede ser?" },
+                { "character": "???", "text": "Me caes bien." },
+                { "character": "???", "text": "Me llamo Ziyad, soy un seguidor de Seth." },
+                { "character": "Shai", "text": "Encantado, yo me llamo Shai." },
+                { "character": "Ziyad", "text": "Me voy a ir yendo antes de que alguien más se de cuenta de que estoy aquí." },
+                {
+                    "character": "Ziyad",
+                    "text": "Ha estado bien conocerte.",
+                    "options": [
+                        { "response": "Puedes quedarte. Aquí todo el \nmundo es bienvenido.", "gain": 1, "god": "Seth", "next": "fragmento_5.1.1" },
+                        { "response": "No te voy a echar, pero ten cuidado\n con que no te vean. No quiero problemas.", "gain": -1, "god": "Seth", "next": "fragmento_5.1.2" }
+                       
+                    ]
+                }
+               
+              ]
+            },
+            "fragmento_5.1.1": {
+              "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
-            ]
-        },
-        "evento5.3": {
-            "dialogs": [
+                { "character": "Ziyad", "text": "Oh." },
+                { "character": "Ziyad", "text": "No me esperaba esa reacción." },
+                { "character": "Ziyad", "text": "Nos vemos, Shai." }
+              ]
+            },
+            "fragmento_5.1.2": {
+              "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
-            ]
-        },
+                { "character": "Ziyad", "text": "Entendido." }
+              ]
+            },
+
+            "evento5.2": {
+              "dialogs": [
+                {},
+                { "character": "Ziyad", "text": "Hola Shai." },
+                { "character": "Shai", "text": "Ziyad." },
+                { "character": "Shai", "text": "¿Cómo has estado?" },
+                { "character": "Ziyad", "text": "Bastante entretenido la verdad." },
+                { "character": "Ziyad", "text": "Entre matar sombras por la noche y evitar peleas por el día no me he aburrido en ningún momento." },
+                { "character": "Shai", "text": "¿Peleas?" },
+                { "character": "Shai", "text": "¿Necesitas que hable con alguien para que te dejen tranquilo?" },
+                { "character": "Ziyad", "text": "No ha sido grave no te preocupes." },
+                { "character": "Ziyad", "text": "Simplemente estaba comiendo mi ensalada cuando un hombre encantador ha decidido que amenazarme era buena idea." },
+                {
+                    "character": "Ziyad",
+                    "text": " No le ha hecho gracia que quemase su Khopesh.",
+                    "options": [
+                        { "response": "Es increíble que haya personas que no vean que \n si no peleamos entre nosotros, nunca podremos derrotar a Apofis.", "gain": 1, "god": "Seth" },
+                        { "response": "Hablo enserio Ziyad, si necesitas ayuda, avísame.", "gain": 0, "god": "Seth" },
+                        { "response": "Tiene que haber sido una escena curiosa.", "gain": 1, "god": "Seth" }
+                       
+                    ]
+                },
+                { "character": "Ziyad", "text": "Estoy acostumbrado." },
+                { "character": "Ziyad", "text": "Son las consecuencias de mis propias decisiones." },
+                { "character": "Shai", "text": "¿Por qué elegir a Seth? Tengo curiosidad." },
+                { "character": "Shai", "text": "Podrías haberte dedicado a cualquier otro patrón si lo que necesitabas era magia." },
+                { "character": "Ziyad", "text": "No elegí a Seth, simplemente fue el que me ayudó cuando lo necesitaba." },
+                { "character": "Ziyad", "text": "No puedo decir lo mismo de otros dioses." },
+                { "character": "Ziyad", "text": "¿Y a ti, qué te llevó a Ra?" },
+                { "character": "Shai", "text": "Asumes que sé usar magia." },
+                { "character": "Ziyad", "text": "¿Me equivoco?" },
+                { "character": "Shai", "text": "No." },
+                { "character": "Shai", "text": "Simplemente era la más natural para mí." },
+                { "character": "Ziyad", "text": "Interesante." }
+              ]
+            },
+            "evento5.3": {
+              "dialogs": [
+                {},
+                { "character": "Ziyad", "text": "Shai, una pregunta." },
+                { "character": "Shai", "text": "¿Sí?" },
+                { "character": "Ziyad", "text": "¿Sabes por qué ha habido un apuesto chico mirándome fijamente durante los últimos días?" },
+                { "character": "Ziyad", "text": "No me voy a quejar, es bastante mono, pero prefiero que me hablen a la cara." },
+                { "character": "Shai", "text": "…" },
+                { "character": "Shai", "text": "No sé si estás bromeando o no." },
+                { "character": "Ziyad", "text": "Para nada." },
+                { "character": "Ziyad", "text": "Pero de verdad quiero saber qué le pasa." },
+                { "character": "Ziyad", "text": "Cuando alguien tiene un problema conmigo suele haber mucho más gritos y menos observación." },
+                { "character": "Shai", "text": "¿Y me lo preguntas a mí por…?" },
+                {
+                    "character": "Ziyad",
+                    "text": "Es tu templo, supuse que conocerías a la gente.",
+                    "options": [
+                        { "response": "Creo que simplemente es demasiado educado para gritarte.", "gain": 1, "god": "Seth", "next": "fragmento_5.3.1" },
+                        { "response": "¿Por qué no pruebas a hablarle tú?", "gain": 1, "god": "Seth", "next": "fragmento_5.3.2" },
+                        { "response": "Sinceramente, no quiero involucrarme en esto", "gain": 0, "god": "Seth", "next": "fragmento_5.3.1" }
+                       
+                    ]
+                }
+             
+              ]
+            },
+            "fragmento_3.3.1": {
+              "dialogs": [
+                {},
+                { "character": "Ziyad", "text": "Totalmente entendible." },
+                { "character": "Ziyad", "text": "Al menos me da más entretenimiento en este lugar." },
+                { "character": "Ziyad", "text": "Ninguna ofensa a tu templo Shai, es precioso." },
+                { "character": "Ziyad", "text": "La gente sin embargo…" },
+                { "character": "Shai", "text": "Ninguna tomada." }
+              ]
+            },
+            "fragmento_3.3.2": {
+              "dialogs": [
+                {},
+                { "character": "Ziyad", "text": "…" },
+                { "character": "Ziyad", "text": "¿Sabes qué? No es una mala idea." },
+                { "character": "Ziyad", "text": "Tiene potencial de ser muy entretenido." },
+                { "character": "Ziyad", "text": "Gracias por la idea Shai." },
+                { "character": "Shai", "text": "… A veces me das miedo, y no por el mismo motivo que al resto." }
+              ]
+            }
+          },
+          
         "evento5.4": {
             "dialogs": [
                 {},
@@ -631,7 +738,7 @@
                 
             ]
         }
-    }
+    
 
     
     

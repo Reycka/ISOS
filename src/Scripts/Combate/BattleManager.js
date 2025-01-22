@@ -11,8 +11,11 @@ export default class BattleManager {
     victory = false;
     defeat = false;
     scene;
+    numplayertrops= 12;
+    numenemiestrops = 12;
     auxd;
     auxv;
+    onbattle = false;
     target = false;
     jeros = new Jeroglifico();
     uxunitchange;
@@ -44,6 +47,7 @@ export default class BattleManager {
             this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+            
         }
         else if(this.card != null && this.mat.mat[posX][posY].ocupada == true){
             this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
@@ -52,11 +56,13 @@ export default class BattleManager {
             this.SetJeroglifico(this.card,true);
             this.card = null;
             this._texture = null;
+           
         }
         else if(this.card == null && this.mat.mat[posX][posY].ocupada == true){
             this.auxcard =  this.mat.mat[posX][posY].GetUnit().whichcard.inventoryindex;
             this.SetJeroglifico(this.mat.mat[posX][posY].GetUnit().whichcard,false);
             this.mat.mat[posX][posY].SetUnit();
+        
         }
     }
     GetVictory() {
@@ -71,16 +77,20 @@ export default class BattleManager {
     liberacion de casillas y la victoria o derrota
     */
     Battle() {
+        this.onbattle = true;
         if (this.victory == false && this.defeat == false) {
             //comprobamos las unidades que pueden atacar de la matriz aliada
             //boooleanos para comprobar si quedan tropas
             this.auxv = true;
             this.auxd = true;
+            this.numplayertrops = 0;
+            this.numenemiestrops = 0;
             //Primer bucle que ejecuta todos los updates de la matriz aliada
             for (var i = 0; i < this.mat.row; i++) {
                 for (var j = 0; j < this.mat.col; j++) {
                     this.target = false;
                     if (this.mat.mat[i][j].GetState()) {
+                        this.numplayertrops++;
                         //comprobamos si esta lista
                         if(this.mat.mat[i][j].unit.actcooldown==1){
                             this.mat.mat[i][j].AttackMove(false);
@@ -88,7 +98,6 @@ export default class BattleManager {
                         if (this.mat.mat[i][j].GetUnit().isready) {
                             //En caso de ser healer le pasamos unidades aliadas
                             if (this.mat.mat[i][j].GetUnit().IsaHealer()) {
-                                console.log("entro a curar y eso");
                                 if ((i - 1) != -1) {
                                     if (this.mat.mat[i - 1][j].GetState()) {
                                         this.mat.mat[i][j].GetUnit().Update(this.mat.mat[i - 1][j].GetUnit())
@@ -136,7 +145,6 @@ export default class BattleManager {
                                             if (j == 0) {
                                                 if (this.mat.mat[this.indiceaux][j + 1].GetState()) {
                                                     this.encontrado = true;
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
@@ -153,14 +161,12 @@ export default class BattleManager {
                                             if (this.indiceaux == 0) {
                                                 if (this.mat.mat[this.indiceaux+1][j].GetState()) {
                                                     this.encontrado = true;
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
                                             }     
                                         }
                                         this.indiceaux+=1;
-                                        console.log(this.indiceaux);
                                     }
                                 }
                             }
@@ -235,7 +241,6 @@ export default class BattleManager {
                                                 if (this.enemymatriz.Enemymat.mat[this.indiceaux][j + 1].GetState()) {
                                                     this.encontrado = true;
                                                     this.auxunitchange = this.enemymatriz.Enemymat.mat[i][j];
-                                                    console.log(this.mat.mat[i][j].GetUnit()._unittexture)
                                                     this.mat.mat[this.indiceaux][j].SetUnit(this.mat.mat[i][j].GetUnit());
                                                     this.mat.mat[i][j].SetFree();
                                                 }
@@ -261,6 +266,7 @@ export default class BattleManager {
                         this.victory = true;
                     }
                     if (this.enemymatriz.Enemymat.mat[i][j].GetState()) {
+                        this.numenemiestrops++;
                         if(this.enemymatriz.Enemymat.mat[i][j].unit.actcooldown==1){
                             this.enemymatriz.Enemymat.mat[i][j].AttackMove(true);
                         }
@@ -298,10 +304,8 @@ export default class BattleManager {
                                 if ((j + 1) < this.mat.col) {
                                     if (this.mat.mat[i][j + 1].GetState()) {
                                         this.enemymatriz.Enemymat.mat[i][j].GetUnit().Update(this.mat.mat[i][j + 1].GetUnit())
-                                        //  console.log("esta la unidad viva"+this.mat.mat[i][j+1].GetUnit().isalife)
                                         if (this.mat.mat[i][j + 1].GetUnit().isalife == false) {
                                             this.mat.mat[i][j + 1].SetFree();
-                                            //   console.log("casilla liberada"+i+j+1);
                                         } else this.mat.mat[i][j + 1].Getdamage();
                                         this.target = true;
                                     }
@@ -368,7 +372,6 @@ export default class BattleManager {
     ApplySinergy(dios) { //El dios representa al número del array de jeroglificos
         let Sinergias = true; //Asumimos que tenemos todos los jeroglificos con su isActive a true.
 
-        //console.log(this.jeros[dios]);
 
         for (let i = 0; i < this.jeros.getSize(dios); ++i) {
             if (this.jeros.getIsActive(dios, i) == false) {

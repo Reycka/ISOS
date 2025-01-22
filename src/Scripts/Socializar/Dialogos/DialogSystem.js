@@ -8,8 +8,6 @@ export default class DialogSystem {
         this.inventory = _inventory;
         this.Dialogues = allDialogues;
 
-        console.log(allDialogues)
-
 
         if (!(this.inventory instanceof Inventory)) {
             console.error("Error: `inventory` no es una instancia de Inventory");
@@ -50,7 +48,6 @@ export default class DialogSystem {
 
     showEventDialogues(eventId, allDialogues) {
 
-        console.log('allDialogues');
         const eventDialogues = allDialogues[eventId];
         if (!eventDialogues) return;
 
@@ -193,7 +190,7 @@ export default class DialogSystem {
 
 
     handleOptionSelection(gain, option) {
-        //console.log(`Opción seleccionada: ${gain}`);
+
 
         if(gain == -1){
 
@@ -204,7 +201,7 @@ export default class DialogSystem {
         if(gain === 0){
 
             this.inventory.AddGift(1);
-            //console.log(this.inventory);
+
 
             if(option.god == "Seth"){
 
@@ -221,7 +218,7 @@ export default class DialogSystem {
         if(gain === 1){
 
             this.inventory.AddGift(2);
-            //console.log(this.inventory);
+
 
             if(option.god == "Seth"){
 
@@ -234,7 +231,7 @@ export default class DialogSystem {
         }
 
         if (option.next) {
-            //console.log(`Opción con 'next' encontrada: ${option.response} -> next: ${option.next}`);
+
             this.showEventDialogues(option.next, this.Dialogues);
         }
         else{

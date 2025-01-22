@@ -39,7 +39,6 @@ class Character {
     switchDisponible() {
 
         this.disponible = !this.disponible
-        console.log("Char:", this.num, "Disponible:", this.disponible, "Cooldown", this.cooldown);
 
         if(this.disponible){
 
@@ -62,8 +61,6 @@ class Character {
             this.cooldown++;
         }
 
-        console.log("disponible:", this.disponible, "turno:", this.cooldown)
-
     }
 
 
@@ -83,8 +80,6 @@ class Character {
         this.sprite.setScale(0.6,0.6);
 
         
-
-        console.log(this.x,this.y);
     }
 
     originalPosition()

@@ -26,33 +26,27 @@ export default class AlteredStateClass{
             switch (index) {
                 case 0: // Osiris - Probabilidad de revivir
                     unit.addReviveChance(0.1); // 10% de probabilidad de revivir
-                    console.log("ESTADO ALTERADO ACTIVADO: PROBABILIDAD DE REVIVIR ALIADA");
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: PROBABILIDAD DE REVIVIR ALIADA");
                     break;
                 case 1: // Ra - Quemadura
                     unit.applyBurn(2, 3); // 2 de daño 3 veces
-                    console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE QUEMADURA ENEMIGA");
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE QUEMADURA ENEMIGA");
                     break;
                 case 2: // Anubis - Instakill
                     unit.addInstakillChance(0.1); // 10% de probabilidad de hacer instakill
-                    console.log("ESTADO ALTERADO ACTIVADO: PROBABILIDAD DE INSTAKILL ALIADA");
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: PROBABILIDAD DE INSTAKILL ALIADA");
                     break;
                 case 3: // Isis - Cura periódica
                     unit.applyPeriodicHeal(0.05); // 5% de curación periodica por turno
-                    console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE CURACIÓN PROGRESIVA ALIADA");
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE CURACIÓN PROGRESIVA ALIADA");
                     break;
                 case 4: // Horus - Ceguera
                     unit.addBlindChance(0.15); // 15% de probabilidad de falla
-                    console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE CEGUEA ENEMIGA");
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: APLICACIÓN DE CEGUEA ENEMIGA");
                     break;
                 case 5: // Seth - Aumento de daño
                     unit.boostAttack(0.2); // Incrementa el ataque un 20%.
-                    console.log("ESTADO ALTERADO ACTIVADO: ATAQUE AUMENTADO")
-                    //FUNCIONA
+                    //console.log("ESTADO ALTERADO ACTIVADO: ATAQUE AUMENTADO")
                     break;
             }
         }

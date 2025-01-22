@@ -17,9 +17,12 @@ export default class EscenaCombate extends Phaser.Scene {
 	enemymatriz;
 	matimg;
 	inventory;
-	inventoryindex = 0;
+	inventoryindex;
 	battleManager;
-	oleada
+	oleada;
+	BattleParticles;
+	HealParticles;
+	cronometro;
 	//SOUNDS
 	preCombatSound;
 	combatSound;
@@ -28,84 +31,14 @@ export default class EscenaCombate extends Phaser.Scene {
 		super({ key: 'EscenaCombate' });
 	}
 	init(data){
+		this.inventoryindex = 0;
 		this.oleada = data.oleada;
 		this.inventory = data.inventario;
-		console.log(this.oleada);
-		console.log(this.inventory);
 	}
-
-	preload() {
-		//BACKGROUND IMAGEN
-
-		this.load.image('Background1', 'src/Assets/Finales/fondo_combate.png');
-
-		//FONDO MATRIZ
-		this.load.image('MatrixGround', 'src/Assets/Finales/casilla.png');
-
-		this.load.image('MatrixGround2', 'src/Assets/Finales/casilla2.png');
-		//INFANTERÍA PRUEBA
-
-		this.load.image('LA', 'src/Assets/Finales/p1.png');
-		//ARQUERO LARGO PRUEBA
-		this.load.image('G', 'src/Assets/Finales/p2.png');
-		//MAGO PRUEBA
-		this.load.image('M', 'src/Assets/Finales/p3.png');
-		//HEALER PRUEBA
-		this.load.image('H', 'src/Assets/Finales/p4.png');
-		//CARRO PRUEBA
-		this.load.image('C', 'src/Assets/Finales/p5.png');
-		//ARCO CORTO PRUEBA
-		this.load.image('SA', 'src/Assets/Finales/p6.png');
-		//enemigo
-		this.load.image('E', 'src/Assets/Finales/e.png');
-
-		//BOSS
-		this.load.image('B', 'src/Assets/Temporales/Serpiente.png');
-		
-		//flecha inventario
-		this.load.image('flecha', 'src/Assets/Finales/boton_desplazamiento.png');
-		this.load.image('Pelea', 'src/Assets/Finales/boton_batalla.png');
-
-
-		//sinergias
-		this.load.image('BackgroundPosiblesEnemigos', 'src/Assets/Finales/FondoPosiblesEnemigos.png');
-		this.load.image('BackgroundChuletaSinergias', 'src/Assets/Finales/FondoSinergias.png');
-		this.load.image('Rades','src/Assets/Finales/JeroglificosRa.png')
-		this.load.image('Raact','src/Assets/Finales/JeroglificosRaIluminado.png')
-		this.load.image('Osirisdes','src/Assets/Finales/JeroglificosOsiris.png')
-		this.load.image('Osirisact','src/Assets/Finales/JeroglificosOsirisIluminado.png')
-		this.load.image('Horusdes','src/Assets/Finales/JeroglificosHorus.png')
-		this.load.image('Horusact','src/Assets/Finales/JeroglificosHorusIluminado.png')
-		this.load.image('Isisdes','src/Assets/Finales/JeroglificosIsis.png')
-		this.load.image('Isisact','src/Assets/Finales/JeroglificosIsisIluminado.png')
-		this.load.image('Anubisdes','src/Assets/Finales/JeroglificosAnubis.png')
-		this.load.image('Anubisact','src/Assets/Finales/JeroglificosAnubisIluminado.png')
-		this.load.image('Sethdes','src/Assets/Finales/JeroglificosSeth.png')
-		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
-		this.load.image('victoria','src/Assets/Finales/Victoria.png')
-		this.load.image('derrota','src/Assets/Finales/Derrota.png')
-		this.load.image('volver','src/Assets/Finales/boton_volver.png')
-
-		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.wav')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.wav')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.wav')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.wav')
-		//SFX
-		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.wav')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.wav')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.wav')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.wav')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.wav')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.wav')
-	}
-	cronometro;
 	GameLoop()
 	{
-		console.log(this.battleManager.GetVictory());
 		if(this.battleManager.Battle()== false){
-			console.log("acabe");
+		
 			if(this.battleManager.GetVictory()== true){
 				this.Win();
 			}
@@ -114,45 +47,50 @@ export default class EscenaCombate extends Phaser.Scene {
 			}
 			this.cronometro.remove();
 	}
+	var x = 1-(this.battleManager.numenemiestrops/(this.battleManager.numenemiestrops+this.battleManager.numplayertrops))
+	this.barradeprogreso.setScale(x,1);
 }
 Win(){
 	if(this.oleada < 5 || this.oleada == 7){
+		//Cambiamos la música de combate
 		this.combatSound.stop();
 		this.endCombatSound = this.sound.add('Win');
 		this.endCombatSound.play({loop:true});
-		this.add.image(this.sys.game.canvas.width / 2,300,'victoria')
-		var botndevolver = this.add.image(this.sys.game.canvas.width / 2,700,'volver').setScale(0.5,0.5)
-				botndevolver.setInteractive()
-				botndevolver.on('pointerup', pointer => {
-					this.endCombatSound.stop();
-						var numero = this.oleada;
-						numero += 1;
-						console.log(numero)
-						if(this.oleada == 7) {
-							console.log("Cambio")
-							this.scene.start('EscenaVictoria',{oleada: this.oleada, inventario: this.inventory})
-						}
-						else this.scene.start('EscenaSocialTienda',{oleada: numero, inventario: this.inventory});
-				})
+		//Seteamos los botones de victoria
+		let victoriaimg = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 4,'victoria')
+	    victoriaimg.setScale(1,1.1);
+		let Returndefeat = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'continuar').setScale(0.5,0.5);
+			Returndefeat.setInteractive();			
+			Returndefeat.on('pointerup', pointer =>{
+				this.endCombatSound.stop();
+				if(this.oleada == 3) {
+					this.scene.start('EscenaCreditos',{oleada: this.oleada, inventario: this.inventory})
+				}
+				else this.scene.start('EscenaSocialTienda',{oleada: this.oleada + 1, inventario: this.inventory});
+			})
+	
 	}
 	else{
-		this.oleada = this.oleada + 1;;
+		this.oleada = this.oleada + 1;
 		this.scene.start('EscenaCombate',{oleada: this.oleada, inventario: this.inventory});
 	}
 }
 defeat(){
+	//Sonidos de derrota
 	this.combatSound.stop();
 	this.endCombatSound = this.sound.add('Lose');
 	this.endCombatSound.play({loop:true});
 	let Pendejo = this.sound.add('Pendejo');
 	Pendejo.play(Pendejo);
-	this.add.image(this.sys.game.canvas.width / 2,300,'derrota')
-				var botndevolver = this.add.image(this.sys.game.canvas.width / 2,700,'volver').setScale(0.5,0.5)
-				botndevolver.setInteractive()
-				botndevolver.on('pointerup', pointer => {
-					this.endCombatSound.stop();
-						this.scene.start('EscenaPrincipal');
-				})
+	let derr = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 4,'derrota');
+	derr.setScale(1,1.1);
+	//Seteamos los botones de derrota
+	let Returndefeat = this.add.image((this.sys.game.canvas.width)/2, this.sys.game.canvas.height / 1.5,'volver').setScale(0.5,0.5);
+			Returndefeat.setInteractive();			
+			Returndefeat.on('pointerup', pointer =>{
+				this.endCombatSound.stop();
+				this.scene.start('EscenaPrincipal');
+			})
 }
 activeSinergy(dios){
 	if(dios==0){
@@ -194,7 +132,155 @@ desactiveSinergy(dios){
 }
 
 	create() {
-		
+		//animaciones
+		this.anims.create({
+			key: 'LAIDLE',
+			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GIDLE',
+			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MIDLE',
+			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HIDLE',
+			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CIDLE',
+			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAIDLE',
+			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'LAA',
+			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GA',
+			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MA',
+			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HA',
+			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CA',
+			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAA',
+			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
+		//animaciones enemigos
+		this.anims.create({
+			key: 'ELAIDLE',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGIDLE',
+			frames: this.anims.generateFrameNumbers('EG', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMIDLE',
+			frames: this.anims.generateFrameNumbers('EM', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHIDLE',
+			frames: this.anims.generateFrameNumbers('EH', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECIDLE',
+			frames: this.anims.generateFrameNumbers('EC', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAIDLE',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ELAA',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGA',
+			frames: this.anims.generateFrameNumbers('EG', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMA',
+			frames: this.anims.generateFrameNumbers('EM', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHA',
+			frames: this.anims.generateFrameNumbers('EH', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECA',
+			frames: this.anims.generateFrameNumbers('EC', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAA',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
+
 		this.cronometro = this.time.addEvent({
             delay: 1000, // 1 segundos
 			loop: true,
@@ -202,11 +288,11 @@ desactiveSinergy(dios){
             callback: () => {
 				this.GameLoop()
             },})
+		//Audio y Sonidos
 		this.preCombatSound = this.sound.add('PreCombate');
 		this.movecardsound = this.sound.add('movercartas');
 		this.Choosecardsound = this.sound.add('elegircartas');
 		this.starBattlesound = this.sound.add('iniciabatalla');
-		
 		//Creamos el background y le aplicamos la escala
 		var back = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'Background1');
 		back.setScale(this.cameras.main.width / this.textures.get('Background1').getSourceImage().width,
@@ -390,7 +476,7 @@ desactiveSinergy(dios){
 		for(let i = 0; i < this.mat.row; i++){
 			for(let j = 0; j < this.mat.col; j++){
 				 //Colocamos el fondo
-				this.mat.mat[i][j].setScale(0.85,0.85)
+				 this.mat.mat[i][j].setScale(0.85,0.85)
 				this.mat.mat[i][j].setInteractive();
 				this.mat.mat[i][j].on('pointerup', pointer =>{
 					//Coloca la textura de las tropas
@@ -399,18 +485,28 @@ desactiveSinergy(dios){
 						if(this.battleManager.auxcard == -1){
 							this.inventory.listCardClass[actualcard].DeleteCard();
 						}
-						else{
+						else if(!this.battleManager.onbattle) {
 							if(actualcard != null) this.inventory.listCardClass[actualcard].DeleteCard();
+							this.mat.mat[i][j].anims.stop()
 							this.inventory.listCardClass[this.battleManager.auxcard].RecoverCard();
+							this.mat.mat[i][j].setTexture("MatrixGround");
 							if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 						}
-						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());						
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());		
+								
 					}
 				})
 			}
 		}
+		this.barradeprogresobacgound = this.add.rectangle(((this.sys.game.canvas.width)/2),this.sys.game.canvas.height*14.15/ 15, 1000,60,0xffffffff)
+		this.barradeprogreso = this.add.rectangle(((this.sys.game.canvas.width)/2)-500,this.sys.game.canvas.height*14.15/ 15, 1000,50,0xff00ff00)
+
+		this.barradeprogreso.setOrigin(0,0.5);
+		this.barradeprogreso.setScale(0.5,1);
+		this.barradeprogresobacgound.setVisible(false);
+		this.barradeprogreso.setVisible(false);
 		//Boton de pegarse
 		var pelea = this.add.image((this.sys.game.canvas.width)*11.55 / 12, this.sys.game.canvas.height*14.15/ 15,'Pelea')
 		pelea.setScale(0.2,0.2);
@@ -423,6 +519,7 @@ desactiveSinergy(dios){
 					if(this.mat.mat[i][j].ocupada == false){
 						this.mat.mat[i][j].SetFree();
 					}
+					this.mat.mat[i][j].disableInteractive();
 				}
 			}
 			this.preCombatSound.stop();
@@ -431,7 +528,6 @@ desactiveSinergy(dios){
 			let _card;
 			for(_card of this.inventory.listCardClass){
 				_card.RecoverCard();
-				console.log("Recupero las cartas")
 			}
 			if(this.oleada <= 5)this.combatSound.play({loop: true})
 			for(let i = 0; i < 6; i++){
@@ -447,10 +543,11 @@ desactiveSinergy(dios){
 							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("B");
 						}
 						else{
-							this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture("E");
+						 this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture();
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.33,0.33);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.15);
+					
 					}
 				}
 			}
@@ -465,6 +562,8 @@ desactiveSinergy(dios){
 					}
 				}
 			}
+			
+	
 			
 			pelea.setVisible(false);
 			imagecard1.setVisible(false);
@@ -485,12 +584,9 @@ desactiveSinergy(dios){
 			this.sethsin.setVisible(false)
 			this.anubissin.setVisible(false)
 			this.osirissin.setVisible(false)
+			this.barradeprogresobacgound.setVisible(true);
+			this.barradeprogreso.setVisible(true);
 			this.cronometro.paused=false;			
 		})
-
-		 
-	
-	
 	}
-
 }

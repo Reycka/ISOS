@@ -21,7 +21,6 @@ export default class CardClass extends Phaser.GameObjects.Sprite {
         this.isHealer  =this.stads.isahealer;
         this.isaCard = this.stads.iscard;
        this.isused = false;
-        console.log(this.textureindex);
         this.setScale(1 / 2, 1 / 2);
       
         

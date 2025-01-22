@@ -48,7 +48,6 @@ export default class Inventory{
             this.listCardlogic.push(cardLogic);
           
             this.listCardClass.push(new CardClass(scene, 1, 1,cardTexture, cardLogic));
-            console.log(this.listCardClass); 
             this.numcards++;
     }
     increaseDay(){

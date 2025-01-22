@@ -400,7 +400,7 @@ desactiveSinergy(dios){
 						 this.battleManager.enemymatriz.Enemymat.mat[i][j].setTexture();
 						}
 						this.battleManager.enemymatriz.Enemymat.mat[i][j].flipX = true;
-					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.15);
+					this.battleManager.enemymatriz.Enemymat.mat[i][j].setScale(0.78);
 					
 					}
 				}

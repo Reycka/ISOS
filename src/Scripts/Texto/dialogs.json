@@ -571,16 +571,71 @@
         "evento4.2": {
             "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
+                { "character": "Adio", "text": "Ah Shai." },
+                { "character": "Adio", "text": "Buen día, justo te estaba buscando." },
+                { "character": "Shai", "text":"¿Oh?" },
+                { "character": "Shai", "text":"¿Qué necesitas?" },
+                { "character": "Adio", "text":"Nada, nada."},
+                { "character": "Adio", "text":"Simplemente quería despedirme y darte las gracias antes de continuar mi camino."},
+                { "character": "Shai", "text":"¿Estás seguro de que quieres irte?"},
+                { "character": "Shai", "text":"Ya no quedan zonas realmente seguras cerca y mi conciencia no estaría tranquila sabiendo que te has ido solo y sin posibilidad de encontrar otro lugar en el que pasar la noche."},
+                { "character": "Adio", "text":"Agradezco tu preocupación, pero no quiero ser una carga más para este templo."},
+                { 
+                    "character": "Adio", 
+                    "text":"Alimentar a toda la gente que se está refugiando tiene que ser difícil.",
+                    "options":[
+                        { "response": "Prefiero eso a que mueras a manos de Apofis.", "gain": -1, "god": "Horus" },
+                        { "response": "Siempre puedes encargarte de alguna tarea a cambio de quedarte", "gain": 1, "god": "Horus" },
+                        { "response": "Nadie en este templo es una carga, eso te incluye.", "gain": 0, "god": "Horus" }
+                    ]
+                },
+                {},
+                { "character": "Shai", "text": " Además, perdoname si me estoy entrometiendo, pero la lanza que llevas es típica de guardias de los templos de Horus." },
+                { "character": "Shai", "text": " Nos vendría bien más gente que sepa luchar para proteger el tiempo." },
+                { "character": "Adio", "text":" Puedo ayudar en lo que quieras, pero no estoy capacitado para proteger nada." },
+                { "character": "Adio", "text":"Ya le he fallado al templo del que vengo." },
+                { "character": "Shai", "text":"De acuerdo."},
+                { "character": "Shai", "text":"¿Tenemos un pacto entonces?"},
+                {"character": "Shai", "text": "Está bien."}
                 
             ]
         },
         "evento4.3": {
             "dialogs": [
                 {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
+                { "character": "Shai", "text": "Adio, no te tomes esto a mal."},
+                { "character": "Shai", "text": "Pero llevas mirando al mismo hombre un buen rato."},
+                { "character": "Shai", "text":"¿Debería preocuparme?"},
+                { "character": "Adio", "text":"Te puedo asegurar que he realizado todas las tarea que se me han asignado hoy."},
+                { "character": "Adio", "text":"No tienes nada de qué preocuparte."},
+                { "character": "Shai", "text":"Eso no es lo que estaba preguntando."},
+                { "character": "Shai", "text":"Da igual."},
+                { "character": "Shai", "text":"¿A qué se debe el interés?"},
+                { "character": "Adio", "text":"Hay un mago de Seth en tu templo, Shai."},
+                { "character": "Shai", "text":"Soy consciente de ello."},
+                { "character": "Adio", "text":"¿No tienes miedo de que haga algo?"},
+                { "character": "Shai", "text":"En este templo ofrecemos asilo a todo el que lo necesite."},
+                { "character": "Shai", "text":"Además, ha estado ayudando a defender el perímetro del templo por la noche."},
+                { 
+                    "character": "Adio", 
+                    "text":"Simplemente no entiendo como alguien en su sano juicio buscaría ese tipo de poder.",
+                    "options":[
+                        { "response": "Tiempos desesperados, requieren medidas desesperadas", "gain": -1, "god": "Horus", "next": "fragmento_4.3.1" },
+                        { "response": "Por qué no se lo preguntas a él", "gain": 1, "god": "Horus","next": "fragmento_4.3.2"  },
+                        { "response": "Para ser honestos, no es donde yo habría buscado.", "gain": 0, "god": "Horus","next": "fragmento_4.3.1"  }
+                    ]
+                }          
             ]
+        },
+        "fragmneto_4.3.1":{
+        "dialogs": [
+
+            ]
+        },
+        "fragmneto_4.3.2":{
+            "dialogs": [
+                   
+                ]
         },
         "evento4.4": {
             "dialogs": [

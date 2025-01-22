@@ -584,9 +584,9 @@
                     "character": "Adio", 
                     "text":"Alimentar a toda la gente que se está refugiando tiene que ser difícil.",
                     "options":[
-                        { "response": "Prefiero eso a que mueras a manos de Apofis.", "gain": -1, "god": "Horus" },
-                        { "response": "Siempre puedes encargarte de alguna tarea a cambio de quedarte", "gain": 1, "god": "Horus" },
-                        { "response": "Nadie en este templo es una carga, eso te incluye.", "gain": 0, "god": "Horus" }
+                        { "response": "Prefiero eso a que mueras a \nmanos de Apofis.", "gain": -1, "god": "Horus" },
+                        { "response": "Siempre puedes encargarte de \nalguna tarea a cambio de quedarte.", "gain": 1, "god": "Horus" },
+                        { "response": "Nadie en este templo es una carga,\n eso te incluye.", "gain": 0, "god": "Horus" }
                     ]
                 },
                 {},
@@ -620,8 +620,8 @@
                     "character": "Adio", 
                     "text":"Simplemente no entiendo como alguien en su sano juicio buscaría ese tipo de poder.",
                     "options":[
-                        { "response": "Tiempos desesperados, requieren medidas desesperadas", "gain": -1, "god": "Horus", "next": "fragmento_4.3.1" },
-                        { "response": "Por qué no se lo preguntas a él", "gain": 1, "god": "Horus","next": "fragmento_4.3.2"  },
+                        { "response": "Tiempos desesperados, requieren\n medidas desesperadas.", "gain": -1, "god": "Horus", "next": "fragmento_4.3.1" },
+                        { "response": "¿Por qué no se lo preguntas a él?", "gain": 1, "god": "Horus","next": "fragmento_4.3.2"  },
                         { "response": "Para ser honestos, no es donde yo habría buscado.", "gain": 0, "god": "Horus","next": "fragmento_4.3.1"  }
                     ]
                 }          
@@ -630,20 +630,61 @@
         "fragmneto_4.3.1":{
         "dialogs": [
 
+            { "character": "Adio", "text":"Supongo que estamos de acuerdo en eso."},
+            { "character": "Adio", "text":"Seguiré vigilando que no intente nada."},
+            { "character": "Shai", "text":"Si eso te hace estar más tranquilo, adelante."}
+
             ]
         },
         "fragmneto_4.3.2":{
             "dialogs": [
+
+                { "character": "Adio", "text":"¿Cómo?"},
+                { "character": "Shai", "text":"Si no lo entiendes, ve a preguntarle."},
+                { "character": "Shai", "text":"Nadie mejor que él para explicártelo."},
+                { "character": "Adio", "text":"No se si es muy buena idea."},
+                { "character": "Shai", "text":"No pierdes nada por intentarlo."}
                    
                 ]
         },
         "evento4.4": {
-            "dialogs": [
-                {},
-                { "character": "Cuarta pared", "text": "Este diálogo aún no está hecho, no seas tonto y deja de hablar con este personaje. Estás Perdiendo turnos." }
-                
-            ]
-        },
+        "dialogs": [
+            { "character": "Shai", "text": "Adio, perdona que te moleste." },
+            { "character": "Adio", "text": "No es necesario que te disculpes, después de todo estoy viviendo en tu templo." },
+            { "character": "Shai", "text": "Necesito pedirte un favor." },
+            { "character": "Adio", "text": "Te ayudaré en lo que sea siempre que esté dentro de mis capacidades." },
+            { 
+                "character": "Adio", 
+                "text": "Te ayudaré en lo que sea siempre que esté dentro de mis capacidades.",
+                "options": [
+                    { "response": "Nos vendría muy bien que te unieses a los guerreros.", "gain": -1, "god": "Horus", "next": "fragmento_4.4.1" },
+                    { "response": "¿Puedes ayudar a entrenar a los nuevos reclutas?", "gain": 1, "god": "Horus", "next": "fragmento_4.4.2" },
+                    { "response": "¿Podrías cuidar de los soldados heridos en batalla?", "gain": 0, "god": "Horus", "next": "fragmento_4.4.1" }
+                ]
+            }
+        ]
+    },
+    "fragmento_4.4.1": {
+        "dialogs": [
+            { "character": "Adio", "text": "Shai, de verdad que quiero ayudar, pero eso no está dentro de mis capacidades." },
+            { "character": "Shai", "text": "Está bien, de verdad." },
+            { "character": "Shai", "text": "Es solo que estamos perdiendo demasiada gente y no sé cómo solucionarlo." },
+            { "character": "Adio", "text": "…" },
+            { "character": "Adio", "text": "Puedo intentar pasarme por el campo de entrenamiento y dar algunos consejos…" },
+            { "character": "Shai", "text": "Te lo agradecería." }
+        ]
+    },
+    "fragmento_4.4.2": {
+        "dialogs": [
+            { "character": "Shai", "text": "Sé que no te sientes capaz de luchar tú mismo, pero te he visto entrenar y tienes buena forma." },
+            { "character": "Shai", "text": "Nos vendría muy bien tu ayuda." },
+            { "character": "Adio", "text": "…" },
+            { "character": "Adio", "text": "Lo puedo intentar." },
+            { "character": "Adio", "text": "Pero sigo pensando que esperas demasiado de mí." },
+            { "character": "Shai", "text": "Muchas gracias, Adio." }
+        ]
+    },
+   
         "evento4.5": {
             "dialogs": [
                 {},

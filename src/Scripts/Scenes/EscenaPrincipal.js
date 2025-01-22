@@ -149,7 +149,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
 		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.wav')
 		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.wav')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity 2.wav')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity2.wav')
 		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.wav')
 
 		//SFX

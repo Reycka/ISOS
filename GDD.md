@@ -132,6 +132,8 @@ Modo de Juego: Singleplayer / Multiplayer(si da tiempo)
 
 - Aumenta 0.1 en la nota final si disponemos de 6 slots rellenos con cartas activas
 
+7º Carcasone (para el ultimo hueco)
+
 Grupo 07→ Incluirán un final abierto en su juego  
 Grupo 05→Incluirá un gato en una caja como personaje en su juego.  
 Grupo 02 →Incluirán una mecánica de reputación y afecto en su juego

@@ -163,6 +163,153 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	}
 	
 	create() {
+		//animaciones
+		this.anims.create({
+			key: 'LAIDLE',
+			frames: this.anims.generateFrameNumbers('LA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GIDLE',
+			frames: this.anims.generateFrameNumbers('G', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MIDLE',
+			frames: this.anims.generateFrameNumbers('M', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HIDLE',
+			frames: this.anims.generateFrameNumbers('H', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CIDLE',
+			frames: this.anims.generateFrameNumbers('C', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAIDLE',
+			frames: this.anims.generateFrameNumbers('SA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'LAA',
+			frames: this.anims.generateFrameNumbers('LA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'GA',
+			frames: this.anims.generateFrameNumbers('G', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'MA',
+			frames: this.anims.generateFrameNumbers('M', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'HA',
+			frames: this.anims.generateFrameNumbers('H', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'CA',
+			frames: this.anims.generateFrameNumbers('C', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'SAA',
+			frames: this.anims.generateFrameNumbers('SA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+
+		//animaciones enemigos
+		this.anims.create({
+			key: 'ELAIDLE',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGIDLE',
+			frames: this.anims.generateFrameNumbers('EG', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMIDLE',
+			frames: this.anims.generateFrameNumbers('EM', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHIDLE',
+			frames: this.anims.generateFrameNumbers('EH', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECIDLE',
+			frames: this.anims.generateFrameNumbers('EC', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAIDLE',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 0, end: 6 }),
+			frameRate: 7,
+			repeat: -1 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ELAA',
+			frames: this.anims.generateFrameNumbers('ELA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0// Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EGA',
+			frames: this.anims.generateFrameNumbers('EG', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EMA',
+			frames: this.anims.generateFrameNumbers('EM', { start: 7, end: 13 }),
+			frameRate:7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'EHA',
+			frames: this.anims.generateFrameNumbers('EH', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ECA',
+			frames: this.anims.generateFrameNumbers('EC', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
+		this.anims.create({
+			key: 'ESAA',
+			frames: this.anims.generateFrameNumbers('ESA', { start: 7, end: 13 }),
+			frameRate: 7,
+			repeat: 0 // Repetir indefinidamente
+		});
 		var importante = this.add.image(this.sys.game.canvas.width / 2,300,'IMPORTANTITISISISMOCLAVEINDISPENSABLE');
 		var audio = this.sound.add('fondito')
 		audio.play({loop:true});

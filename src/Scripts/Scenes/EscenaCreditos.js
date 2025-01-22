@@ -21,7 +21,7 @@ export default class EscenaCreditos extends Phaser.Scene {
     
     create() {
        this.na = this.add.image(this.sys.game.canvas.width /2, this.sys.game.canvas.height/ 2, 'IMPORTANTITISISISMOCLAVEINDISPENSABLE')
-        this.t = this.add.text(188, this.sys.game.canvas.height/ 3, "GRACIAS POR JUGAR HASTA AQUI LLEGA EL JUEGO", { font: '60px Arial, sans-serif',
+        this.t = this.add.text(188, this.sys.game.canvas.height/ 3, "GRACIAS POR JUGAR, HASTA AQUI LLEGA EL JUEGO (POR AHORA :))", { font: '60px Arial, sans-serif',
             fill: '#fff',
             stroke: '#000',
             strokeThickness: 4,

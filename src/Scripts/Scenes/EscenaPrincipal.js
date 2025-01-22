@@ -57,6 +57,12 @@ export default class EscenaPrincipal extends Phaser.Scene {
 				this.load.image('Khalid', 'src/Assets/Finales/Khalid.png');
 				this.load.image('KhalidNo', 'src/Assets/Finales/KhalidNo.png');
 				this.load.image('KhalidChibi', 'src/Assets/Finales/KhalidChibi.png');
+
+				//Ziyad
+
+				this.load.image('Ziyad', 'src/Assets/Finales/Ziyad.png');
+				this.load.image('ZiyadNo', 'src/Assets/Finales/ZiyadNo.png');
+				this.load.image('ZiyadChibi', 'src/Assets/Finales/ZiyadChibi.png');
 		
 		
 				//miscelanea de imagenes

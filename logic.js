@@ -59,6 +59,11 @@ const images = [
         src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/AdioWeb.png?raw=true",
         title: "ADIO",
         description: "Antiguo guardia de un templo de Horus. Es uno de los únicos supervivientes del ataque de Apofis a su templo, ahora se refugia en el templo de Shai"
+    },
+    {
+        src: "https://github.com/Reycka/ISOS/blob/main/src/Assets/Finales/ZiyadWeb.png?raw=true",
+        title: "ZIYAD",
+        description: "Mago dedicado al camino de Seth, lo que le provoca una gran cantidad de conflictos con el resto del mundo."
     }
     // Agrega más objetos de imagen según sea necesario
 ];

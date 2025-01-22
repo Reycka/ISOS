@@ -15,8 +15,11 @@ export default class EscenaPrincipal extends Phaser.Scene {
 	}
 
 	preload() {
-
-		this.load.image('Background','src/Assets/Finales/fondo_socializar.png')
+		this.add.text(500, 400,"Cargando",{
+			fontFamily: 'Times new Roman',
+			backgroundColor: '#000000'
+		}).setScale(15,15);
+		this.load.image('Background','src/Assets/Finales/fondo_socializar.png');
 		this.load.image('Titulo','src/Assets/Finales/TituloChamberOfTheHeart.png');
 		this.load.image('BotonComenzar','src/Assets/Finales/boton_comenzar.png');
 		this.load.image('IMPORTANTITISISISMOCLAVEINDISPENSABLE','src/Assets/raizclaveimportantisimadelproyecto.jpg')

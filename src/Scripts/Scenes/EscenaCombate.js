@@ -487,15 +487,14 @@ desactiveSinergy(dios){
 						}
 						else if(!this.battleManager.onbattle) {
 							if(actualcard != null) this.inventory.listCardClass[actualcard].DeleteCard();
-							this.inventory.listCardClass[this.battleManager.auxcard].RecoverCard();
 							this.mat.mat[i][j].anims.stop()
-							this.mat.mat[i][j].setTexture("MatrizGround")
-							this.mat.mat[i][j].setScale(0.85,0.85)
+							this.inventory.listCardClass[this.battleManager.auxcard].RecoverCard();
+							this.mat.mat[i][j].setTexture("MatrixGround");
 							if(this.inventory.listCardClass[this.inventoryindex].GetIsused()== false) imagecard1.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+1].GetIsused()== false) imagecard2.alpha = 1;
 							if(this.inventory.listCardClass[this.inventoryindex+2].GetIsused()== false) imagecard3.alpha = 1;
 						}
-						else this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture()).setScale(0.15);		
+						this.mat.mat[i][j].setTexture(this.mat.mat[i][j].GetTexture());		
 								
 					}
 				})
@@ -520,6 +519,7 @@ desactiveSinergy(dios){
 					if(this.mat.mat[i][j].ocupada == false){
 						this.mat.mat[i][j].SetFree();
 					}
+					this.mat.mat[i][j].disableInteractive();
 				}
 			}
 			this.preCombatSound.stop();

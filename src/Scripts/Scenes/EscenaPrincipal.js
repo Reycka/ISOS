@@ -22,7 +22,7 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('IMPORTANTITISISISMOCLAVEINDISPENSABLE','src/Assets/raizclaveimportantisimadelproyecto.jpg')
 		this.load.image('BotonSalir','src/Assets/Finales/boton_salir.png');
 
-		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/Ethereal HeartbeatMain.wav')
+		this.load.audio('fondito','src/Assets/sfx/musica/FINALES/EtherealHeartbeatMain.wav')
 		this.oleada1 = 1;
 
 		//ESCENA SOCIALIZAR
@@ -65,9 +65,9 @@ export default class EscenaPrincipal extends Phaser.Scene {
 				this.load.image('cardback','src/Assets/Finales/CartaParteTrasera.png')
 				this.load.image('batalla', 'src/Assets/Finales/boton_batalla.png')
 				//Audio
-				this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/Ethereal Golden Clouds Main.wav')
-				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/Ethereal Luminesce Intensity 2.wav')
-				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FX Magic Deck 004.wav')
+				this.load.audio('SocialSound', 'src/Assets/sfx/musica/FINALES/EtherealGoldenCloudsMain.wav')
+				this.load.audio('TiendaSound', 'src/Assets/sfx/musica/FINALES/EtherealLuminesceIntensity2.wav')
+				this.load.audio('sacarcartaSFX','src/Assets/sfx/sonidos/FXMagicDeck004.wav')
 
 		//ESCENA DE COMBATE 
 		//BACKGROUND IMAGEN
@@ -146,19 +146,19 @@ export default class EscenaPrincipal extends Phaser.Scene {
 		this.load.image('Sethact','src/Assets/Finales/JeroglificosSethIluminado.png')
 
 		//Música
-		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/Epic Vol2 Trust Main.wav')
-		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/Epic Vol2 Troops Main.wav')
-		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/Epic Vol2 Whistleblower Main.wav')
-		this.load.audio('Win','src/Assets/sfx/musica/FINALES/Epic Vol2 Win Intensity 2.wav')
-		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbient Vol2 Tears Intensity 2.wav')
+		this.load.audio('PreCombate','src/Assets/sfx/musica/FINALES/EpicVol2TrustMain.wav')
+		this.load.audio('Combate','src/Assets/sfx/musica/FINALES/EpicVol2TroopsMain.wav')
+		this.load.audio('CombateBoss','src/Assets/sfx/musica/FINALES/EpicVol2WhistleblowerMain.wav')
+		this.load.audio('Win','src/Assets/sfx/musica/FINALES/EpicVol2WinIntensity 2.wav')
+		this.load.audio('Lose','src/Assets/sfx/musica/FINALES/OrchAmbientVol2TearsIntensity2.wav')
 
 		//SFX
 		this.load.audio('Pendejo','src/Assets/sfx/sonidos/DerrotaSound.wav')
-		this.load.audio('Pego','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.wav')
-		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegar y eso/Bryce Attack B.wav')
-		this.load.audio('movercartas','src/Assets/sfx/sonidos/Card Placing 007.wav')
-		this.load.audio('elegircartas','src/Assets/sfx/sonidos/Cards Shuffle Oneshot 004.wav')
-		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/Impact Metal Spring 005.wav')
+		this.load.audio('Pego','src/Assets/sfx/sonidos/pegaryeso/BryceAttackB.wav')
+		this.load.audio('MePegan','src/Assets/sfx/sonidos/pegaryeso/BryceAttackA.wav')
+		this.load.audio('movercartas','src/Assets/sfx/sonidos/CardPlacing007.wav')
+		this.load.audio('elegircartas','src/Assets/sfx/sonidos/CardsShuffleOneshot004.wav')
+		this.load.audio('iniciabatalla','src/Assets/sfx/sonidos/ImpactMetalSpring005.wav')
 
 	}
 	

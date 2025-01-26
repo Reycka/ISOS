@@ -627,8 +627,9 @@
                 }          
             ]
         },
-        "fragmneto_4.3.1":{
+        "fragmento_4.3.1":{
         "dialogs": [
+            {},
 
             { "character": "Adio", "text":"Supongo que estamos de acuerdo en eso."},
             { "character": "Adio", "text":"Seguiré vigilando que no intente nada."},
@@ -636,8 +637,9 @@
 
             ]
         },
-        "fragmneto_4.3.2":{
+        "fragmento_4.3.2":{
             "dialogs": [
+                {},
 
                 { "character": "Adio", "text":"¿Cómo?"},
                 { "character": "Shai", "text":"Si no lo entiendes, ve a preguntarle."},
@@ -649,6 +651,7 @@
         },
         "evento4.4": {
         "dialogs": [
+             {},
             { "character": "Shai", "text": "Adio, perdona que te moleste." },
             { "character": "Adio", "text": "No es necesario que te disculpes, después de todo estoy viviendo en tu templo." },
             { "character": "Shai", "text": "Necesito pedirte un favor." },
@@ -666,6 +669,7 @@
     },
     "fragmento_4.4.1": {
         "dialogs": [
+            {},
             { "character": "Adio", "text": "Shai, de verdad que quiero ayudar, pero eso no está dentro de mis capacidades." },
             { "character": "Shai", "text": "Está bien, de verdad." },
             { "character": "Shai", "text": "Es solo que estamos perdiendo demasiada gente y no sé cómo solucionarlo." },
@@ -676,6 +680,7 @@
     },
     "fragmento_4.4.2": {
         "dialogs": [
+            {},
             { "character": "Shai", "text": "Sé que no te sientes capaz de luchar tú mismo, pero te he visto entrenar y tienes buena forma." },
             { "character": "Shai", "text": "Nos vendría muy bien tu ayuda." },
             { "character": "Adio", "text": "…" },
@@ -699,7 +704,7 @@
                 { "character": "Shai", "text": "Buenos días." },
                 { "character": "Shai", "text": "¿Hay algún motivo por el qué estés escondido en una esquina del templo?" },
                 { "character": "???", "text": "Hola." },
-                { "character": "???", "text": "Me preguntaba cuando algún encargado del templo tardaría en darse cuenta de mi presencia." },
+                { "character": "???", "text": "Me preguntaba cuanto algún encargado del templo tardaría en darse cuenta de mi presencia." },
                 { "character": "Shai", "text": "No me malinterpretes, simplemente me gustaría saber por qué te escondes." },
                 { "character": "???", "text": "Quería descansar un rato antes de que alguien me intentara echar." },
                 { "character": "???", "text": "Estoy algo cansado de la gente acusandome de realizar blasfemias." },
@@ -752,12 +757,13 @@
                     "character": "Ziyad",
                     "text": " No le ha hecho gracia que quemase su Khopesh.",
                     "options": [
-                        { "response": "Es increíble que haya personas que no vean que \n si no peleamos entre nosotros, nunca podremos derrotar a Apofis.", "gain": 1, "god": "Seth" },
+                        { "response": "Es increíble que haya personas que no vean que si nos peleamos  \nentre nosotros, nunca podremos derrotar a Apofis.", "gain": 1, "god": "Seth" },
                         { "response": "Hablo enserio Ziyad, si necesitas ayuda, avísame.", "gain": 0, "god": "Seth" },
                         { "response": "Tiene que haber sido una escena curiosa.", "gain": 1, "god": "Seth" }
                        
                     ]
                 },
+                {},
                 { "character": "Ziyad", "text": "Estoy acostumbrado." },
                 { "character": "Ziyad", "text": "Son las consecuencias de mis propias decisiones." },
                 { "character": "Shai", "text": "¿Por qué elegir a Seth? Tengo curiosidad." },
